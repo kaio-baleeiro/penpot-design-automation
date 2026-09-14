@@ -1,0 +1,129 @@
+name: penpot-design-automation
+
+x-penpot-flags: &penpot-flags
+  PENPOT_FLAGS: disable-email-verification enable-smtp enable-prepl-server disable-secure-session-cookies enable-access-tokens enable-mcp
+
+x-penpot-public-uri: &penpot-public-uri
+  PENPOT_PUBLIC_URI: ${PENPOT_PUBLIC_URI}
+
+x-penpot-secret-key: &penpot-secret-key
+  PENPOT_SECRET_KEY: ${PENPOT_SECRET_KEY}
+
+services:
+  penpot-frontend:
+    image: penpotapp/frontend:${PENPOT_VERSION}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:9001:8080"
+    volumes:
+      - penpot_assets:/opt/data/assets
+    depends_on:
+      - penpot-backend
+      - penpot-exporter
+      - penpot-mcp
+    networks:
+      - penpot
+    environment:
+      <<: [*penpot-flags, *penpot-public-uri]
+
+  penpot-backend:
+    image: penpotapp/backend:${PENPOT_VERSION}
+    restart: unless-stopped
+    volumes:
+      - penpot_assets:/opt/data/assets
+    depends_on:
+      penpot-postgres:
+        condition: service_healthy
+      penpot-valkey:
+        condition: service_healthy
+    networks:
+      - penpot
+    environment:
+      <<: [*penpot-flags, *penpot-public-uri, *penpot-secret-key]
+      PENPOT_DATABASE_URI: postgresql://penpot-postgres/penpot
+      PENPOT_DATABASE_USERNAME: penpot
+      PENPOT_DATABASE_PASSWORD: ${PENPOT_POSTGRES_PASSWORD}
+      PENPOT_REDIS_URI: redis://penpot-valkey/0
+      PENPOT_OBJECTS_STORAGE_BACKEND: fs
+      PENPOT_OBJECTS_STORAGE_FS_DIRECTORY: /opt/data/assets
+      PENPOT_TELEMETRY_ENABLED: "false"
+      PENPOT_SMTP_DEFAULT_FROM: no-reply@localhost
+      PENPOT_SMTP_DEFAULT_REPLY_TO: no-reply@localhost
+      PENPOT_SMTP_HOST: penpot-mailcatch
+      PENPOT_SMTP_PORT: "1025"
+      PENPOT_SMTP_TLS: "false"
+      PENPOT_SMTP_SSL: "false"
+
+  penpot-mcp:
+    image: penpotapp/mcp:${PENPOT_VERSION}
+    restart: unless-stopped
+    networks:
+      - penpot
+
+  penpot-exporter:
+    image: penpotapp/exporter:${PENPOT_VERSION}
+    restart: unless-stopped
+    depends_on:
+      penpot-valkey:
+        condition: service_healthy
+    networks:
+      - penpot
+    environment:
+      <<: [*penpot-secret-key, *penpot-public-uri]
+      PENPOT_INTERNAL_URI: http://penpot-frontend:8080
+      PENPOT_REDIS_URI: redis://penpot-valkey/0
+
+  penpot-postgres:
+    image: postgres:15
+    restart: unless-stopped
+    stop_signal: SIGINT
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U penpot -d penpot"]
+      interval: 2s
+      timeout: 10s
+      retries: 5
+      start_period: 3s
+    volumes:
+      - penpot_postgres_data:/var/lib/postgresql/data
+    networks:
+      - penpot
+    environment:
+      POSTGRES_INITDB_ARGS: --data-checksums
+      POSTGRES_DB: penpot
+      POSTGRES_USER: penpot
+      POSTGRES_PASSWORD: ${PENPOT_POSTGRES_PASSWORD}
+
+  penpot-valkey:
+    image: valkey/valkey:8.1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli ping | grep PONG"]
+      interval: 1s
+      timeout: 3s
+      retries: 5
+      start_period: 3s
+    networks:
+      - penpot
+    environment:
+      VALKEY_EXTRA_FLAGS: --maxmemory 128mb --maxmemory-policy volatile-lfu
+
+  penpot-mailcatch:
+    image: sj26/mailcatcher:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:1080:1080"
+    expose:
+      - "1025"
+    networks:
+      - penpot
+
+networks:
+  penpot:
+
+volumes:
+  penpot_postgres_data:
+    external: true
+    name: ${PENPOT_POSTGRES_VOLUME:-katiauinvest-penpot_penpot_postgres_data}
+  penpot_assets:
+    external: true
+    name: ${PENPOT_ASSETS_VOLUME:-katiauinvest-penpot_penpot_assets}

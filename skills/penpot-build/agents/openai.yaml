@@ -1,0 +1,12 @@
+interface:
+  display_name: "Penpot MCP Build"
+  short_description: "Create static screens and components in Penpot"
+  default_prompt: "Use $penpot-build to build the approved static design plan in Penpot through MCP."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "penpot-design"
+      description: "Penpot MCP for frames, components, styles and exports"
+      transport: "streamable_http"
+policy:
+  allow_implicit_invocation: true

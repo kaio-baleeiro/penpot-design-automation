@@ -1,0 +1,33 @@
+version: 1
+worker:
+  model: gpt-5.6-luna
+  unavailable: stop
+routes:
+  - reproduction
+  - directed_creation
+intake:
+  initial_questions_required: true
+  addendum_question_required: true
+  ambiguity_analysis_required: true
+validation:
+  minimum_score: 90
+  minimum_coverage_percent: 80
+  blocking_severities:
+    - P0
+    - P1
+  max_internal_refinement_cycles: 3
+  approval_scope: every_screen_and_viewport
+  required_visual_artifacts:
+    - side_by_side_annotated
+    - overlay
+    - heatmap
+    - issues
+directed_creation:
+  user_feedback_rounds: unlimited
+  user_approval_required: true
+  approved_prototype_becomes_reference: true
+  formalize_design_system_after_approval: true
+security:
+  commit_sanitized_manifests_and_reports: true
+  keep_private_captures_local: true
+  commit_tokens_or_cookies: false

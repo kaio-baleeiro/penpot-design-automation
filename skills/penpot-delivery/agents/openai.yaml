@@ -1,0 +1,6 @@
+interface:
+  display_name: "Penpot Delivery"
+  short_description: "Package Penpot output and visual validation evidence"
+  default_prompt: "Use $penpot-delivery to package and report the validated Penpot result."
+policy:
+  allow_implicit_invocation: true

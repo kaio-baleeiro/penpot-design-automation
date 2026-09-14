@@ -1,0 +1,12 @@
+interface:
+  display_name: "Penpot Design System"
+  short_description: "Formalize tokens, styles and reusable components"
+  default_prompt: "Use $penpot-design-system to componentize the approved Penpot prototype and revalidate it."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "penpot-design"
+      description: "Penpot MCP for shared styles and reusable components"
+      transport: "streamable_http"
+policy:
+  allow_implicit_invocation: true
