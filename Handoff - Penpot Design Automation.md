@@ -46,6 +46,11 @@ wrappers e configuração ficam respectivamente em `references/`, `scripts/` e
 `assets/` dentro da skill proprietária. O validador rejeita caminhos externos,
 recursos quebrados, diretórios opcionais vazios e scripts não executáveis.
 
+Na reprodução, a origem é também a biblioteca prioritária de assets: site,
+runtime e código podem ser inspecionados para reutilizar SVGs, imagens, ícones,
+logos e fontes exatos. O inventário registra procedência e substituições
+externas só entram após uma decisão explícita.
+
 ## Validação concluída
 
 - 31 testes unitários/integrados aprovados.

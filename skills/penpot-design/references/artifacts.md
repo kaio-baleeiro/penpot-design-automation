@@ -10,6 +10,7 @@ runs/<run-id>/
   decisions.md
   source/source-map.json
   source/source-inventory.md
+  source/assets-manifest.json
   source/raw/                 # capturas privadas, sempre ignoradas
   source/sanitized/           # mapas/recortes revisados que podem ser versionados
   briefing/brief-v001.md      # somente directed_creation
@@ -101,6 +102,13 @@ hash, viewport, páginas/rotas, evidências observadas, limitações, nível de
 confiança, relação com outras fontes e decisões de precedência. Cada item
 observado precisa apontar para um arquivo ou âncora (URL, seletor, linha,
 coordenada ou recorte).
+
+`source/assets-manifest.json` registra os arquivos úteis encontrados no site,
+runtime ou código fornecido. Cada item contém `asset_id`, tipo, origem
+sanitizada, `source_id`, hash quando disponível, MIME, dimensões intrínsecas,
+uso observado, estado de aquisição e nota de licença/atribuição quando conhecida.
+Assets privados ficam em `source/raw/`; o plano referencia os originais por
+`asset_refs` e toda substituição precisa registrar motivo e decisão.
 
 O CLI escreve `issues.json` como `{run_id, cycle, issues}`. Cada issue
 determinístico possui `id`, `screen`, `viewport`, `severity` (`P0`..`P3`),

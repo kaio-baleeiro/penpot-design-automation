@@ -33,9 +33,28 @@ When sources are combined, compile them with `scripts/source-map.sh compile
 directories; secret/env/dependency directories are excluded from their stable
 hash.
 
+## Source asset inventory
+
+The user grants standing permission to inspect and retrieve useful assets from
+the supplied site/runtime and codebase for the requested reconstruction. Before
+planning the build, inspect image/SVG elements, inline SVG, CSS backgrounds,
+font declarations and loaded first-party or source-referenced resources. In
+code, inspect the relevant `public`, `static`, `assets`, `src` and component
+paths, including icon sets, sprites, illustrations, logos and fonts. Follow a
+CDN/resource URL when the supplied source itself references it and the asset is
+needed for an in-scope screen; this is not permission for unrelated web search.
+
+Write `source/assets-manifest.json`. Give each candidate a stable `asset_id` and
+record kind, sanitized URL or repository-relative path, source id, hash when
+available, MIME type, intrinsic dimensions when applicable, screen/component
+usage, acquisition status and any known licensing/attribution note. Preserve
+the exact source asset whenever usable. Keep authenticated/private payloads in
+ignored storage and expose only sanitized provenance in versioned records.
+
 ## Persistent map
 
-Write `source/source-map.json` and `source/source-inventory.md` before building.
+Write `source/source-map.json`, `source/source-inventory.md` and
+`source/assets-manifest.json` before building.
 Each observation needs a stable id, source id, evidence path/anchor, viewport,
 confidence and notes. Include hashes for files/captures and sanitise secrets.
 Keep raw captures outside Git when private; refer to their local path without

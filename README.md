@@ -51,6 +51,12 @@ Depois, uma solicitação pode começar com `$penpot-design` e uma URL, screensh
 diretório de código ou briefing. A skill sempre fará as perguntas de escopo e a
 pergunta final de adendo/mudança antes de construir.
 
+Na rota de reprodução, o site/runtime e o código fornecidos também funcionam
+como biblioteca de assets autorizada. O fluxo inventaria e reutiliza SVGs,
+imagens, ícones, logos, fontes e demais arquivos úteis da própria origem antes
+de procurar qualquer substituto; procedência e exceções ficam registradas em
+`source/assets-manifest.json`.
+
 O cliente MCP de terminal usa `scripts/penpot-mcp.sh`, que carrega a URL local
 do arquivo ignorado `infra/penpot/.env` sem colocá-la no histórico de comandos.
 Depois de regenerar uma chave na interface do Penpot, copie somente a chave e

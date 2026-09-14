@@ -14,7 +14,8 @@ Pergunte:
 4. Quais viewports devem ser entregues? Se houver URL/código, investigue e
    informe se existem layouts desktop, mobile ou ambos.
 5. Há prioridade entre fontes, marca, assets, tipografia ou restrições de
-   licenciamento?
+   licenciamento? A inspeção e reutilização de arquivos da origem já estão
+   autorizadas; pergunte somente por restrições materiais.
 6. Qual idioma, densidade, acessibilidade e requisitos de responsividade?
 7. No Penpot, qual time/projeto/arquivo deve receber o resultado e como nomear
    a entrega?

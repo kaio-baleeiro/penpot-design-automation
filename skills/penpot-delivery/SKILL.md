@@ -31,6 +31,8 @@ Create `delivery/report.md` and `delivery/manifest.json` containing:
 - issue table with severity, region, expected/actual, cause and fix status;
 - validation cycles used and any remaining risks/assumptions;
 - design-system inventory and structural verification;
+- source asset inventory, reused `asset_id` values and any explicit fallback or
+  licensing decision;
 - exact approval or `NEEDS_REVIEW` reason.
 - `lesson_refs` for applicable mistakes and countermeasures, without duplicating
   the canonical vault notes.
