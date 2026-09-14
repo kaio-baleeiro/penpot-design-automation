@@ -1,0 +1,6 @@
+interface:
+  display_name: "Penpot Validate"
+  short_description: "Compare renders, score visual fidelity and refactor"
+  default_prompt: "Use $penpot-validate to validate every Penpot screen and produce actionable corrections."
+policy:
+  allow_implicit_invocation: true

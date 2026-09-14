@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "run_id": "katiauinvest-e2e",
+  "route": "reproduction",
+  "worker_model": "gpt-5.6-luna",
+  "strategy": "Compare four preserved Penpot boards against authenticated local application captures without mutating either source.",
+  "screens": [
+    {"id": "dashboard", "viewport": "1440x900"},
+    {"id": "investments", "viewport": "1440x900"},
+    {"id": "imports", "viewport": "1440x900"},
+    {"id": "assistant", "viewport": "1440x900"}
+  ],
+  "mutation_policy": "read-only fixture validation",
+  "failure_state": "NEEDS_REVIEW"
+}

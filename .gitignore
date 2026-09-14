@@ -1,0 +1,47 @@
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+state/
+
+# Runtime captures and private source material
+runs/**/source-captures/*
+runs/**/private/
+runs/**/penpot-exports/
+runs/**/cycles/**/*.png
+runs/**/validation/**/*.png
+
+# Private source artifacts. Sanitized artifacts must live under an explicit
+# sanitized/ directory so that they can be reviewed and versioned safely.
+**/dom.html
+**/styles.json
+**/raw/*
+**/private/
+**/source-captures/
+!**/source-captures/sanitized/
+!**/source-captures/sanitized/**
+!**/raw/sanitized/
+!**/raw/sanitized/**
+!**/sanitized/
+!**/sanitized/**
+
+# Dependencies and generated files
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+coverage/
+dist/
+build/
+playwright-report/
+test-results/
+*.log

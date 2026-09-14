@@ -1,0 +1,6 @@
+interface:
+  display_name: "Penpot Source Map"
+  short_description: "Capture and trace URL, screenshot and code evidence"
+  default_prompt: "Use $penpot-source-map to map all evidence for a Penpot reconstruction."
+policy:
+  allow_implicit_invocation: true

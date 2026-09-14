@@ -1,0 +1,193 @@
+{
+  "version": "1.0",
+  "mapped_at": "2026-09-14T15:42:24.535786+00:00",
+  "sources": [
+    {
+      "source_id": "src-url-2e3785a7881d6173bb4a16b0",
+      "kind": "url",
+      "location": "http://127.0.0.1:3100/",
+      "sha256": "2e3785a7881d6173bb4a16b0c43b006c59e02b494a789b4117a0e4c71530fb00",
+      "confidence": 0.98,
+      "anchors": [
+        {
+          "type": "route-set",
+          "value": [
+            "/",
+            "/investments",
+            "/imports",
+            "/assistant"
+          ]
+        }
+      ],
+      "precedence": 1,
+      "relationships": [
+        {
+          "from": "src-url-2e3785a7881d6173bb4a16b0",
+          "to": "src-screenshot-411ae64028b53fb593ef0230",
+          "kind": "derived-from"
+        }
+      ],
+      "conflicts": []
+    },
+    {
+      "source_id": "src-screenshot-411ae64028b53fb593ef0230",
+      "kind": "screenshot",
+      "location": "runs/katiauinvest-e2e/source-captures/assistant/source.png",
+      "sha256": "411ae64028b53fb593ef0230e0fa46f4fe5db3f9e3e8fc5529305421b4237388",
+      "confidence": 0.99,
+      "anchors": [
+        {
+          "type": "screen",
+          "value": "assistant"
+        },
+        {
+          "type": "viewport",
+          "value": "1440x900"
+        }
+      ],
+      "precedence": 2,
+      "relationships": [
+        {
+          "from": "src-screenshot-411ae64028b53fb593ef0230",
+          "to": "src-screenshot-a4c0a8f92ab9f3265240e64b",
+          "kind": "derived-from"
+        }
+      ],
+      "conflicts": []
+    },
+    {
+      "source_id": "src-screenshot-a4c0a8f92ab9f3265240e64b",
+      "kind": "screenshot",
+      "location": "runs/katiauinvest-e2e/source-captures/investments/source.png",
+      "sha256": "a4c0a8f92ab9f3265240e64b26a01da26aa3bda8072121b34f0cbc983ee1ba79",
+      "confidence": 0.99,
+      "anchors": [
+        {
+          "type": "screen",
+          "value": "investments"
+        },
+        {
+          "type": "viewport",
+          "value": "1440x900"
+        }
+      ],
+      "precedence": 2,
+      "relationships": [
+        {
+          "from": "src-screenshot-a4c0a8f92ab9f3265240e64b",
+          "to": "src-screenshot-a86dcd8e358df90e69a8b5a3",
+          "kind": "derived-from"
+        }
+      ],
+      "conflicts": []
+    },
+    {
+      "source_id": "src-screenshot-a86dcd8e358df90e69a8b5a3",
+      "kind": "screenshot",
+      "location": "runs/katiauinvest-e2e/source-captures/dashboard/source.png",
+      "sha256": "a86dcd8e358df90e69a8b5a324a27456fabdfbe3fab396263a6856f875dcdc39",
+      "confidence": 0.99,
+      "anchors": [
+        {
+          "type": "screen",
+          "value": "dashboard"
+        },
+        {
+          "type": "viewport",
+          "value": "1440x900"
+        }
+      ],
+      "precedence": 2,
+      "relationships": [
+        {
+          "from": "src-screenshot-a86dcd8e358df90e69a8b5a3",
+          "to": "src-screenshot-b36df9bfb3cfb253c87ed448",
+          "kind": "derived-from"
+        }
+      ],
+      "conflicts": []
+    },
+    {
+      "source_id": "src-screenshot-b36df9bfb3cfb253c87ed448",
+      "kind": "screenshot",
+      "location": "runs/katiauinvest-e2e/source-captures/imports/source.png",
+      "sha256": "b36df9bfb3cfb253c87ed448d2bca586e7fc8bf1fa3650afabc0f5cc33917d9f",
+      "confidence": 0.99,
+      "anchors": [
+        {
+          "type": "screen",
+          "value": "imports"
+        },
+        {
+          "type": "viewport",
+          "value": "1440x900"
+        }
+      ],
+      "precedence": 2,
+      "relationships": [
+        {
+          "from": "src-screenshot-b36df9bfb3cfb253c87ed448",
+          "to": "src-code-6b13fef295d81a4ccbf70400",
+          "kind": "derived-from"
+        }
+      ],
+      "conflicts": []
+    },
+    {
+      "source_id": "src-code-6b13fef295d81a4ccbf70400",
+      "kind": "code",
+      "location": "KatiauInvest",
+      "sha256": "6b13fef295d81a4ccbf704006599daa9d6796e88659870f13c9d9a25dd00d77d",
+      "confidence": 0.9,
+      "anchors": [
+        {
+          "type": "routes",
+          "value": "src/app/**/page.tsx"
+        },
+        {
+          "type": "styles",
+          "value": "src/app/globals.css"
+        }
+      ],
+      "precedence": 3,
+      "relationships": [],
+      "conflicts": []
+    }
+  ],
+  "precedence": [
+    "src-url-2e3785a7881d6173bb4a16b0",
+    "src-screenshot-411ae64028b53fb593ef0230",
+    "src-screenshot-a4c0a8f92ab9f3265240e64b",
+    "src-screenshot-a86dcd8e358df90e69a8b5a3",
+    "src-screenshot-b36df9bfb3cfb253c87ed448",
+    "src-code-6b13fef295d81a4ccbf70400"
+  ],
+  "relationships": [
+    {
+      "from": "src-url-2e3785a7881d6173bb4a16b0",
+      "to": "src-screenshot-411ae64028b53fb593ef0230",
+      "kind": "derived-from"
+    },
+    {
+      "from": "src-screenshot-411ae64028b53fb593ef0230",
+      "to": "src-screenshot-a4c0a8f92ab9f3265240e64b",
+      "kind": "derived-from"
+    },
+    {
+      "from": "src-screenshot-a4c0a8f92ab9f3265240e64b",
+      "to": "src-screenshot-a86dcd8e358df90e69a8b5a3",
+      "kind": "derived-from"
+    },
+    {
+      "from": "src-screenshot-a86dcd8e358df90e69a8b5a3",
+      "to": "src-screenshot-b36df9bfb3cfb253c87ed448",
+      "kind": "derived-from"
+    },
+    {
+      "from": "src-screenshot-b36df9bfb3cfb253c87ed448",
+      "to": "src-code-6b13fef295d81a4ccbf70400",
+      "kind": "derived-from"
+    }
+  ],
+  "conflicts": []
+}

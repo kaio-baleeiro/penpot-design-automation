@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "file": {
+    "id": "314cb32d-d8ef-8113-8008-9b84639f76b5",
+    "name": "Novo arquivo 1"
+  },
+  "pages": [
+    {"id": "314cb32d-d8ef-8113-8008-9b84639f76b6", "name": "Page 1"},
+    {"id": "74a25ccb-fd56-8020-8008-9b864ac326c1", "name": "D0 — Investimentos"},
+    {"id": "5f6b4633-d59e-807c-8008-9c217a33ea0d", "name": "D0 — Importação"},
+    {"id": "5f6b4633-d59e-807c-8008-9c21dbb9cd68", "name": "D0 — Assistente IA"}
+  ],
+  "shape_count": 577,
+  "main_component_instances": [],
+  "tokens": [],
+  "components": [],
+  "component_instances": [],
+  "detached_instances": [],
+  "styles": [],
+  "required_component_instances": []
+}

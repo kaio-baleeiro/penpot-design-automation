@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "run_id": "katiauinvest-e2e",
+  "route": "reproduction",
+  "state": "NEEDS_REVIEW",
+  "worker_model": "gpt-5.6-luna",
+  "cycles_used": 3,
+  "aggregate_score": 90.31,
+  "minimum_screen_score": 88.15,
+  "aggregate_coverage": 0.88513,
+  "screen_results": {
+    "dashboard@1440x900": "FAIL",
+    "investments@1440x900": "PASS",
+    "imports@1440x900": "FAIL",
+    "assistant@1440x900": "PASS"
+  },
+  "visual_artifacts": ["side_by_side_annotated", "overlay", "heatmap", "issues"],
+  "design_system_gate": "NOT_APPROVED_HISTORICAL_FIXTURE",
+  "user_approval": false,
+  "delivered_at": "2026-09-14T12:47:00-03:00"
+}

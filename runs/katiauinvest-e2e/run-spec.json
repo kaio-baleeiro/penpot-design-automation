@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "run_id": "katiauinvest-e2e",
+  "route": "reproduction",
+  "mode": "source",
+  "state": "VALIDATING",
+  "worker_model": "gpt-5.6-luna",
+  "source_refs": [
+    {"source_id": "katiau-app-local", "type": "url", "location": "http://127.0.0.1:3100"},
+    {"source_id": "katiau-code", "type": "code", "location": "external-repo:KatiauInvest"},
+    {"source_id": "katiau-penpot", "type": "penpot", "file_id": "314cb32d-d8ef-8113-8008-9b84639f76b5"}
+  ],
+  "target_viewports": [{"width": 1440, "height": 900}],
+  "screens": [
+    {"id": "dashboard", "viewport": {"width": 1440, "height": 900}, "source": "runs/katiauinvest-e2e/source-captures/dashboard/source.png", "penpot_export": "runs/katiauinvest-e2e/penpot-exports/dashboard.png"},
+    {"id": "investments", "viewport": {"width": 1440, "height": 900}, "source": "runs/katiauinvest-e2e/source-captures/investments/source.png", "penpot_export": "runs/katiauinvest-e2e/penpot-exports/investments.png"},
+    {"id": "imports", "viewport": {"width": 1440, "height": 900}, "source": "runs/katiauinvest-e2e/source-captures/imports/source.png", "penpot_export": "runs/katiauinvest-e2e/penpot-exports/imports.png"},
+    {"id": "assistant", "viewport": {"width": 1440, "height": 900}, "source": "runs/katiauinvest-e2e/source-captures/assistant/source.png", "penpot_export": "runs/katiauinvest-e2e/penpot-exports/assistant.png"}
+  ],
+  "validation_cycle": 0,
+  "max_validation_cycles": 3,
+  "user_review_round": 0,
+  "approval": {"briefing": true, "design": false, "design_system": false},
+  "intake": {
+    "initial_questions_completed": true,
+    "addendum_question_completed": true,
+    "ambiguity_analysis_completed": true,
+    "evidence": ["questions.md", "decisions.md"]
+  },
+  "created_at": "2026-09-14T10:00:00Z",
+  "updated_at": "2026-09-14T10:00:00Z"
+}

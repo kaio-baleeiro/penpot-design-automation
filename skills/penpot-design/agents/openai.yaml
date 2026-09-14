@@ -1,0 +1,12 @@
+interface:
+  display_name: "Penpot Design Workflow"
+  short_description: "Build and validate Penpot screens from sources or prompts"
+  default_prompt: "Use $penpot-design to create, validate, and deliver a Penpot design from my source or briefing."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "penpot-design"
+      description: "Shared local Penpot MCP for frames, components, styles and exports"
+      transport: "streamable_http"
+policy:
+  allow_implicit_invocation: true

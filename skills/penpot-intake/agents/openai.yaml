@@ -1,0 +1,6 @@
+interface:
+  display_name: "Penpot Intake"
+  short_description: "Scope sources, questions, viewports and approvals"
+  default_prompt: "Use $penpot-intake to prepare and resolve the intake for a Penpot design run."
+policy:
+  allow_implicit_invocation: true

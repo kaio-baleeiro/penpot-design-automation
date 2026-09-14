@@ -1,0 +1,23 @@
+[
+  {
+    "cycle": 1,
+    "score": 90.31,
+    "coverage": 0.88513,
+    "passed": false,
+    "score_path": "runs/katiauinvest-e2e/cycles/cycle-1/score.json"
+  },
+  {
+    "cycle": 2,
+    "score": 90.31,
+    "coverage": 0.88513,
+    "passed": false,
+    "score_path": "runs/katiauinvest-e2e/cycles/cycle-2/score.json"
+  },
+  {
+    "cycle": 3,
+    "score": 90.31,
+    "coverage": 0.88513,
+    "passed": false,
+    "score_path": "runs/katiauinvest-e2e/cycles/cycle-3/score.json"
+  }
+]

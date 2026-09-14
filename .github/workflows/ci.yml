@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 -m unittest discover -s tests -v
+      - run: python3 scripts/validate_skills.py
+      - name: Validate shell scripts
+        run: bash -n install.sh scripts/penpot-mcp.sh scripts/penpot-inventory.sh infra/penpot/scripts/*.sh
+      - name: Validate compose configuration
+        run: bash infra/penpot/scripts/validate.sh
+      - name: Validate installer in an isolated skills directory
+        run: |
+          skills_tmp_dir="$(mktemp -d)"
+          trap 'rm -rf "$skills_tmp_dir"' EXIT
+          AGENTS_SKILLS_DIR="$skills_tmp_dir" bash ./install.sh
+          test -L "$skills_tmp_dir/penpot-design"
+          test "$(readlink "$skills_tmp_dir/penpot-design")" = "$PWD/skills/penpot-design"
+      - name: Scan for committed secret patterns
+        run: |
+          if git grep -nE '(BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{20,})' -- . ':!infra/penpot/.env.example'; then
+            echo "Potential secret pattern found" >&2
+            exit 1
+          fi
