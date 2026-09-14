@@ -8,7 +8,7 @@ metadata:
 
 # Penpot delivery
 
-Read the current run manifest and all current score/issue records
+Read [`lessons-learned/README.md`](lessons-learned/README.md), the current run manifest and all current score/issue records
 before packaging.
 This skill runs only after design-system revalidation or an explicit
 `NEEDS_REVIEW` terminal state.
@@ -35,8 +35,8 @@ Create `delivery/report.md` and `delivery/manifest.json` containing:
 - source asset inventory, reused `asset_id` values and any explicit fallback or
   licensing decision;
 - exact approval or `NEEDS_REVIEW` reason.
-- `lesson_refs` for applicable mistakes and countermeasures, without duplicating
-  the canonical vault notes.
+- `lesson_refs` for applicable mistakes and countermeasures, pointing to the
+  versioned lesson inside the relevant skill package.
 
 Do not include secrets or private captures in Git. Keep source and feedback
 records linked by stable ids. If a user asks for a visual summary, surface the

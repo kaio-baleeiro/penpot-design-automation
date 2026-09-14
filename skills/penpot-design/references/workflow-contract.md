@@ -56,10 +56,11 @@
     issues vinculada à tela/viewport/região. O relatório precisa explicar
     visualmente o que diverge da fonte (ou do protótipo aprovado, na criação
     dirigida).
-15. Consulte o índice canônico de lições antes da execução. Quando um erro ou
-    correção produzir uma regra reutilizável, registre a lição, adicione sua
-    wikilink a `lesson_refs`, implemente a contramedida e só marque a lição como
-    `mitigated` depois de uma verificação que cubra o caso original.
+15. Consulte o índice compartilhado e a pasta de lições da skill antes da
+    execução. Quando um erro ou correção produzir uma regra reutilizável,
+    registre a lição, adicione seu caminho a `lesson_refs`, implemente a
+    contramedida e só marque a lição como `mitigated` depois de uma verificação
+    que cubra o caso original.
 
 ## Delegação Luna
 

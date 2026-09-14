@@ -16,8 +16,9 @@ root as two parents above that directory. Read
 [the state machine](references/state-machine.md),
 [the artifact schema](references/artifacts.md) and
 [the delegation contract](references/delegation.md) before acting. Read
-[the lessons protocol](references/lessons-learned.md) at the beginning and end
-of every run. The machine-readable defaults are in
+[the lessons protocol](references/lessons-learned.md) and the local
+[`lessons-learned/README.md`](lessons-learned/README.md) at the beginning and
+end of every run. The machine-readable defaults are in
 `assets/workflow-config.yaml`.
 
 The sibling skills `penpot-intake`, `penpot-source-map`,
@@ -81,10 +82,13 @@ the Luna model for each operational phase and treat quota/model errors as
 8. `penpot-delivery`: package the Penpot link/file, records and visual report.
 
 Whenever a mistake, failed assumption, regression, security weakness or user
-correction changes future behavior, create or update the canonical vault lesson
-before delivery. A lesson is only overcome after its countermeasure is verified
-and its status becomes `mitigated`; link it through `lesson_refs` instead of
-copying the lesson into the run.
+correction changes future behavior, create or update a lesson in the affected
+skill's `lessons-learned/` directory before delivery. Promote cross-phase rules
+to the shared index at `penpot-design/lessons-learned/`. A lesson is only
+overcome after its countermeasure is verified and its status becomes
+`mitigated`; link it through `lesson_refs` instead of copying the lesson into
+the run. The vault may retain a project reference, but the versioned skill
+lesson is the executable source of future behavior.
 
 Use the state names in `references/state-machine.md`. Never mark
 `DELIVERED` while a viewport or structural design-system gate is failing.

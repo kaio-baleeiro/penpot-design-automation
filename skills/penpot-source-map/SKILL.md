@@ -8,7 +8,8 @@ metadata:
 
 # Penpot source mapping
 
-Use only for the `reproduction` route. Every supplied source remains represented
+Use only for the `reproduction` route. Read the local
+[`lessons-learned/README.md`](lessons-learned/README.md) before capture. Every supplied source remains represented
 even when inaccessible or lower confidence. Resolve this skill's physical
 directory before invoking its bundled wrapper. For a URL, running application
 or runnable codebase, read [the frame-sizing policy](references/frame-sizing.md)
