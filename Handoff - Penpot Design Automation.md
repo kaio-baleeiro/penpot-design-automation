@@ -51,15 +51,22 @@ runtime e código podem ser inspecionados para reutilizar SVGs, imagens, ícones
 logos e fontes exatos. O inventário registra procedência e substituições
 externas só entram após uma decisão explícita.
 
+O dimensionamento também distingue viewport e frame. Desktop parte de
+`1440x900`, mas o frame acompanha a altura finita medida. Largura adicional só
+é usada quando a página raiz possui experiência horizontal intencional;
+overflow acidental ou de containers não alarga o frame. Conteúdo instável ou
+infinito exige um limite reproduzível confirmado pelo usuário.
+
 ## Validação concluída
 
-- 31 testes unitários/integrados aprovados.
+- 45 testes unitários/integrados aprovados.
 - 7 skills aprovadas no validador oficial e no validador local.
 - Compose, scripts, instalador, healthcheck, MCP, export e inventário validados.
 - Backups pré e pós-migração com checksums válidos.
 - Forward test independente Luna aprovado após correções.
-- Espaço de lições aprendidas criado e quatro falhas do desenvolvimento convertidas
+- Espaço de lições aprendidas criado e cinco falhas do desenvolvimento convertidas
   em regras mitigadas com evidência.
+- Auditoria Luna específica de dimensionamento incorporada ao gate executável.
 - KatiauInvest: score agregado 90,31; dashboard 88,42, investimentos 90,70,
   importação 88,15 e assistente 93,99. O limite de três ciclos encerrou em
   `NEEDS_REVIEW`, sem permitir que a média escondesse falhas individuais.

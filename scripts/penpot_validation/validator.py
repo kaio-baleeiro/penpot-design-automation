@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from .images import connected_components, diff_values, overlay, read_png, side_by_side, write_png
+from .frame import CAPTURE_MODES, HORIZONTAL_POLICIES, VERTICAL_POLICIES
 from .metrics import METRIC_TABLE, METRIC_TABLE_VERSION, compare_metrics
 from .structure import load_inventory, validate_structure_inventory
 
@@ -24,6 +25,11 @@ VALID_STATES = {
     "BLOCKED_MODEL_UNAVAILABLE", "READY_FOR_USER_REVIEW", "READY_FOR_DELIVERY", "REFINEMENT",
 }
 VALIDATION_STATES = {"VALIDATING", "DS_REVALIDATING"}
+FRAME_SPEC_KEYS = {
+    "screen_id", "viewport", "document", "frame", "vertical_policy",
+    "horizontal_policy", "capture_mode", "stable", "build_ready",
+    "requires_user_decision", "evidence",
+}
 
 STATE_TRANSITIONS = {
     "INTAKE_PENDING": {"INTAKE_REVIEW"},
@@ -76,18 +82,27 @@ def validate_screen(screen: dict[str, Any], output_dir: Path, baseline_screen: d
     export_path = Path(screen["penpot_export"])
     source = read_png(str(source_path))
     exported = read_png(str(export_path))
+    frame_spec = screen.get("frame_spec") if isinstance(screen.get("frame_spec"), dict) else {}
+    expected_frame = frame_spec.get("frame") if isinstance(frame_spec.get("frame"), dict) else viewport
+    expected_width, expected_height = int(expected_frame["width"]), int(expected_frame["height"])
     heatmap, values, pixel_similarity, coverage = diff_values(source, exported)
     exact_similarity = sum(value == 0 for value in values) / len(values)
     visual_metrics = compare_metrics(source, exported)
     score = visual_metrics["weighted_score"]
-    dimensions_match = source.width == exported.width and source.height == exported.height
+    source_matches_frame = source.width == expected_width and source.height == expected_height
+    export_matches_frame = exported.width == expected_width and exported.height == expected_height
+    dimensions_match = source_matches_frame and export_matches_frame
     components = connected_components(values, source.width, source.height)
     min_component_area = max(1, int(source.width * source.height * 0.001))
     components = [component for component in components if component[4] >= min_component_area][:20]
     issues: list[dict[str, Any]] = []
-    if not dimensions_match:
-        issues.append(_issue(screen_id, viewport, len(issues) + 1, "P0", "Viewport dimensions differ",
-                             f"Fonte {source.width}x{source.height}; export Penpot {exported.width}x{exported.height}.",
+    if not source_matches_frame:
+        issues.append(_issue(screen_id, viewport, len(issues) + 1, "P0", "Source capture does not match approved frame",
+                             f"Frame esperado {expected_width}x{expected_height}; fonte {source.width}x{source.height}.",
+                             {"x": 0, "y": 0, "width": source.width, "height": source.height}))
+    if not export_matches_frame:
+        issues.append(_issue(screen_id, viewport, len(issues) + 1, "P0", "Penpot frame is truncated or incorrectly expanded",
+                             f"Frame esperado {expected_width}x{expected_height}; export Penpot {exported.width}x{exported.height}.",
                              {"x": 0, "y": 0, "width": source.width, "height": source.height}))
     total = source.width * source.height
     for component in components:
@@ -107,7 +122,14 @@ def validate_screen(screen: dict[str, Any], output_dir: Path, baseline_screen: d
     write_png(overlay(source, exported), str(output_dir / f"{screen_id}-overlay.png"))
     write_png(side_by_side(source, exported, [tuple(issue["bounds"][key] for key in ("x", "y", "width", "height")) for issue in issues if issue.get("bounds")]), str(output_dir / f"{screen_id}-side-by-side-annotated.png"))
     return {
-        "screen": screen_id, "viewport": viewport, "source": str(source_path), "penpot_export": str(export_path),
+        "screen": screen_id, "viewport": viewport,
+        "frame": {"width": expected_width, "height": expected_height},
+        "frame_policy": {
+            "vertical": frame_spec.get("vertical_policy", "viewport_bounded"),
+            "horizontal": frame_spec.get("horizontal_policy", "viewport_bounded"),
+            "capture_mode": frame_spec.get("capture_mode", "viewport"),
+        },
+        "source": str(source_path), "penpot_export": str(export_path),
         "source_dimensions": {"width": source.width, "height": source.height},
         "export_dimensions": {"width": exported.width, "height": exported.height},
         "metric_table_version": METRIC_TABLE_VERSION, "metrics": visual_metrics["metrics"], "weighted_score": score,
@@ -138,6 +160,7 @@ def render_report(result: dict[str, Any], output_path: Path) -> None:
     for screen in result["screens"]:
         lines += [f"## {screen['screen']} — {screen['viewport']['width']}×{screen['viewport']['height']}", "",
                   f"- Score: **{screen['score']:.2f}**; coverage: **{screen['coverage'] * 100:.2f}%**; status: **{'PASS' if screen['passed'] else 'FAIL'}**",
+                  f"- Viewport: **{screen['viewport']['width']}×{screen['viewport']['height']}**; frame: **{screen['frame']['width']}×{screen['frame']['height']}**; capture: **{screen['frame_policy']['capture_mode']}**",
                   f"- Similarity evidence: pixel={screen['pixel_similarity']:.4f}, exact={screen['exact_similarity']:.4f}",
                   f"- Comparison: `{screen['artifacts']['side_by_side']}`; overlay: `{screen['artifacts']['overlay']}`; heatmap: `{screen['artifacts']['heatmap']}`", ""]
         lines += ["Metric breakdown:", "", "| Dimension | Weight | Score | Contribution | Explanation |", "|---|---:|---:|---:|---|"]
@@ -186,6 +209,89 @@ def _viewport(value: Any) -> tuple[int, int] | None:
     except (TypeError, ValueError):
         return None
     return (width, height) if width > 0 and height > 0 else None
+
+
+def _validate_frame_spec(screen: dict[str, Any], viewport: tuple[int, int]) -> None:
+    spec = screen.get("frame_spec")
+    if not isinstance(spec, dict):
+        raise ValueError(f"screen {screen['id']} requires frame_spec")
+    if spec.get("screen_id") != screen["id"]:
+        raise ValueError(f"screen {screen['id']} frame_spec screen_id must match")
+    if _viewport(spec.get("viewport")) != viewport:
+        raise ValueError(f"screen {screen['id']} frame_spec viewport must match")
+    frame = _viewport(spec.get("frame"))
+    if not frame:
+        raise ValueError(f"screen {screen['id']} frame_spec has invalid frame bounds")
+    frame_width, frame_height = frame
+    viewport_width, viewport_height = viewport
+    document = _viewport(spec.get("document"))
+    if not document:
+        raise ValueError(f"screen {screen['id']} frame_spec has invalid document bounds")
+    document_width, document_height = document
+    if not isinstance(spec.get("stable"), bool):
+        raise ValueError(f"screen {screen['id']} frame_spec stable must be boolean")
+    vertical = spec.get("vertical_policy")
+    horizontal = spec.get("horizontal_policy")
+    capture_mode = spec.get("capture_mode")
+    if vertical not in VERTICAL_POLICIES:
+        raise ValueError(f"screen {screen['id']} frame_spec has invalid vertical_policy")
+    if horizontal not in HORIZONTAL_POLICIES:
+        raise ValueError(f"screen {screen['id']} frame_spec has invalid horizontal_policy")
+    if capture_mode not in CAPTURE_MODES:
+        raise ValueError(f"screen {screen['id']} frame_spec has invalid capture_mode")
+    if not isinstance(spec.get("evidence"), list) or not spec["evidence"]:
+        raise ValueError(f"screen {screen['id']} frame_spec requires evidence")
+    if spec.get("build_ready") is not True or spec.get("requires_user_decision") is not False:
+        raise ValueError(f"screen {screen['id']} frame_spec must resolve material sizing decisions before build")
+    if frame_width < viewport_width or frame_height < viewport_height:
+        raise ValueError(f"screen {screen['id']} frame cannot be smaller than its viewport")
+    if vertical == "viewport_bounded" and (frame_height != viewport_height or document_height > viewport_height + 2):
+        raise ValueError(f"screen {screen['id']} viewport_bounded height must equal viewport height")
+    if vertical == "finite_document" and (
+        not spec["stable"]
+        or document_height <= viewport_height + 2
+        or frame_height != document_height
+        or capture_mode not in {"full_page", "frame_bounds"}
+    ):
+        raise ValueError(f"screen {screen['id']} finite_document requires a taller full_page frame")
+    if vertical == "dynamic_bounded" and (spec["stable"] or capture_mode not in {"bounded_state", "frame_bounds"}):
+        raise ValueError(f"screen {screen['id']} dynamic_bounded requires bounded_state capture")
+    if horizontal == "intentional_page" and (
+        document_width <= viewport_width + 2
+        or frame_width != document_width
+        or capture_mode != "frame_bounds"
+    ):
+        raise ValueError(f"screen {screen['id']} intentional_page requires a wider frame")
+    if horizontal != "intentional_page" and frame_width != viewport_width:
+        raise ValueError(f"screen {screen['id']} horizontal policy must keep viewport width")
+    if horizontal in {"viewport_bounded", "container_overflow"} and document_width > viewport_width + 2:
+        raise ValueError(f"screen {screen['id']} horizontal policy contradicts document width")
+    if horizontal == "accidental_overflow" and document_width <= viewport_width + 2:
+        raise ValueError(f"screen {screen['id']} accidental_overflow requires measured page overflow")
+
+
+def _validate_canonical_frame_specs(root: Path, manifest: dict[str, Any]) -> None:
+    path = root / "source" / "frame-spec.json"
+    if not path.is_file():
+        raise ValueError("strict validation requires source/frame-spec.json")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict) or payload.get("schema_version") != "1.0" or not isinstance(payload.get("screens"), list):
+        raise ValueError("source/frame-spec.json has an invalid schema")
+    canonical: dict[str, dict[str, Any]] = {}
+    for item in payload["screens"]:
+        if not isinstance(item, dict) or not isinstance(item.get("screen_id"), str):
+            raise ValueError("source/frame-spec.json contains an invalid screen entry")
+        if item["screen_id"] in canonical:
+            raise ValueError(f"source/frame-spec.json duplicates screen {item['screen_id']}")
+        canonical[item["screen_id"]] = item
+    for screen in manifest["screens"]:
+        expected = canonical.get(screen["id"])
+        if expected is None:
+            raise ValueError(f"source/frame-spec.json is missing screen {screen['id']}")
+        embedded = screen["frame_spec"]
+        for key in FRAME_SPEC_KEYS:
+            if embedded.get(key) != expected.get(key):
+                raise ValueError(f"screen {screen['id']} frame_spec differs from source/frame-spec.json at {key}")
 
 
 def _approval_values(manifest: dict[str, Any]) -> dict[str, bool]:
@@ -286,10 +392,13 @@ def validate_manifest(manifest: dict[str, Any], strict: bool = True) -> None:
         for key in ("id", "viewport", "source", "penpot_export"):
             if key not in screen:
                 raise ValueError(f"screen missing required field: {key}")
-        if not _viewport(screen.get("viewport")):
+        screen_viewport = _viewport(screen.get("viewport"))
+        if not screen_viewport:
             raise ValueError(f"screen {screen['id']} has invalid viewport")
-        if strict and _viewport(screen["viewport"]) not in target_viewports:
+        if strict and screen_viewport not in target_viewports:
             raise ValueError(f"screen {screen['id']} viewport is not in target_viewports")
+        if strict:
+            _validate_frame_spec(screen, screen_viewport)
 
 
 def validate_transition(current_state: str, next_state: str, manifest: dict[str, Any] | None = None) -> bool:
@@ -345,6 +454,8 @@ def validate_run(
     legacy = _is_legacy_manifest(manifest)
     effective_strict = strict or not legacy
     validate_manifest(manifest, strict=effective_strict)
+    if effective_strict:
+        _validate_canonical_frame_specs(root, manifest)
     if effective_strict and manifest["state"] not in VALIDATION_STATES:
         raise ValueError("validate is only allowed when manifest state is VALIDATING or DS_REVALIDATING")
     if effective_strict and cycle <= int(manifest.get("validation_cycle", 0)):

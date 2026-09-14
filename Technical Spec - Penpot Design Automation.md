@@ -22,10 +22,12 @@ reproduzível do workflow de design no Penpot.
 - Preservar banco, assets, conta, times, projetos e arquivos existentes.
 - Operar Penpot 2.17 em `127.0.0.1:9001` e Mailcatcher em `127.0.0.1:1080`.
 - Manter PostgreSQL, Valkey, assets, exporter e MCP isolados.
-- Versionar skills e scripts no GitHub privado.
+- Versionar skills e scripts no repositório público do GitHub.
 - Instalar `penpot-design` globalmente sem duplicar a fonte canônica.
 - Produzir manifests, mapas, decisões, scores, issues e evidências por execução.
 - Tornar o score determinístico e não editável por agentes.
+- Separar viewport de observação dos limites finais do frame e impedir
+  truncamento ou expansão horizontal sem evidência.
 
 ## Proposed Approach
 
@@ -63,8 +65,9 @@ e restaurar a anterior ou os backups consistentes.
 
 A implementação possui 7 skills, cliente MCP com handshake real e log redigido,
 captura Playwright autenticada, mapa multi-fonte, score visual versionado,
-máquina de estados estrita, inventário MCP e gate estrutural. A suíte local
-possui 26 testes; o forward test Luna confirmou caminhos e contratos.
+máquina de estados estrita, inventário MCP, dimensionamento inteligente e gate
+estrutural. A suíte local possui 45 testes; forward tests Luna confirmaram
+caminhos, contratos e os casos de página longa/overflow.
 
 ## Links
 

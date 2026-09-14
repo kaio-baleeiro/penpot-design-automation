@@ -57,6 +57,12 @@ imagens, ícones, logos, fontes e demais arquivos úteis da própria origem ante
 de procurar qualquer substituto; procedência e exceções ficam registradas em
 `source/assets-manifest.json`.
 
+Para desktop, `1440x900` é o viewport padrão de observação e o tamanho mínimo
+do frame, não um limite fixo. A captura mede as dimensões reais: páginas finitas
+alongam o frame verticalmente; a largura só cresce quando a origem demonstra
+scroll horizontal intencional da página. Overflow acidental ou interno continua
+contido, e conteúdo infinito exige um limite reproduzível aprovado.
+
 O cliente MCP de terminal usa `scripts/penpot-mcp.sh`, que carrega a URL local
 do arquivo ignorado `infra/penpot/.env` sem colocá-la no histórico de comandos.
 Depois de regenerar uma chave na interface do Penpot, copie somente a chave e

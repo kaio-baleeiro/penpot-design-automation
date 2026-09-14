@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from scripts.penpot_mcp import PenpotMCPClient, _AuditLogger, _redact
-from scripts.penpot_validation.capture import _capture_metadata, sanitize_url
+from scripts.penpot_validation.capture import _capture_metadata, _normalize_document_metrics, sanitize_url
 from scripts.penpot_validation.images import solid, write_png
 from scripts.penpot_validation.source_map import compile_source_map, map_screenshot, sanitize_location
 
@@ -23,6 +23,36 @@ class SecurityAndSourceMapTests(unittest.TestCase):
         self.assertNotIn("alice", json.dumps(metadata))
         self.assertNotIn("password", json.dumps(metadata))
         self.assertNotIn("token=", json.dumps(metadata))
+
+    def test_document_metrics_separate_viewport_from_growing_frame_bounds(self) -> None:
+        metrics = _normalize_document_metrics(
+            {"document_width": 1600, "document_height": 2400, "widest_element": {"tag": "main", "width": 1600}},
+            1440,
+            900,
+            samples=[
+                {"document_width": 1440, "document_height": 1800},
+                {"document_width": 1600, "document_height": 2200},
+                {"document_width": 1600, "document_height": 2400},
+            ],
+        )
+        self.assertEqual(metrics["viewport"], {"width": 1440, "height": 900})
+        self.assertEqual(metrics["document"], {"width": 1600, "height": 2400})
+        self.assertEqual(metrics["overflow"]["horizontal_px"], 160)
+        self.assertEqual(metrics["overflow"]["vertical_px"], 1500)
+        self.assertFalse(metrics["stable_after_wait"])
+
+    def test_document_metrics_accept_one_async_growth_after_it_stabilizes(self) -> None:
+        metrics = _normalize_document_metrics(
+            {"document_width": 1440, "document_height": 2200},
+            1440,
+            900,
+            samples=[
+                {"document_width": 1440, "document_height": 900},
+                {"document_width": 1440, "document_height": 2200},
+                {"document_width": 1440, "document_height": 2201},
+            ],
+        )
+        self.assertTrue(metrics["stable_after_wait"])
 
     def test_url_and_location_sanitizers_remove_userinfo_query_and_fragment(self) -> None:
         self.assertEqual(sanitize_url("HTTP://u:p@Example.test:8080/a?x=1#frag"), "http://example.test:8080/a")

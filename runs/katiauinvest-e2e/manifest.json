@@ -35,6 +35,19 @@
         "width": 1440,
         "height": 900
       },
+      "frame_spec": {
+        "screen_id": "dashboard",
+        "viewport": {"width": 1440, "height": 900},
+        "document": {"width": 1440, "height": 900},
+        "frame": {"width": 1440, "height": 900},
+        "vertical_policy": "viewport_bounded",
+        "horizontal_policy": "viewport_bounded",
+        "capture_mode": "viewport",
+        "stable": true,
+        "build_ready": true,
+        "requires_user_decision": false,
+        "evidence": ["source/source-map.json"]
+      },
       "source": "runs/katiauinvest-e2e/source-captures/dashboard/source.png",
       "penpot_export": "runs/katiauinvest-e2e/penpot-exports/dashboard.png"
     },
@@ -43,6 +56,19 @@
       "viewport": {
         "width": 1440,
         "height": 900
+      },
+      "frame_spec": {
+        "screen_id": "investments",
+        "viewport": {"width": 1440, "height": 900},
+        "document": {"width": 1440, "height": 900},
+        "frame": {"width": 1440, "height": 900},
+        "vertical_policy": "viewport_bounded",
+        "horizontal_policy": "viewport_bounded",
+        "capture_mode": "viewport",
+        "stable": true,
+        "build_ready": true,
+        "requires_user_decision": false,
+        "evidence": ["source/source-map.json"]
       },
       "source": "runs/katiauinvest-e2e/source-captures/investments/source.png",
       "penpot_export": "runs/katiauinvest-e2e/penpot-exports/investments.png"
@@ -53,6 +79,19 @@
         "width": 1440,
         "height": 900
       },
+      "frame_spec": {
+        "screen_id": "imports",
+        "viewport": {"width": 1440, "height": 900},
+        "document": {"width": 1440, "height": 900},
+        "frame": {"width": 1440, "height": 900},
+        "vertical_policy": "viewport_bounded",
+        "horizontal_policy": "viewport_bounded",
+        "capture_mode": "viewport",
+        "stable": true,
+        "build_ready": true,
+        "requires_user_decision": false,
+        "evidence": ["source/source-map.json"]
+      },
       "source": "runs/katiauinvest-e2e/source-captures/imports/source.png",
       "penpot_export": "runs/katiauinvest-e2e/penpot-exports/imports.png"
     },
@@ -61,6 +100,19 @@
       "viewport": {
         "width": 1440,
         "height": 900
+      },
+      "frame_spec": {
+        "screen_id": "assistant",
+        "viewport": {"width": 1440, "height": 900},
+        "document": {"width": 1440, "height": 900},
+        "frame": {"width": 1440, "height": 900},
+        "vertical_policy": "viewport_bounded",
+        "horizontal_policy": "viewport_bounded",
+        "capture_mode": "viewport",
+        "stable": true,
+        "build_ready": true,
+        "requires_user_decision": false,
+        "evidence": ["source/source-map.json"]
       },
       "source": "runs/katiauinvest-e2e/source-captures/assistant/source.png",
       "penpot_export": "runs/katiauinvest-e2e/penpot-exports/assistant.png"

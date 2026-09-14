@@ -25,10 +25,14 @@ directed-creation briefing gate.
   For a URL, capture a temporary desktop reconnaissance at `1440x900` and mobile
   reconnaissance at `390x844`, compare reflow, clipping, navigation and content
   order, and record the two capture manifests. For code, also inspect media
-  queries/breakpoints. This reconnaissance informs the question; it does not
+  queries/breakpoints. `1440x900` and `390x844` are observation viewports, not
+  fixed final frame bounds: report measured page extents and any horizontal or
+  dynamic overflow. This reconnaissance informs the question; it does not
   silently add both viewports to delivery scope.
 - For `directed_creation`, confirm there is no source, draft a structured
   briefing, show it to the user, and wait for formal approval before building.
+  Include viewport and intended frame extent in that briefing; default desktop
+  starts at `1440x900`, while content below the fold may produce a taller frame.
   User feedback rounds later are unlimited; each accepted revision is a new
   version with its own internal three-cycle validation budget.
 - For reproduction, pass all source handles to `penpot-source-map`; never

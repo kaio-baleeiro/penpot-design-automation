@@ -63,7 +63,9 @@ the Luna model for each operational phase and treat quota/model errors as
 
 1. `penpot-intake`: collect answers, route, scope and target viewports.
 2. `penpot-source-map` for reproduction, including the source asset inventory,
-   or the briefing branch in intake for directed creation.
+   measured document bounds and `frame-spec.json`, or the briefing branch in
+   intake for directed creation, including an approved frame spec derived from
+   the planned content.
 3. Plan screens and hand the plan to `penpot-build` for static frames and
    reusable components through Penpot MCP.
 4. `penpot-validate`: render every requested screen/viewport, run the immutable

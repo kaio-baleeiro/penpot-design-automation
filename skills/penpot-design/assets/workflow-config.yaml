@@ -13,6 +13,17 @@ source_assets:
   unrelated_web_search: false
   external_substitution_requires_decision: true
   manifest: source/assets-manifest.json
+frame_sizing:
+  desktop_observation_viewport:
+    width: 1440
+    height: 900
+  desktop_frame_minimum:
+    width: 1440
+    height: 900
+  vertical_extent: stable_finite_document
+  horizontal_extent: intentional_page_level_only
+  dynamic_or_infinite_content: require_reproducible_user_approved_boundary
+  manifest: source/frame-spec.json
 intake:
   initial_questions_required: true
   addendum_question_required: true
