@@ -21,36 +21,42 @@
    origem. Links de recurso referenciados pela própria origem podem ser
    seguidos quando necessários à tela; não amplie isso para busca web alheia ao
    escopo. Assets privados não entram no Git.
-6. O escopo inicial é estático: telas, componentes, estilos/tokens e design
+6. Em desktop, `1440x900` é o viewport padrão de observação e o tamanho mínimo
+   do frame, não um corte obrigatório. A altura acompanha o conteúdo finito e
+   estável. A largura só ultrapassa `1440` quando houver evidência de scroll
+   horizontal intencional da página raiz; overflow acidental ou de container
+   permanece dentro do viewport. Conteúdo infinito/dinâmico exige um limite
+   reproduzível aprovado pelo usuário.
+7. O escopo inicial é estático: telas, componentes, estilos/tokens e design
    system. Interações/protótipos ficam fora, salvo pedido posterior explícito.
-7. Toda tarefa manual de aquisição, análise, construção no MCP, correção,
+8. Toda tarefa manual de aquisição, análise, construção no MCP, correção,
    extração e validação deve ser delegada com o perfil `gpt-5.6-luna`. Se esse
    modelo não estiver disponível, interrompa com `BLOCKED_MODEL_UNAVAILABLE`;
    não faça fallback para outro modelo.
-8. O score é calculado somente pelo avaliador determinístico invocado por
+9. O score é calculado somente pelo avaliador determinístico invocado por
    `scripts/start-run.sh` e pelo wrapper de validação da skill `$penpot-validate`.
    O agente não pode editar a fórmula, limiares, cobertura ou severidades
    durante a execução para aprovar uma tela.
-9. Cada tela e viewport precisa atingir score visual **>= 90/100**, cobertura
+10. Cada tela e viewport precisa atingir score visual **>= 90/100**, cobertura
    mensurável **>= 80%**, e zero achados P0/P1. Uma falha retorna à correção.
-10. Após a construção inicial, há no máximo três ciclos internos de
+11. Após a construção inicial, há no máximo três ciclos internos de
    validação/refatoração (`cycle: 1..3`). Cada ciclo deve produzir achados
    acionáveis por região, causa provável e correção sugerida. Se falhar após o
    terceiro ciclo, estado final `NEEDS_REVIEW`; nunca declarar aprovado.
-11. Em `directed_creation`, as rodadas de feedback com o usuário são ilimitadas
+12. Em `directed_creation`, as rodadas de feedback com o usuário são ilimitadas
     e não contam como ciclos internos até que uma nova versão seja construída.
     A aprovação estética/produto é sempre do usuário; score automático não a
     substitui.
-12. Após aprovação formal em qualquer rota, formalize tokens, estilos,
+13. Após aprovação formal em qualquer rota, formalize tokens, estilos,
     componentes e regras no design system. Refaça as telas usando instâncias do
     design system e revalide contra a versão aprovada, novamente com os mesmos
     gates. Se a componentização alterar a aparência, corrija até passar ou
     marque `NEEDS_REVIEW`.
-13. A entrega deve conter comparação lado a lado, overlay, heatmap e lista de
+14. A entrega deve conter comparação lado a lado, overlay, heatmap e lista de
     issues vinculada à tela/viewport/região. O relatório precisa explicar
     visualmente o que diverge da fonte (ou do protótipo aprovado, na criação
     dirigida).
-14. Consulte o índice canônico de lições antes da execução. Quando um erro ou
+15. Consulte o índice canônico de lições antes da execução. Quando um erro ou
     correção produzir uma regra reutilizável, registre a lição, adicione sua
     wikilink a `lesson_refs`, implemente a contramedida e só marque a lição como
     `mitigated` depois de uma verificação que cubra o caso original.

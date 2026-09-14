@@ -11,6 +11,7 @@ runs/<run-id>/
   source/source-map.json
   source/source-inventory.md
   source/assets-manifest.json
+  source/frame-spec.json
   source/raw/                 # capturas privadas, sempre ignoradas
   source/sanitized/           # mapas/recortes revisados que podem ser versionados
   briefing/brief-v001.md      # somente directed_creation
@@ -75,8 +76,21 @@ duas perguntas mais a análise de ambiguidades deve existir. Exemplo executável
     {
       "id": "home",
       "viewport": {"width": 1440, "height": 900},
-      "source": "source/raw/home-1440x900.png",
-      "penpot_export": "design/exports/home/1440x900.png"
+      "frame_spec": {
+        "screen_id": "home",
+        "viewport": {"width": 1440, "height": 900},
+        "document": {"width": 1440, "height": 2840},
+        "frame": {"width": 1440, "height": 2840},
+        "vertical_policy": "finite_document",
+        "horizontal_policy": "viewport_bounded",
+        "capture_mode": "full_page",
+        "stable": true,
+        "build_ready": true,
+        "requires_user_decision": false,
+        "evidence": ["source/raw/home-full-page/capture.json"]
+      },
+      "source": "source/raw/home-full-page/source.png",
+      "penpot_export": "design/exports/home/1440x2840.png"
     }
   ],
   "validation_cycle": 0,
@@ -109,6 +123,16 @@ sanitizada, `source_id`, hash quando disponível, MIME, dimensões intrínsecas,
 uso observado, estado de aquisição e nota de licença/atribuição quando conhecida.
 Assets privados ficam em `source/raw/`; o plano referencia os originais por
 `asset_refs` e toda substituição precisa registrar motivo e decisão.
+
+`source/frame-spec.json` separa o viewport de observação dos limites finais do
+frame. Sua lista `screens` registra, por tela, viewport, dimensões medidas do
+documento, dimensões aprovadas do frame, estabilidade, `vertical_policy`,
+`horizontal_policy`, `capture_mode`, evidência e pendências de decisão. O mesmo
+objeto é copiado para `screens[].frame_spec` no manifesto validado. Em desktop,
+`1440x900` é a base de observação e o mínimo do frame; altura finita cresce com
+o documento e largura só cresce quando o scroll horizontal da página raiz for
+intencional. Em `directed_creation`, use a mesma estrutura, mas a evidência e
+os limites vêm do briefing/conteúdo aprovado em vez de uma medição de origem.
 
 O CLI escreve `issues.json` como `{run_id, cycle, issues}`. Cada issue
 determinístico possui `id`, `screen`, `viewport`, `severity` (`P0`..`P3`),

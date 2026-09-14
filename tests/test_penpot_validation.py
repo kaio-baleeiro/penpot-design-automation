@@ -82,6 +82,20 @@ class PenpotValidationTests(unittest.TestCase):
             self.assertEqual(len(result["sha256"]), 64)
             self.assertTrue(output.exists())
 
+    def test_full_page_screenshot_keeps_observation_viewport_separate(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            image = draw_rect(solid(80, 140, (245, 245, 245)), 15, 90, 35, 24, (30, 120, 220))
+            source = directory / "full-page.png"
+            output = directory / "source-map.json"
+            write_png(image, str(source))
+            result = map_screenshot(source, output, viewport=(80, 60), capture_mode="full_page")
+            self.assertEqual(result["viewport"], {"width": 80, "height": 60})
+            self.assertEqual(result["screenshot_dimensions"], {"width": 80, "height": 140})
+            self.assertEqual(result["capture_mode"], "full_page")
+            self.assertEqual(result["anchors"][0]["bounds"], {"x": 0, "y": 0, "width": 80, "height": 60})
+            self.assertEqual(result["anchors"][1]["bounds"], {"x": 0, "y": 0, "width": 80, "height": 140})
+
     def test_history_is_limited_to_three_cycles(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)
@@ -94,6 +108,48 @@ class PenpotValidationTests(unittest.TestCase):
             self.assertEqual([entry["cycle"] for entry in history], [1, 2, 3])
             with self.assertRaises(ValueError):
                 validate_run(run, 4)
+
+    def test_long_frame_passes_and_truncated_export_is_blocked(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            source = draw_rect(solid(80, 140, (245, 245, 245)), 15, 90, 35, 24, (30, 120, 220))
+            source_path = directory / "source-long.png"
+            good_export = directory / "export-long.png"
+            truncated_export = directory / "export-truncated.png"
+            write_png(source, str(source_path))
+            write_png(source, str(good_export))
+            write_png(solid(80, 60, (245, 245, 245)), str(truncated_export))
+            frame_spec = {
+                "screen_id": "home",
+                "viewport": {"width": 80, "height": 60},
+                "document": {"width": 80, "height": 140},
+                "frame": {"width": 80, "height": 140},
+                "vertical_policy": "finite_document",
+                "horizontal_policy": "viewport_bounded",
+                "capture_mode": "full_page",
+                "stable": True,
+                "build_ready": True,
+                "requires_user_decision": False,
+                "evidence": ["capture-full-page.json"],
+            }
+            good_manifest = self._manifest(source_path, good_export)
+            good_manifest["screens"][0]["frame_spec"] = frame_spec
+            good_run = directory / "good-run"
+            start_run(good_run, good_manifest)
+            good_result = validate_run(good_run, 1)
+            self.assertTrue(good_result["passed"])
+            self.assertEqual(good_result["screens"][0]["frame"], {"width": 80, "height": 140})
+
+            bad_manifest = self._manifest(source_path, truncated_export)
+            bad_manifest["screens"][0]["frame_spec"] = frame_spec
+            bad_run = directory / "bad-run"
+            start_run(bad_run, bad_manifest)
+            bad_result = validate_run(bad_run, 1)
+            self.assertFalse(bad_result["passed"])
+            self.assertTrue(any(
+                issue["severity"] == "P0" and "truncated" in issue["title"]
+                for issue in bad_result["screens"][0]["issues"]
+            ))
 
     def test_versioned_metric_table_has_six_weighted_dimensions(self) -> None:
         with tempfile.TemporaryDirectory() as temp:

@@ -1,9 +1,13 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+import tempfile
 import unittest
 
 from scripts.penpot_validation.structure import validate_structure_inventory
 from scripts.penpot_validation.validator import (
+    _validate_canonical_frame_specs,
     derive_next_state,
     validate_manifest,
     validate_transition,
@@ -18,7 +22,25 @@ def _manifest(**overrides):
         "worker_model": "gpt-5.6-luna",
         "source_refs": ["source.png"],
         "target_viewports": [{"width": 80, "height": 60}],
-        "screens": [{"id": "home", "viewport": {"width": 80, "height": 60}, "source": "source.png", "penpot_export": "export.png"}],
+        "screens": [{
+            "id": "home",
+            "viewport": {"width": 80, "height": 60},
+            "frame_spec": {
+                "screen_id": "home",
+                "viewport": {"width": 80, "height": 60},
+                "document": {"width": 80, "height": 60},
+                "frame": {"width": 80, "height": 60},
+                "vertical_policy": "viewport_bounded",
+                "horizontal_policy": "viewport_bounded",
+                "capture_mode": "viewport",
+                "stable": True,
+                "build_ready": True,
+                "requires_user_decision": False,
+                "evidence": ["capture.json"],
+            },
+            "source": "source.png",
+            "penpot_export": "export.png",
+        }],
         "validation_cycle": 0,
         "max_validation_cycles": 3,
         "user_review_round": 0,
@@ -37,6 +59,28 @@ class WorkflowGateTests(unittest.TestCase):
             validate_manifest(_manifest(worker_model="gpt-5.6-sol"))
         with self.assertRaisesRegex(ValueError, "lesson_refs"):
             validate_manifest(_manifest(lesson_refs="not-a-list"))
+
+    def test_frame_policy_is_required_and_cannot_silently_widen(self):
+        missing = _manifest()
+        missing["screens"][0].pop("frame_spec")
+        with self.assertRaisesRegex(ValueError, "requires frame_spec"):
+            validate_manifest(missing)
+        widened = _manifest()
+        widened["screens"][0]["frame_spec"]["frame"]["width"] = 120
+        with self.assertRaisesRegex(ValueError, "must keep viewport width"):
+            validate_manifest(widened)
+
+    def test_run_manifest_frame_spec_must_match_canonical_source_record(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "source").mkdir()
+            manifest = _manifest()
+            canonical = {"schema_version": "1.0", "screens": [manifest["screens"][0]["frame_spec"]]}
+            (root / "source/frame-spec.json").write_text(json.dumps(canonical), encoding="utf-8")
+            _validate_canonical_frame_specs(root, manifest)
+            manifest["screens"][0]["frame_spec"]["document"]["height"] = 120
+            with self.assertRaisesRegex(ValueError, "differs from source/frame-spec.json"):
+                _validate_canonical_frame_specs(root, manifest)
 
     def test_fixture_persists_terminal_state_and_lessons(self):
         import json

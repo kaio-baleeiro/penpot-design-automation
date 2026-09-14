@@ -8,14 +8,14 @@ python_bin="${PENPOT_AUTOMATION_PYTHON:-$project_root/.venv/bin/python}"
 
 operation="${1:-}"
 [[ -n "$operation" ]] || {
-  printf 'uso: %s capture|map-screenshot|compile [argumentos]\n' "$0" >&2
+  printf 'uso: %s capture|map-screenshot|frame-spec|compile [argumentos]\n' "$0" >&2
   exit 2
 }
 shift
 cd "$project_root"
 
 case "$operation" in
-  capture|map-screenshot)
+  capture|map-screenshot|frame-spec)
     exec "$python_bin" -m scripts.penpot_validation "$operation" "$@"
     ;;
   compile)

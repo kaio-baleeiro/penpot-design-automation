@@ -42,6 +42,8 @@ KatiauInvest e repositório público publicado.
 12. [x] Criar e integrar o ciclo de lições aprendidas do projeto.
 13. [x] Formalizar a política source-first para inventário e reutilização de
     assets do site/runtime ou código fornecido.
+14. [x] Separar viewport de observação e frame final, medir dimensões reais e
+    tratar páginas longas, overflow horizontal e conteúdo infinito.
 
 ## Validation
 
@@ -52,6 +54,7 @@ KatiauInvest e repositório público publicado.
 - Run do KatiauInvest com artefatos rastreáveis e comparação visual.
 - Coerência automática entre estado terminal, score final e entrega.
 - Lição só pode ser marcada como mitigada depois de registrar verificação.
+- Captura registra dimensões do viewport/documento, overflow e estabilidade.
 
 ## Rollback
 

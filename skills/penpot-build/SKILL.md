@@ -19,7 +19,16 @@ with `BLOCKED_MODEL_UNAVAILABLE`. The worker must use the configured Penpot MCP,
 not an untracked manual substitute, and append every mutation/result to
 `design/penpot-mcp-log.jsonl`.
 
-Create static screens at the explicitly approved viewports. Use semantic
+For reproduction, create static screens from the approved
+`source/frame-spec.json`; for directed creation, use the equivalent frame spec
+approved in the briefing. For desktop,
+`1440x900` is the minimum/default viewport, while the Penpot frame height grows
+to the measured finite document height. Grow width beyond `1440` only when the
+source map proves intentional page-level horizontal navigation; keep accidental
+overflow and nested scroll containers within the base frame. Never silently
+truncate stable content below or beside the fold.
+
+Use semantic
 groups, reusable components, variants where justified, shared typography/color/
 spacing styles and real text/assets when evidence exists. Read
 `source/assets-manifest.json` and reuse the exact mapped SVG, image, icon, logo
@@ -30,7 +39,7 @@ externally sourced replacement. Do not claim a design system is complete during
 this initial pass; mark provisional styles. Do not add interactions unless
 separately authorized.
 
-Plan first in `design/plan.json`: screen id, route/state, viewport, source
+Plan first in `design/plan.json`: screen id, route/state, viewport, frame bounds, source
 anchors or briefing requirements, content, components, `asset_refs` pointing to
 the source manifest and expected responsive behavior. Then call the project Penpot client with
 `scripts/penpot-mcp.sh execute --args '<JSON>' --log-path design/penpot-mcp-log.jsonl` (or

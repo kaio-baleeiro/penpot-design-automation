@@ -29,6 +29,14 @@ Cross-check every planned `asset_ref` against the source asset manifest and the
 Penpot build log. A lookalike or unrecorded substitute is an asset-provenance
 issue even when its pixel similarity is high.
 
+Before scoring, compare the export dimensions with `source/frame-spec.json`.
+The Penpot frame and reference capture must represent the same full finite
+content bounds; a `1440x900` export of a longer page is a blocking truncation,
+not a valid desktop result. Likewise, an unnecessarily widened frame fails when
+the source evidence shows accidental overflow or a nested scroll container.
+For unstable/infinite content, validate only the explicitly approved finite
+state and name that boundary in the report.
+
 Each deterministic issue identifies a region/coordinates where available,
 expected vs actual, magnitude and evidence. The Luna worker must add likely root
 cause and a precise fix in the refactoring handoff without altering the

@@ -36,6 +36,8 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
   validação estrutural automatizada.
 - [x] Espaço canônico de lições aprendidas criado com registro, contramedida e
   verificação obrigatórios.
+- [x] Dimensionamento inteligente diferencia viewport e frame, mede páginas
+  longas e bloqueia overflow horizontal sem intenção comprovada.
 
 ## Decisões
 
@@ -70,6 +72,9 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
   inventariar e reutilizar os originais antes de buscar substitutos externos.
 - 2026-09-14: o repositório foi tornado público por solicitação explícita do
   usuário.
+- 2026-09-14: `1440x900` é o viewport desktop de observação e o mínimo do frame,
+  não seu limite final; altura acompanha conteúdo finito e largura só cresce com
+  evidência de navegação horizontal intencional na página raiz.
 
 ## Links
 
@@ -79,5 +84,6 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
 - [[Task - Renomear volumes legados do Penpot]]
 - [[Handoff - Penpot Design Automation]]
 - [[35-Lessons-Learned/Projects/penpot-design-automation/README|Lições aprendidas do projeto]]
+- [[LL - Penpot viewport is not the final frame extent]]
 - [[P - KatiauInvest]]
 - [[_Project Index|Índice de projetos]]

@@ -169,9 +169,18 @@ def compile_source_map(
     return result
 
 
-def map_screenshot(path: str | Path, output: str | Path, *, threshold: int = 12) -> dict[str, Any]:
+def map_screenshot(path: str | Path, output: str | Path, *, threshold: int = 12,
+                   viewport: tuple[int, int] | None = None,
+                   capture_mode: str = "viewport") -> dict[str, Any]:
     """Map a screenshot and include its traceable source descriptor."""
+    if capture_mode not in {"viewport", "full_page", "bounded_state"}:
+        raise ValueError("capture_mode must be viewport, full_page, or bounded_state")
+    if capture_mode != "viewport" and viewport is None:
+        raise ValueError("full_page and bounded_state screenshots require their observation viewport")
+    if viewport is not None and (viewport[0] <= 0 or viewport[1] <= 0):
+        raise ValueError("viewport dimensions must be positive")
     image = read_png(str(path))
+    observation_viewport = viewport or (image.width, image.height)
     background = image.pixel(0, 0)
     points: list[tuple[int, int]] = []
     colors = Counter()
@@ -188,7 +197,8 @@ def map_screenshot(path: str | Path, output: str | Path, *, threshold: int = 12)
     else:
         content = {"x": 0, "y": 0, "width": image.width, "height": image.height}
     descriptor = _file_source(path, "screenshot", confidence=0.95, precedence=1,
-                              anchors=[{"type": "viewport", "bounds": {"x": 0, "y": 0, "width": image.width, "height": image.height}},
+                              anchors=[{"type": "viewport", "bounds": {"x": 0, "y": 0, "width": observation_viewport[0], "height": observation_viewport[1]}},
+                                       {"type": "capture-bounds", "bounds": {"x": 0, "y": 0, "width": image.width, "height": image.height}},
                                        {"type": "content-bounds", "bounds": content}])
     safe_location = descriptor["location"]
     result = {"version": "1.0", "mapped_at": _utc(), "source": safe_location,
@@ -197,10 +207,13 @@ def map_screenshot(path: str | Path, output: str | Path, *, threshold: int = 12)
               "file_sha256": descriptor["sha256"], "confidence": descriptor["confidence"],
               "anchors": descriptor["anchors"], "precedence": [descriptor["source_id"]],
               "relationships": [], "conflicts": [],
-              "viewport": {"width": image.width, "height": image.height},
+              "capture_mode": capture_mode,
+              "viewport": {"width": observation_viewport[0], "height": observation_viewport[1]},
+              "screenshot_dimensions": {"width": image.width, "height": image.height},
               "background": list(background), "content_bounds": content,
               "dominant_colors": [{"rgb": list(color), "pixels": count} for color, count in colors.most_common(12)],
-              "regions": [{"id": "viewport", "kind": "viewport", "bounds": {"x": 0, "y": 0, "width": image.width, "height": image.height}},
+              "regions": [{"id": "viewport", "kind": "viewport", "bounds": {"x": 0, "y": 0, "width": observation_viewport[0], "height": observation_viewport[1]}},
+                          {"id": "capture", "kind": "capture-bounds", "bounds": {"x": 0, "y": 0, "width": image.width, "height": image.height}},
                           {"id": "content", "kind": "content-bounds", "bounds": content}],
               "mapping_notes": ["Heuristic bounds use the top-left pixel as background; review against DOM/component metadata when available."]}
     output_path = Path(output)
@@ -218,9 +231,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--code")
     parser.add_argument("--output", required=True)
     parser.add_argument("--threshold", type=int, default=12)
+    parser.add_argument("--viewport", help="Observation viewport WxH for full_page/bounded_state screenshots")
+    parser.add_argument("--capture-mode", choices=("viewport", "full_page", "bounded_state"), default="viewport")
     args = parser.parse_args(argv)
     if args.image:
-        map_screenshot(args.image, args.output, threshold=args.threshold)
+        viewport = tuple(int(value) for value in args.viewport.lower().split("x", 1)) if args.viewport else None
+        map_screenshot(args.image, args.output, threshold=args.threshold, viewport=viewport,
+                       capture_mode=args.capture_mode)
     elif not any((args.url, args.screenshot, args.code)):
         parser.error("provide --url, --screenshot, --code, or --image")
     else:

@@ -26,6 +26,7 @@ Create `delivery/report.md` and `delivery/manifest.json` containing:
 
 - Penpot workspace/project/file/page/frame references and version;
 - route, source/briefing references, viewport matrix and decisions;
+- measured document bounds, delivered frame bounds and overflow decisions;
 - score and coverage per screen/viewport, with evaluator/config version;
 - links to side-by-side, overlay, heatmap and issue evidence;
 - issue table with severity, region, expected/actual, cause and fix status;

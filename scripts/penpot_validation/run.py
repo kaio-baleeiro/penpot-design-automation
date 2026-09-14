@@ -10,6 +10,7 @@ import shutil
 from typing import Any
 
 from .capture import capture_url
+from .frame import derive_frame_spec, write_frame_spec
 from .source_map import map_screenshot
 from .validator import validate_manifest, validate_run, _is_legacy_manifest
 
@@ -51,11 +52,22 @@ def main(argv: list[str] | None = None) -> int:
     capture.add_argument("--viewport", default="1440x900")
     capture.add_argument("--full-page", action="store_true")
     capture.add_argument("--wait-ms", type=int, default=500)
+    capture.add_argument("--scroll-probes", type=int, default=2, choices=range(0, 4))
+    capture.add_argument("--frame-bounds", help="Approved frame bounds WxH for capture beyond the viewport")
     capture.add_argument("--storage-state", help="Playwright storage-state JSON for private/authenticated sources")
     mapping = commands.add_parser("map-screenshot")
     mapping.add_argument("--image", required=True)
     mapping.add_argument("--output", required=True)
     mapping.add_argument("--threshold", type=int, default=12)
+    mapping.add_argument("--viewport", help="Observation viewport WxH for full_page/bounded_state screenshots")
+    mapping.add_argument("--capture-mode", choices=("viewport", "full_page", "bounded_state"), default="viewport")
+    sizing = commands.add_parser("frame-spec")
+    sizing.add_argument("--capture", required=True)
+    sizing.add_argument("--screen-id", required=True)
+    sizing.add_argument("--output", required=True)
+    sizing.add_argument("--horizontal-policy", choices=("intentional_page", "container_overflow", "accidental_overflow"))
+    sizing.add_argument("--horizontal-evidence", action="append")
+    sizing.add_argument("--dynamic-boundary", type=int)
     args = parser.parse_args(argv)
     if args.command == "start-run":
         payload = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
@@ -65,12 +77,26 @@ def main(argv: list[str] | None = None) -> int:
     elif args.command == "validate":
         validate_run(args.run_dir, args.cycle, args.baseline, strict=True, inventory=args.inventory)
     elif args.command == "map-screenshot":
-        map_screenshot(args.image, args.output, threshold=args.threshold)
+        viewport = tuple(int(value) for value in args.viewport.lower().split("x", 1)) if args.viewport else None
+        map_screenshot(args.image, args.output, threshold=args.threshold, viewport=viewport,
+                       capture_mode=args.capture_mode)
     elif args.command == "capture":
         width, height = (int(value) for value in args.viewport.lower().split("x", 1))
+        frame_bounds = tuple(int(value) for value in args.frame_bounds.lower().split("x", 1)) if args.frame_bounds else None
         import asyncio
         asyncio.run(capture_url(args.url, args.output, width, height, full_page=args.full_page,
-                                wait_ms=args.wait_ms, storage_state=args.storage_state))
+                                wait_ms=args.wait_ms, storage_state=args.storage_state,
+                                scroll_probes=args.scroll_probes, frame_bounds=frame_bounds))
+    elif args.command == "frame-spec":
+        capture_payload = json.loads(Path(args.capture).read_text(encoding="utf-8"))
+        spec = derive_frame_spec(
+            capture_payload,
+            screen_id=args.screen_id,
+            horizontal_policy=args.horizontal_policy,
+            horizontal_evidence=args.horizontal_evidence,
+            dynamic_boundary=args.dynamic_boundary,
+        )
+        write_frame_spec(spec, args.output)
     return 0
 
 

@@ -10,7 +10,9 @@ metadata:
 
 Use only for the `reproduction` route. Every supplied source remains represented
 even when inaccessible or lower confidence. Resolve this skill's physical
-directory before invoking its bundled wrapper.
+directory before invoking its bundled wrapper. For a URL, running application
+or runnable codebase, read [the frame-sizing policy](references/frame-sizing.md)
+before capture and persist its decision per screen.
 
 ## Capture and inventory
 
@@ -19,13 +21,22 @@ the project CLI command
 `scripts/source-map.sh capture --url <URL> --output <dir> --viewport <WxH>`
 (add `--full-page` only when the requested evidence is a full page). Use
 Playwright through that command and record the exact viewport, route, timestamp,
-loading state, fonts and dynamic-content limitations. For repositories, inspect
+loading state, fonts, `document_metrics` and dynamic-content limitations. Treat
+`1440x900` as the default desktop observation viewport, not an automatic final
+frame size. If metrics show finite vertical overflow, make a second full-page
+capture in a separate output directory. When lazy loading or infinite content
+is plausible, keep the default two bounded scroll probes; pass
+`--scroll-probes 0` only when scrolling would be unsafe or outside scope and
+record that limitation. Continued growth is unstable and needs a finite
+user-approved boundary. For repositories, inspect
 the checked-out code and runtime directly (there is no separate source-inspect
 script); record commit/ref, framework, entry points, route list, responsive
 breakpoints, tokens, components and how the app was run. For screenshots, use
 `scripts/source-map.sh map-screenshot --image <PNG> --output <json>`
 and record pixel dimensions, crop, device-pixel-ratio if known, visible states
-and what is unknown.
+and what is unknown. For a known full-page screenshot, also pass
+`--capture-mode full_page --viewport <WxH>` so its image height is not mistaken
+for the observation viewport. If that distinction is unknown and material, ask.
 
 When sources are combined, compile them with `scripts/source-map.sh compile
 --url <URL> --screenshot <PNG> --code
@@ -53,12 +64,25 @@ ignored storage and expose only sanitized provenance in versioned records.
 
 ## Persistent map
 
-Write `source/source-map.json`, `source/source-inventory.md` and
-`source/assets-manifest.json` before building.
+Write `source/source-map.json`, `source/source-inventory.md`,
+`source/assets-manifest.json` and `source/frame-spec.json` before building.
 Each observation needs a stable id, source id, evidence path/anchor, viewport,
 confidence and notes. Include hashes for files/captures and sanitise secrets.
 Keep raw captures outside Git when private; refer to their local path without
 committing cookies, tokens or authenticated data.
+
+Derive each screen entry with `scripts/source-map.sh frame-spec --capture
+<capture.json> --screen-id <id> --output <screen-frame-spec.json>`. A wider
+page requires an explicit `--horizontal-policy` decision; use
+`intentional_page` only together with `--horizontal-evidence`. Combine the
+screen entries into the run's `source/frame-spec.json` and mirror the matching
+entry in `manifest.json` for the validation gate.
+
+After approving a frame wider than the observation viewport, recapture its
+reference with `scripts/source-map.sh capture --url <URL> --viewport 1440x900
+--frame-bounds <frame-width>x<frame-height> --output <dir>`. This preserves the
+responsive viewport while Chromium captures the approved horizontal/vertical
+bounds. Never validate a wide frame against a viewport-width PNG.
 
 ## Conflicts and gaps
 
