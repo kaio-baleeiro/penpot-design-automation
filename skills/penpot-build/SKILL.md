@@ -8,7 +8,7 @@ metadata:
 
 # Penpot MCP build
 
-Require a run manifest whose intake and ambiguity gates are complete, then read the current `source/source-map.json` or
+Read [`lessons-learned/README.md`](lessons-learned/README.md), then require a run manifest whose intake and ambiguity gates are complete, and read the current `source/source-map.json` or
 approved `briefing/brief-vNNN.md` before acting.
 Only build after intake and material ambiguity gates pass.
 

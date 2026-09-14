@@ -8,7 +8,8 @@ metadata:
 
 # Penpot validation and refinement
 
-Read [the immutable scoring contract](references/scoring.md). This
+Read [the immutable scoring contract](references/scoring.md) and the local
+[`lessons-learned/README.md`](lessons-learned/README.md). This
 skill owns `VALIDATING`, `REFACTORING` and `DS_REVALIDATING`.
 
 ## Validation pass

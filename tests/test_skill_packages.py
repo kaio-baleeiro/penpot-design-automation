@@ -18,6 +18,15 @@ class AgentSkillsPackageTests(unittest.TestCase):
             with self.subTest(skill=name):
                 self.assertEqual(validate_skill(self.skills / name), [])
 
+    def test_every_skill_subdirectory_has_an_explanatory_readme(self):
+        for name in sorted(REQUIRED_SKILLS):
+            skill = self.skills / name
+            self.assertTrue((skill / "README.md").is_file(), name)
+            for child in skill.iterdir():
+                if child.is_dir() and child.name != "__pycache__":
+                    with self.subTest(skill=name, directory=child.name):
+                        self.assertTrue((child / "README.md").is_file())
+
     def test_non_network_wrappers_resolve_the_project_runtime(self):
         scripts = [
             "penpot-design/scripts/start-run.sh",

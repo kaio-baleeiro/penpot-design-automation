@@ -34,8 +34,8 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
 - [x] Workflow testado de ponta a ponta com o KatiauInvest.
 - [x] As sete skills seguem o formato Agent Skills com recursos locais e
   validação estrutural automatizada.
-- [x] Espaço canônico de lições aprendidas criado com registro, contramedida e
-  verificação obrigatórios.
+- [x] Lições aprendidas versionadas dentro de cada skill, com índice transversal,
+  registro, contramedida e verificação obrigatórios.
 - [x] Dimensionamento inteligente diferencia viewport e frame, mede páginas
   longas e bloqueia overflow horizontal sem intenção comprovada.
 
@@ -64,9 +64,10 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
   mesmo com score agregado 90,31.
 - 2026-09-14: cada skill referencia somente recursos diretos da própria pasta;
   o runtime compartilhado permanece único e é acessado por wrappers locais.
-- 2026-09-14: lições do projeto vivem apenas em
-  `35-Lessons-Learned/Projects/penpot-design-automation/`; runs guardam wikilinks
-  em `lesson_refs` e só marcam uma lição como mitigada após verificação.
+- 2026-09-14: lições operacionais vivem em `skills/<skill>/lessons-learned/`;
+  `penpot-design/lessons-learned/` mantém o índice transversal, runs guardam
+  referências relativas em `lesson_refs` e só marcam uma lição como mitigada
+  após verificação.
 - 2026-09-14: sites/runtimes e repositórios fornecidos são fontes autorizadas de
   SVGs, imagens, ícones, logos, fontes e outros assets úteis; o workflow deve
   inventariar e reutilizar os originais antes de buscar substitutos externos.
@@ -77,6 +78,8 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
   evidência de navegação horizontal intencional na página raiz.
 
 ## Links
+
+- [Lições executáveis no repositório](https://github.com/kaio-baleeiro/penpot-design-automation/tree/main/skills)
 
 - [[Product Brief - Penpot Design Automation]]
 - [[Technical Spec - Penpot Design Automation]]

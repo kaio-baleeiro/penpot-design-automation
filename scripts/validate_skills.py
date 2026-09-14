@@ -22,6 +22,7 @@ PLACEHOLDERS = re.compile(r"\b(?:TODO|TBD|PLACEHOLDER)\b", re.IGNORECASE)
 VALID_NAME = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 RESOURCE_REFERENCE = re.compile(r"(?<![\w/])((?:scripts|references|assets)/[A-Za-z0-9._-]+)")
 OPTIONAL_RESOURCE_DIRS = ("scripts", "references", "assets")
+LESSONS_DIR = "lessons-learned"
 
 
 def _frontmatter(text: str) -> dict[str, str]:
@@ -45,6 +46,8 @@ def validate_skill(skill_dir: Path) -> list[str]:
     skill_file = skill_dir / "SKILL.md"
     if not skill_file.is_file():
         return [f"{skill_dir.name}: missing SKILL.md"]
+    if not (skill_dir / "README.md").is_file():
+        errors.append(f"{skill_dir.name}: missing README.md")
     text = skill_file.read_text(encoding="utf-8")
     try:
         metadata = _frontmatter(text)
@@ -75,10 +78,15 @@ def validate_skill(skill_dir: Path) -> list[str]:
         resource_dir = skill_dir / dirname
         if resource_dir.exists() and not any(path.is_file() for path in resource_dir.rglob("*")):
             errors.append(f"{skill_dir.name}: optional directory {dirname}/ is empty")
+    lessons_dir = skill_dir / LESSONS_DIR
+    if not lessons_dir.is_dir():
+        errors.append(f"{skill_dir.name}: missing required directory {LESSONS_DIR}/")
+    elif not (lessons_dir / "README.md").is_file():
+        errors.append(f"{skill_dir.name}: {LESSONS_DIR}/README.md is required")
     scripts_dir = skill_dir / "scripts"
     if scripts_dir.is_dir():
         for script in (path for path in scripts_dir.rglob("*") if path.is_file()):
-            if "__pycache__" in script.parts or script.suffix == ".pyc":
+            if "__pycache__" in script.parts or script.suffix == ".pyc" or script.name == "README.md":
                 continue
             if not script.stat().st_mode & 0o111:
                 errors.append(f"{skill_dir.name}: script is not executable: {script.relative_to(skill_dir)}")

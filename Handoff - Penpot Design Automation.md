@@ -59,13 +59,14 @@ infinito exige um limite reproduzível confirmado pelo usuário.
 
 ## Validação concluída
 
-- 45 testes unitários/integrados aprovados.
+- 47 testes unitários/integrados aprovados.
 - 7 skills aprovadas no validador oficial e no validador local.
 - Compose, scripts, instalador, healthcheck, MCP, export e inventário validados.
 - Backups pré e pós-migração com checksums válidos.
 - Forward test independente Luna aprovado após correções.
-- Espaço de lições aprendidas criado e cinco falhas do desenvolvimento convertidas
-  em regras mitigadas com evidência.
+- Cada skill possui `lessons-learned/`; o índice transversal do orquestrador
+  compartilha regras entre fases e cinco falhas do desenvolvimento foram
+  convertidas em regras mitigadas com evidência.
 - Auditoria Luna específica de dimensionamento incorporada ao gate executável.
 - KatiauInvest: score agregado 90,31; dashboard 88,42, investimentos 90,70,
   importação 88,15 e assistente 93,99. O limite de três ciclos encerrou em
@@ -78,6 +79,8 @@ Os volumes ainda têm nomes `katiauinvest-penpot_*`. A tarefa
 não remover os volumes atuais antes de backup, restore isolado e aceite.
 
 ## Links
+
+- [Lições executáveis no repositório](https://github.com/kaio-baleeiro/penpot-design-automation/tree/main/skills)
 
 - [[P - Penpot Design Automation]]
 - [[Technical Spec - Penpot Design Automation]]

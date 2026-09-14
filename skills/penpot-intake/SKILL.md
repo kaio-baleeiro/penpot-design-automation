@@ -8,7 +8,8 @@ metadata:
 
 # Penpot intake
 
-Read [the mandatory questionnaire](references/questions.md) first.
+Read [the mandatory questionnaire](references/questions.md) and the local
+[`lessons-learned/README.md`](lessons-learned/README.md) first.
 This skill owns `INTAKE_PENDING`, `INTAKE_REVIEW`, `AMBIGUITY_ANALYSIS` and the
 directed-creation briefing gate.
 

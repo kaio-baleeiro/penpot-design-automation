@@ -12,14 +12,18 @@ class LessonRecorderTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         script = root / "skills/penpot-design/scripts/record-lesson.py"
         with tempfile.TemporaryDirectory() as temp:
-            vault = Path(temp)
-            (vault / "AGENTS.md").write_text("# test vault\n", encoding="utf-8")
+            project = Path(temp)
+            skill = project / "skills" / "penpot-validate"
+            skill.mkdir(parents=True)
+            (skill / "SKILL.md").write_text("---\nname: penpot-validate\n---\n", encoding="utf-8")
             created = subprocess.run(
                 [
                     sys.executable,
                     str(script),
-                    "--vault-root",
-                    str(vault),
+                    "--project-root",
+                    str(project),
+                    "--skill-dir",
+                    "skills/penpot-validate",
                     "record",
                     "--title",
                     "A repeatable failure",
@@ -37,14 +41,16 @@ class LessonRecorderTests(unittest.TestCase):
                 text=True,
             )
             relative = created.stdout.strip()
-            lesson = vault / relative
+            lesson = project / relative
             self.assertIn("status: active", lesson.read_text(encoding="utf-8"))
             resolved = subprocess.run(
                 [
                     sys.executable,
                     str(script),
-                    "--vault-root",
-                    str(vault),
+                    "--project-root",
+                    str(project),
+                    "--skill-dir",
+                    "skills/penpot-validate",
                     "resolve",
                     "--lesson",
                     lesson.name,
@@ -62,7 +68,42 @@ class LessonRecorderTests(unittest.TestCase):
             self.assertIn("status: mitigated", text)
             self.assertIn("## Resolution", text)
             index = lesson.parent / "README.md"
-            self.assertIn("[[LL - A repeatable failure]]", index.read_text(encoding="utf-8"))
+            self.assertIn("[LL - A repeatable failure]", index.read_text(encoding="utf-8"))
+
+    def test_recorder_rejects_a_path_outside_the_skills_directory(self):
+        root = Path(__file__).resolve().parents[1]
+        script = root / "skills/penpot-design/scripts/record-lesson.py"
+        with tempfile.TemporaryDirectory() as temp:
+            project = Path(temp)
+            (project / "skills" / "penpot-design").mkdir(parents=True)
+            (project / "skills" / "penpot-design" / "SKILL.md").write_text(
+                "---\nname: penpot-design\n---\n", encoding="utf-8"
+            )
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(script),
+                    "--project-root",
+                    str(project),
+                    "--skill-dir",
+                    "../outside",
+                    "record",
+                    "--title",
+                    "Invalid",
+                    "--lesson",
+                    "x",
+                    "--context",
+                    "x",
+                    "--evidence",
+                    "x",
+                    "--future-rule",
+                    "x",
+                ],
+                capture_output=True,
+                text=True,
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("pasta de skill válida", result.stderr)
 
 
 if __name__ == "__main__":

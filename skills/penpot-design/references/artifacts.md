@@ -150,9 +150,9 @@ timestamp e referência à mensagem/decisão. Atualize os flags do próximo
 manifesto versionado somente quando existir esse registro; score não cria
 aprovação automaticamente.
 
-`lesson_refs` é sempre uma lista. Começa vazia e recebe wikilinks para lições
-canônicas em `35-Lessons-Learned/Projects/penpot-design-automation/` quando um
-erro ou correção produzir uma regra futura. O run nunca duplica o corpo da nota.
+`lesson_refs` é sempre uma lista. Começa vazia e recebe caminhos relativos para
+lições versionadas em `skills/<skill>/lessons-learned/` quando um erro ou
+correção produzir uma regra futura. O run nunca duplica o corpo da nota.
 
 Em `DS_REVALIDATING`, o inventário estrutural é obrigatório e precisa conter
 tokens, componentes, instâncias e estilos não vazios, além de zero instâncias

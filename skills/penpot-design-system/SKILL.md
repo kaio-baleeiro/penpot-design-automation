@@ -8,7 +8,7 @@ metadata:
 
 # Penpot design system
 
-Run only after formal approval of the constructed version (and approved
+Read [`lessons-learned/README.md`](lessons-learned/README.md). Run only after formal approval of the constructed version (and approved
 briefing/version in directed creation). Use append-only run artifacts and never
 replace the approved reference version.
 

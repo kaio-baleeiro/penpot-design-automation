@@ -1,7 +1,9 @@
 # Penpot Design Automation
 
 Infraestrutura local compartilhada do Penpot e workflow de criação de telas a
-partir de URL, screenshot, código ou briefing sem fonte.
+partir de URL, screenshot, código ou briefing sem fonte. Este repositório é
+executável por Codex, Devin CLI e outros agentes que consigam ler
+`AGENTS.md`/`SKILL.md`; não depende de uma cópia proprietária do Codex.
 
 O projeto mantém duas rotas:
 
@@ -16,6 +18,8 @@ por tela e viewport.
 ## Estrutura
 
 ```text
+AGENTS.md           Instruções portáteis para Codex, Devin CLI e outros agentes
+docs/               Documentação transversal da infraestrutura
 infra/penpot/       Compose, backup, restore, healthcheck e atualização
 skills/             Skills versionadas do workflow
 scripts/            Captura, mapeamento, MCP e comparação visual
@@ -32,11 +36,15 @@ skills/<skill>/
 ├── scripts/          # somente quando a skill executa código
 ├── references/       # somente para documentação carregada sob demanda
 └── assets/           # somente para recursos reutilizáveis reais
+└── lessons-learned/  # memória operacional versionada da skill
 ```
 
 Diretórios opcionais vazios não são criados. Os `SKILL.md` usam apenas
 referências diretas a recursos da própria skill; wrappers locais resolvem a
 raiz física do checkout antes de chamar o runtime compartilhado do projeto.
+Cada pasta de trabalho possui um README próprio. O índice em
+`skills/penpot-design/lessons-learned/README.md` conecta aprendizados que
+atravessam mais de uma fase.
 
 ## Instalar a skill global
 
@@ -50,6 +58,46 @@ canônica deste repositório. Nenhuma cópia divergente é criada.
 Depois, uma solicitação pode começar com `$penpot-design` e uma URL, screenshot,
 diretório de código ou briefing. A skill sempre fará as perguntas de escopo e a
 pergunta final de adendo/mudança antes de construir.
+
+## Como usar o workflow
+
+1. Leia [`AGENTS.md`](AGENTS.md) e escolha a skill de entrada
+   [`penpot-design`](skills/penpot-design/SKILL.md).
+2. Suba o Penpot local e confirme o healthcheck:
+
+   ```sh
+   infra/penpot/scripts/up.sh
+   infra/penpot/scripts/healthcheck.sh
+   ```
+
+3. Envie uma URL, screenshot, diretório/repositório do código ou um briefing
+   sem fonte. O intake pergunta escopo, precedência, viewports e aprovação; a
+   resposta de adendo/mudança é obrigatória.
+4. O fluxo cria `runs/<run-id>/`, mapeia a origem, inventaria assets, mede
+   viewport/documento/frame e entrega um plano para o worker Luna construir no
+   Penpot via MCP.
+5. A validação exporta a tela, calcula score por viewport e produz comparação
+   lado a lado, overlay, heatmap e issues. Falhas retornam para correção precisa
+   por até três ciclos; sem aprovação após o terceiro, o estado é
+   `NEEDS_REVIEW`.
+6. Depois da sua aprovação formal, a skill de design system cria tokens,
+   estilos, componentes e instâncias, revalida as telas e só então empacota a
+   entrega.
+
+Para executar fora da raiz, use caminhos absolutos ou os wrappers locais das
+skills. O contrato continua o mesmo em qualquer agente:
+
+```sh
+python3 -m unittest discover -s tests -v
+python3 scripts/validate_skills.py
+python3 skills/penpot-design/scripts/record-lesson.py \
+  --skill-dir skills/penpot-validate record \
+  --title "Falha reproduzível" \
+  --lesson "Regra aprendida." \
+  --context "Contexto." \
+  --evidence "tests/test_..." \
+  --future-rule "Como evitar na próxima execução."
+```
 
 Na rota de reprodução, o site/runtime e o código fornecidos também funcionam
 como biblioteca de assets autorizada. O fluxo inventaria e reutiliza SVGs,
@@ -119,12 +167,16 @@ isolada nunca pula a etapa de design system.
 
 ## Lições aprendidas
 
-O espaço canônico é
-`35-Lessons-Learned/Projects/penpot-design-automation/` no vault. O orquestrador
-consulta o índice no início e no fechamento de cada run. Erros reutilizáveis
-recebem contexto, evidência, regra futura e `lesson_refs`; uma lição só muda
-para `mitigated` após contramedida e verificação. O utilitário fica em
+O espaço operacional versionado é o `lessons-learned/` dentro de cada skill. O
+orquestrador consulta o índice compartilhado, registra referências em
+`lesson_refs` e só permite que uma lição saia de `active` para `mitigated`
+quando a contramedida e sua verificação forem documentadas. O vault mantém as
+notas de projeto e referências históricas; a regra executável deve estar no
+pacote da skill para viajar junto com o Git. O utilitário fica em
 `skills/penpot-design/scripts/record-lesson.py`.
+
+Leia o README da skill antes de cada fase para ver suas lições locais e use o
+índice compartilhado quando o erro afetar mais de uma fase.
 
 ## Segurança dos registros
 
