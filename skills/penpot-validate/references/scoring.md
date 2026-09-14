@@ -1,10 +1,10 @@
-# Score e gates
+# Score e gates da validação Penpot
 
 O score oficial é produzido por
-`python3 -m scripts.penpot_validation validate --run-dir <run-dir> --cycle <1..3>`;
+`scripts/validate.sh --run-dir <run-dir> --cycle <1..3>`;
 não substitua seu resultado por avaliação subjetiva do agente. A tabela
 versionada `penpot-visual-v1`, implementada em
-`scripts/penpot_validation/metrics.py`, usa estes pesos:
+pelo runtime versionado do projeto, usa estes pesos:
 
 | Dimensão | Peso |
 |---|---:|

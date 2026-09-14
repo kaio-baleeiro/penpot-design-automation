@@ -3,17 +3,18 @@ name: penpot-design-system
 description: Formalize an approved Penpot prototype into reusable tokens, styles, components and responsive rules, then rebuild and revalidate the screens against the approved version.
 metadata:
   short-description: Extract and verify a Penpot design system
+  compatibility: Requires the project checkout, local environment file, Python 3, and Penpot MCP.
 ---
 
 # Penpot design system
 
 Run only after formal approval of the constructed version (and approved
-briefing/version in directed creation). Read `../../workflow/CONTRACT.md` and
-`ARTIFACTS.md`.
+briefing/version in directed creation). Use append-only run artifacts and never
+replace the approved reference version.
 
 Delegate extraction and MCP refactoring to `gpt-5.6-luna`; no fallback if Luna
 is unavailable. Extract the inventory from the approved frames/code and apply
-the changes through `scripts/penpot-mcp.sh execute --args '<JSON>' --log-path design/penpot-mcp-log.jsonl` (or
+the changes through `scripts/penpot-mcp.sh execute --args '<JSON>' --log-path design/penpot-mcp-log.jsonl` from this skill's physical directory (or
 `scripts/penpot-mcp.sh call <tool-name> --args '<JSON>' --log-path design/penpot-mcp-log.jsonl`). Record the inventory, MCP requests and
 responses; do not assume a separate token-extraction script exists.
 
@@ -36,7 +37,7 @@ corrected or marked `NEEDS_REVIEW`.
 Persist token/component inventory, reconstruction log and revalidation evidence;
 never replace the original approved prototype or its records.
 
-Before delivery, run `scripts/penpot-inventory.sh --output
+Before delivery, run `scripts/inventory.sh --output
 design/structure-inventory.json --log-path design/penpot-mcp-log.jsonl`. It
 exports `tokens`, `components`, `component_instances`, `detached_instances`,
 `styles` and `required_component_instances`; add the planned required instances

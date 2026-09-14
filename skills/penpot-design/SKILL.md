@@ -3,21 +3,27 @@ name: penpot-design
 description: Orchestrate creation or faithful reconstruction of static Penpot screens from URLs, screenshots, code repositories, or a refined prompt, including source traceability, Luna execution, deterministic validation, design-system formalization, and delivery.
 metadata:
   short-description: Build and validate Penpot designs from sources or prompts
+  compatibility: Requires the project checkout, Python 3, Penpot MCP, and Luna subagents.
 ---
 
 # Penpot Design Orchestrator
 
 Use this as the entrypoint for a request to create screens in the shared Penpot
 instance. This skill may be installed through a symbolic link. Resolve its
-physical directory first (`pwd -P` or equivalent), derive the repository root
-as two parents above that directory, and read the applicable contracts from the
-physical `<repository-root>/workflow/` path before acting. Never resolve
-`../../workflow/` relative to the logical global symlink.
+physical directory first (`pwd -P` or equivalent) and derive the repository
+root as two parents above that directory. Read
+[the workflow contract](references/workflow-contract.md),
+[the state machine](references/state-machine.md),
+[the artifact schema](references/artifacts.md) and
+[the delegation contract](references/delegation.md) before acting. Read
+[the lessons protocol](references/lessons-learned.md) at the beginning and end
+of every run. The machine-readable defaults are in
+`assets/workflow-config.yaml`.
 
-The skills in `<repository-root>/skills/penpot-intake`, `penpot-source-map`,
+The sibling skills `penpot-intake`, `penpot-source-map`,
 `penpot-build`, `penpot-validate`, `penpot-design-system` and `penpot-delivery`
-are the authoritative phase instructions. Read the relevant `SKILL.md` directly
-from the repository before each phase; they do not need separate global copies.
+are the authoritative phase instructions. Read their `SKILL.md` from the
+physical repository before each phase; they do not need separate global copies.
 
 ## Route selection
 
@@ -26,11 +32,12 @@ from the repository before each phase; they do not need separate global copies.
 - Choose `directed_creation` only when the user explicitly wants creation from
   a prompt with no source.
 
-Run the mandatory interaction in `<repository-root>/workflow/QUESTIONS.md`: ask the initial
+Run the mandatory interaction defined by `penpot-intake`: ask the initial
 questions, ask the second adendo/mudança question, then analyze ambiguities.
 Do not construct before material decisions are resolved. Persist every answer,
-decision, source, and feedback in the run directory described by
-`<repository-root>/workflow/ARTIFACTS.md`.
+decision, source, feedback and applicable `lesson_refs` in the run directory
+described by `references/artifacts.md`. Initialize a strict run from the skill
+root with `scripts/start-run.sh --run-dir <run-dir> --manifest <manifest.json>`.
 
 ## Delegation policy
 
@@ -40,7 +47,7 @@ scoring. If Luna is unavailable, stop with `BLOCKED_MODEL_UNAVAILABLE`; do not
 silently fall back. Keep the orchestrator focused on routing, user questions,
 gate decisions and records.
 
-Follow `<repository-root>/workflow/DELEGATION.md`: create a Codex subagent with
+Follow `references/delegation.md`: create a Codex subagent with
 the Luna model for each operational phase and treat quota/model errors as
 `BLOCKED_MODEL_UNAVAILABLE`.
 
@@ -63,5 +70,11 @@ the Luna model for each operational phase and treat quota/model errors as
    prototype.
 8. `penpot-delivery`: package the Penpot link/file, records and visual report.
 
-Use the state names in `<repository-root>/workflow/STATE-MACHINE.md`. Never mark
+Whenever a mistake, failed assumption, regression, security weakness or user
+correction changes future behavior, create or update the canonical vault lesson
+before delivery. A lesson is only overcome after its countermeasure is verified
+and its status becomes `mitigated`; link it through `lesson_refs` instead of
+copying the lesson into the run.
+
+Use the state names in `references/state-machine.md`. Never mark
 `DELIVERED` while a viewport or structural design-system gate is failing.

@@ -3,12 +3,13 @@ name: penpot-build
 description: Build static Penpot frames, reusable components and initial styles from an approved source map or directed-creation briefing through the Penpot MCP.
 metadata:
   short-description: Build static Penpot screens with MCP
+  compatibility: Requires the project checkout, local environment file, Python 3, and Penpot MCP.
 ---
 
 # Penpot MCP build
 
-Read the workflow contract, state machine, artifact schema and the current
-`source/source-map.json` or approved `briefing/brief-vNNN.md` before acting.
+Require a run manifest whose intake and ambiguity gates are complete, then read the current `source/source-map.json` or
+approved `briefing/brief-vNNN.md` before acting.
 Only build after intake and material ambiguity gates pass.
 
 ## Build contract
@@ -28,7 +29,7 @@ Plan first in `design/plan.json`: screen id, route/state, viewport, source
 anchors or briefing requirements, content, components, assets and expected
 responsive behavior. Then call the project Penpot client with
 `scripts/penpot-mcp.sh execute --args '<JSON>' --log-path design/penpot-mcp-log.jsonl` (or
-`scripts/penpot-mcp.sh call <tool-name> --args '<JSON>' --log-path design/penpot-mcp-log.jsonl`) to apply the
+`scripts/penpot-mcp.sh call <tool-name> --args '<JSON>' --log-path design/penpot-mcp-log.jsonl`) from this skill's physical directory to apply the
 plan and `scripts/penpot-mcp.sh export --args '<JSON>' --save-image <PNG>
 --log-path design/penpot-mcp-log.jsonl` for frame PNGs. The client sends the MCP `tools/call` request and must
 append request, response and frame identifiers to the MCP log.

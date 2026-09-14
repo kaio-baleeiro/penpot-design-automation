@@ -3,18 +3,20 @@ name: penpot-validate
 description: Rigorously compare Penpot renders against source evidence or an approved directed-creation prototype using immutable deterministic scoring, visual diffs and targeted Luna refactoring.
 metadata:
   short-description: Score, compare and correct Penpot screens
+  compatibility: Requires the project checkout and Python 3; Penpot export uses the local MCP connection.
 ---
 
 # Penpot validation and refinement
 
-Read `../../workflow/CONTRACT.md`, `STATE-MACHINE.md` and `SCORING.md`. This
+Read [the immutable scoring contract](references/scoring.md). This
 skill owns `VALIDATING`, `REFACTORING` and `DS_REVALIDATING`.
 
 ## Validation pass
 
 For every requested screen and viewport, delegate render/capture work to
 `gpt-5.6-luna` and run the deterministic evaluator with
-`python3 -m scripts.penpot_validation validate --run-dir <run-dir> --cycle <1..3>`.
+`scripts/validate.sh --run-dir <run-dir> --cycle <1..3>` from this skill's
+physical directory.
 Never change its formula, threshold, coverage rule or severity mapping during a
 run. A human or language model may
 explain a finding but may not override the evaluator.
@@ -28,8 +30,7 @@ Each deterministic issue identifies a region/coordinates where available,
 expected vs actual, magnitude and evidence. The Luna worker must add likely root
 cause and a precise fix in the refactoring handoff without altering the
 machine-written score/issues files. Penpot exports are produced through
-`scripts/penpot-mcp.sh export --args '<JSON>' --save-image <PNG> --log-path design/penpot-mcp-log.jsonl` (or the
-configured `call <tool-name>` operation) before validation.
+the `$penpot-build` MCP wrapper before validation.
 
 ## Refinement loop
 

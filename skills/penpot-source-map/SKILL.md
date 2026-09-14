@@ -3,31 +3,32 @@ name: penpot-source-map
 description: Capture and map URLs, screenshots, running apps and code repositories into a persistent, auditable source record for Penpot reconstruction.
 metadata:
   short-description: Map source evidence for faithful Penpot reconstruction
+  compatibility: Requires the project checkout and Python 3; URL capture uses Playwright Chromium.
 ---
 
 # Penpot source mapping
 
-Use only for the `reproduction` route. Read `../../workflow/CONTRACT.md` and
-`ARTIFACTS.md`. Every supplied source remains represented even when inaccessible
-or lower confidence.
+Use only for the `reproduction` route. Every supplied source remains represented
+even when inaccessible or lower confidence. Resolve this skill's physical
+directory before invoking its bundled wrapper.
 
 ## Capture and inventory
 
 Delegate hands-on capture/inspection to `gpt-5.6-luna`. For a public URL, use
 the project CLI command
-`python3 -m scripts.penpot_validation capture --url <URL> --output <dir> --viewport <WxH>`
+`scripts/source-map.sh capture --url <URL> --output <dir> --viewport <WxH>`
 (add `--full-page` only when the requested evidence is a full page). Use
 Playwright through that command and record the exact viewport, route, timestamp,
 loading state, fonts and dynamic-content limitations. For repositories, inspect
 the checked-out code and runtime directly (there is no separate source-inspect
 script); record commit/ref, framework, entry points, route list, responsive
 breakpoints, tokens, components and how the app was run. For screenshots, use
-`python3 -m scripts.penpot_validation map-screenshot --image <PNG> --output <json>`
+`scripts/source-map.sh map-screenshot --image <PNG> --output <json>`
 and record pixel dimensions, crop, device-pixel-ratio if known, visible states
 and what is unknown.
 
-When sources are combined, compile them with `python3 -m
-scripts.penpot_validation.source_map --url <URL> --screenshot <PNG> --code
+When sources are combined, compile them with `scripts/source-map.sh compile
+--url <URL> --screenshot <PNG> --code
 <repo-or-file> --output source/source-map.json`. Code inputs may be files or
 directories; secret/env/dependency directories are excluded from their stable
 hash.

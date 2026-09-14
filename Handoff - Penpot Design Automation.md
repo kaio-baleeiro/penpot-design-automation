@@ -41,13 +41,20 @@ intake/adendo, escolhe reprodução ou criação dirigida, delega tarefas manuai
 `gpt-5.6-luna`, registra fontes e conduz construção, score, correção, aprovação,
 formalização do design system e entrega.
 
+As sete skills estão empacotadas no formato Agent Skills. Contratos extensos,
+wrappers e configuração ficam respectivamente em `references/`, `scripts/` e
+`assets/` dentro da skill proprietária. O validador rejeita caminhos externos,
+recursos quebrados, diretórios opcionais vazios e scripts não executáveis.
+
 ## Validação concluída
 
-- 26 testes unitários/integrados aprovados.
+- 31 testes unitários/integrados aprovados.
 - 7 skills aprovadas no validador oficial e no validador local.
 - Compose, scripts, instalador, healthcheck, MCP, export e inventário validados.
 - Backups pré e pós-migração com checksums válidos.
 - Forward test independente Luna aprovado após correções.
+- Espaço de lições aprendidas criado e quatro falhas do desenvolvimento convertidas
+  em regras mitigadas com evidência.
 - KatiauInvest: score agregado 90,31; dashboard 88,42, investimentos 90,70,
   importação 88,15 e assistente 93,99. O limite de três ciclos encerrou em
   `NEEDS_REVIEW`, sem permitir que a média escondesse falhas individuais.
@@ -63,4 +70,5 @@ não remover os volumes atuais antes de backup, restore isolado e aceite.
 - [[P - Penpot Design Automation]]
 - [[Technical Spec - Penpot Design Automation]]
 - [[Implementation Plan - Penpot Design Automation]]
+- [[35-Lessons-Learned/Projects/penpot-design-automation/README|Lições aprendidas do projeto]]
 - [[P - KatiauInvest]]

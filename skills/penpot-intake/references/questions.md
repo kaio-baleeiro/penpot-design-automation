@@ -1,4 +1,4 @@
-# Questionário obrigatório
+# Questionário obrigatório do intake Penpot
 
 As perguntas abaixo são um contrato de interação, não um checklist opcional.
 Adapte a redação, mas preserve a informação e a ordem lógica.

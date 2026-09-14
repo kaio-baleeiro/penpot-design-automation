@@ -1,4 +1,4 @@
-# Artefatos e convenções
+# Artefatos e convenções do workflow
 
 Cada execução deve viver em `runs/<run-id>/` (ou no diretório equivalente que o
 projeto configurar) e usar estes nomes estáveis:
@@ -43,6 +43,7 @@ runs/<run-id>/
   "validation_cycle": 0,
   "max_validation_cycles": 3,
   "user_review_round": 0,
+  "lesson_refs": [],
   "approval": {"briefing": false, "design": false, "design_system": false},
   "intake": {
     "initial_questions_completed": true,
@@ -80,6 +81,7 @@ duas perguntas mais a análise de ambiguidades deve existir. Exemplo executável
   "validation_cycle": 0,
   "max_validation_cycles": 3,
   "user_review_round": 0,
+  "lesson_refs": [],
   "approval": {"briefing": true, "design": false, "design_system": false},
   "intake": {
     "initial_questions_completed": true,
@@ -89,9 +91,9 @@ duas perguntas mais a análise de ambiguidades deve existir. Exemplo executável
 }
 ```
 
-Inicialize o run com `python3 -m scripts.penpot_validation start-run
---run-dir <run-dir> --manifest <manifest.json>` e valide com o comando
-`validate` descrito em `SCORING.md`. O arquivo de cada ciclo é imutável; use o
+Inicialize o run com `scripts/start-run.sh --run-dir <run-dir> --manifest
+<manifest.json>` e valide com o wrapper da skill `$penpot-validate`. O arquivo
+de cada ciclo é imutável; use o
 próximo número de ciclo para uma nova tentativa.
 
 `source-map.json` deve guardar, por fonte, tipo, localização, timestamp,
@@ -115,6 +117,10 @@ confirmação de encerramento.
 timestamp e referência à mensagem/decisão. Atualize os flags do próximo
 manifesto versionado somente quando existir esse registro; score não cria
 aprovação automaticamente.
+
+`lesson_refs` é sempre uma lista. Começa vazia e recebe wikilinks para lições
+canônicas em `35-Lessons-Learned/Projects/penpot-design-automation/` quando um
+erro ou correção produzir uma regra futura. O run nunca duplica o corpo da nota.
 
 Em `DS_REVALIDATING`, o inventário estrutural é obrigatório e precisa conter
 tokens, componentes, instâncias e estilos não vazios, além de zero instâncias
