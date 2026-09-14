@@ -6,6 +6,13 @@ worker:
 routes:
   - reproduction
   - directed_creation
+source_assets:
+  inspect_supplied_site_and_code: true
+  prefer_exact_origin_asset: true
+  follow_source_referenced_resources: true
+  unrelated_web_search: false
+  external_substitution_requires_decision: true
+  manifest: source/assets-manifest.json
 intake:
   initial_questions_required: true
   addendum_question_required: true

@@ -33,6 +33,9 @@ directed-creation briefing gate.
   version with its own internal three-cycle validation budget.
 - For reproduction, pass all source handles to `penpot-source-map`; never
   discard a supplied source silently.
+- Do not ask again for permission to inspect or reuse assets from a supplied
+  site/runtime or codebase: that permission is a standing workflow decision.
+  Ask only about material licensing, privacy or source-precedence restrictions.
 
 Write `questions.md`, `decisions.md` and `manifest.json` with the required
 schema. Set `worker_model` to `gpt-5.6-luna` for any delegated acquisition or

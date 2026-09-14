@@ -21,13 +21,18 @@ not an untracked manual substitute, and append every mutation/result to
 
 Create static screens at the explicitly approved viewports. Use semantic
 groups, reusable components, variants where justified, shared typography/color/
-spacing styles and real text/assets when evidence exists. Do not claim a
-design system is complete during this initial pass; mark provisional styles.
-Do not add interactions unless separately authorized.
+spacing styles and real text/assets when evidence exists. Read
+`source/assets-manifest.json` and reuse the exact mapped SVG, image, icon, logo
+or font before considering a substitute. Do not search external catalogs for a
+lookalike while an original asset is accessible. If the source asset is absent,
+unusable or legally restricted, record the reason and ask before introducing an
+externally sourced replacement. Do not claim a design system is complete during
+this initial pass; mark provisional styles. Do not add interactions unless
+separately authorized.
 
 Plan first in `design/plan.json`: screen id, route/state, viewport, source
-anchors or briefing requirements, content, components, assets and expected
-responsive behavior. Then call the project Penpot client with
+anchors or briefing requirements, content, components, `asset_refs` pointing to
+the source manifest and expected responsive behavior. Then call the project Penpot client with
 `scripts/penpot-mcp.sh execute --args '<JSON>' --log-path design/penpot-mcp-log.jsonl` (or
 `scripts/penpot-mcp.sh call <tool-name> --args '<JSON>' --log-path design/penpot-mcp-log.jsonl`) from this skill's physical directory to apply the
 plan and `scripts/penpot-mcp.sh export --args '<JSON>' --save-image <PNG>

@@ -25,6 +25,9 @@ The CLI writes immutable `cycles/cycle-N/score.json`, `issues.json`, report,
 side-by-side, overlay and heatmap artifacts. Check the gate separately per viewport:
 `score >= 90`, `coverage >= 80`, no P0/P1. Structural checks must also confirm
 components/styles/tokens are actually reusable, not only visually similar.
+Cross-check every planned `asset_ref` against the source asset manifest and the
+Penpot build log. A lookalike or unrecorded substitute is an asset-provenance
+issue even when its pixel similarity is high.
 
 Each deterministic issue identifies a region/coordinates where available,
 expected vs actual, magnitude and evidence. The Luna worker must add likely root

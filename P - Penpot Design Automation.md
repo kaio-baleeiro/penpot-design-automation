@@ -65,6 +65,9 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
 - 2026-09-14: lições do projeto vivem apenas em
   `35-Lessons-Learned/Projects/penpot-design-automation/`; runs guardam wikilinks
   em `lesson_refs` e só marcam uma lição como mitigada após verificação.
+- 2026-09-14: sites/runtimes e repositórios fornecidos são fontes autorizadas de
+  SVGs, imagens, ícones, logos, fontes e outros assets úteis; o workflow deve
+  inventariar e reutilizar os originais antes de buscar substitutos externos.
 
 ## Links
 

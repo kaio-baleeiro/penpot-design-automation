@@ -39,6 +39,8 @@ KatiauInvest e repositório privado publicado.
 10. [x] Criar, publicar e verificar o repositório privado.
 11. [x] Adequar as sete skills ao formato Agent Skills com recursos locais.
 12. [x] Criar e integrar o ciclo de lições aprendidas do projeto.
+13. [x] Formalizar a política source-first para inventário e reutilização de
+    assets do site/runtime ou código fornecido.
 
 ## Validation
 

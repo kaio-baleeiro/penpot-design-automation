@@ -39,6 +39,14 @@ decision, source, feedback and applicable `lesson_refs` in the run directory
 described by `references/artifacts.md`. Initialize a strict run from the skill
 root with `scripts/start-run.sh --run-dir <run-dir> --manifest <manifest.json>`.
 
+For reproduction, treat the supplied site/runtime and codebase as the primary
+asset library. The user grants standing permission to inspect and retrieve
+SVGs, raster images, icons, logos, fonts and other useful files referenced by
+those sources when needed for the requested screens. Inventory their provenance
+before construction and prefer the exact source asset over searching for a
+similar replacement elsewhere. Keep private payloads out of Git and do not
+expand this permission into unrelated web browsing.
+
 ## Delegation policy
 
 All hands-on work must use `worker_model: gpt-5.6-luna`: source capture,
@@ -54,8 +62,8 @@ the Luna model for each operational phase and treat quota/model errors as
 ## Pipeline
 
 1. `penpot-intake`: collect answers, route, scope and target viewports.
-2. `penpot-source-map` for reproduction, or the briefing branch in intake for
-   directed creation.
+2. `penpot-source-map` for reproduction, including the source asset inventory,
+   or the briefing branch in intake for directed creation.
 3. Plan screens and hand the plan to `penpot-build` for static frames and
    reusable components through Penpot MCP.
 4. `penpot-validate`: render every requested screen/viewport, run the immutable

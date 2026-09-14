@@ -27,6 +27,11 @@ components with meaningful names and replace duplicated provisional shapes with
 instances. Preserve visual values from the approved prototype unless a user
 decision authorizes change.
 
+Use the source asset manifest as the canonical registry for icons, logos,
+illustrations, images and fonts. Preserve `asset_id`/provenance in the inventory,
+promote repeated vectors or image treatments to named reusable components when
+appropriate, and do not replace originals with visually similar library assets.
+
 Re-export every approved screen/viewport after componentization. `penpot-validate`
 must compare those renders to the approved prototype with the same immutable
 gates (`>=90`, coverage `>=80`, no P0/P1) and provide side-by-side, overlay,
