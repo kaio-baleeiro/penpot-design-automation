@@ -24,7 +24,7 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
 ## Critério de conclusão
 
 - [x] Infraestrutura do Penpot migrada do KatiauInvest sem perda de dados.
-- [x] Repositório privado criado e publicado no GitHub.
+- [x] Repositório público criado e publicado no GitHub.
 - [x] Skill global instalada a partir da implementação versionada no projeto.
 - [x] Rotas de reprodução e criação dirigida implementadas.
 - [x] Validação por tela e viewport exige score mínimo de 90%, cobertura de 80%
@@ -68,6 +68,8 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
 - 2026-09-14: sites/runtimes e repositórios fornecidos são fontes autorizadas de
   SVGs, imagens, ícones, logos, fontes e outros assets úteis; o workflow deve
   inventariar e reutilizar os originais antes de buscar substitutos externos.
+- 2026-09-14: o repositório foi tornado público por solicitação explícita do
+  usuário.
 
 ## Links
 

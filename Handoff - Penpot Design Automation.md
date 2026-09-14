@@ -21,7 +21,7 @@ Mailcatcher em `http://localhost:1080`. A composição `penpot-design-automation
 possui sete serviços e reutiliza os volumes históricos externos. A migração
 preservou 1 perfil, 3 times, 5 projetos, 2 arquivos e 51 assets.
 
-O repositório privado é
+O repositório público é
 `https://github.com/kaio-baleeiro/penpot-design-automation`. A skill global
 `/Users/baleeiro/.agents/skills/penpot-design` é um vínculo para a implementação
 canônica deste projeto. O MCP local está registrado como `penpot-design`; sua
