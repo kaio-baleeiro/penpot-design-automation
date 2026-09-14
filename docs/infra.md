@@ -31,6 +31,12 @@ Isso evita copiar ou apagar dados na primeira migração. O nome do projeto Comp
 
 Segredos e persistência não são versionados. O arquivo `infra/penpot/.env` deve ser criado localmente a partir de `.env.example`. A URL/token do MCP deve permanecer apenas na configuração local do Codex.
 
+Ao rotacionar a chave MCP pelo Penpot, use o botão de cópia da própria interface
+e execute `scripts/update-mcp-key-from-clipboard.sh` na raiz do projeto. O script
+valida o conteúdo, atualiza o `.env` com permissão `0600` e recria o registro
+local `penpot-design` do Codex sem exibir a chave. Ele depende de `pbpaste` e,
+portanto, é destinado à estação macOS onde esta instância está instalada.
+
 ## Comandos
 
 Todos os comandos devem ser executados a partir de `infra/penpot` ou usando os scripts:
@@ -76,3 +82,4 @@ Não execute essa renomeação automaticamente.
 - `down.sh` não remove volumes.
 - `restore.sh` não aceita execução sem `PENPOT_RESTORE_CONFIRM=YES`.
 - Segredos, tokens MCP, cookies, dumps e assets ficam fora do Git.
+- A rotação da chave usa a área de transferência e não coloca o token em argumentos documentados ou relatórios.

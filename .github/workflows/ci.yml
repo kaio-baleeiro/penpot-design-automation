@@ -18,7 +18,7 @@ jobs:
       - run: python3 -m unittest discover -s tests -v
       - run: python3 scripts/validate_skills.py
       - name: Validate shell scripts
-        run: bash -n install.sh scripts/penpot-mcp.sh scripts/penpot-inventory.sh infra/penpot/scripts/*.sh
+        run: bash -n install.sh scripts/*.sh infra/penpot/scripts/*.sh
       - name: Validate compose configuration
         run: bash infra/penpot/scripts/validate.sh
       - name: Validate installer in an isolated skills directory
