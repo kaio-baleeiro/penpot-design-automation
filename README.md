@@ -39,6 +39,9 @@ pergunta final de adendo/mudança antes de construir.
 
 O cliente MCP de terminal usa `scripts/penpot-mcp.sh`, que carrega a URL local
 do arquivo ignorado `infra/penpot/.env` sem colocá-la no histórico de comandos.
+Depois de regenerar uma chave na interface do Penpot, copie somente a chave e
+execute `scripts/update-mcp-key-from-clipboard.sh`. O utilitário atualiza o
+`.env` local e o registro `penpot-design` do Codex sem imprimir a credencial.
 
 ## Infraestrutura
 
