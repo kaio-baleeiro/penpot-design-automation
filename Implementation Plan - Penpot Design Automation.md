@@ -15,7 +15,7 @@ review: false
 ## Target Outcome
 
 Entregar infraestrutura migrada, skills instaláveis, scripts validados, teste com
-KatiauInvest e repositório privado publicado.
+KatiauInvest e repositório público publicado.
 
 ## Files Or Systems Affected
 
@@ -36,7 +36,8 @@ KatiauInvest e repositório privado publicado.
 7. [x] Instalar a skill global e registrar o MCP sem expor o token.
 8. [x] Executar validação ponta a ponta com KatiauInvest.
 9. [x] Remover o acoplamento antigo do KatiauInvest e atualizar suas notas.
-10. [x] Criar, publicar e verificar o repositório privado.
+10. [x] Criar, publicar e verificar o repositório, posteriormente tornado público
+    por decisão do usuário.
 11. [x] Adequar as sete skills ao formato Agent Skills com recursos locais.
 12. [x] Criar e integrar o ciclo de lições aprendidas do projeto.
 13. [x] Formalizar a política source-first para inventário e reutilização de
