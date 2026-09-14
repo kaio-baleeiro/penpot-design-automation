@@ -3,11 +3,12 @@ name: penpot-intake
 description: Gather and normalize the mandatory questions, route, scope, viewport and approval decisions before a Penpot design run starts.
 metadata:
   short-description: Ask, scope and prepare a Penpot design run
+  compatibility: Requires the project checkout and Python 3; URL capture uses Playwright Chromium.
 ---
 
 # Penpot intake
 
-Read `../../workflow/QUESTIONS.md`, `CONTRACT.md` and `ARTIFACTS.md` first.
+Read [the mandatory questionnaire](references/questions.md) first.
 This skill owns `INTAKE_PENDING`, `INTAKE_REVIEW`, `AMBIGUITY_ANALYSIS` and the
 directed-creation briefing gate.
 
@@ -40,11 +41,11 @@ inspection. If unavailable, return `BLOCKED_MODEL_UNAVAILABLE`.
 ## CLI handoff
 
 For URL capture, hand the worker the command
-`python3 -m scripts.penpot_validation capture --url <URL> --output <dir> --viewport <WxH>`.
+`scripts/capture.sh --url <URL> --output <dir> --viewport <WxH>` from this
+skill's physical directory.
 For authenticated sources, add `--storage-state <ignored-private-json>`; the
 capture manifest records only `authenticated: true`, a sanitized URL and its
 hash, never cookies or the private path.
-For a supplied screenshot, hand it
-`python3 -m scripts.penpot_validation map-screenshot --image <PNG> --output <json>`.
+For a supplied screenshot, hand it to `$penpot-source-map`.
 Repository inspection is performed by the Luna worker against the checked-out
 code and recorded in the source inventory; no unimplemented helper is assumed.

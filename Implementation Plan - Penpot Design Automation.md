@@ -37,6 +37,8 @@ KatiauInvest e repositório privado publicado.
 8. [x] Executar validação ponta a ponta com KatiauInvest.
 9. [x] Remover o acoplamento antigo do KatiauInvest e atualizar suas notas.
 10. [x] Criar, publicar e verificar o repositório privado.
+11. [x] Adequar as sete skills ao formato Agent Skills com recursos locais.
+12. [x] Criar e integrar o ciclo de lições aprendidas do projeto.
 
 ## Validation
 
@@ -45,6 +47,8 @@ KatiauInvest e repositório privado publicado.
 - Skills sem erros de estrutura ou placeholders.
 - Testes automatizados aprovados.
 - Run do KatiauInvest com artefatos rastreáveis e comparação visual.
+- Coerência automática entre estado terminal, score final e entrega.
+- Lição só pode ser marcada como mitigada depois de registrar verificação.
 
 ## Rollback
 

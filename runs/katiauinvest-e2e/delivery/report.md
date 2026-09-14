@@ -18,6 +18,8 @@ a média agregada de 90,31 não mascara falhas individuais. Dashboard e imports
 ficaram abaixo de 90; dashboard também ficou abaixo de 80% de cobertura. O
 estado final após o terceiro ciclo é `NEEDS_REVIEW`, sem aprovação automática.
 
+Lição relacionada: [[LL - Penpot terminal state must be persisted in the run manifest]].
+
 | Tela | Viewport | Score | Cobertura | Gate |
 |---|---:|---:|---:|---|
 | dashboard | 1440×900 | 88,42 | 76,91% | FAIL |

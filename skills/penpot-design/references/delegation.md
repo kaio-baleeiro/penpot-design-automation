@@ -1,4 +1,4 @@
-# Delegação de trabalhadores Luna
+# Delegação de trabalhadores Luna no workflow Penpot
 
 Toda fase operacional é iniciada pelo orquestrador do Codex com um subagente
 explicitamente configurado como `gpt-5.6-luna`. A delegação precisa declarar:

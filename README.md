@@ -18,11 +18,25 @@ por tela e viewport.
 ```text
 infra/penpot/       Compose, backup, restore, healthcheck e atualização
 skills/             Skills versionadas do workflow
-workflow/           Contrato, estados, perguntas, artefatos e score
 scripts/            Captura, mapeamento, MCP e comparação visual
 tests/              Testes determinísticos
 runs/               Metadados sanitizados; material privado fica ignorado
 ```
+
+Cada pasta em `skills/` é um pacote [Agent Skills](https://agentskills.io/specification):
+
+```text
+skills/<skill>/
+├── SKILL.md
+├── agents/openai.yaml
+├── scripts/          # somente quando a skill executa código
+├── references/       # somente para documentação carregada sob demanda
+└── assets/           # somente para recursos reutilizáveis reais
+```
+
+Diretórios opcionais vazios não são criados. Os `SKILL.md` usam apenas
+referências diretas a recursos da própria skill; wrappers locais resolvem a
+raiz física do checkout antes de chamar o runtime compartilhado do projeto.
 
 ## Instalar a skill global
 
@@ -90,6 +104,15 @@ scripts/penpot-inventory.sh \
 `DS_REVALIDATING` reprova inventários vazios, componentes destacados ou
 ausência dos tokens/componentes/instâncias exigidos. Uma aprovação visual
 isolada nunca pula a etapa de design system.
+
+## Lições aprendidas
+
+O espaço canônico é
+`35-Lessons-Learned/Projects/penpot-design-automation/` no vault. O orquestrador
+consulta o índice no início e no fechamento de cada run. Erros reutilizáveis
+recebem contexto, evidência, regra futura e `lesson_refs`; uma lição só muda
+para `mitigated` após contramedida e verificação. O utilitário fica em
+`skills/penpot-design/scripts/record-lesson.py`.
 
 ## Segurança dos registros
 

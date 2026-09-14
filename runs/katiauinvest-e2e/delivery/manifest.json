@@ -17,5 +17,8 @@
   "visual_artifacts": ["side_by_side_annotated", "overlay", "heatmap", "issues"],
   "design_system_gate": "NOT_APPROVED_HISTORICAL_FIXTURE",
   "user_approval": false,
+  "lesson_refs": [
+    "[[LL - Penpot terminal state must be persisted in the run manifest]]"
+  ],
   "delivered_at": "2026-09-14T12:47:00-03:00"
 }

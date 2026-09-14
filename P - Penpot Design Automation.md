@@ -32,6 +32,10 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
 - [x] Comparação lado a lado, overlay, heatmap e issues localizadas gerados.
 - [x] Ciclo de correção limitado a três tentativas por versão.
 - [x] Workflow testado de ponta a ponta com o KatiauInvest.
+- [x] As sete skills seguem o formato Agent Skills com recursos locais e
+  validação estrutural automatizada.
+- [x] Espaço canônico de lições aprendidas criado com registro, contramedida e
+  verificação obrigatórios.
 
 ## Decisões
 
@@ -56,6 +60,11 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
 - 2026-09-14: o benchmark KatiauInvest encerrou corretamente em `NEEDS_REVIEW`
   após três ciclos porque dashboard e imports ficaram abaixo do gate por tela,
   mesmo com score agregado 90,31.
+- 2026-09-14: cada skill referencia somente recursos diretos da própria pasta;
+  o runtime compartilhado permanece único e é acessado por wrappers locais.
+- 2026-09-14: lições do projeto vivem apenas em
+  `35-Lessons-Learned/Projects/penpot-design-automation/`; runs guardam wikilinks
+  em `lesson_refs` e só marcam uma lição como mitigada após verificação.
 
 ## Links
 
@@ -64,5 +73,6 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
 - [[Implementation Plan - Penpot Design Automation]]
 - [[Task - Renomear volumes legados do Penpot]]
 - [[Handoff - Penpot Design Automation]]
+- [[35-Lessons-Learned/Projects/penpot-design-automation/README|Lições aprendidas do projeto]]
 - [[P - KatiauInvest]]
 - [[_Project Index|Índice de projetos]]

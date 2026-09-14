@@ -22,6 +22,7 @@ def _manifest(**overrides):
         "validation_cycle": 0,
         "max_validation_cycles": 3,
         "user_review_round": 0,
+        "lesson_refs": [],
         "approvals": {"version": False, "design_system": False},
         "evidence": {"initial_questions": ["answered"], "addendum_question": "não", "ambiguity_analysis": "complete"},
     }
@@ -34,6 +35,22 @@ class WorkflowGateTests(unittest.TestCase):
         validate_manifest(_manifest())
         with self.assertRaisesRegex(ValueError, "worker_model"):
             validate_manifest(_manifest(worker_model="gpt-5.6-sol"))
+        with self.assertRaisesRegex(ValueError, "lesson_refs"):
+            validate_manifest(_manifest(lesson_refs="not-a-list"))
+
+    def test_fixture_persists_terminal_state_and_lessons(self):
+        import json
+        from pathlib import Path
+
+        root = Path(__file__).resolve().parents[1]
+        manifest = json.loads((root / "runs/katiauinvest-e2e/manifest.json").read_text(encoding="utf-8"))
+        delivery = json.loads((root / "runs/katiauinvest-e2e/delivery/manifest.json").read_text(encoding="utf-8"))
+        cycle = json.loads((root / "runs/katiauinvest-e2e/cycles/cycle-3/score.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["state"], "NEEDS_REVIEW")
+        self.assertEqual(manifest["state"], delivery["state"])
+        self.assertEqual(manifest["state"], cycle["next_state"])
+        self.assertEqual(manifest["validation_cycle"], 3)
+        self.assertTrue(manifest["lesson_refs"])
 
     def test_validation_state_and_transition(self):
         self.assertTrue(validate_transition("VALIDATING", "REFINEMENT"))

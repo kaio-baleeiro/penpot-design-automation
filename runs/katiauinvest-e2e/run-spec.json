@@ -20,6 +20,7 @@
   "validation_cycle": 0,
   "max_validation_cycles": 3,
   "user_review_round": 0,
+  "lesson_refs": [],
   "approval": {"briefing": true, "design": false, "design_system": false},
   "intake": {
     "initial_questions_completed": true,

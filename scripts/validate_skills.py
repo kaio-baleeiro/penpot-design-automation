@@ -19,6 +19,9 @@ REQUIRED_SKILLS = {
     "penpot-delivery",
 }
 PLACEHOLDERS = re.compile(r"\b(?:TODO|TBD|PLACEHOLDER)\b", re.IGNORECASE)
+VALID_NAME = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+RESOURCE_REFERENCE = re.compile(r"(?<![\w/])((?:scripts|references|assets)/[A-Za-z0-9._-]+)")
+OPTIONAL_RESOURCE_DIRS = ("scripts", "references", "assets")
 
 
 def _frontmatter(text: str) -> dict[str, str]:
@@ -49,10 +52,36 @@ def validate_skill(skill_dir: Path) -> list[str]:
         return [f"{skill_dir.name}: {exc}"]
     if metadata.get("name") != skill_dir.name:
         errors.append(f"{skill_dir.name}: frontmatter name must match directory")
-    if not metadata.get("description"):
+    if not VALID_NAME.fullmatch(skill_dir.name) or len(skill_dir.name) > 64:
+        errors.append(f"{skill_dir.name}: invalid Agent Skills name")
+    description = metadata.get("description", "")
+    if not description:
         errors.append(f"{skill_dir.name}: missing description")
+    elif len(description) > 1024:
+        errors.append(f"{skill_dir.name}: description exceeds 1024 characters")
+    compatibility = metadata.get("compatibility", "")
+    if compatibility and len(compatibility) > 500:
+        errors.append(f"{skill_dir.name}: compatibility exceeds 500 characters")
     if PLACEHOLDERS.search(text):
         errors.append(f"{skill_dir.name}: unresolved placeholder")
+    if len(text.splitlines()) > 500:
+        errors.append(f"{skill_dir.name}: SKILL.md exceeds 500 lines")
+    if "../" in text or "<repository-root>/workflow" in text:
+        errors.append(f"{skill_dir.name}: SKILL.md contains an external/deep resource path")
+    for reference in RESOURCE_REFERENCE.findall(text):
+        if not (skill_dir / reference).is_file():
+            errors.append(f"{skill_dir.name}: missing referenced resource {reference}")
+    for dirname in OPTIONAL_RESOURCE_DIRS:
+        resource_dir = skill_dir / dirname
+        if resource_dir.exists() and not any(path.is_file() for path in resource_dir.rglob("*")):
+            errors.append(f"{skill_dir.name}: optional directory {dirname}/ is empty")
+    scripts_dir = skill_dir / "scripts"
+    if scripts_dir.is_dir():
+        for script in (path for path in scripts_dir.rglob("*") if path.is_file()):
+            if "__pycache__" in script.parts or script.suffix == ".pyc":
+                continue
+            if not script.stat().st_mode & 0o111:
+                errors.append(f"{skill_dir.name}: script is not executable: {script.relative_to(skill_dir)}")
     agent_file = skill_dir / "agents" / "openai.yaml"
     if not agent_file.is_file():
         errors.append(f"{skill_dir.name}: missing agents/openai.yaml")
@@ -70,7 +99,7 @@ def main() -> int:
         for error in errors:
             print(f"ERROR: {error}")
         return 1
-    print(f"Validated {len(found)} skills")
+    print(f"Validated {len(found)} Agent Skills packages")
     return 0
 
 

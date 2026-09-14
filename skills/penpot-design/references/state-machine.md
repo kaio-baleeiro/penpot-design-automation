@@ -1,4 +1,4 @@
-# Máquina de estados
+# Máquina de estados do workflow Penpot
 
 Estados persistidos no manifesto da execução:
 

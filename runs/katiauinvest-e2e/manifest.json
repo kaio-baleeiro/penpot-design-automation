@@ -3,7 +3,7 @@
   "run_id": "katiauinvest-e2e",
   "route": "reproduction",
   "mode": "source",
-  "state": "VALIDATING",
+  "state": "NEEDS_REVIEW",
   "worker_model": "gpt-5.6-luna",
   "source_refs": [
     {
@@ -66,9 +66,12 @@
       "penpot_export": "runs/katiauinvest-e2e/penpot-exports/assistant.png"
     }
   ],
-  "validation_cycle": 0,
+  "validation_cycle": 3,
   "max_validation_cycles": 3,
   "user_review_round": 0,
+  "lesson_refs": [
+    "[[LL - Penpot terminal state must be persisted in the run manifest]]"
+  ],
   "approval": {
     "briefing": true,
     "design": false,
@@ -84,5 +87,5 @@
     ]
   },
   "created_at": "2026-09-14T10:00:00Z",
-  "updated_at": "2026-09-14T10:00:00Z"
+  "updated_at": "2026-09-14T17:10:00Z"
 }

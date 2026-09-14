@@ -209,7 +209,7 @@ def _approval_values(manifest: dict[str, Any]) -> dict[str, bool]:
 
 def _required_manifest_fields(manifest: dict[str, Any]) -> list[str]:
     required = ["schema_version", "route", "state", "worker_model", "source_refs", "target_viewports",
-                "screens", "validation_cycle", "max_validation_cycles", "user_review_round"]
+                "screens", "validation_cycle", "max_validation_cycles", "user_review_round", "lesson_refs"]
     missing = [key for key in required if key not in manifest]
     if "approvals" not in manifest and "approval" not in manifest and "approval_flags" not in manifest:
         missing.append("approvals")
@@ -238,6 +238,10 @@ def validate_manifest(manifest: dict[str, Any], strict: bool = True) -> None:
             raise ValueError(f"manifest state is invalid: {manifest.get('state')}")
         if manifest.get("worker_model") != WORKER_MODEL:
             raise ValueError(f"manifest worker_model must be exactly {WORKER_MODEL}")
+        if not isinstance(manifest.get("lesson_refs"), list) or any(
+            not isinstance(value, str) or not value.strip() for value in manifest["lesson_refs"]
+        ):
+            raise ValueError("manifest lesson_refs must be a list of non-empty strings")
         if not isinstance(manifest.get("source_refs"), list):
             raise ValueError("manifest source_refs must be a list")
         if manifest["route"] == "reproduction" and not manifest["source_refs"]:

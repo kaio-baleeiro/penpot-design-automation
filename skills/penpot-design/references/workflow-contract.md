@@ -1,11 +1,11 @@
-# Contrato do workflow
+# Contrato do workflow Penpot
 
 ## Princípios obrigatórios
 
 1. A execução começa identificando a rota: `reproduction` ou
    `directed_creation`. Nunca invente uma fonte para a segunda rota.
 2. Antes de construir, faça as perguntas mínimas da etapa 1 de
-   `QUESTIONS.md`. Depois de responder, faça obrigatoriamente a pergunta de
+   `$penpot-intake`. Depois de responder, faça obrigatoriamente a pergunta de
    adendo/mudança da etapa 2. Só então analise ambiguidades e faça perguntas
    adicionais quando existir uma decisão material sem resposta.
 3. Em `reproduction`, registre e preserve a origem antes da primeira alteração
@@ -22,7 +22,7 @@
    modelo não estiver disponível, interrompa com `BLOCKED_MODEL_UNAVAILABLE`;
    não faça fallback para outro modelo.
 7. O score é calculado somente pelo avaliador determinístico invocado por
-   `python3 -m scripts.penpot_validation validate --run-dir <run-dir> --cycle <1..3>`.
+   `scripts/start-run.sh` e pelo wrapper de validação da skill `$penpot-validate`.
    O agente não pode editar a fórmula, limiares, cobertura ou severidades
    durante a execução para aprovar uma tela.
 8. Cada tela e viewport precisa atingir score visual **>= 90/100**, cobertura
@@ -44,6 +44,10 @@
     issues vinculada à tela/viewport/região. O relatório precisa explicar
     visualmente o que diverge da fonte (ou do protótipo aprovado, na criação
     dirigida).
+13. Consulte o índice canônico de lições antes da execução. Quando um erro ou
+    correção produzir uma regra reutilizável, registre a lição, adicione sua
+    wikilink a `lesson_refs`, implemente a contramedida e só marque a lição como
+    `mitigated` depois de uma verificação que cubra o caso original.
 
 ## Delegação Luna
 
@@ -52,7 +56,8 @@ arquivos de entrada, artefatos de saída, restrições desta contract e condiç�
 parada. O worker não pode alterar o contrato, pesos de score, limiar de 90,
 limite de três ciclos ou registros históricos.
 
-O procedimento de criação e verificação do subagente está em `DELEGATION.md`.
+O procedimento de criação e verificação do subagente está em
+`references/delegation.md`.
 Erro de cota ou indisponibilidade do modelo é indisponibilidade real e aciona o
 estado bloqueado; o orquestrador não executa a tarefa manualmente como fallback.
 
