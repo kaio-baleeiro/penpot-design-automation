@@ -1,6 +1,8 @@
 ---
 type: lesson
 status: mitigated
+kind: project
+integration: scripts/penpot_mcp.py; tests/test_security_and_sources.py
 scope: shared
 applies_to: [penpot-build, penpot-validate, penpot-delivery]
 ---

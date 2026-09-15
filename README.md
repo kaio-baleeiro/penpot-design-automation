@@ -48,6 +48,19 @@ atravessam mais de uma fase.
 
 ## Instalar a skill global
 
+Para um clone novo, o caminho recomendado é o bootstrap completo:
+
+```sh
+./setup.sh
+```
+
+Ele cria o ambiente Python, instala Playwright/Chromium, instala o vínculo da
+skill global, gera `.env` local com segredos aleatórios, prepara volumes neutros
+e valida o Compose. Depois, suba os serviços com os comandos da seção de
+infraestrutura.
+
+Se o Penpot já estiver configurado e você só quiser instalar a skill global:
+
 ```sh
 ./install.sh
 ```
@@ -58,6 +71,16 @@ canônica deste repositório. Nenhuma cópia divergente é criada.
 Depois, uma solicitação pode começar com `$penpot-design` e uma URL, screenshot,
 diretório de código ou briefing. A skill sempre fará as perguntas de escopo e a
 pergunta final de adendo/mudança antes de construir.
+
+Entradas aceitas:
+
+- URL pública ou aplicação local em execução;
+- print PNG/JPEG de desktop ou mobile;
+- diretório ou repositório Git do site/app;
+- prompt de criação do zero, sem fonte.
+
+As entradas podem ser combinadas. O fluxo pergunta quais fontes prevalecem,
+investiga desktop/mobile e não começa a construir antes da aprovação do escopo.
 
 ## Como usar o workflow
 
@@ -96,7 +119,9 @@ python3 skills/penpot-design/scripts/record-lesson.py \
   --lesson "Regra aprendida." \
   --context "Contexto." \
   --evidence "tests/test_..." \
-  --future-rule "Como evitar na próxima execução."
+  --future-rule "Como evitar na próxima execução." \
+  --kind project \
+  --integration "skills/penpot-validate/SKILL.md; tests/test_..."
 ```
 
 Na rota de reprodução, o site/runtime e o código fornecidos também funcionam

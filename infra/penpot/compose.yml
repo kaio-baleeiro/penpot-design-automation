@@ -123,7 +123,7 @@ networks:
 volumes:
   penpot_postgres_data:
     external: true
-    name: ${PENPOT_POSTGRES_VOLUME:-katiauinvest-penpot_penpot_postgres_data}
+    name: ${PENPOT_POSTGRES_VOLUME:-penpot-design-automation_postgres_data}
   penpot_assets:
     external: true
-    name: ${PENPOT_ASSETS_VOLUME:-katiauinvest-penpot_penpot_assets}
+    name: ${PENPOT_ASSETS_VOLUME:-penpot-design-automation_assets}

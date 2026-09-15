@@ -23,4 +23,4 @@ for service in $expected_services; do
   printf '%s\n' "$services" | grep -Fxq "$service" || die "serviço ausente: $service"
 done
 
-printf 'Compose válido: 7 serviços; volumes externos configurados; env usado: %s\n' "$VALIDATE_ENV_FILE"
+printf 'Compose válido: 7 serviços; volumes externos declarados; env usado: %s\n' "$VALIDATE_ENV_FILE"

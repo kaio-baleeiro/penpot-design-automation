@@ -28,8 +28,9 @@ load_runtime_env() {
 
   [[ "${PENPOT_SECRET_KEY:-}" != replace-* && -n "${PENPOT_SECRET_KEY:-}" ]] || die "PENPOT_SECRET_KEY não foi preenchida em .env"
   [[ "${PENPOT_POSTGRES_PASSWORD:-}" != replace-* && -n "${PENPOT_POSTGRES_PASSWORD:-}" ]] || die "PENPOT_POSTGRES_PASSWORD não foi preenchida em .env"
-  PENPOT_POSTGRES_VOLUME="${PENPOT_POSTGRES_VOLUME:-katiauinvest-penpot_penpot_postgres_data}"
-  PENPOT_ASSETS_VOLUME="${PENPOT_ASSETS_VOLUME:-katiauinvest-penpot_penpot_assets}"
+  PENPOT_POSTGRES_VOLUME="${PENPOT_POSTGRES_VOLUME:-penpot-design-automation_postgres_data}"
+  PENPOT_ASSETS_VOLUME="${PENPOT_ASSETS_VOLUME:-penpot-design-automation_assets}"
+  PENPOT_CREATE_VOLUMES="${PENPOT_CREATE_VOLUMES:-false}"
   COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME:-penpot-design-automation}"
 }
 
@@ -43,8 +44,17 @@ compose() {
 }
 
 ensure_external_volumes() {
-  docker volume inspect "$PENPOT_POSTGRES_VOLUME" >/dev/null 2>&1 || die "volume PostgreSQL ausente: $PENPOT_POSTGRES_VOLUME"
-  docker volume inspect "$PENPOT_ASSETS_VOLUME" >/dev/null 2>&1 || die "volume de assets ausente: $PENPOT_ASSETS_VOLUME"
+  for volume in "$PENPOT_POSTGRES_VOLUME" "$PENPOT_ASSETS_VOLUME"; do
+    if docker volume inspect "$volume" >/dev/null 2>&1; then
+      continue
+    fi
+    if [[ "$PENPOT_CREATE_VOLUMES" == "true" ]]; then
+      docker volume create "$volume" >/dev/null || die "não foi possível criar o volume: $volume"
+      printf 'Volume criado: %s\n' "$volume"
+    else
+      die "volume ausente: $volume (use bootstrap.sh em um clone novo ou crie/restaure o volume explicitamente)"
+    fi
+  done
 }
 
 timestamp() {

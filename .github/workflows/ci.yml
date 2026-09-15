@@ -18,7 +18,7 @@ jobs:
       - run: python3 -m unittest discover -s tests -v
       - run: python3 scripts/validate_skills.py
       - name: Validate shell scripts
-        run: bash -n install.sh scripts/*.sh infra/penpot/scripts/*.sh skills/*/scripts/*.sh
+        run: bash -n setup.sh install.sh scripts/*.sh infra/penpot/scripts/*.sh skills/*/scripts/*.sh
       - name: Compile bundled Python scripts
         run: python3 -m py_compile skills/*/scripts/*.py
       - name: Validate compose configuration

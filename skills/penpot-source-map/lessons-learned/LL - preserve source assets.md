@@ -1,6 +1,8 @@
 ---
 type: lesson
 status: mitigated
+kind: project
+integration: skills/penpot-source-map/SKILL.md; tests/test_security_and_sources.py
 scope: penpot-source-map
 ---
 

@@ -1,6 +1,8 @@
 ---
 type: lesson
 status: mitigated
+kind: project
+integration: skills/penpot-intake/SKILL.md; tests/test_workflow_gates.py
 scope: penpot-intake
 ---
 

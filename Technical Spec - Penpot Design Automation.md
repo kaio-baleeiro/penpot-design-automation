@@ -66,7 +66,7 @@ e restaurar a anterior ou os backups consistentes.
 A implementação possui 7 skills, cliente MCP com handshake real e log redigido,
 captura Playwright autenticada, mapa multi-fonte, score visual versionado,
 máquina de estados estrita, inventário MCP, dimensionamento inteligente e gate
-estrutural. A suíte local possui 47 testes; forward tests Luna confirmaram
+estrutural. A suíte local possui 50 testes; forward tests Luna confirmaram
 caminhos, contratos e os casos de página longa/overflow.
 
 ## Links

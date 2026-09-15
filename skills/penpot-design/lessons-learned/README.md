@@ -4,6 +4,15 @@ Este é o índice transversal das lições que afetam mais de uma fase. As liç�
 específicas ficam dentro do `lessons-learned/` da skill que expôs o problema;
 adicione aqui um link quando a regra também orientar outra skill.
 
+## Classificação
+
+- `kind: machine`: comportamento específico da estação, sistema operacional,
+  Docker, navegador, rede, volumes ou credenciais locais. Permanece somente
+  como lição; não vire regra do workflow.
+- `kind: project`: comportamento do Penpot Automation. Depois da verificação,
+  deve ser integrado a `SKILL.md`, referência, script, teste ou gate e manter a
+  lição como rastreabilidade.
+
 ## Regras
 
 - Registre contexto, evidência, regra futura e contramedida.

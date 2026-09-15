@@ -46,6 +46,11 @@ Every skill is a self-contained Agent Skills package with `SKILL.md`, optional
 end of work. Add new lessons to the skill that exposed the failure; mark a
 lesson `mitigated` only after a regression test or equivalent verification.
 
+Classify the lesson before recording it. Use `kind: machine` for a local
+station/OS/Docker/browser/network/credential issue; keep it in lessons only.
+Use `kind: project` for a rule about this workflow and provide `--integration`
+pointing to the skill, reference, script, test or gate that now enforces it.
+
 `skills/penpot-design/lessons-learned/README.md` is the cross-skill index. A
 lesson that changes behavior in more than one phase must be linked there and
 referenced from the affected skill READMEs. Use the recorder from the
@@ -58,7 +63,9 @@ python3 skills/penpot-design/scripts/record-lesson.py \
   --lesson "What must be remembered." \
   --context "Where it happened." \
   --evidence "tests/test_..." \
-  --future-rule "The rule to apply next time."
+  --future-rule "The rule to apply next time." \
+  --kind project \
+  --integration "skills/penpot-validate/SKILL.md; tests/test_..."
 ```
 
 The recorder writes only inside the selected skill package. Do not commit
@@ -67,16 +74,26 @@ private payloads.
 
 ## Portable commands
 
+Prerequisites for a fresh clone are Git, Python 3, Docker with Compose and
+OpenSSL. Network access is needed once to download Python/Playwright packages
+and Penpot images.
+
 Run commands from the repository root, or use absolute paths when a CLI starts
 in another directory:
 
 ```sh
+./setup.sh
 infra/penpot/scripts/up.sh
 infra/penpot/scripts/healthcheck.sh
 python3 -m unittest discover -s tests -v
 python3 scripts/validate_skills.py
 ./install.sh
 ```
+
+`setup.sh` is idempotent: it never overwrites an existing `.env`, skill link or
+volume. On a fresh clone it generates local secrets and creates neutral Docker
+volumes; the migrated KatiauInvest machine keeps its legacy volume names only
+in its ignored `.env`.
 
 The installer creates a single global symlink to
 `skills/penpot-design`; it does not copy or fork the skill. Use the wrappers
