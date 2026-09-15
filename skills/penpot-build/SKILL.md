@@ -22,8 +22,9 @@ not an untracked manual substitute, and append every mutation/result to
 For reproduction, create static screens from the approved
 `source/frame-spec.json`; for directed creation, use the equivalent frame spec
 approved in the briefing. For desktop,
-`1440x900` is the minimum/default viewport, while the Penpot frame height grows
-to the measured finite document height. Grow width beyond `1440` only when the
+`1440x900` is the minimum/default observation viewport, while the Penpot frame
+height grows to the measured finite document height and must cover the complete
+full-page source capture. Grow width beyond `1440` only when the
 source map proves intentional page-level horizontal navigation; keep accidental
 overflow and nested scroll containers within the base frame. Never silently
 truncate stable content below or beside the fold.

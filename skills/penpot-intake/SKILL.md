@@ -34,6 +34,9 @@ directed-creation briefing gate.
   briefing, show it to the user, and wait for formal approval before building.
   Include viewport and intended frame extent in that briefing; default desktop
   starts at `1440x900`, while content below the fold may produce a taller frame.
+  For every finite URL/repository screen, require a full-page capture and use
+  its measured height for the design frame; never design only the first 900
+  pixels.
   User feedback rounds later are unlimited; each accepted revision is a new
   version with its own internal three-cycle validation budget.
 - For reproduction, pass all source handles to `penpot-source-map`; never

@@ -1,0 +1,9 @@
+[
+  {
+    "cycle": 1,
+    "score": 99.3,
+    "coverage": 0.983668,
+    "passed": true,
+    "score_path": "runs/site-benchmarks/apple-br/cycles/cycle-1/score.json"
+  }
+]
