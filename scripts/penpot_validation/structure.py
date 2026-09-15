@@ -131,6 +131,30 @@ def validate_structure_inventory(inventory: dict[str, Any], manifest: dict[str, 
     if detached_count > 0:
         errors.append(f"detached instances present: {detached_count}")
 
+    # A screenshot can score perfectly while still failing the actual design
+    # contract. When the inventory provides frame summaries, require visible
+    # editable descendants and reject an image-only frame.
+    frame_summaries = _items(inventory.get("frame_summaries"))
+    structural_frame_errors: list[str] = []
+    for frame in frame_summaries:
+        if not isinstance(frame, dict):
+            continue
+        name = str(frame.get("name") or frame.get("id") or "frame")
+        try:
+            editable_count = int(frame.get("editable_shape_count", 0))
+            visible_children = int(frame.get("visible_children", 0))
+        except (TypeError, ValueError):
+            editable_count = 0
+            visible_children = 0
+        if frame.get("image_only") is True:
+            structural_frame_errors.append(f"frame is image-only: {name}")
+        if visible_children <= 1 or editable_count <= 1:
+            structural_frame_errors.append(
+                f"frame lacks substantive editable descendants: {name} "
+                f"(visible_children={visible_children}, editable_shapes={editable_count})"
+            )
+    errors.extend(structural_frame_errors)
+
     if manifest.get("state") == "DS_REVALIDATING":
         if not token_names:
             errors.append("design-system inventory has no tokens")
@@ -157,7 +181,9 @@ def validate_structure_inventory(inventory: dict[str, Any], manifest: dict[str, 
             "components": len(component_names),
             "component_instances": len(instance_names),
             "styles": len(_items(inventory.get("styles"))),
+            "frames": len(frame_summaries),
         },
+        "frame_errors": structural_frame_errors,
     }
 
 

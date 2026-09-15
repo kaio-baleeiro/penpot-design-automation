@@ -2,3 +2,7 @@
 
 Regras versionadas para score, cobertura, comparação visual, severidade e
 refatoração. Integre-as ao avaliador e aos gates antes de mitigar.
+
+O gate estrutural é independente da pontuação visual: uma captura de tela
+embutida como única camada visível, ou componentes com apenas labels, é falha
+mesmo quando o score ultrapassa 90.

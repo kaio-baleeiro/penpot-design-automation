@@ -5,6 +5,10 @@ do produto/workflow e é versionado; `local/` contém apenas detalhes da máquin
 que executa o checkout e é ignorado pelo Git. Este arquivo é o índice transversal
 das regras de `project/` que afetam mais de uma fase.
 
+Regra transversal: uma captura full-page é evidência, não composição. O frame
+entregue precisa ser reconstruído com descendentes editáveis e instâncias de
+componentes; score visual não substitui o gate estrutural.
+
 ## Classificação
 
 - `kind: machine`: comportamento específico da estação, sistema operacional,

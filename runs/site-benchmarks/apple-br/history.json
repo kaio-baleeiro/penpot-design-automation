@@ -5,5 +5,19 @@
     "coverage": 0.983668,
     "passed": true,
     "score_path": "runs/site-benchmarks/apple-br/cycles/cycle-1/score.json"
+  },
+  {
+    "cycle": 2,
+    "score": 79.4,
+    "coverage": 0.389757,
+    "passed": false,
+    "score_path": "runs/site-benchmarks/apple-br/cycles/cycle-2/score.json"
+  },
+  {
+    "cycle": 3,
+    "score": 80.27,
+    "coverage": 0.698047,
+    "passed": false,
+    "score_path": "runs/site-benchmarks/apple-br/cycles/cycle-3/score.json"
   }
 ]

@@ -5,5 +5,12 @@
     "coverage": 1.0,
     "passed": true,
     "score_path": "runs/site-benchmarks/github-kaio-baleeiro/cycles/cycle-1/score.json"
+  },
+  {
+    "cycle": 2,
+    "score": 93.96,
+    "coverage": 0.881421,
+    "passed": false,
+    "score_path": "runs/site-benchmarks/github-kaio-baleeiro/cycles/cycle-2/score.json"
   }
 ]

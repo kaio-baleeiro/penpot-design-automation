@@ -1,1 +1,81 @@
-{"tokens":[{"name":"Apple/Text Primary","type":"color","value":"#1D1D1F"},{"name":"Apple/Surface","type":"color","value":"#F5F5F7"}],"components":[{"name":"GlobalNav","id":"2a1725fb-c442-80ca-8008-a3f93d059809"},{"name":"PromoSection","id":"2a1725fb-c442-80ca-8008-a3f93d091130"},{"name":"ProductGrid","id":"2a1725fb-c442-80ca-8008-a3f93d0c21c1"},{"name":"Footer","id":"2a1725fb-c442-80ca-8008-a3f93d0ef830"}],"component_instances":[{"name":"GlobalNav","id":"2a1725fb-c442-80ca-8008-a3fa99a384d2"},{"name":"PromoSection","id":"2a1725fb-c442-80ca-8008-a3fa99a6610b"},{"name":"Footer","id":"2a1725fb-c442-80ca-8008-a3fa99a89685"}],"detached_instances":[],"styles":[{"name":"Apple/Text Primary","kind":"color"},{"name":"Apple/Surface","kind":"color"}],"required_component_instances":["GlobalNav","PromoSection","Footer"],"status":"exported_mcp"}
+{
+  "schema_version": "1.0",
+  "file": {
+    "id": "314cb32d-d8ef-8113-8008-9b84639f76b5",
+    "name": "Novo arquivo 1"
+  },
+  "pages": [
+    {
+      "id": "314cb32d-d8ef-8113-8008-9b84639f76b6",
+      "name": "Page 1"
+    },
+    {
+      "id": "74a25ccb-fd56-8020-8008-9b864ac326c1",
+      "name": "D0 — Investimentos"
+    },
+    {
+      "id": "5f6b4633-d59e-807c-8008-9c217a33ea0d",
+      "name": "D0 — Importação"
+    },
+    {
+      "id": "5f6b4633-d59e-807c-8008-9c21dbb9cd68",
+      "name": "D0 — Assistente IA"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f8f1fa9f95",
+      "name": "Benchmark — GitHub Kaio"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f9340f017b",
+      "name": "Benchmark — Apple BR"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3fb9c67ae60",
+      "name": "Benchmark — Warframe EN"
+    }
+  ],
+  "shape_count": 1111,
+  "shape_type_counts": {
+    "board": 29,
+    "rectangle": 488,
+    "text": 194,
+    "group": 11,
+    "svg-raw": 374,
+    "ellipse": 8,
+    "path": 7
+  },
+  "frame_summaries": [
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f9348c914a",
+      "name": "Apple BR — Home — 1440x5261",
+      "visible_children": 9,
+      "descendant_count": 80,
+      "editable_shape_count": 71,
+      "type_counts": {
+        "board": 9,
+        "text": 47,
+        "rectangle": 24
+      },
+      "image_shape_count": 5,
+      "image_only": false
+    }
+  ],
+  "main_component_instances": [],
+  "tokens": [],
+  "components": [],
+  "component_instances": [],
+  "detached_instances": [],
+  "styles": [
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f93d0f03c0",
+      "name": "Text Primary",
+      "type": "color"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f93d110e35",
+      "name": "Surface",
+      "type": "color"
+    }
+  ],
+  "required_component_instances": []
+}
