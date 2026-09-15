@@ -30,6 +30,14 @@ Cross-check every planned `asset_ref` against the source asset manifest and the
 Penpot build log. A lookalike or unrecorded substitute is an asset-provenance
 issue even when its pixel similarity is high.
 
+The structural gate must inspect the delivered frame tree, not only the PNG.
+Record descendant counts by type and component-instance counts in
+`design/structure-inventory.json`. Fail the gate when the visible frame is
+substantively a single screenshot/image fill, when a section contains only a
+semantic label with no editable descendants, or when planned components are
+not instantiated in the delivered frame. A hidden/locked source-reference
+image is allowed as evidence, but it cannot be the only visible content.
+
 Before scoring, compare the export dimensions with `source/frame-spec.json`.
 The Penpot frame and reference capture must represent the same full finite
 content bounds; a `1440x900` export of a longer page is a blocking truncation,

@@ -152,9 +152,12 @@ O diretório [`runs/site-benchmarks/`](runs/site-benchmarks/README.md) contém o
 teste reproduzível das fontes Apple Brasil, Warframe English e do perfil GitHub
 `kaio-baleeiro`. Cada run inclui perguntas, decisões, frame-spec, mapa de
 proveniência, inventário de assets e as imagens públicas de referência,
-side-by-side, overlay, heatmap e export do frame Penpot. Apple e GitHub estão
-prontos para revisão do usuário (99,30 e 100,00); Warframe permanece
-`NEEDS_REVIEW` porque a origem dinâmica não estabilizou.
+side-by-side, overlay, heatmap e exports das composições editáveis do Penpot.
+Os benchmarks agora são reconstruções com boards, textos, formas e assets
+editáveis; a captura full-page é mantida apenas como referência. GitHub marcou
+93,96, mas requer revisão por regressão contra o baseline antigo; Apple marcou
+80,27 após três ciclos e precisa de refatoração visual adicional. Warframe permanece `NEEDS_REVIEW`
+porque a origem dinâmica não estabilizou.
 
 ## Infraestrutura
 

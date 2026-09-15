@@ -1,1 +1,81 @@
-{"tokens":[{"name":"GitHub/color.canvas","type":"color","value":"#0D1117"},{"name":"GitHub/spacing.page","type":"dimension","value":"24"}],"components":[{"name":"GitHubHeader","id":"2a1725fb-c442-80ca-8008-a3f9086dbaad"},{"name":"ProfileHeader","id":"2a1725fb-c442-80ca-8008-a3f908725891"},{"name":"ProfileTabs","id":"2a1725fb-c442-80ca-8008-a3f9087660cc"},{"name":"RepositoryList","id":"2a1725fb-c442-80ca-8008-a3f9087b30b5"}],"component_instances":[{"name":"GitHubHeader","id":"2a1725fb-c442-80ca-8008-a3f9086e1d16"},{"name":"ProfileHeader","id":"2a1725fb-c442-80ca-8008-a3f908728261"},{"name":"ProfileTabs","id":"2a1725fb-c442-80ca-8008-a3f90876a55f"},{"name":"RepositoryList","id":"2a1725fb-c442-80ca-8008-a3f9087b5028"}],"detached_instances":[],"styles":[{"name":"GitHub/color.canvas","kind":"color"},{"name":"GitHub/spacing.page","kind":"dimension"}],"required_component_instances":["GitHubHeader","ProfileHeader","ProfileTabs","RepositoryList"],"status":"exported_mcp"}
+{
+  "schema_version": "1.0",
+  "file": {
+    "id": "314cb32d-d8ef-8113-8008-9b84639f76b5",
+    "name": "Novo arquivo 1"
+  },
+  "pages": [
+    {
+      "id": "314cb32d-d8ef-8113-8008-9b84639f76b6",
+      "name": "Page 1"
+    },
+    {
+      "id": "74a25ccb-fd56-8020-8008-9b864ac326c1",
+      "name": "D0 — Investimentos"
+    },
+    {
+      "id": "5f6b4633-d59e-807c-8008-9c217a33ea0d",
+      "name": "D0 — Importação"
+    },
+    {
+      "id": "5f6b4633-d59e-807c-8008-9c21dbb9cd68",
+      "name": "D0 — Assistente IA"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f8f1fa9f95",
+      "name": "Benchmark — GitHub Kaio"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f9340f017b",
+      "name": "Benchmark — Apple BR"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3fb9c67ae60",
+      "name": "Benchmark — Warframe EN"
+    }
+  ],
+  "shape_count": 1107,
+  "shape_type_counts": {
+    "board": 29,
+    "rectangle": 484,
+    "text": 194,
+    "group": 11,
+    "svg-raw": 374,
+    "ellipse": 8,
+    "path": 7
+  },
+  "frame_summaries": [
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f8f2463bdd",
+      "name": "GitHub Kaio — Home — 1440x1807",
+      "visible_children": 5,
+      "descendant_count": 352,
+      "editable_shape_count": 347,
+      "type_counts": {
+        "board": 5,
+        "text": 64,
+        "rectangle": 283
+      },
+      "image_shape_count": 1,
+      "image_only": false
+    }
+  ],
+  "main_component_instances": [],
+  "tokens": [],
+  "components": [],
+  "component_instances": [],
+  "detached_instances": [],
+  "styles": [
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f93d0f03c0",
+      "name": "Text Primary",
+      "type": "color"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f93d110e35",
+      "name": "Surface",
+      "type": "color"
+    }
+  ],
+  "required_component_instances": []
+}

@@ -124,6 +124,31 @@ class WorkflowGateTests(unittest.TestCase):
         self.assertFalse(gate["passed"])
         self.assertIn("detached instances present: 1", gate["errors"])
 
+    def test_structural_gate_rejects_screenshot_only_frame(self):
+        inventory = {
+            "tokens": [], "components": ["Hero"], "component_instances": ["Hero/home"],
+            "detached_instances": [], "styles": [], "required_component_instances": [],
+            "frame_summaries": [{
+                "name": "Home — 1440x2000", "visible_children": 1,
+                "editable_shape_count": 1, "image_shape_count": 1, "image_only": True,
+            }],
+        }
+        gate = validate_structure_inventory(inventory)
+        self.assertFalse(gate["passed"])
+        self.assertIn("frame is image-only: Home — 1440x2000", gate["errors"])
+        self.assertTrue(any("substantive editable descendants" in item for item in gate["errors"]))
+
+    def test_structural_gate_accepts_editable_frame_summary(self):
+        inventory = {
+            "tokens": [], "components": ["Hero"], "component_instances": ["Hero/home"],
+            "detached_instances": [], "styles": [], "required_component_instances": [],
+            "frame_summaries": [{
+                "name": "Home — 1440x2000", "visible_children": 5,
+                "editable_shape_count": 18, "image_shape_count": 2, "image_only": False,
+            }],
+        }
+        self.assertTrue(validate_structure_inventory(inventory)["passed"])
+
     def test_ds_gate_rejects_an_empty_inventory(self):
         inventory = {
             "tokens": [], "components": [], "component_instances": [],

@@ -11,6 +11,8 @@ metadata:
 Read [`lessons-learned/README.md`](lessons-learned/README.md), then require a run manifest whose intake and ambiguity gates are complete, and read the current `source/source-map.json` or
 approved `briefing/brief-vNNN.md` before acting.
 Only build after intake and material ambiguity gates pass.
+For the screenshot-versus-editable-design failure mode, apply
+[`LL - screenshot is not editable design.md`](lessons-learned/project/LL%20-%20screenshot%20is%20not%20editable%20design.md).
 
 ## Build contract
 
@@ -39,6 +41,13 @@ unusable or legally restricted, record the reason and ask before introducing an
 externally sourced replacement. Do not claim a design system is complete during
 this initial pass; mark provisional styles. Do not add interactions unless
 separately authorized.
+
+The full-page source image is not the design. It may be imported only as a
+hidden/locked reference layer. Every visible section in the delivered frame
+must be reconstructed with editable text, shapes/vectors and source assets, and
+each semantic component must have substantive descendants. A one-image frame,
+or a component containing only a label that names the section, is an invalid
+build even when it looks pixel-perfect.
 
 Plan first in `design/plan.json`: screen id, route/state, viewport, frame bounds, source
 anchors or briefing requirements, content, components, `asset_refs` pointing to

@@ -1,1 +1,81 @@
-{"tokens":[],"components":[],"component_instances":[],"detached_instances":[],"styles":[],"semantic_groups":[{"name":"Header","id":"2a1725fb-c442-80ca-8008-a3fbafc4cd0d"},{"name":"Hero","id":"2a1725fb-c442-80ca-8008-a3fbafca6844"},{"name":"PromoGrid","id":"2a1725fb-c442-80ca-8008-a3fbafce68a7"},{"name":"CallToAction","id":"2a1725fb-c442-80ca-8008-a3fbafd1f942"},{"name":"Footer","id":"2a1725fb-c442-80ca-8008-a3fbafd5b2a1"}],"required_component_instances":[],"status":"exported_mcp","evidence":{"page":"Benchmark — Warframe EN","frame":"Warframe EN — Home — 1440x5953","frame_id":"2a1725fb-c442-80ca-8008-a3fb9d01ea3b","export":"design/exports/home/1440x5953.png"}}
+{
+  "schema_version": "1.0",
+  "file": {
+    "id": "314cb32d-d8ef-8113-8008-9b84639f76b5",
+    "name": "Novo arquivo 1"
+  },
+  "pages": [
+    {
+      "id": "314cb32d-d8ef-8113-8008-9b84639f76b6",
+      "name": "Page 1"
+    },
+    {
+      "id": "74a25ccb-fd56-8020-8008-9b864ac326c1",
+      "name": "D0 — Investimentos"
+    },
+    {
+      "id": "5f6b4633-d59e-807c-8008-9c217a33ea0d",
+      "name": "D0 — Importação"
+    },
+    {
+      "id": "5f6b4633-d59e-807c-8008-9c21dbb9cd68",
+      "name": "D0 — Assistente IA"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f8f1fa9f95",
+      "name": "Benchmark — GitHub Kaio"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f9340f017b",
+      "name": "Benchmark — Apple BR"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3fb9c67ae60",
+      "name": "Benchmark — Warframe EN"
+    }
+  ],
+  "shape_count": 1107,
+  "shape_type_counts": {
+    "board": 29,
+    "rectangle": 484,
+    "text": 194,
+    "group": 11,
+    "svg-raw": 374,
+    "ellipse": 8,
+    "path": 7
+  },
+  "frame_summaries": [
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3fb9d01ea3b",
+      "name": "Warframe EN — Home — 1440x5953",
+      "visible_children": 8,
+      "descendant_count": 99,
+      "editable_shape_count": 91,
+      "type_counts": {
+        "board": 8,
+        "rectangle": 28,
+        "text": 63
+      },
+      "image_shape_count": 3,
+      "image_only": false
+    }
+  ],
+  "main_component_instances": [],
+  "tokens": [],
+  "components": [],
+  "component_instances": [],
+  "detached_instances": [],
+  "styles": [
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f93d0f03c0",
+      "name": "Text Primary",
+      "type": "color"
+    },
+    {
+      "id": "2a1725fb-c442-80ca-8008-a3f93d110e35",
+      "name": "Surface",
+      "type": "color"
+    }
+  ],
+  "required_component_instances": []
+}

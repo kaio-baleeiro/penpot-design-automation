@@ -48,6 +48,15 @@ before construction and prefer the exact source asset over searching for a
 similar replacement elsewhere. Keep private payloads out of Git and do not
 expand this permission into unrelated web browsing.
 
+The source screenshot is evidence and visual reference only. It is never an
+acceptable substitute for the Penpot composition: each delivered frame must
+contain editable text, vector/rectangle/image shapes and meaningful component
+descendants. A visible frame whose only substantive child is a full-page
+screenshot/image fill fails the structural gate even if its pixel score is high.
+Reference captures may remain on a hidden or locked evidence layer, but they
+must not be the only visible content. Record descendant counts by type and
+component-instance counts in `design/structure-inventory.json`.
+
 ## Delegation policy
 
 All hands-on work must use `worker_model: gpt-5.6-luna`: source capture,
@@ -68,7 +77,9 @@ the Luna model for each operational phase and treat quota/model errors as
    intake for directed creation, including an approved frame spec derived from
    the planned content.
 3. Plan screens and hand the plan to `penpot-build` for static frames and
-   reusable components through Penpot MCP.
+   reusable components through Penpot MCP. The build must reconstruct the
+   visible sections as editable shapes/text/assets; semantic labels without
+   substantive descendants do not satisfy this phase.
 4. `penpot-validate`: render every requested screen/viewport, run the immutable
    deterministic score, and produce side-by-side, overlay, heatmap and issues.
 5. If any screen fails `score >= 90`, `coverage >= 80`, or has P0/P1, delegate

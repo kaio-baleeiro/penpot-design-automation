@@ -37,11 +37,43 @@ const styles = [
   ...lib.colors.map(style => ({id: style.id, name: style.name, type: 'color'})),
   ...lib.typographies.map(style => ({id: style.id, name: style.name, type: 'typography'}))
 ];
+const countTypes = list => list.reduce((acc, shape) => {
+  const type = shape.type || 'unknown';
+  acc[type] = (acc[type] || 0) + 1;
+  return acc;
+}, {});
+const frameSummaries = pages.flatMap(page =>
+  page.root.children
+    .filter(shape => shape.type === 'board' && /Home — 1440x/.test(shape.name || ''))
+    .map(frame => {
+      const descendants = penpotUtils.findShapes(() => true, frame);
+      const visible = descendants.filter(shape => shape.visible !== false);
+      const typeCounts = countTypes(visible);
+      const editable = visible.filter(shape => !['board', 'group'].includes(shape.type));
+      const imageShapes = visible.filter(shape =>
+        shape.type === 'image' || (shape.fills || []).some(fill => fill && fill.fillImage)
+      );
+      return {
+        id: frame.id,
+        name: frame.name,
+        visible_children: (frame.children || []).filter(shape => shape.visible !== false).length,
+        descendant_count: visible.length,
+        editable_shape_count: editable.length,
+        type_counts: typeCounts,
+        image_shape_count: imageShapes.length,
+        image_only: editable.length > 0 && editable.every(shape =>
+          shape.type === 'image' || (shape.fills || []).some(fill => fill && fill.fillImage)
+        )
+      };
+    })
+);
 return {
   schema_version: '1.0',
   file: {id: penpot.currentFile.id, name: penpot.currentFile.name},
   pages: pages.map(page => ({id: page.id, name: page.name})),
   shape_count: shapes.length,
+  shape_type_counts: countTypes(shapes),
+  frame_summaries: frameSummaries,
   main_component_instances: mainInstances.map(shape => ({id: shape.id, name: shape.name})),
   tokens,
   components,
