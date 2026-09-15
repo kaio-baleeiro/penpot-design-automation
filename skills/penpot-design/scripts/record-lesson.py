@@ -92,11 +92,15 @@ def record(args: argparse.Namespace) -> int:
         raise SystemExit(f"erro: lição já existe; atualize a nota existente: {path}")
     today = date.today().isoformat()
     applies = args.applies_to or [skill.name]
+    if args.kind == "project" and not args.integration:
+        raise SystemExit("erro: lições project exigem --integration")
     body = [
         "---",
         "type: lesson",
         "status: active",
         f"skill: {skill.name}",
+        f"kind: {args.kind}",
+        f"integration: {args.integration or 'none'}",
         f"created: {today}",
         f"updated: {today}",
         "source_agent: portable-agent",
@@ -180,6 +184,8 @@ def parser() -> argparse.ArgumentParser:
     create.add_argument("--evidence", required=True)
     create.add_argument("--future-rule", required=True)
     create.add_argument("--applies-to", action="append")
+    create.add_argument("--kind", choices=("machine", "project"), required=True)
+    create.add_argument("--integration")
     create.set_defaults(handler=record)
     complete = commands.add_parser("resolve")
     complete.add_argument("--lesson", required=True)

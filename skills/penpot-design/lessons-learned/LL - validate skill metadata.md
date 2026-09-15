@@ -1,6 +1,8 @@
 ---
 type: lesson
 status: mitigated
+kind: project
+integration: scripts/validate_skills.py; .github/workflows/ci.yml
 scope: shared
 applies_to: [penpot-design, penpot-intake, penpot-source-map, penpot-build, penpot-validate, penpot-design-system, penpot-delivery]
 ---

@@ -59,7 +59,7 @@ infinito exige um limite reproduzível confirmado pelo usuário.
 
 ## Validação concluída
 
-- 47 testes unitários/integrados aprovados.
+- 50 testes unitários/integrados aprovados.
 - 7 skills aprovadas no validador oficial e no validador local.
 - Compose, scripts, instalador, healthcheck, MCP, export e inventário validados.
 - Backups pré e pós-migração com checksums válidos.

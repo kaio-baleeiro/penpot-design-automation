@@ -9,9 +9,27 @@ Os sete serviços são `penpot-frontend`, `penpot-backend`, `penpot-mcp`, `penpo
 
 ## Preparação
 
-1. Copie `.env.example` para `.env` dentro deste diretório.
-2. Gere valores locais para `PENPOT_SECRET_KEY` e `PENPOT_POSTGRES_PASSWORD`.
-3. Confirme que os volumes externos `katiauinvest-penpot_penpot_postgres_data` e `katiauinvest-penpot_penpot_assets` existem, ou restaure-os antes de subir a composição.
+### Clone novo
+
+Na raiz do repositório, execute:
+
+```sh
+./setup.sh
+infra/penpot/scripts/up.sh
+infra/penpot/scripts/healthcheck.sh
+```
+
+O bootstrap cria `.env` com segredos aleatórios, usa os volumes neutros
+`penpot-design-automation_postgres_data` e `penpot-design-automation_assets` e
+permite que o `up.sh` os crie na primeira execução. Nada sobrescreve um `.env`
+existente.
+
+### Instalação migrada
+
+Nesta máquina, o `.env` ignorado mantém os volumes históricos
+`katiauinvest-penpot_penpot_postgres_data` e
+`katiauinvest-penpot_penpot_assets`. Não copie esses nomes para um clone novo;
+use o bootstrap ou um restore documentado.
 
 O `.env`, os backups e os dados persistentes ficam fora do Git. Os volumes externos são deliberados: a migração troca a composição sem copiar nem apagar os dados existentes.
 
@@ -38,7 +56,10 @@ Consulte [docs/infra.md](../../docs/infra.md) para migração, backup, restore, 
 
 A composição habilita o MCP oficial do Penpot com `enable-mcp`. Depois de criar ou acessar a conta local e abrir um arquivo, use **Your account → Integrations → MCP Server**, habilite o servidor e gere uma URL/token. O token é pessoal e não deve entrar no repositório.
 
-Registre a URL somente na configuração local do Codex, por exemplo:
+Para qualquer agente, registre a URL e o token somente no `.env` local como
+`PENPOT_MCP_URL` e `PENPOT_MCP_TOKEN`, ou injete essas variáveis no ambiente.
+O wrapper `scripts/penpot-mcp.sh` lê ambos sem imprimi-los. No Codex, também é
+possível registrar a URL com:
 
 ```sh
 codex mcp add penpot-design --url '<URL_COPIADA_DO_PENPOT>'

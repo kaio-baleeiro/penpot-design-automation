@@ -83,6 +83,20 @@ def validate_skill(skill_dir: Path) -> list[str]:
         errors.append(f"{skill_dir.name}: missing required directory {LESSONS_DIR}/")
     elif not (lessons_dir / "README.md").is_file():
         errors.append(f"{skill_dir.name}: {LESSONS_DIR}/README.md is required")
+    else:
+        for lesson in sorted(path for path in lessons_dir.glob("*.md") if path.name != "README.md"):
+            try:
+                lesson_metadata = _frontmatter(lesson.read_text(encoding="utf-8"))
+            except ValueError as exc:
+                errors.append(f"{skill_dir.name}: {lesson.name}: {exc}")
+                continue
+            kind = lesson_metadata.get("kind")
+            if kind not in {"machine", "project"}:
+                errors.append(f"{skill_dir.name}: {lesson.name}: kind must be machine or project")
+            if kind == "project" and not lesson_metadata.get("integration"):
+                errors.append(f"{skill_dir.name}: {lesson.name}: project lesson requires integration")
+            if kind == "machine" and lesson_metadata.get("integration") not in {None, "", "none"}:
+                errors.append(f"{skill_dir.name}: {lesson.name}: machine lesson cannot declare project integration")
     scripts_dir = skill_dir / "scripts"
     if scripts_dir.is_dir():
         for script in (path for path in scripts_dir.rglob("*") if path.is_file()):

@@ -1,6 +1,8 @@
 ---
 type: lesson
 status: mitigated
+kind: project
+integration: scripts/penpot_validation/frame.py; tests/test_frame_sizing.py
 scope: shared
 applies_to: [penpot-design, penpot-source-map, penpot-build, penpot-validate]
 ---

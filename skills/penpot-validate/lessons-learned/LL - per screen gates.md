@@ -1,6 +1,8 @@
 ---
 type: lesson
 status: mitigated
+kind: project
+integration: scripts/penpot_validation/validator.py; tests/test_workflow_gates.py
 scope: penpot-validate
 ---
 

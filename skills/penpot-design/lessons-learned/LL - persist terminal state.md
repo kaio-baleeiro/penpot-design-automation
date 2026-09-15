@@ -1,6 +1,8 @@
 ---
 type: lesson
 status: mitigated
+kind: project
+integration: skills/penpot-design/references/state-machine.md; tests/test_workflow_gates.py
 scope: shared
 applies_to: [penpot-design, penpot-intake, penpot-validate, penpot-delivery]
 ---
