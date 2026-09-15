@@ -22,6 +22,8 @@ class AgentSkillsPackageTests(unittest.TestCase):
         for name in sorted(REQUIRED_SKILLS):
             skill = self.skills / name
             self.assertTrue((skill / "README.md").is_file(), name)
+            for bucket in ("project", "local"):
+                self.assertTrue((skill / "lessons-learned" / bucket / "README.md").is_file())
             for child in skill.iterdir():
                 if child.is_dir() and child.name != "__pycache__":
                     with self.subTest(skill=name, directory=child.name):

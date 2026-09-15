@@ -1,0 +1,1 @@
+{"run_id":"apple-br","cycle":0,"issues":[{"id":"MCP-001","screen":"home","viewport":{"width":1440,"height":900},"severity":"P1","title":"Penpot export ausente","detail":"Não foi possível produzir render do frame para score determinístico.","bounds":null,"status":"open","source":"mcp"}]}

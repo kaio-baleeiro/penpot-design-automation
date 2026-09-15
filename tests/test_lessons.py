@@ -58,6 +58,8 @@ class LessonRecorderTests(unittest.TestCase):
                     "resolve",
                     "--lesson",
                     lesson.name,
+                    "--kind",
+                    "project",
                     "--countermeasure",
                     "Added a deterministic guard.",
                     "--verification",
@@ -73,8 +75,28 @@ class LessonRecorderTests(unittest.TestCase):
             self.assertIn("## Resolution", text)
             self.assertIn("kind: project", text)
             self.assertIn("integration: tests/test_lessons.py", text)
+            self.assertIn("/project/", str(lesson))
             index = lesson.parent / "README.md"
             self.assertIn("[LL - A repeatable failure]", index.read_text(encoding="utf-8"))
+
+    def test_machine_lesson_is_stored_in_ignored_local_bucket(self):
+        root = Path(__file__).resolve().parents[1]
+        script = root / "skills/penpot-design/scripts/record-lesson.py"
+        with tempfile.TemporaryDirectory() as temp:
+            project = Path(temp)
+            skill = project / "skills" / "penpot-design"
+            skill.mkdir(parents=True)
+            (skill / "SKILL.md").write_text("---\nname: penpot-design\n---\n", encoding="utf-8")
+            created = subprocess.run(
+                [sys.executable, str(script), "--project-root", str(project), "record",
+                 "--title", "Local browser issue", "--lesson", "x", "--context", "x",
+                 "--evidence", "x", "--future-rule", "x", "--kind", "machine"],
+                check=True, capture_output=True, text=True,
+            )
+            lesson = project / created.stdout.strip()
+            self.assertIn("/local/", str(lesson))
+            self.assertIn("kind: machine", lesson.read_text(encoding="utf-8"))
+            self.assertIn("integration: none", lesson.read_text(encoding="utf-8"))
 
     def test_recorder_rejects_a_path_outside_the_skills_directory(self):
         root = Path(__file__).resolve().parents[1]

@@ -1,7 +1,9 @@
 # Lições do source map
 
 Registre aqui erros de captura, medição, provenance, assets, hashes ou
-precedência entre URL, screenshot e código. Compartilhe regras transversais no
+precedência entre URL, screenshot e código. Regras do projeto ficam em
+`project/`; problemas da máquina ficam em `local/` e são ignorados pelo Git.
+Compartilhe regras transversais no
 [índice do orquestrador](../../penpot-design/lessons-learned/README.md).
 
 Use `kind: machine` para problemas da estação e `kind: project` quando a regra

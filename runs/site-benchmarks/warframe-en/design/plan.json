@@ -1,0 +1,1 @@
+{"screen_id":"home","route":"/en","viewport":{"width":1440,"height":900},"frame":{"width":1440,"height":900},"static":true,"components":["Header","Hero","PromoGrid","Footer"],"asset_refs":["warframe-first-party-images","warframe-first-party-fonts"],"status":"blocked_mcp_export","note":"dynamic bounded source requires user boundary"}

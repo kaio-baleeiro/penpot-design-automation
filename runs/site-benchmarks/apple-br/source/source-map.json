@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "mapped_at": "2026-09-15T00:44:20.477219+00:00",
+  "sources": [
+    {
+      "source_id": "src-url-03d9db930f0f7c346bd16669",
+      "kind": "url",
+      "location": "https://www.apple.com/br/",
+      "sha256": "03d9db930f0f7c346bd16669dd8480aac21335e4d0146c356cdb025b20fdbe2c",
+      "confidence": 0.9,
+      "anchors": [
+        {
+          "type": "canonical-location",
+          "value": "https://www.apple.com/br/"
+        }
+      ],
+      "precedence": 1,
+      "relationships": [
+        {
+          "from": "src-url-03d9db930f0f7c346bd16669",
+          "to": "src-screenshot-19ccdc0afe41c0deec2789b5",
+          "kind": "derived-from"
+        }
+      ],
+      "conflicts": []
+    },
+    {
+      "source_id": "src-screenshot-19ccdc0afe41c0deec2789b5",
+      "kind": "screenshot",
+      "location": "runs/site-benchmarks/apple-br/source/raw/recon-1440x900/source.png",
+      "sha256": "19ccdc0afe41c0deec2789b59df0fa13186c36f58b7160327e7b094bbdb77594",
+      "confidence": 0.95,
+      "anchors": [
+        {
+          "type": "file",
+          "value": "source.png"
+        }
+      ],
+      "precedence": 2,
+      "relationships": [],
+      "conflicts": []
+    }
+  ],
+  "precedence": [
+    "src-url-03d9db930f0f7c346bd16669",
+    "src-screenshot-19ccdc0afe41c0deec2789b5"
+  ],
+  "relationships": [
+    {
+      "from": "src-url-03d9db930f0f7c346bd16669",
+      "to": "src-screenshot-19ccdc0afe41c0deec2789b5",
+      "kind": "derived-from"
+    }
+  ],
+  "conflicts": []
+}

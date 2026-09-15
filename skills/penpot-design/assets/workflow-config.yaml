@@ -47,7 +47,8 @@ directed_creation:
   approved_prototype_becomes_reference: true
   formalize_design_system_after_approval: true
 lessons:
-  canonical_directory: skills/<skill>/lessons-learned
+  canonical_directory: skills/<skill>/lessons-learned/project
+  local_directory: skills/<skill>/lessons-learned/local
   shared_index: skills/penpot-design/lessons-learned/README.md
   consult_before_run: true
   persist_refs_in_manifest: true

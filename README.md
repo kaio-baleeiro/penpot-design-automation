@@ -36,7 +36,9 @@ skills/<skill>/
 ├── scripts/          # somente quando a skill executa código
 ├── references/       # somente para documentação carregada sob demanda
 └── assets/           # somente para recursos reutilizáveis reais
-└── lessons-learned/  # memória operacional versionada da skill
+└── lessons-learned/
+    ├── project/      # regras do workflow, versionadas
+    └── local/        # memória da máquina, ignorada pelo Git
 ```
 
 Diretórios opcionais vazios não são criados. Os `SKILL.md` usam apenas
@@ -142,6 +144,15 @@ Depois de regenerar uma chave na interface do Penpot, copie somente a chave e
 execute `scripts/update-mcp-key-from-clipboard.sh`. O utilitário atualiza o
 `.env` local e o registro `penpot-design` do Codex sem imprimir a credencial.
 
+## Benchmark público
+
+O diretório [`runs/site-benchmarks/`](runs/site-benchmarks/README.md) contém o
+teste reproduzível das fontes Apple Brasil, Warframe English e do perfil GitHub
+`kaio-baleeiro`. Cada run inclui perguntas, decisões, frame-spec, mapa de
+proveniência, inventário de assets e as imagens públicas de referência,
+side-by-side, overlay e heatmap. O estado `NEEDS_REVIEW` é preservado quando o
+MCP não oferece um export comparável; nenhum score é inventado.
+
 ## Infraestrutura
 
 ```sh
@@ -192,8 +203,9 @@ isolada nunca pula a etapa de design system.
 
 ## Lições aprendidas
 
-O espaço operacional versionado é o `lessons-learned/` dentro de cada skill. O
-orquestrador consulta o índice compartilhado, registra referências em
+Cada skill separa suas lições em `lessons-learned/project/` (regras do projeto,
+versionadas) e `lessons-learned/local/` (detalhes da máquina, ignorados pelo
+Git). O orquestrador consulta o índice compartilhado, registra referências em
 `lesson_refs` e só permite que uma lição saia de `active` para `mitigated`
 quando a contramedida e sua verificação forem documentadas. O vault mantém as
 notas de projeto e referências históricas; a regra executável deve estar no
@@ -201,7 +213,8 @@ pacote da skill para viajar junto com o Git. O utilitário fica em
 `skills/penpot-design/scripts/record-lesson.py`.
 
 Leia o README da skill antes de cada fase para ver suas lições locais e use o
-índice compartilhado quando o erro afetar mais de uma fase.
+índice compartilhado quando o erro afetar mais de uma fase. O README de cada
+bucket explica seu escopo.
 
 ## Segurança dos registros
 

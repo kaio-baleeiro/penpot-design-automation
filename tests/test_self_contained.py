@@ -21,6 +21,8 @@ class SelfContainedTests(unittest.TestCase):
             self.assertTrue((skill / "SKILL.md").is_file(), skill.name)
             self.assertTrue((skill / "README.md").is_file(), skill.name)
             self.assertTrue((skill / "lessons-learned/README.md").is_file(), skill.name)
+            for bucket in ("project", "local"):
+                self.assertTrue((skill / "lessons-learned" / bucket / "README.md").is_file())
 
     def test_bootstrap_creates_secrets_and_is_idempotent(self):
         script = self.root / "infra/penpot/scripts/bootstrap.sh"

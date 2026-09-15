@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "screen_id": "home",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "document": {
+    "width": 1926,
+    "height": 5953
+  },
+  "frame": {
+    "width": 1440,
+    "height": 900
+  },
+  "vertical_policy": "dynamic_bounded",
+  "horizontal_policy": "accidental_overflow",
+  "capture_mode": "bounded_state",
+  "stable": false,
+  "build_ready": false,
+  "requires_user_decision": true,
+  "evidence": [
+    "capture:document_metrics"
+  ]
+}

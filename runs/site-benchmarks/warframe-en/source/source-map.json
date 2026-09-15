@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "mapped_at": "2026-09-15T00:44:20.597179+00:00",
+  "sources": [
+    {
+      "source_id": "src-url-a09c8de212fef5fc89eedd22",
+      "kind": "url",
+      "location": "https://www.warframe.com/en",
+      "sha256": "a09c8de212fef5fc89eedd22f835e9d14b16cb6538f3a9b2ac8394f7a479e0f7",
+      "confidence": 0.9,
+      "anchors": [
+        {
+          "type": "canonical-location",
+          "value": "https://www.warframe.com/en"
+        }
+      ],
+      "precedence": 1,
+      "relationships": [
+        {
+          "from": "src-url-a09c8de212fef5fc89eedd22",
+          "to": "src-screenshot-cc0f83b7747730637722d912",
+          "kind": "derived-from"
+        }
+      ],
+      "conflicts": []
+    },
+    {
+      "source_id": "src-screenshot-cc0f83b7747730637722d912",
+      "kind": "screenshot",
+      "location": "runs/site-benchmarks/warframe-en/source/raw/recon-1440x900/source.png",
+      "sha256": "cc0f83b7747730637722d91216fb279de943ee2c15bd5d8eb5892b74c31181e5",
+      "confidence": 0.95,
+      "anchors": [
+        {
+          "type": "file",
+          "value": "source.png"
+        }
+      ],
+      "precedence": 2,
+      "relationships": [],
+      "conflicts": []
+    }
+  ],
+  "precedence": [
+    "src-url-a09c8de212fef5fc89eedd22",
+    "src-screenshot-cc0f83b7747730637722d912"
+  ],
+  "relationships": [
+    {
+      "from": "src-url-a09c8de212fef5fc89eedd22",
+      "to": "src-screenshot-cc0f83b7747730637722d912",
+      "kind": "derived-from"
+    }
+  ],
+  "conflicts": []
+}
