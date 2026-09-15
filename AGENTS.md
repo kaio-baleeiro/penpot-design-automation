@@ -47,9 +47,11 @@ end of work. Add new lessons to the skill that exposed the failure; mark a
 lesson `mitigated` only after a regression test or equivalent verification.
 
 Classify the lesson before recording it. Use `kind: machine` for a local
-station/OS/Docker/browser/network/credential issue; keep it in lessons only.
-Use `kind: project` for a rule about this workflow and provide `--integration`
-pointing to the skill, reference, script, test or gate that now enforces it.
+station/OS/Docker/browser/network/credential issue; the recorder stores it in
+`lessons-learned/local/`, ignored by Git. Use `kind: project` for a rule about
+this workflow; it is stored in `lessons-learned/project/` and requires
+`--integration` pointing to the skill, reference, script, test or gate that now
+enforces it.
 
 `skills/penpot-design/lessons-learned/README.md` is the cross-skill index. A
 lesson that changes behavior in more than one phase must be linked there and

@@ -23,6 +23,7 @@ runs/**/validation/**/*.png
 **/dom.html
 **/styles.json
 **/raw/*
+**/raw/**
 **/private/
 **/source-captures/
 !**/source-captures/sanitized/
@@ -45,3 +46,18 @@ build/
 playwright-report/
 test-results/
 *.log
+
+# Machine-local lessons are intentionally not published. Keep only each
+# bucket README so a fresh clone explains where local notes belong.
+skills/*/lessons-learned/local/*
+!skills/*/lessons-learned/local/
+!skills/*/lessons-learned/local/README.md
+
+# Public benchmark evidence (source maps and visual comparisons) is explicitly
+# allow-listed; private/raw captures remain covered by the rules above.
+!runs/site-benchmarks/
+!runs/site-benchmarks/**/
+!runs/site-benchmarks/**/public/
+!runs/site-benchmarks/**/public/**
+!runs/site-benchmarks/**/analysis/
+!runs/site-benchmarks/**/analysis/**

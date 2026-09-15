@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "mapped_at": "2026-09-15T00:44:20.718611+00:00",
+  "sources": [
+    {
+      "source_id": "src-url-1cfb1b359cc191263740ba68",
+      "kind": "url",
+      "location": "https://github.com/kaio-baleeiro",
+      "sha256": "1cfb1b359cc191263740ba689daaad79f71c6b8fb339fb49f4d02070e3758598",
+      "confidence": 0.9,
+      "anchors": [
+        {
+          "type": "canonical-location",
+          "value": "https://github.com/kaio-baleeiro"
+        }
+      ],
+      "precedence": 1,
+      "relationships": [
+        {
+          "from": "src-url-1cfb1b359cc191263740ba68",
+          "to": "src-screenshot-c564a03dbf9e255b329b88a9",
+          "kind": "derived-from"
+        }
+      ],
+      "conflicts": []
+    },
+    {
+      "source_id": "src-screenshot-c564a03dbf9e255b329b88a9",
+      "kind": "screenshot",
+      "location": "runs/site-benchmarks/github-kaio-baleeiro/source/raw/recon-1440x900/source.png",
+      "sha256": "c564a03dbf9e255b329b88a9ef7a5b2e77e2133426c47262d08e98c499193dac",
+      "confidence": 0.95,
+      "anchors": [
+        {
+          "type": "file",
+          "value": "source.png"
+        }
+      ],
+      "precedence": 2,
+      "relationships": [],
+      "conflicts": []
+    }
+  ],
+  "precedence": [
+    "src-url-1cfb1b359cc191263740ba68",
+    "src-screenshot-c564a03dbf9e255b329b88a9"
+  ],
+  "relationships": [
+    {
+      "from": "src-url-1cfb1b359cc191263740ba68",
+      "to": "src-screenshot-c564a03dbf9e255b329b88a9",
+      "kind": "derived-from"
+    }
+  ],
+  "conflicts": []
+}

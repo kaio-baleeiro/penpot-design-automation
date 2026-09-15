@@ -1,7 +1,8 @@
 # Lições do intake
 
 Registre aqui falhas de perguntas, precedência, consentimento, responsividade
-ou briefing. Se a regra afetar outra fase, adicione-a também ao índice
+ou briefing. Regras do projeto ficam em `project/`; limitações da máquina ficam
+em `local/` e são ignoradas pelo Git. Se a regra afetar outra fase, adicione-a também ao índice
 [compartilhado](../../penpot-design/lessons-learned/README.md).
 
 Marque `kind: machine` para limitações da estação e mantenha-as aqui. Marque

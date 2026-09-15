@@ -33,8 +33,8 @@ def selected_skill(root: Path, value: str | None) -> Path:
     return candidate
 
 
-def lessons_dir(skill: Path) -> Path:
-    target = skill / "lessons-learned"
+def lessons_dir(skill: Path, kind: str) -> Path:
+    target = skill / "lessons-learned" / ("local" if kind == "machine" else "project")
     target.mkdir(parents=True, exist_ok=True)
     return target
 
@@ -85,7 +85,7 @@ def add_index_link(index: Path, lesson_path: Path) -> None:
 def record(args: argparse.Namespace) -> int:
     root = project_root(args.project_root)
     skill = selected_skill(root, args.skill_dir)
-    target = lessons_dir(skill)
+    target = lessons_dir(skill, args.kind)
     title = safe_title(args.title)
     path = target / f"LL - {title}.md"
     if path.exists():
@@ -138,7 +138,7 @@ def record(args: argparse.Namespace) -> int:
 def resolve(args: argparse.Namespace) -> int:
     root = project_root(args.project_root)
     skill = selected_skill(root, args.skill_dir)
-    target = lessons_dir(skill).resolve()
+    target = lessons_dir(skill, args.kind).resolve()
     candidate = (target / args.lesson).resolve()
     if candidate.parent != target or not candidate.is_file():
         raise SystemExit("erro: lição deve ser um arquivo existente no pacote da skill")
@@ -189,6 +189,7 @@ def parser() -> argparse.ArgumentParser:
     create.set_defaults(handler=record)
     complete = commands.add_parser("resolve")
     complete.add_argument("--lesson", required=True)
+    complete.add_argument("--kind", choices=("machine", "project"), required=True)
     complete.add_argument("--countermeasure", required=True)
     complete.add_argument("--verification", required=True)
     complete.set_defaults(handler=resolve)

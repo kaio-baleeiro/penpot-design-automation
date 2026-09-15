@@ -1,0 +1,1 @@
+{"run_id":"warframe-en","cycle":0,"status":"NEEDS_REVIEW","score":null,"coverage":null,"gate":"not_run","blockers":["Dynamic source unstable","Penpot export unavailable in this run; no deterministic comparison"],"evidence":["analysis/side-by-side-annotated.png","analysis/overlay.png","analysis/heatmap.png"]}
