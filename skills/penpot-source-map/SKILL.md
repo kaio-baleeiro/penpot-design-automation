@@ -24,8 +24,10 @@ the project CLI command
 Playwright through that command and record the exact viewport, route, timestamp,
 loading state, fonts, `document_metrics` and dynamic-content limitations. Treat
 `1440x900` as the default desktop observation viewport, not an automatic final
-frame size. If metrics show finite vertical overflow, make a second full-page
-capture in a separate output directory. When lazy loading or infinite content
+frame size. Every finite source must also receive a complete `full_page`
+capture in a separate output directory; the viewport screenshot is only
+above-the-fold evidence. Use the full-page image as the reference for design
+and validation. When lazy loading or infinite content
 is plausible, keep the default two bounded scroll probes; pass
 `--scroll-probes 0` only when scrolling would be unsafe or outside scope and
 record that limitation. Continued growth is unstable and needs a finite
@@ -37,7 +39,9 @@ breakpoints, tokens, components and how the app was run. For screenshots, use
 and record pixel dimensions, crop, device-pixel-ratio if known, visible states
 and what is unknown. For a known full-page screenshot, also pass
 `--capture-mode full_page --viewport <WxH>` so its image height is not mistaken
-for the observation viewport. If that distinction is unknown and material, ask.
+for the observation viewport. A finite page captured only as `1440x900` is
+incomplete and cannot enter the build handoff. If that distinction is unknown
+and material, ask.
 
 When sources are combined, compile them with `scripts/source-map.sh compile
 --url <URL> --screenshot <PNG> --code

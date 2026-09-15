@@ -8,9 +8,9 @@ fica ausente quando o gate não pôde comparar um export do Penpot.
 
 | Site | Run | Estado |
 |---|---|---|
-| Apple Brasil | [apple-br](apple-br/README.md) | NEEDS_REVIEW |
+| Apple Brasil | [apple-br](apple-br/README.md) | READY_FOR_USER_REVIEW · 99,30 |
 | Warframe English | [warframe-en](warframe-en/README.md) | NEEDS_REVIEW |
-| GitHub kaio-baleeiro | [github-kaio-baleeiro](github-kaio-baleeiro/README.md) | NEEDS_REVIEW |
+| GitHub kaio-baleeiro | [github-kaio-baleeiro](github-kaio-baleeiro/README.md) | READY_FOR_USER_REVIEW · 100,00 |
 
 ## Galeria de análise
 

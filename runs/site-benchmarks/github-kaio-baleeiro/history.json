@@ -1,0 +1,9 @@
+[
+  {
+    "cycle": 1,
+    "score": 100.0,
+    "coverage": 1.0,
+    "passed": true,
+    "score_path": "runs/site-benchmarks/github-kaio-baleeiro/cycles/cycle-1/score.json"
+  }
+]

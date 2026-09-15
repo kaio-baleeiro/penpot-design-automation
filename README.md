@@ -133,8 +133,10 @@ de procurar qualquer substituto; procedência e exceções ficam registradas em
 `source/assets-manifest.json`.
 
 Para desktop, `1440x900` é o viewport padrão de observação e o tamanho mínimo
-do frame, não um limite fixo. A captura mede as dimensões reais: páginas finitas
-alongam o frame verticalmente; a largura só cresce quando a origem demonstra
+do frame, não um limite fixo. A captura sempre inclui a página finita inteira:
+o screenshot de `1440x900` observa o primeiro viewport, enquanto a imagem
+`full_page` mede e preserva todo o conteúdo abaixo da dobra. O design usa essa
+altura completa; a largura só cresce quando a origem demonstra
 scroll horizontal intencional da página. Overflow acidental ou interno continua
 contido, e conteúdo infinito exige um limite reproduzível aprovado.
 
@@ -150,8 +152,9 @@ O diretório [`runs/site-benchmarks/`](runs/site-benchmarks/README.md) contém o
 teste reproduzível das fontes Apple Brasil, Warframe English e do perfil GitHub
 `kaio-baleeiro`. Cada run inclui perguntas, decisões, frame-spec, mapa de
 proveniência, inventário de assets e as imagens públicas de referência,
-side-by-side, overlay e heatmap. O estado `NEEDS_REVIEW` é preservado quando o
-MCP não oferece um export comparável; nenhum score é inventado.
+side-by-side, overlay, heatmap e export do frame Penpot. Apple e GitHub estão
+prontos para revisão do usuário (99,30 e 100,00); Warframe permanece
+`NEEDS_REVIEW` porque a origem dinâmica não estabilizou.
 
 ## Infraestrutura
 

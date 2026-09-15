@@ -25,10 +25,12 @@ workflow; the shared vault stores project context and human-review notes.
 3. In reproduction, map every supplied source before changing Penpot. Inspect
    the supplied site/runtime/repository for SVGs, images, icons, logos, fonts
    and other useful assets; prefer those exact files and record provenance.
-4. Treat desktop `1440x900` as the observation viewport and minimum frame. Let
-   finite pages grow vertically; expand horizontally only with evidence of
-   intentional page-level navigation. Require an approved bounded state for
-   dynamic or infinite content.
+4. Treat desktop `1440x900` as the observation viewport and minimum frame, not
+   the final capture height. Every finite page must be captured and designed
+   end-to-end; a longer page gets a taller frame and a full-page reference
+   image. Expand horizontally only with evidence of intentional page-level
+   navigation. Require an approved bounded state for dynamic or infinite
+   content.
 5. Delegate hands-on capture, inspection, MCP construction, rendering,
    correction and scoring to `gpt-5.6-luna`. If that worker is unavailable,
    stop with `BLOCKED_MODEL_UNAVAILABLE` instead of falling back silently.

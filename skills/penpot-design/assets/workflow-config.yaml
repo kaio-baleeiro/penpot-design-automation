@@ -21,6 +21,9 @@ frame_sizing:
     width: 1440
     height: 900
   vertical_extent: stable_finite_document
+  finite_page_capture_required: true
+  full_page_capture_mode: full_page
+  viewport_screenshot_is_reference: false
   horizontal_extent: intentional_page_level_only
   dynamic_or_infinite_content: require_reproducible_user_approved_boundary
   manifest: source/frame-spec.json

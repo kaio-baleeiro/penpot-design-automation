@@ -1,1 +1,1 @@
-{"run_id":"github-kaio-baleeiro","cycle":0,"status":"NEEDS_REVIEW","score":null,"coverage":null,"gate":"not_run","blockers":["Penpot export unavailable in this run; no deterministic comparison"],"evidence":["analysis/side-by-side-annotated.png","analysis/overlay.png","analysis/heatmap.png"]}
+{"run_id":"github-kaio-baleeiro","cycle":1,"status":"READY_FOR_USER_REVIEW","score":100.0,"coverage":1.0,"gate":"passed_visual","blockers":[],"evidence":["cycles/cycle-1/score.json","analysis/side-by-side-annotated.png","analysis/overlay.png","analysis/heatmap.png"]}
