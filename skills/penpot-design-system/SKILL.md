@@ -8,6 +8,9 @@ metadata:
 
 # Penpot design system
 
+Use the portable `design-system-architect` profile for extraction and MCP
+refactoring; its token/component handoff is required before DS revalidation.
+
 Read [`lessons-learned/README.md`](lessons-learned/README.md). Run only after formal approval of the constructed version (and approved
 briefing/version in directed creation). Use append-only run artifacts and never
 replace the approved reference version.

@@ -87,7 +87,12 @@ def load_inventory(path: str | Path) -> dict[str, Any]:
     return value
 
 
-def validate_structure_inventory(inventory: dict[str, Any], manifest: dict[str, Any] | None = None) -> dict[str, Any]:
+def validate_structure_inventory(
+    inventory: dict[str, Any],
+    manifest: dict[str, Any] | None = None,
+    *,
+    require_reusable: bool = False,
+) -> dict[str, Any]:
     """Return an objective structural gate result.
 
     Required names can be declared by the manifest (``required_tokens``,
@@ -104,6 +109,7 @@ def validate_structure_inventory(inventory: dict[str, Any], manifest: dict[str, 
     token_names = _names(inventory.get("tokens"))
     component_names = _names(inventory.get("components"))
     instance_names = _names(inventory.get("component_instances"))
+    frame_summaries = _items(inventory.get("frame_summaries"))
     required_tokens = [_display_name(item) for item in _required(manifest, "required_tokens", "tokens") if _display_name(item)]
     required_tokens.extend(_display_name(item) for item in _items(inventory.get("required_tokens", [])) if _display_name(item))
     required_components = [_display_name(item) for item in _required(manifest, "required_components", "components") if _display_name(item)]
@@ -131,10 +137,17 @@ def validate_structure_inventory(inventory: dict[str, Any], manifest: dict[str, 
     if detached_count > 0:
         errors.append(f"detached instances present: {detached_count}")
 
+    if require_reusable:
+        if not frame_summaries:
+            errors.append("strict validation inventory has no frame summaries")
+        if not component_names:
+            errors.append("strict validation inventory has no reusable components")
+        if not instance_names:
+            errors.append("strict validation inventory has no component instances")
+
     # A screenshot can score perfectly while still failing the actual design
     # contract. When the inventory provides frame summaries, require visible
     # editable descendants and reject an image-only frame.
-    frame_summaries = _items(inventory.get("frame_summaries"))
     structural_frame_errors: list[str] = []
     for frame in frame_summaries:
         if not isinstance(frame, dict):

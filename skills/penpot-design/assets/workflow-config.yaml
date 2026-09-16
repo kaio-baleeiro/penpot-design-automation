@@ -3,6 +3,16 @@ format: agentskills
 worker:
   model: gpt-5.6-luna
   unavailable: stop
+profiles:
+  manifest: agents/manifest.yaml
+  handoff_contract: agents/contracts/handoff.md
+  phase_roles:
+    intake: intake-source-analyst
+    source_map: frontend-forensics-engineer
+    build_plan: [ux-ia-responsive-designer, visual-ui-designer]
+    build: penpot-mcp-prototyper
+    validate: visual-qa-auditor
+    design_system: design-system-architect
 routes:
   - reproduction
   - directed_creation

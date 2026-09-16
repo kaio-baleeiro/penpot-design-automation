@@ -8,11 +8,18 @@ metadata:
 
 # Penpot MCP build
 
+Use the portable `penpot-mcp-prototyper` profile for all hands-on operations and
+require its handoff before validation. Planning inputs may come from the
+`ux-ia-responsive-designer` and `visual-ui-designer` profiles.
+
 Read [`lessons-learned/README.md`](lessons-learned/README.md), then require a run manifest whose intake and ambiguity gates are complete, and read the current `source/source-map.json` or
 approved `briefing/brief-vNNN.md` before acting.
 Only build after intake and material ambiguity gates pass.
 For the screenshot-versus-editable-design failure mode, apply
 [`LL - screenshot is not editable design.md`](lessons-learned/project/LL%20-%20screenshot%20is%20not%20editable%20design.md).
+The structural inventory is a required build output; apply
+[`LL - Inventário estrutural vazio invalida o benchmark.md`](lessons-learned/project/LL%20-%20Inventário%20estrutural%20vazio%20invalida%20o%20benchmark.md)
+before handing the frame to validation.
 
 ## Build contract
 

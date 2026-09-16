@@ -1,0 +1,40 @@
+version: 1
+format: portable-agent-profiles
+default_worker_model: gpt-5.6-luna
+reviewer: workflow-orchestrator
+profiles:
+  - id: intake-source-analyst
+    phase: [intake, source-map]
+    hands_on: false
+    inputs: [url, screenshot, running_app, code_repository, prompt]
+    outputs: [questions.md, decisions.md, source/source-map.json, source/source-inventory.md, source/assets-manifest.json, source/frame-spec.json]
+  - id: frontend-forensics-engineer
+    phase: [source-map, build-plan]
+    hands_on: false
+    inputs: [source/source-map.json, source/source-inventory.md, code_repository, runtime]
+    outputs: [source/forensics.json, design/layout-contract.json]
+  - id: ux-ia-responsive-designer
+    phase: [build-plan]
+    hands_on: false
+    inputs: [source/source-map.json, source/frame-spec.json, source/forensics.json]
+    outputs: [design/ia-plan.json, design/responsive-matrix.json]
+  - id: visual-ui-designer
+    phase: [build-plan, build]
+    hands_on: false
+    inputs: [source/source-inventory.md, source/assets-manifest.json, design/ia-plan.json]
+    outputs: [design/visual-spec.json, design/content-inventory.json]
+  - id: penpot-mcp-prototyper
+    phase: [build, refactoring]
+    hands_on: true
+    inputs: [design/plan.json, design/layout-contract.json, design/visual-spec.json, source/assets-manifest.json]
+    outputs: [design/penpot-mcp-log.jsonl, design/structure-inventory.json, design/exports]
+  - id: design-system-architect
+    phase: [design-system]
+    hands_on: true
+    inputs: [design/structure-inventory.json, design/visual-spec.json, approvals]
+    outputs: [design/design-system-inventory.json, design/tokens.json, design/components.json]
+  - id: visual-qa-auditor
+    phase: [validate, delivery]
+    hands_on: true
+    inputs: [source, design/exports, design/structure-inventory.json, cycles]
+    outputs: [cycles/cycle-N/score.json, cycles/cycle-N/issues.json, cycles/cycle-N/report.md, cycles/cycle-N/*.png]

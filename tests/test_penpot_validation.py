@@ -122,6 +122,42 @@ class PenpotValidationTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate_run(run, 4)
 
+    def test_strict_validation_requires_inventory_even_when_pixels_pass(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            source, exported = self._fixture(directory)
+            run = directory / "strict-run"
+            manifest = {
+                "schema_version": "1.0",
+                "run_id": "strict-inventory",
+                "route": "reproduction",
+                "state": "VALIDATING",
+                "worker_model": "gpt-5.6-luna",
+                "source_refs": ["source.png"],
+                "target_viewports": [{"width": 80, "height": 60}],
+                "screens": [{
+                    "id": "home", "viewport": {"width": 80, "height": 60},
+                    "frame_spec": {
+                        "screen_id": "home", "viewport": {"width": 80, "height": 60},
+                        "document": {"width": 80, "height": 60}, "frame": {"width": 80, "height": 60},
+                        "vertical_policy": "viewport_bounded", "horizontal_policy": "viewport_bounded",
+                        "capture_mode": "viewport", "stable": True, "build_ready": True,
+                        "requires_user_decision": False, "evidence": ["capture.json"],
+                    },
+                    "source": str(source), "penpot_export": str(exported),
+                }],
+                "validation_cycle": 0, "max_validation_cycles": 3, "user_review_round": 0,
+                "lesson_refs": [], "approvals": {"user": False, "design_system": False},
+                "evidence": {"initial_questions": ["answered"], "addendum_question": "no", "ambiguity_analysis": "complete"},
+            }
+            (run / "source").mkdir(parents=True)
+            (run / "source/frame-spec.json").write_text(json.dumps({"schema_version": "1.0", "screens": [manifest["screens"][0]["frame_spec"]]}), encoding="utf-8")
+            start_run(run, manifest)
+            result = validate_run(run, 1)
+            self.assertFalse(result["passed"])
+            self.assertFalse(result["structure_gate"]["passed"])
+            self.assertIn("strict validation requires", result["structure_gate"]["errors"][0])
+
     def test_long_frame_passes_and_truncated_export_is_blocked(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)

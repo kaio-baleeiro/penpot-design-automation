@@ -484,14 +484,14 @@ def validate_run(
         inventory_path = Path(inventory_ref)
         if not inventory_path.is_absolute():
             inventory_path = root / inventory_path
-        structure_result = validate_structure_inventory(load_inventory(inventory_path), manifest)
-    elif effective_strict and manifest.get("state") == "DS_REVALIDATING":
-        structure_result = {"passed": False, "errors": ["DS_REVALIDATING requires a Penpot inventory JSON"],
+        structure_result = validate_structure_inventory(load_inventory(inventory_path), manifest, require_reusable=effective_strict)
+    elif effective_strict:
+        structure_result = {"passed": False, "errors": ["strict validation requires a Penpot structural inventory JSON"],
                             "missing_inventory_keys": [], "missing_tokens": [], "missing_components": [],
                             "missing_component_instances": [], "detached_instances": 0}
     if structure_result is not None:
         result["structure_gate"] = structure_result
-        if manifest.get("state") == "DS_REVALIDATING" and not structure_result["passed"]:
+        if not structure_result["passed"]:
             result["passed"] = False
     result["next_state"] = derive_next_state(manifest, result, structure_result)
     if effective_strict:

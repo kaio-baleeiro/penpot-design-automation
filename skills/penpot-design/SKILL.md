@@ -15,7 +15,8 @@ root as two parents above that directory. Read
 [the workflow contract](references/workflow-contract.md),
 [the state machine](references/state-machine.md),
 [the artifact schema](references/artifacts.md) and
-[the delegation contract](references/delegation.md) before acting. Read
+[the delegation contract](references/delegation.md) and [the agent profile
+mapping](references/agent-profiles.md) before acting. Read
 [the lessons protocol](references/lessons-learned.md) and the local
 [`lessons-learned/README.md`](lessons-learned/README.md) at the beginning and
 end of every run. The machine-readable defaults are in
@@ -64,6 +65,13 @@ inspection, MCP construction, correction, token extraction, rendering and
 scoring. If Luna is unavailable, stop with `BLOCKED_MODEL_UNAVAILABLE`; do not
 silently fall back. Keep the orchestrator focused on routing, user questions,
 gate decisions and records.
+
+Use the specialized portable profiles in `agents/` for each phase: source
+analyst, frontend forensics, UX/IA, visual UI, Penpot MCP prototyper, visual QA
+and design-system architect. Every handoff must follow
+`agents/contracts/handoff.md`; a missing handoff, empty structure inventory,
+unmapped asset or unresolved layout contract blocks the next phase. The profile
+does not replace the orchestrator's final score or semantic review.
 
 Follow `references/delegation.md`: create a Codex subagent with
 the Luna model for each operational phase and treat quota/model errors as

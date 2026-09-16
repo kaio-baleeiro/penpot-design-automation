@@ -12,8 +12,9 @@
   "validation_cycle":3,
   "max_validation_cycles":3,
   "user_review_round":0,
-  "lesson_refs":["skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md","skills/penpot-validate/lessons-learned/project/LL - baseline must match representation.md","skills/penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md"],
+  "lesson_refs":["skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md","skills/penpot-validate/lessons-learned/project/LL - baseline must match representation.md","skills/penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md","skills/penpot-validate/lessons-learned/project/LL - Inventário estrutural vazio invalida o benchmark.md"],
   "approval":{"briefing":true,"design":false,"design_system":false},
   "intake":{"initial_questions_completed":true,"addendum_question_completed":true,"ambiguity_analysis_completed":true,"evidence":["questions.md","decisions.md"]},
+  "structure_inventory":"design/structure-inventory.json",
   "prior_version":{"run_id":"apple-br","last_cycle":3,"score":80.27,"coverage":0.698047,"status":"NEEDS_REVIEW","diagnostic":"Use cycle-3 P1 bounds as targeted rebuild regions; immutable history remains untouched."}
 }

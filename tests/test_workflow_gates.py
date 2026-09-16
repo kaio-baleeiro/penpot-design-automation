@@ -159,6 +159,16 @@ class WorkflowGateTests(unittest.TestCase):
         }
         self.assertTrue(validate_structure_inventory(inventory)["passed"])
 
+    def test_strict_structural_gate_requires_reusable_components(self):
+        inventory = {
+            "tokens": [], "components": [], "component_instances": [],
+            "detached_instances": [], "styles": [], "required_component_instances": [],
+            "frame_summaries": [{"name": "Home", "visible_children": 5, "editable_shape_count": 18, "image_only": False}],
+        }
+        gate = validate_structure_inventory(inventory, require_reusable=True)
+        self.assertFalse(gate["passed"])
+        self.assertTrue(any("no reusable components" in error for error in gate["errors"]))
+
     def test_ds_gate_rejects_an_empty_inventory(self):
         inventory = {
             "tokens": [], "components": [], "component_instances": [],
@@ -167,6 +177,12 @@ class WorkflowGateTests(unittest.TestCase):
         gate = validate_structure_inventory(inventory, _manifest(state="DS_REVALIDATING"))
         self.assertFalse(gate["passed"])
         self.assertIn("design-system inventory has no tokens", gate["errors"])
+
+    def test_strict_validation_requires_inventory_even_when_pixels_pass(self):
+        root = Path(__file__).resolve().parents[1]
+        validator = (root / "scripts/penpot_validation/validator.py").read_text(encoding="utf-8")
+        self.assertIn("strict validation requires a Penpot structural inventory JSON", validator)
+        self.assertIn("if not structure_result[\"passed\"]:", validator)
 
     def test_regular_validation_cannot_skip_design_system(self):
         manifest = _manifest(approvals={"user": True, "design_system": True})

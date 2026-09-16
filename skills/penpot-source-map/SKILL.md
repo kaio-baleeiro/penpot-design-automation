@@ -8,6 +8,10 @@ metadata:
 
 # Penpot source mapping
 
+Operational work is delegated to the portable profiles
+`intake-source-analyst` and `frontend-forensics-engineer` described in
+`agents/profiles/`; their handoffs are required before build planning.
+
 Use only for the `reproduction` route. Read the local
 [`lessons-learned/README.md`](lessons-learned/README.md) before capture. Every supplied source remains represented
 even when inaccessible or lower confidence. Resolve this skill's physical

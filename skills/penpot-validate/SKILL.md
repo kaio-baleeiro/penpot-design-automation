@@ -8,6 +8,10 @@ metadata:
 
 # Penpot validation and refinement
 
+Use the portable `visual-qa-auditor` profile for render collection and issue
+triage. The orchestrator remains the final reviewer and owns the official score
+and state transition.
+
 Read [the immutable scoring contract](references/scoring.md) and the local
 [`lessons-learned/README.md`](lessons-learned/README.md). This
 skill owns `VALIDATING`, `REFACTORING` and `DS_REVALIDATING`.
@@ -51,6 +55,9 @@ substantively a single screenshot/image fill, when a section contains only a
 semantic label with no editable descendants, or when planned components are
 not instantiated in the delivered frame. A hidden/locked source-reference
 image is allowed as evidence, but it cannot be the only visible content.
+In strict schema runs, the inventory is mandatory even when the pixel score
+passes; an absent or empty inventory is a blocking structural failure, not an
+invitation to infer structure from the PNG.
 
 Before scoring, compare the export dimensions with `source/frame-spec.json`.
 The Penpot frame and reference capture must represent the same full finite

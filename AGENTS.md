@@ -10,6 +10,8 @@ workflow; the shared vault stores project context and human-review notes.
 - Runs one shared local Penpot instance for future projects.
 - Provides seven Agent Skills under `skills/` for intake, source mapping,
   building, validation, design-system formalization and delivery.
+- Provides specialized portable profiles under `agents/`; each operational
+  phase receives the profile named by `agents/manifest.yaml`.
 - Accepts a URL, screenshot, running app, code repository or a prompt without a
   source.
 - Records source provenance and reuses exact source assets when available.
@@ -34,11 +36,17 @@ workflow; the shared vault stores project context and human-review notes.
 5. Delegate hands-on capture, inspection, MCP construction, rendering,
    correction and scoring to `gpt-5.6-luna`. If that worker is unavailable,
    stop with `BLOCKED_MODEL_UNAVAILABLE` instead of falling back silently.
+   Use the selected profile's `AGENT.md` and write its required handoff before
+   advancing to the next phase.
 6. Never edit scores, thresholds, immutable cycle artifacts or source evidence
    to make a run pass. A failed gate returns to targeted refactoring; cycle 3
    ends in `NEEDS_REVIEW`.
 7. After formal user approval, build and revalidate the design system. Do not
    mark delivery complete while the structural gate is failing.
+
+The portable profile contract is in `agents/contracts/handoff.md`. It is
+host-neutral: Codex CLI, Devin CLI, Claude Code and similar tools preserve the
+same inputs, outputs, gates and stop conditions.
 
 ## Skills and shared lessons
 

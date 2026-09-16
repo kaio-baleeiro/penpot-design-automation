@@ -22,6 +22,7 @@ AGENTS.md           Instruções portáteis para Codex, Devin CLI e outros agent
 docs/               Documentação transversal da infraestrutura
 infra/penpot/       Compose, backup, restore, healthcheck e atualização
 skills/             Skills versionadas do workflow
+agents/             Perfis especializados portáveis e contratos de handoff
 scripts/            Captura, mapeamento, MCP e comparação visual
 tests/              Testes determinísticos
 runs/               Metadados sanitizados; material privado fica ignorado
@@ -47,6 +48,24 @@ raiz física do checkout antes de chamar o runtime compartilhado do projeto.
 Cada pasta de trabalho possui um README próprio. O índice em
 `skills/penpot-design/lessons-learned/README.md` conecta aprendizados que
 atravessam mais de uma fase.
+
+## Perfis especializados
+
+O workflow agora separa a operação em perfis com responsabilidades verificáveis:
+
+- `intake-source-analyst` captura a página inteira, estados e assets exatos;
+- `frontend-forensics-engineer` mede DOM/CSS, semântica, breakpoints e overflow;
+- `ux-ia-responsive-designer` cria a hierarquia e a matriz desktop/mobile;
+- `visual-ui-designer` registra conteúdo, tipografia, densidade e linguagem visual;
+- `penpot-mcp-prototyper` constrói a composição editável no Penpot;
+- `visual-qa-auditor` cruza pixels, conteúdo, acessibilidade, assets e estrutura;
+- `design-system-architect` formaliza tokens, componentes, variantes e instâncias.
+
+O manifesto e os prompts estão em [`agents/`](agents/). Cada fase usa
+`gpt-5.6-luna`; o orquestrador continua revisor final e não pode alterar score,
+limiares ou evidência. O contrato de handoff impede que um perfil avance com
+inventário vazio, asset sem procedência, seção sem cobertura ou frame baseado
+somente em screenshot.
 
 ## Instalar a skill global
 
@@ -109,12 +128,19 @@ investiga desktop/mobile e não começa a construir antes da aprovação do esco
    estilos, componentes e instâncias, revalida as telas e só então empacota a
    entrega.
 
+O score visual é apenas uma camada. Para evitar os falsos positivos observados
+nos benchmarks, a entrega também exige inventário estrutural não vazio,
+conteúdo e assets conferidos contra a fonte, semântica/acessibilidade revisadas
+e comparação full-page na mesma dimensão. Falhas retornam ao perfil responsável
+com região, causa provável e correção precisa.
+
 Para executar fora da raiz, use caminhos absolutos ou os wrappers locais das
 skills. O contrato continua o mesmo em qualquer agente:
 
 ```sh
 python3 -m unittest discover -s tests -v
 python3 scripts/validate_skills.py
+python3 scripts/validate_agent_profiles.py
 python3 skills/penpot-design/scripts/record-lesson.py \
   --skill-dir skills/penpot-validate record \
   --title "Falha reproduzível" \

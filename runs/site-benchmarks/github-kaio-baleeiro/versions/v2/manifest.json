@@ -49,7 +49,8 @@
     "penpot-build/LL - screenshot is not editable design",
     "penpot-source-map/LL - full-page evidence is required",
     "penpot-validate/LL - heuristic score is not source fidelity",
-    "penpot-build/LL - evaluator owns cycle directories"
+    "penpot-build/LL - evaluator owns cycle directories",
+    "skills/penpot-validate/lessons-learned/project/LL - Inventário estrutural vazio invalida o benchmark.md"
   ],
   "approval": {"briefing": true, "design": false, "design_system": false},
   "intake": {
