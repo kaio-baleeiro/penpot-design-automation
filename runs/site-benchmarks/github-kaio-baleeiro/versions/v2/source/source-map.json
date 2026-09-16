@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "parent_source_map": "../../../source/source-map.json",
+  "sources": [{
+    "source_id": "src-url-github-kaio-baleeiro",
+    "kind": "url",
+    "location": "https://github.com/kaio-baleeiro",
+    "confidence": 0.9,
+    "precedence": 1,
+    "evidence": ["raw/full-page/capture.json", "reference.png"]
+  }],
+  "precedence": ["src-url-github-kaio-baleeiro"],
+  "conflicts": [],
+  "notes": ["Source evidence is inherited from the original public URL capture; no scores or prior validation artifacts were copied."]
+}

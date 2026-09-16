@@ -53,6 +53,16 @@ def _manifest(**overrides):
 
 
 class WorkflowGateTests(unittest.TestCase):
+    def test_reviewer_semantic_gate_is_documented_separately_from_score(self):
+        root = Path(__file__).resolve().parents[1]
+        skill = (root / "skills/penpot-validate/SKILL.md").read_text(encoding="utf-8")
+        scoring = (root / "skills/penpot-validate/references/scoring.md").read_text(encoding="utf-8")
+        lesson = (root / "skills/penpot-validate/lessons-learned/project/LL - heuristic score is not source fidelity.md").read_text(encoding="utf-8")
+        self.assertIn("semantic/source-fidelity", skill)
+        self.assertIn("não aprovam conteúdo", scoring)
+        self.assertIn("status: active", lesson)
+        self.assertIn("NEEDS_REVIEW", scoring)
+
     def test_schema_and_worker_are_strict(self):
         validate_manifest(_manifest())
         with self.assertRaisesRegex(ValueError, "worker_model"):

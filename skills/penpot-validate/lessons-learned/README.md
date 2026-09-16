@@ -7,3 +7,6 @@ uma tela. Compartilhe regras no [índice transversal](../../penpot-design/lesson
 
 Lições `machine` não alteram o avaliador; lições `project` só podem ser
 mitigadas após integração e teste do comportamento corrigido.
+
+Quando a representação muda, inicie uma nova versão/run e não herde score de
+uma captura incompatível; consulte [baseline precisa representar o mesmo artefato](project/LL%20-%20baseline%20must%20match%20representation.md).

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "proposal_id": "warframe-en-bounded-v2-1440x5837",
+  "screen_id": "home",
+  "viewport": {"width": 1440, "height": 900},
+  "document_observed": {"width": 1983, "height": 5837},
+  "frame": {"width": 1440, "height": 5837},
+  "vertical_policy": "dynamic_bounded",
+  "horizontal_policy": "accidental_overflow",
+  "capture_mode": "frame_bounds",
+  "stable": false,
+  "build_ready": false,
+  "requires_user_decision": true,
+  "boundary_status": "proposed_not_approved",
+  "boundary_reason": "The full-page document height was 5837px in this run and in the previous trial-2 run; the page still reports unstable off-canvas image widths, so this is a reproducible bounded state proposal, not a finite-document stability claim.",
+  "evidence": [
+    "../../raw/bounded-1440x5837-v2/capture.json",
+    "../../raw/bounded-1440x5837-v2/source.png",
+    "../../raw/full-page-trial-2/capture.json",
+    "../../raw/full-page-trial-2/source.png"
+  ]
+}

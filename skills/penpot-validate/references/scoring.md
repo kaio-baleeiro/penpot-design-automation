@@ -23,6 +23,15 @@ explicação/evidência de cada métrica. As limitações (sem prova de semânti
 família tipográfica, procedência de asset ou editabilidade Penpot) devem ser
 mantidas no relatório.
 
+## Revisão semântica e de provenance
+
+As métricas acima são heurísticas de pixels e podem produzir falso positivo em
+layouts claros ou repetitivos. Elas não aprovam conteúdo. O revisor deve
+executar um gate separado, comparando copy, rota/estado, ordem/hierarquia,
+logos, imagens, ícones, fontes e `asset_refs` com a fonte mapeada. Divergências
+ou conteúdo inventado mantêm `NEEDS_REVIEW`, mesmo com score e coverage acima
+dos limiares. Esse gate não altera a fórmula determinística.
+
 `coverage` é um gate independente: a fração de pixels cujo maior delta de
 canal é `<= 32`, emitida no intervalo `0..1`. As similaridades pixel/exata
 também são registradas como evidência auxiliar. O avaliador redimensiona o

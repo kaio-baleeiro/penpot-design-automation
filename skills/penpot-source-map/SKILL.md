@@ -1,6 +1,6 @@
 ---
 name: penpot-source-map
-description: Capture and map URLs, screenshots, running apps and code repositories into a persistent, auditable source record for Penpot reconstruction.
+description: Capture and map URLs, screenshots, running apps and code repositories into auditable source records with full-page bounds, exact asset provenance, and reproducible dynamic-state limits.
 metadata:
   short-description: Map source evidence for faithful Penpot reconstruction
   compatibility: Requires the project checkout and Python 3; URL capture uses Playwright Chromium.
@@ -42,6 +42,12 @@ and what is unknown. For a known full-page screenshot, also pass
 for the observation viewport. A finite page captured only as `1440x900` is
 incomplete and cannot enter the build handoff. If that distinction is unknown
 and material, ask.
+Do not score or deliver an unstable full-page capture: obtain approval for a
+finite bounded state and recapture it before deriving `frame-spec.json`.
+Dimensional stability alone is insufficient: before freezing a reference,
+audit every full-page section and confirm lazy media, SVGs, images and fonts
+are ready and represented in `assets-manifest.json`; record gaps and seek
+recapture/approval rather than silently treating `stable: true` as complete.
 
 When sources are combined, compile them with `scripts/source-map.sh compile
 --url <URL> --screenshot <PNG> --code

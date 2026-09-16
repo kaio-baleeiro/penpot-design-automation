@@ -1,0 +1,67 @@
+{
+  "proposal_id": "warframe-en-bounded-v2-1440x5837",
+  "source_id": "src-url-warframe-en",
+  "status": "observed_provenance_only",
+  "groups": [
+    {
+      "group_id": "navigation-brand-icons",
+      "usage": "global navigation, account controls and footer",
+      "urls": [
+        "https://www-static.warframe.com/images/logoWhite.png",
+        "https://www-static.warframe.com/images/greyLotus.png",
+        "https://www-static.warframe.com/images/warframe-logo-blue-white.svg",
+        "https://www-static.warframe.com/images/icons/material/dropdown.svg",
+        "https://www-static.warframe.com/images/icons/material/download.svg",
+        "https://www-static.warframe.com/images/icons/material/launch.svg",
+        "https://www-static.warframe.com/images/icons/material/login.svg",
+        "https://www-static.warframe.com/images/icons/material/menu.svg",
+        "https://www-static.warframe.com/images/icons/material/crossplatform.svg"
+      ]
+    },
+    {
+      "group_id": "hero-and-editorial-media",
+      "usage": "hero, feature cards, news and shop cards",
+      "urls": [
+        "https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/cc1706f7-36bc-4bd9-8f40-d8f06d663e1f-webp.webp",
+        "https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/6bdb5736-d378-4099-9010-38ee25c5eb70-webp.webp",
+        "https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/ed7c11dc-f731-4a4f-b536-f317818650f7-webp.webp",
+        "https://www-static.warframe.com/uploads/d4940c6cab0ad90994427983cc628371.jpg",
+        "https://www-static.warframe.com/uploads/dd1d6b0711b5de5b77af1ae6d95a33ad.png",
+        "https://www-static.warframe.com/uploads/fdf7fab4abfd9d6057aa167a5ae01482.png",
+        "https://www-static.warframe.com/uploads/b48e84d751e6fb9fc957fb63f97135a7.jpg",
+        "https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/f114d053-3f98-46f3-a6a3-84cca3272f0a-webp.webp",
+        "https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/5922b320-9421-47f3-8831-f234a4fff7e8-webp.webp",
+        "https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/3accefe9-402a-4388-95ee-a8604ad9bea1-webp.webp",
+        "https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/7cfc418a-0041-41a0-a5eb-c7d01af2d3a3-webp.webp",
+        "https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/7dc0022e-bc33-477c-b6c8-7a438e0e0cf9-webp.webp",
+        "https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/bf9e06af-a756-4214-b03f-7f78dcc3685b-webp.webp",
+        "https://www-static.warframe.com/images/home/prime-resurgence-logo.png"
+      ]
+    },
+    {
+      "group_id": "social-and-platform-marks",
+      "usage": "community strip, platform availability and rating footer",
+      "urls": [
+        "https://www-static.warframe.com/images/icons/material/vkontakte.svg",
+        "https://www-static.warframe.com/images/icons/material/facebook.svg",
+        "https://www-static.warframe.com/images/icons/material/instagram.svg",
+        "https://www-static.warframe.com/images/icons/material/twitter.svg",
+        "https://www-static.warframe.com/images/icons/material/bluesky.svg",
+        "https://www-static.warframe.com/images/icons/material/discord.svg",
+        "https://www-static.warframe.com/images/icons/material/twitch.svg",
+        "https://www-static.warframe.com/images/icons/material/youtube.svg",
+        "https://www-static.warframe.com/images/footer/platforms/PC.svg",
+        "https://www-static.warframe.com/images/footer/platforms/steam-full-wordmark.svg",
+        "https://www-static.warframe.com/images/footer/platforms/epic-games-store.svg",
+        "https://www-static.warframe.com/images/footer/platforms/switch-2-combo-black.svg",
+        "https://www-static.warframe.com/images/footer/platforms/psn.png",
+        "https://www-static.warframe.com/images/footer/platforms/XboxOne-white.svg",
+        "https://www-static.warframe.com/images/footer/platforms/xbox.png",
+        "https://www-static.warframe.com/images/footer/platforms/ios-app-store.svg",
+        "https://www-static.warframe.com/images/footer/platforms/google-play-black.png",
+        "https://www-static.warframe.com/images/footer/ratings/classind.jpg"
+      ]
+    }
+  ],
+  "note": "URLs are sanitized first-party or source-referenced assets observed in the bounded capture. Acquisition remains deferred until the build worker selects exact assets; no private payloads are included."
+}

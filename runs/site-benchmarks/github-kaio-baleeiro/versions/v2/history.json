@@ -1,0 +1,23 @@
+[
+  {
+    "cycle": 1,
+    "score": 93.96,
+    "coverage": 0.881463,
+    "passed": true,
+    "score_path": "runs/site-benchmarks/github-kaio-baleeiro/versions/v2/cycles/cycle-1/score.json"
+  },
+  {
+    "cycle": 2,
+    "score": 96.77,
+    "coverage": 0.920701,
+    "passed": true,
+    "score_path": "runs/site-benchmarks/github-kaio-baleeiro/versions/v2/cycles/cycle-2/score.json"
+  },
+  {
+    "cycle": 3,
+    "score": 98.52,
+    "coverage": 0.927878,
+    "passed": true,
+    "score_path": "runs/site-benchmarks/github-kaio-baleeiro/versions/v2/cycles/cycle-3/score.json"
+  }
+]

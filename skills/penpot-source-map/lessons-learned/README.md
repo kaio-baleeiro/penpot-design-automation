@@ -11,3 +11,8 @@ deve entrar no contrato ou nos scripts do source map.
 
 Regra base: nenhuma tela vai para construção sem `source-map.json`,
 `source-inventory.md`, `assets-manifest.json` e `frame-spec.json` sanitizados.
+
+Fonte dinâmica sem estado finito reproduzível não entra em pontuação. Consulte
+[estado dinâmico precisa de limite antes de pontuar](project/LL%20-%20bounded%20state%20before%20scoring.md).
+
+Estabilidade dimensional não garante mídia pronta; consulte [dimensões não provam asset readiness](project/LL%20-%20dimensions%20do%20not%20prove%20asset%20readiness.md).

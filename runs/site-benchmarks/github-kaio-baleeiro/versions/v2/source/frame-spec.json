@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "screens": [{
+    "screen_id": "home",
+    "viewport": {"width": 1440, "height": 900},
+    "document": {"width": 1440, "height": 1807},
+    "frame": {"width": 1440, "height": 1807},
+    "vertical_policy": "finite_document",
+    "horizontal_policy": "container_overflow",
+    "capture_mode": "full_page",
+    "stable": true,
+    "build_ready": true,
+    "requires_user_decision": false,
+    "evidence": ["reference.png", "raw/full-page/capture.json"]
+  }]
+}

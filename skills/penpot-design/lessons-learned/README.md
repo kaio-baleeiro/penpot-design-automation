@@ -45,3 +45,8 @@ componentes; score visual não substitui o gate estrutural.
 - [Estado terminal precisa estar persistido no manifesto](project/LL - persist terminal state.md)
 - [Metadata precisa passar no spec e no host](project/LL - validate skill metadata.md)
 - [Credenciais MCP nunca aparecem no diagnóstico](../../penpot-build/lessons-learned/project/LL - redact MCP credentials.md)
+- [Baseline precisa representar o mesmo artefato](../../penpot-validate/lessons-learned/project/LL - baseline must match representation.md)
+- [Estado dinâmico precisa de limite antes de pontuar](../../penpot-source-map/lessons-learned/project/LL - bounded state before scoring.md)
+- [O avaliador é dono dos diretórios de ciclo](../../penpot-build/lessons-learned/project/LL - evaluator owns cycle directories.md)
+- [Score heurístico alto não prova fidelidade da fonte](../../penpot-validate/lessons-learned/project/LL - heuristic score is not source fidelity.md)
+- [Estabilidade dimensional não prova completude visual](../../penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md)

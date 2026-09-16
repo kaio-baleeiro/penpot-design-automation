@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "tokens": [],
+  "components": [],
+  "component_instances": [],
+  "detached_instances": [],
+  "styles": [],
+  "required_component_instances": [],
+  "source_run": "runs/site-benchmarks/github-kaio-baleeiro",
+  "version": "v2",
+  "file": {
+    "name": "Site Benchmarks",
+    "id": "cf04346a-b044-818b-8008-a4ed84a51a17",
+    "project": "Penpot Benchmarks"
+  },
+  "frame_summaries": [
+    {
+      "id": "9a19287b-6930-802f-8008-a4ee0b57f233",
+      "name": "GitHub Kaio — Home — 1440x1807",
+      "visible_children": 5,
+      "descendant_count": 280,
+      "editable_shape_count": 279,
+      "image_shape_count": 2,
+      "image_only": false,
+      "type_counts": {"board": 7, "text": 63, "rectangle": 211}
+    }
+  ],
+  "screens": [
+    {
+      "screen_id": "home",
+      "page": "Benchmark — GitHub Kaio",
+      "frame_id": "9a19287b-6930-802f-8008-a4ee0b57f233",
+      "frame": {"width": 1440, "height": 1807},
+      "descendants": {"boards": 7, "texts": 63, "rectangles": 211, "images": 2},
+      "screenshot_only": false,
+      "status": "READY_FOR_REVIEW",
+      "visible_children": 5,
+      "descendant_count": 280,
+      "editable_shape_count": 279,
+      "image_shape_count": 2,
+      "image_only": false,
+      "type_counts": {"board": 7, "text": 63, "rectangle": 211}
+    }
+  ]
+}

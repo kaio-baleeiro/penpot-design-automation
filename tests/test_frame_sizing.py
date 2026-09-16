@@ -32,6 +32,14 @@ def _capture(
 
 
 class FrameSizingTests(unittest.TestCase):
+    def test_frame_policy_separates_dimension_stability_from_asset_readiness(self):
+        root = Path(__file__).resolve().parents[1]
+        skill = (root / "skills/penpot-source-map/SKILL.md").read_text(encoding="utf-8")
+        policy = (root / "skills/penpot-source-map/references/frame-sizing.md").read_text(encoding="utf-8")
+        self.assertIn("Dimensional stability alone is insufficient", skill)
+        self.assertIn("stable_after_wait` mede apenas a estabilidade", policy)
+        self.assertIn("lazy", policy)
+
     def test_skill_wrapper_writes_a_frame_spec_outside_repository_cwd(self):
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)

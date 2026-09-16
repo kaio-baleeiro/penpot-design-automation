@@ -33,10 +33,11 @@
    extração e validação deve ser delegada com o perfil `gpt-5.6-luna`. Se esse
    modelo não estiver disponível, interrompa com `BLOCKED_MODEL_UNAVAILABLE`;
    não faça fallback para outro modelo.
-9. O score é calculado somente pelo avaliador determinístico invocado por
-   `scripts/start-run.sh` e pelo wrapper de validação da skill `$penpot-validate`.
-   O agente não pode editar a fórmula, limiares, cobertura ou severidades
-   durante a execução para aprovar uma tela.
+9. Luna faz a operação e coleta evidências, mas o orquestrador/revisor final
+   executa ou confere o avaliador determinístico invocado por `scripts/start-run.sh`
+   e pelo wrapper de validação da skill `$penpot-validate`, atribui a pontuação
+   oficial e decide a transição. Nenhum agente pode editar fórmula, limiares,
+   cobertura ou severidades para aprovar uma tela.
 10. Cada tela e viewport precisa atingir score visual **>= 90/100**, cobertura
    mensurável **>= 80%**, e zero achados P0/P1. Uma falha retorna à correção.
 11. Após a construção inicial, há no máximo três ciclos internos de

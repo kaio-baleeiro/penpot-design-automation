@@ -1,6 +1,6 @@
 ---
 name: penpot-intake
-description: Gather and normalize the mandatory questions, route, scope, viewport and approval decisions before a Penpot design run starts.
+description: Gather and persist mandatory questions, source precedence, responsive scope, viewport bounds and approval decisions before a Penpot design run starts.
 metadata:
   short-description: Ask, scope and prepare a Penpot design run
   compatibility: Requires the project checkout and Python 3; URL capture uses Playwright Chromium.

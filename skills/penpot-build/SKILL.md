@@ -1,6 +1,6 @@
 ---
 name: penpot-build
-description: Build static Penpot frames, reusable components and initial styles from an approved source map or directed-creation briefing through the Penpot MCP.
+description: Build editable static Penpot frames, reusable components and initial styles from an approved source map or briefing through the Penpot MCP, preserving full-page bounds and exact source assets.
 metadata:
   short-description: Build static Penpot screens with MCP
   compatibility: Requires the project checkout, local environment file, Python 3, and Penpot MCP.
@@ -57,6 +57,11 @@ the source manifest and expected responsive behavior. Then call the project Penp
 plan and `scripts/penpot-mcp.sh export --args '<JSON>' --save-image <PNG>
 --log-path design/penpot-mcp-log.jsonl` for frame PNGs. The client sends the MCP `tools/call` request and must
 append request, response and frame identifiers to the MCP log.
+
+Keep all build exports under `design/exports/<screen>/`. The build must never
+create or populate `cycles/cycle-N/`; those directories are reserved for the
+append-only evaluator, which creates the score, issues, report, side-by-side,
+overlay and heatmap artifacts. See [`LL - evaluator owns cycle directories.md`](lessons-learned/project/LL%20-%20evaluator%20owns%20cycle%20directories.md).
 
 ## Handoff
 

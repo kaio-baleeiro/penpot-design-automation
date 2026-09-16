@@ -153,11 +153,16 @@ teste reproduzível das fontes Apple Brasil, Warframe English e do perfil GitHub
 `kaio-baleeiro`. Cada run inclui perguntas, decisões, frame-spec, mapa de
 proveniência, inventário de assets e as imagens públicas de referência,
 side-by-side, overlay, heatmap e exports das composições editáveis do Penpot.
-Os benchmarks agora são reconstruções com boards, textos, formas e assets
-editáveis; a captura full-page é mantida apenas como referência. GitHub marcou
-93,96, mas requer revisão por regressão contra o baseline antigo; Apple marcou
-80,27 após três ciclos e precisa de refatoração visual adicional. Warframe permanece `NEEDS_REVIEW`
-porque a origem dinâmica não estabilizou.
+Os benchmarks v2 são reconstruções com boards, textos, formas e assets
+editáveis no projeto Penpot `Penpot Benchmarks`, arquivo `Site Benchmarks`; a
+captura full-page é mantida apenas como referência. O GitHub percorreu três
+ciclos (`93,96 → 96,77 → 98,52`): o score visual passou, mas a revisão final de
+conteúdo/fonte reprovou. A Apple também percorreu os três ciclos
+(`85,93 → 87,30 → 89,57`) e não atingiu score, cobertura nem ausência de P1.
+Ambos estão corretamente em `NEEDS_REVIEW`, com side-by-side, overlay e
+heatmap de cada ciclo publicados. O Warframe tem planejamento v2 e um limite
+dinâmico proposto em `1440×5837`, ainda dependente de aprovação explícita antes
+da construção e pontuação.
 
 ## Infraestrutura
 

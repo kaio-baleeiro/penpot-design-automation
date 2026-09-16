@@ -9,6 +9,13 @@ explicitamente configurado como `gpt-5.6-luna`. A delegação precisa declarar:
 - gates, limite de ciclos e condição de parada;
 - proibição de alterar contratos, scores e evidências históricas.
 
+O worker Luna executa a mão na massa: captura, inspeção, construção no MCP,
+exportação, correções direcionadas e coleta de evidências. Ele pode explicar
+achados, mas não é o revisor final e não atribui a pontuação oficial nem muda
+o estado de aprovação. O orquestrador/revisor executa ou confere o avaliador
+determinístico, registra a pontuação sem override e decide a transição do
+estado conforme os gates.
+
 O orquestrador verifica o retorno do runtime. Se a criação/execução do
 subagente rejeitar `gpt-5.6-luna`, exceder a cota ou informar indisponibilidade,
 registre `BLOCKED_MODEL_UNAVAILABLE` e pare a fase; não repita com outro modelo.

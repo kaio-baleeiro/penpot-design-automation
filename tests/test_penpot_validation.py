@@ -52,6 +52,19 @@ class PenpotValidationTests(unittest.TestCase):
             with self.assertRaises(FileExistsError):
                 validate_run(run, 1)
 
+    def test_validator_rejects_prepopulated_cycle_directory(self) -> None:
+        """Cycle output is evaluator-owned and must start empty."""
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            source, exported = self._fixture(directory)
+            run = directory / "run"
+            start_run(run, self._manifest(source, exported))
+            cycle = run / "cycles/cycle-1"
+            cycle.mkdir(parents=True)
+            (cycle / "README.md").write_text("build handoff", encoding="utf-8")
+            with self.assertRaisesRegex(FileExistsError, "cycle output already exists and is immutable"):
+                validate_run(run, 1)
+
     def test_divergent_export_fails_with_localized_issues_and_artifacts(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)

@@ -1,6 +1,6 @@
 ---
 name: penpot-validate
-description: Rigorously compare Penpot renders against source evidence or an approved directed-creation prototype using immutable deterministic scoring, visual diffs and targeted Luna refactoring.
+description: Rigorously compare editable Penpot renders against source evidence or an approved prototype with immutable per-viewport scoring (>=90/80), semantic/source-fidelity review, visual diffs, and targeted Luna refactoring capped at three cycles.
 metadata:
   short-description: Score, compare and correct Penpot screens
   compatibility: Requires the project checkout and Python 3; Penpot export uses the local MCP connection.
@@ -15,7 +15,9 @@ skill owns `VALIDATING`, `REFACTORING` and `DS_REVALIDATING`.
 ## Validation pass
 
 For every requested screen and viewport, delegate render/capture work to
-`gpt-5.6-luna` and run the deterministic evaluator with
+`gpt-5.6-luna`. Luna may render, collect evidence and perform the targeted
+refactor, but the orchestrator/reviewer is responsible for the official score,
+gate decision and approval transition. Run the deterministic evaluator with
 `scripts/validate.sh --run-dir <run-dir> --cycle <1..3>` from this skill's
 physical directory.
 Never change its formula, threshold, coverage rule or severity mapping during a
@@ -29,6 +31,18 @@ components/styles/tokens are actually reusable, not only visually similar.
 Cross-check every planned `asset_ref` against the source asset manifest and the
 Penpot build log. A lookalike or unrecorded substitute is an asset-provenance
 issue even when its pixel similarity is high.
+
+The numeric image score is not a semantic approval. Before delivery, the
+reviewer must separately verify visible copy, route/state, hierarchy and exact
+source assets and fonts against `source-inventory.md`, `assets-manifest.json`,
+`frame-spec.json` and the build plan. Record mismatches as issues and keep the
+run `NEEDS_REVIEW` even when the deterministic score passes; never change the
+formula or thresholds to encode this review. See [`LL - heuristic score is not source fidelity.md`](lessons-learned/project/LL%20-%20heuristic%20score%20is%20not%20source%20fidelity.md).
+
+Use a regression baseline only when it represents the same editable version,
+source, viewport and frame-spec. Replacing a screenshot-only artifact with an
+editable reconstruction starts a new version/run; do not inherit the old score.
+See [`LL - baseline must match representation.md`](lessons-learned/project/LL%20-%20baseline%20must%20match%20representation.md).
 
 The structural gate must inspect the delivered frame tree, not only the PNG.
 Record descendant counts by type and component-instance counts in

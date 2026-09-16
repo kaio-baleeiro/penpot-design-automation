@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "version_id": "apple-br-v2",
+  "screens": [{
+    "screen_id": "home",
+    "viewport": {"width": 1440, "height": 900},
+    "document": {"width": 1440, "height": 5261},
+    "frame": {"width": 1440, "height": 5261},
+    "vertical_policy": "finite_document",
+    "horizontal_policy": "container_overflow",
+    "capture_mode": "full_page",
+    "stable": true,
+    "build_ready": true,
+    "requires_user_decision": false,
+    "evidence": ["source/reference-full-page.png", "source/source-inventory.md", "source/proposals/rebuild-v2/section-map.json"]
+  }]
+}

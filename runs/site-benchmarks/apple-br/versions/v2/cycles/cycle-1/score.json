@@ -1,0 +1,424 @@
+{
+  "run_id": "apple-br-v2",
+  "cycle": 1,
+  "mode": "source",
+  "state": "VALIDATING",
+  "metric_table_version": "penpot-visual-v1",
+  "metric_table": {
+    "geometry_alignment": {
+      "label": "Geometry/alignment",
+      "weight": 30,
+      "limit": "Image bounds and content bounding-box alignment."
+    },
+    "spacing_grid": {
+      "label": "Spacing/grid",
+      "weight": 20,
+      "limit": "Row/column occupancy profiles; not a substitute for measured design tokens."
+    },
+    "typography": {
+      "label": "Typography",
+      "weight": 15,
+      "limit": "Dark-pixel density and row distribution; font family and text semantics are not observable from pixels."
+    },
+    "color_border_shadow": {
+      "label": "Color/border/shadow",
+      "weight": 15,
+      "limit": "Quantized color histogram; subtle border and shadow semantics may be ambiguous."
+    },
+    "content_density": {
+      "label": "Content/density",
+      "weight": 10,
+      "limit": "Foreground occupancy ratio and mask coverage; cannot verify copy correctness."
+    },
+    "assets": {
+      "label": "Assets",
+      "weight": 10,
+      "limit": "Connected-component count/area signature; cannot prove asset provenance or vector editability."
+    }
+  },
+  "passed": false,
+  "aggregate_score": 85.93,
+  "minimum_score": 85.93,
+  "aggregate_coverage": 0.713133,
+  "screens": [
+    {
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "frame": {
+        "width": 1440,
+        "height": 5261
+      },
+      "frame_policy": {
+        "vertical": "finite_document",
+        "horizontal": "container_overflow",
+        "capture_mode": "full_page"
+      },
+      "source": "runs/site-benchmarks/apple-br/versions/v2/source/reference-full-page.png",
+      "penpot_export": "runs/site-benchmarks/apple-br/versions/v2/design/exports/home/1440x5261.png",
+      "source_dimensions": {
+        "width": 1440,
+        "height": 5261
+      },
+      "export_dimensions": {
+        "width": 1440,
+        "height": 5261
+      },
+      "metric_table_version": "penpot-visual-v1",
+      "metrics": {
+        "geometry_alignment": {
+          "label": "Geometry/alignment",
+          "weight": 30,
+          "score": 90.98,
+          "weighted_contribution": 27.29,
+          "explanation": "content bbox IoU=0.900, area similarity=0.900, viewport_match=1",
+          "evidence": {
+            "source_bbox": [
+              0,
+              12,
+              1440,
+              5229
+            ],
+            "export_bbox": [
+              0,
+              16,
+              1440,
+              4705
+            ],
+            "iou": 0.89979
+          },
+          "limit": "Image bounds and content bounding-box alignment."
+        },
+        "spacing_grid": {
+          "label": "Spacing/grid",
+          "weight": 20,
+          "score": 86.14,
+          "weighted_contribution": 17.23,
+          "explanation": "row profile MAE=0.146, column profile MAE=0.132",
+          "evidence": {
+            "row_mae": 0.145519,
+            "column_mae": 0.131593
+          },
+          "limit": "Row/column occupancy profiles; not a substitute for measured design tokens."
+        },
+        "typography": {
+          "label": "Typography",
+          "weight": 15,
+          "score": 83.15,
+          "weighted_contribution": 12.47,
+          "explanation": "dark density similarity=0.799, row similarity=0.871; image-only heuristic",
+          "evidence": {
+            "source_dark_ratio": 0.527684,
+            "export_dark_ratio": 0.421519
+          },
+          "limit": "Dark-pixel density and row distribution; font family and text semantics are not observable from pixels."
+        },
+        "color_border_shadow": {
+          "label": "Color/border/shadow",
+          "weight": 15,
+          "score": 80.64,
+          "weighted_contribution": 12.1,
+          "explanation": "quantized RGB histogram similarity=0.806",
+          "evidence": {
+            "histogram_bins": 32
+          },
+          "limit": "Quantized color histogram; subtle border and shadow semantics may be ambiguous."
+        },
+        "content_density": {
+          "label": "Content/density",
+          "weight": 10,
+          "score": 82.06,
+          "weighted_contribution": 8.21,
+          "explanation": "mask coverage=0.841, density similarity=0.790",
+          "evidence": {
+            "source_density": 0.610321,
+            "export_density": 0.481852
+          },
+          "limit": "Foreground occupancy ratio and mask coverage; cannot verify copy correctness."
+        },
+        "assets": {
+          "label": "Assets",
+          "weight": 10,
+          "score": 86.38,
+          "weighted_contribution": 8.64,
+          "explanation": "component count similarity=0.909, area similarity=0.796; image-only heuristic",
+          "evidence": {
+            "source_components": 10,
+            "export_components": 11
+          },
+          "limit": "Connected-component count/area signature; cannot prove asset provenance or vector editability."
+        }
+      },
+      "weighted_score": 85.93,
+      "pixel_similarity": 0.838602,
+      "exact_similarity": 0.534586,
+      "score": 85.93,
+      "coverage": 0.713133,
+      "thresholds": {
+        "score": 90.0,
+        "coverage": 0.8
+      },
+      "passed": false,
+      "issue_count": 12,
+      "artifacts": {
+        "heatmap": "home-heatmap.png",
+        "overlay": "home-overlay.png",
+        "side_by_side": "home-side-by-side-annotated.png"
+      },
+      "issues": [
+        {
+          "id": "home-1440x900-I1",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "639014 pixels (8.43% da tela) ultrapassam o limiar de diferença; ajuste a região x=0, y=3932, w=1440, h=523.",
+          "bounds": {
+            "x": 0,
+            "y": 3932,
+            "width": 1440,
+            "height": 523
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I2",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "404094 pixels (5.33% da tela) ultrapassam o limiar de diferença; ajuste a região x=726, y=2156, w=702, h=580.",
+          "bounds": {
+            "x": 726,
+            "y": 2156,
+            "width": 702,
+            "height": 580
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I3",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "240120 pixels (3.17% da tela) ultrapassam o limiar de diferença; ajuste a região x=0, y=3340, w=726, h=580.",
+          "bounds": {
+            "x": 0,
+            "y": 3340,
+            "width": 726,
+            "height": 580
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I4",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "176576 pixels (2.33% da tela) ultrapassam o limiar de diferença; ajuste a região x=418, y=1040, w=603, h=400.",
+          "bounds": {
+            "x": 418,
+            "y": 1040,
+            "width": 603,
+            "height": 400
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I5",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "172188 pixels (2.27% da tela) ultrapassam o limiar de diferença; ajuste a região x=232, y=370, w=988, h=291.",
+          "bounds": {
+            "x": 232,
+            "y": 370,
+            "width": 988,
+            "height": 291
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I6",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "151697 pixels (2.00% da tela) ultrapassam o limiar de diferença; ajuste a região x=355, y=2156, w=359, h=580.",
+          "bounds": {
+            "x": 355,
+            "y": 2156,
+            "width": 359,
+            "height": 580
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I7",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "58021 pixels (0.77% da tela) ultrapassam o limiar de diferença; ajuste a região x=449, y=1598, w=269, h=329.",
+          "bounds": {
+            "x": 449,
+            "y": 1598,
+            "width": 269,
+            "height": 329
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I8",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "39535 pixels (0.52% da tela) ultrapassam o limiar de diferença; ajuste a região x=796, y=1603, w=196, h=282.",
+          "bounds": {
+            "x": 796,
+            "y": 1603,
+            "width": 196,
+            "height": 282
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I9",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "33197 pixels (0.44% da tela) ultrapassam o limiar de diferença; ajuste a região x=0, y=2156, w=109, h=580.",
+          "bounds": {
+            "x": 0,
+            "y": 2156,
+            "width": 109,
+            "height": 580
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I10",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "30643 pixels (0.40% da tela) ultrapassam o limiar de diferença; ajuste a região x=922, y=3578, w=266, h=281.",
+          "bounds": {
+            "x": 922,
+            "y": 3578,
+            "width": 266,
+            "height": 281
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I11",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "18537 pixels (0.24% da tela) ultrapassam o limiar de diferença; ajuste a região x=47, y=2156, w=256, h=134.",
+          "bounds": {
+            "x": 47,
+            "y": 2156,
+            "width": 256,
+            "height": 134
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I12",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P1",
+          "title": "Visual difference region",
+          "detail": "10370 pixels (0.14% da tela) ultrapassam o limiar de diferença; ajuste a região x=729, y=1611, w=76, h=282.",
+          "bounds": {
+            "x": 729,
+            "y": 1611,
+            "width": 76,
+            "height": 282
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        }
+      ]
+    }
+  ],
+  "regressions": false,
+  "structure_gate": {
+    "passed": true,
+    "errors": [],
+    "missing_inventory_keys": [],
+    "missing_tokens": [],
+    "missing_components": [],
+    "missing_component_instances": [],
+    "detached_instances": 0,
+    "required_tokens": [],
+    "required_components": [],
+    "required_component_instances": [],
+    "inventory_counts": {
+      "tokens": 0,
+      "components": 0,
+      "component_instances": 0,
+      "styles": 0,
+      "frames": 1
+    },
+    "frame_errors": []
+  },
+  "next_state": "REFINEMENT"
+}

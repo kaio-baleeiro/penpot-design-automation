@@ -1,0 +1,120 @@
+{
+  "run_id": "github-kaio-baleeiro-v2",
+  "cycle": 1,
+  "issues": [
+    {
+      "id": "home-1440x900-I1",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "100096 pixels (3.85% da tela) ultrapassam o limiar de diferença; ajuste a região x=0, y=0, w=1440, h=73.",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 73
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I2",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "61586 pixels (2.37% da tela) ultrapassam o limiar de diferença; ajuste a região x=100, y=112, w=266, h=297.",
+      "bounds": {
+        "x": 100,
+        "y": 112,
+        "width": 266,
+        "height": 297
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I3",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P3",
+      "title": "Visual difference region",
+      "detail": "4840 pixels (0.19% da tela) ultrapassam o limiar de diferença; ajuste a região x=468, y=1427, w=268, h=31.",
+      "bounds": {
+        "x": 468,
+        "y": 1427,
+        "width": 268,
+        "height": 31
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I4",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P3",
+      "title": "Visual difference region",
+      "detail": "3853 pixels (0.15% da tela) ultrapassam o limiar de diferença; ajuste a região x=1211, y=1313, w=117, h=34.",
+      "bounds": {
+        "x": 1211,
+        "y": 1313,
+        "width": 117,
+        "height": 34
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I5",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P3",
+      "title": "Visual difference region",
+      "detail": "3089 pixels (0.12% da tela) ultrapassam o limiar de diferença; ajuste a região x=114, y=717, w=62, h=64.",
+      "bounds": {
+        "x": 114,
+        "y": 717,
+        "width": 62,
+        "height": 64
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I6",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P3",
+      "title": "Visual difference region",
+      "detail": "2770 pixels (0.11% da tela) ultrapassam o limiar de diferença; ajuste a região x=990, y=1427, w=189, h=31.",
+      "bounds": {
+        "x": 990,
+        "y": 1427,
+        "width": 189,
+        "height": 31
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    }
+  ]
+}

@@ -43,6 +43,13 @@ A captura de URL usa duas sondagens por padrão. Desative-as apenas quando o
 scroll puder disparar uma ação destrutiva ou fora de escopo; registre essa
 limitação como evidência incompleta.
 
+`stable_after_wait` mede apenas a estabilidade das dimensões. Antes de congelar
+uma referência full-page, faça uma auditoria visual/asset por seção: aguarde e
+confirme mídia lazy, SVGs, imagens e fontes, compare com o inventário de assets
+e registre qualquer lacuna. Uma captura dimensionalmente estável, mas com
+blocos vazios, exige recaptura ou aprovação explícita e não deve ser tratada
+como referência completa.
+
 ## Registro obrigatório
 
 Para cada tela/viewport, grave em `source/frame-spec.json`:

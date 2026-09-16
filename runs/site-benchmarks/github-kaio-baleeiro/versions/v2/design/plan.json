@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "screen_id": "home",
+  "route": "/kaio-baleeiro",
+  "viewport": {"width": 1440, "height": 900},
+  "frame": {"width": 1440, "height": 1807},
+  "static": true,
+  "design_type": "editable_composition",
+  "components": [
+    "GitHub / Global Header",
+    "GitHub / Profile Header",
+    "GitHub / Profile Tabs",
+    "GitHub / Repository Content",
+    "GitHub / Footer"
+  ],
+  "asset_refs": ["github-avatar-full", "github-avatar-small", "github-achievement-pull-shark", "github-contribution-snake", "github-mark-and-icons"],
+  "source_map": "source/source-map.json",
+  "source_frame_spec": "source/frame-spec.json",
+  "penpot_file_id": "cf04346a-b044-818b-8008-a4ed84a51a17",
+  "penpot_page": "Benchmark — GitHub Kaio",
+  "penpot_frame_id": "9a19287b-6930-802f-8008-a4ee0b57f233",
+  "status": "exported_mcp",
+  "export": "runs/site-benchmarks/github-kaio-baleeiro/versions/v2/design/exports/home/1440x1807-cycle3.png",
+  "source_capture": "source/reference.png"
+}

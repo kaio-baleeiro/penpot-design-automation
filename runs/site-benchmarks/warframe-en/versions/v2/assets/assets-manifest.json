@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "version_id": "warframe-en-v2",
+  "status": "provenance_only_deferred_acquisition",
+  "source_id": "src-url-warframe-en",
+  "permission": "User authorized reuse of exact SVGs, images, logos, icons and other useful first-party source assets.",
+  "inventory_source": "../../../../source/proposals/bounded-v2/assets-inventory.json",
+  "assets": [
+    {"asset_id":"warframe-logo-white","kind":"logo","url":"https://www-static.warframe.com/images/logoWhite.png","usage":"global navigation","acquisition":"deferred","sha256":null},
+    {"asset_id":"lotus-mark","kind":"mark","url":"https://www-static.warframe.com/images/greyLotus.png","usage":"global navigation/footer","acquisition":"deferred","sha256":null},
+    {"asset_id":"warframe-logo-blue-white","kind":"logo","url":"https://www-static.warframe.com/images/warframe-logo-blue-white.svg","usage":"brand/footer","acquisition":"deferred","sha256":null},
+    {"asset_id":"nav-icons-material","kind":"icon-set","url":"https://www-static.warframe.com/images/icons/material/","usage":"dropdown, download, launch, login, menu, cross-platform controls","acquisition":"deferred","sha256":null},
+    {"asset_id":"homepage-dynamic-media","kind":"image-set","url":"https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/","usage":"hero, feature, news and shop cards","acquisition":"deferred","sha256":null},
+    {"asset_id":"warframe-uploaded-editorial","kind":"image-set","url":"https://www-static.warframe.com/uploads/","usage":"news and editorial cards","acquisition":"deferred","sha256":null},
+    {"asset_id":"prime-resurgence-logo","kind":"logo","url":"https://www-static.warframe.com/images/home/prime-resurgence-logo.png","usage":"Prime Resurgence banner","acquisition":"deferred","sha256":null},
+    {"asset_id":"social-icons-material","kind":"icon-set","url":"https://www-static.warframe.com/images/icons/material/","usage":"community/social strip","acquisition":"deferred","sha256":null},
+    {"asset_id":"platform-marks","kind":"logo-set","url":"https://www-static.warframe.com/images/footer/platforms/","usage":"platform availability footer","acquisition":"deferred","sha256":null},
+    {"asset_id":"classind-rating","kind":"rating-mark","url":"https://www-static.warframe.com/images/footer/ratings/classind.jpg","usage":"legal/footer","acquisition":"deferred","sha256":null}
+  ],
+  "notes": [
+    "The proposal inventory contains 41 deduplicated first-party URL entries grouped by usage; this manifest keeps stable group-level records until the boundary is approved.",
+    "Do not use a lookalike asset while an exact source asset is available.",
+    "Acquisition must record MIME, intrinsic dimensions, content hash, local path and licensing/attribution notes during build."
+  ]
+}

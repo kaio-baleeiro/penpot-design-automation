@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "screen_id": "home",
+  "frame_proposal": {"width": 1440, "height": 5837},
+  "viewport": {"width": 1440, "height": 900},
+  "status": "proposal_only",
+  "sections": [
+    {"id":"navigation","label":"Global navigation","y":[0,66],"components":["brand","primary-links","account-actions"]},
+    {"id":"hero","label":"Hero and feature cards","y":[66,1614],"components":["hero-media","headline","cta","feature-cards"]},
+    {"id":"news","label":"News & Updates","y":[1469,2799],"components":["section-heading","editorial-cards","see-all"]},
+    {"id":"shop","label":"Shop Warframe","y":[2799,4048],"components":["collection-feature","product-row","product-cards"]},
+    {"id":"prime","label":"Prime Resurgence","y":[4000,4400],"components":["feature-banner","logo","cta"]},
+    {"id":"guides","label":"Player Guides & Tools","y":[4400,5052],"components":["guides-card","community-card","referral-card"]},
+    {"id":"social","label":"Community connection","y":[5132,5296],"components":["social-icons","community-links"]},
+    {"id":"legal","label":"Support and legal navigation","y":[5296,5437],"components":["support-links","legal-links","language"]},
+    {"id":"footer","label":"Platforms, copyright and rating","y":[5437,5837],"components":["platform-logos","copyright","rating-mark"]}
+  ],
+  "build_constraints": [
+    "Do not include cookie consent as a page section; it is incidental overlay state.",
+    "Preserve accidental horizontal overflow inside the 1440px root frame.",
+    "Use exact source assets from assets-manifest.json once acquisition is approved.",
+    "Every section must be composed of editable Penpot shapes, text, vectors or source assets; no screenshot as visible design content."
+  ]
+}

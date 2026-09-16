@@ -1,6 +1,6 @@
 ---
 name: penpot-delivery
-description: Package a completed Penpot run with links, versioned provenance, visual comparisons, scores, issues and a clear delivered or needs-review decision.
+description: Package a completed Penpot run with immutable provenance, full visual evidence, scores, issues, asset references and a clear delivered-or-needs-review decision.
 metadata:
   short-description: Deliver Penpot files and visual validation evidence
   compatibility: Requires the project checkout and a completed Penpot workflow run directory.

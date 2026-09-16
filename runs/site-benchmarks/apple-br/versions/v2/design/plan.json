@@ -1,0 +1,24 @@
+{
+  "schema_version":"1.0",
+  "version_id":"apple-br-v2",
+  "worker_model":"gpt-5.6-luna",
+  "screen_id":"home",
+  "route":"https://www.apple.com/br/",
+  "viewport":{"width":1440,"height":900},
+  "frame":{"width":1440,"height":5261},
+  "frame_spec":"../source/frame-spec.json",
+  "reference":"../source/reference-full-page.png",
+  "asset_refs":["../source/assets-manifest.json"],
+  "component_rules":["editable text and vectors for every visible section","12px tile gutters","reusable promo-tile, link-row, tv-card and footer-column components","source image assets only where mapped; no screenshot as visible content"],
+  "sections":[
+    {"id":"global-nav","bounds":{"x":0,"y":0,"width":1440,"height":44},"content":["Apple","Loja","Mac","iPad","iPhone","Apple Watch","AirPods","TV e Casa","Entretenimento","Acessórios","Suporte"],"components":["global-nav"]},
+    {"id":"iphone-18-pro","bounds":{"x":0,"y":44,"width":1440,"height":692},"content":["iPhone 18 Pro","Muito mais Pro.","Disponível a partir de 18/09","Saiba mais","Pré-venda"],"asset_refs":["apple-iphone-18-pro"],"components":["hero-product"]},
+    {"id":"iphone-duo","bounds":{"x":0,"y":748,"width":1440,"height":692},"content":["iPhone Duo","Alô. Olá.","Pré-venda a partir de 16/10, às 9h (BRT)","Disponível a partir de 23/10","Saiba mais","Ver preços"],"asset_refs":["apple-iphone-duo"],"components":["hero-product"]},
+    {"id":"apple-watch-series-12","bounds":{"x":0,"y":1452,"width":1440,"height":692},"content":["Apple Watch Series 12","Com a medição de frequência cardíaca mais precisa em um wearable¹","Confira em breve a disponibilidade","Saiba mais","Ver preços"],"asset_refs":["apple-watch-series-12","apple-watch-series-logo"],"components":["hero-product"]},
+    {"id":"promo-grid","bounds":{"x":0,"y":2156,"width":1440,"height":1764},"content":["Apple Watch Ultra 4","Bateria que nem você ultrapassa.","AirPods 5","Descubra a magia do Cancelamento Ativo de Ruído.","MacBook Air","Agora com a potência do M5.","AirPods Pro 3","O melhor Cancelamento Ativo de Ruído do mundo em fones intra-auriculares².","iPad Air","Agora com a potência do M4.","MacBook Pro","Agora com M5, M5 Pro e M5 Max."],"asset_refs":["apple-watch-ultra-4","apple-watch-ultra-logo","apple-airpods-5","apple-macbook-air-m5","apple-airpods-pro-3","apple-ipad-air-m4","apple-ipad-air-logo"],"components":["promo-grid","promo-tile"]},
+    {"id":"tv-gallery","bounds":{"x":0,"y":3932,"width":1440,"height":571},"content":["Mayday","Silo","Matéria Escura","Desaparecida","Slow Horses","O Segredo de Widow's Bay","Assista agora"],"asset_refs":["apple-tv-gallery"],"components":["tv-card","tv-gallery"]},
+    {"id":"apple-footer","bounds":{"x":0,"y":4503,"width":1440,"height":758},"content":["notas de rodapé","Descobrir e Comprar","Loja","Mac","iPad","iPhone","Watch","AirPods","TV e Casa","Acessórios","Sua conta","Apple Store","Privacidade","Termos de Uso"],"components":["footer-column","footer"]}
+  ],
+  "prior_cycle3_fixes":[{"region":"y=3932","action":"build six editable TV cards with correct images and visible carousel framing"},{"region":"y=3340","action":"rebuild both promo tiles with real copy/assets and measured 702px widths"},{"region":"y=4503","action":"fill complete footer columns and legal notes"},{"region":"y=370,1040,1597","action":"match hero artwork scale, copy hierarchy and section offsets"}],
+  "export_plan":"runs/site-benchmarks/apple-br/versions/v2/design/exports/home/1440x5261-cycle3.png"
+}

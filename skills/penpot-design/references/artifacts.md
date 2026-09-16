@@ -106,6 +106,13 @@ duas perguntas mais a análise de ambiguidades deve existir. Exemplo executável
 }
 ```
 
+`design/exports/` and `design/` are build-owned. The evaluator exclusively owns
+each `cycles/cycle-N/` directory: it must be empty before validation and is
+created/populated only by the append-only scoring command. Never put README,
+exports or handoff notes in a cycle directory; use `design/`, `delivery/` or
+`feedback/` instead. If a cycle already contains files, stop and choose the
+next fresh version/run rather than deleting or overwriting history.
+
 Inicialize o run com `scripts/start-run.sh --run-dir <run-dir> --manifest
 <manifest.json>` e valide com o wrapper da skill `$penpot-validate`. O arquivo
 de cada ciclo é imutável; use o
