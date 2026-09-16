@@ -50,3 +50,4 @@ componentes; score visual não substitui o gate estrutural.
 - [O avaliador é dono dos diretórios de ciclo](../../penpot-build/lessons-learned/project/LL - evaluator owns cycle directories.md)
 - [Score heurístico alto não prova fidelidade da fonte](../../penpot-validate/lessons-learned/project/LL - heuristic score is not source fidelity.md)
 - [Estabilidade dimensional não prova completude visual](../../penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md)
+- [Boards aninhados exigem coordenadas locais](../../penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md)

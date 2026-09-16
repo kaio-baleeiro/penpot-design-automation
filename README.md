@@ -160,9 +160,11 @@ ciclos (`93,96 → 96,77 → 98,52`): o score visual passou, mas a revisão fina
 conteúdo/fonte reprovou. A Apple também percorreu os três ciclos
 (`85,93 → 87,30 → 89,57`) e não atingiu score, cobertura nem ausência de P1.
 Ambos estão corretamente em `NEEDS_REVIEW`, com side-by-side, overlay e
-heatmap de cada ciclo publicados. O Warframe tem planejamento v2 e um limite
-dinâmico proposto em `1440×5837`, ainda dependente de aprovação explícita antes
-da construção e pontuação.
+heatmap de cada ciclo publicados. O Warframe recebeu aprovação explícita para
+o limite dinâmico `1440×5837` e também percorreu três ciclos
+(`78,94 → 71,94 → 83,34`). Todas as seções ficaram editáveis e visíveis no
+ciclo final, mas score, cobertura e fidelidade de fonte reprovaram; o estado
+terminal é `NEEDS_REVIEW`, sem quarto ciclo.
 
 ## Infraestrutura
 

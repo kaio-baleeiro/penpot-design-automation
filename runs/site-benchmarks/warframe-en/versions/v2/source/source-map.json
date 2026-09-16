@@ -2,9 +2,9 @@
   "schema_version": "1.0",
   "version_id": "warframe-en-v2",
   "mapped_at": "2026-09-15",
-  "status": "proposed_not_approved",
-  "build_ready": false,
-  "requires_user_decision": true,
+  "status": "approved",
+  "build_ready": true,
+  "requires_user_decision": false,
   "sources": [
     {
       "source_id": "src-url-warframe-en",
@@ -15,8 +15,8 @@
       "observations": [
         {
           "observation_id": "obs-bounded-v2",
-          "evidence": "../../../../source/raw/bounded-1440x5837-v2/capture.json",
-          "reference_image": "../../../../source/raw/bounded-1440x5837-v2/source.png",
+          "evidence": "capture-metadata.json",
+          "reference_image": "reference-full-page.png",
           "viewport": {"width": 1440, "height": 900},
           "document_observed": {"width": 1983, "height": 5837},
           "frame_proposal": {"width": 1440, "height": 5837},
@@ -24,8 +24,8 @@
           "vertical_policy": "dynamic_bounded",
           "horizontal_policy": "accidental_overflow",
           "stable": false,
-          "boundary_status": "proposed_not_approved",
-          "notes": "Height 5837px repeated after wait; width samples 1923, 1914, 1983px. Extra width is off-canvas/contained overflow, not intentional page navigation."
+          "boundary_status": "approved",
+          "notes": "User approved ('sim, aprovo') freezing the 1440×5837px bounded frame. Width samples 1923, 1914, 1983px are documented as accidental off-canvas/contained overflow, not intentional page navigation."
         }
       ]
     }
@@ -35,7 +35,7 @@
     {
       "id": "conflict-dynamic-boundary",
       "detail": "The last validation run used 5953px and the bounded v2 capture used 5837px; height is reproducible within the new bounded protocol, but stability is false due to width variation.",
-      "resolution": "unresolved_until_user_approval"
+      "resolution": "resolved_by_user_approval_2026-09-16"
     }
   ],
   "evidence": [

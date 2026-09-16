@@ -3,7 +3,7 @@
   "screen_id": "home",
   "frame_proposal": {"width": 1440, "height": 5837},
   "viewport": {"width": 1440, "height": 900},
-  "status": "proposal_only",
+  "status": "approved_build_ready",
   "sections": [
     {"id":"navigation","label":"Global navigation","y":[0,66],"components":["brand","primary-links","account-actions"]},
     {"id":"hero","label":"Hero and feature cards","y":[66,1614],"components":["hero-media","headline","cta","feature-cards"]},

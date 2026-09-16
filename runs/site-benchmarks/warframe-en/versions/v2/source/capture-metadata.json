@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "captured_at": "2026-09-15T19:58:14.842020+00:00",
+  "source_type": "url",
+  "url": "https://www.warframe.com/en",
+  "url_sha256": "a09c8de212fef5fc89eedd22f835e9d14b16cb6538f3a9b2ac8394f7a479e0f7",
+  "viewport": {"width": 1440, "height": 900, "device_scale_factor": 1},
+  "http_status": 200,
+  "authenticated": false,
+  "capture_mode": "bounded_state",
+  "reference": "reference-full-page.png",
+  "document_observed": {"width": 1983, "height": 5837},
+  "samples": [
+    {"width": 1923, "height": 5837},
+    {"width": 1914, "height": 5837},
+    {"width": 1983, "height": 5837}
+  ],
+  "stable_after_wait": false,
+  "frame_approved": {"width": 1440, "height": 5837},
+  "vertical_policy": "dynamic_bounded",
+  "horizontal_policy": "accidental_overflow",
+  "approval": {"response": "sim, aprovo", "recorded_at": "2026-09-16"}
+}

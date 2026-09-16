@@ -9,7 +9,7 @@ fica ausente quando o gate não pôde comparar um export do Penpot.
 | Site | Run | Estado |
 |---|---|---|
 | Apple Brasil | [apple-br](apple-br/README.md) | v2 · NEEDS_REVIEW · 89,57 · 3 ciclos |
-| Warframe English | [warframe-en](warframe-en/README.md) | v2 planejado · limite dinâmico aguardando aprovação |
+| Warframe English | [warframe-en](warframe-en/README.md) | v2 · NEEDS_REVIEW · 83,34 · 3 ciclos |
 | GitHub kaio-baleeiro | [github-kaio-baleeiro](github-kaio-baleeiro/README.md) | v2 · NEEDS_REVIEW · 98,52 · 3 ciclos |
 
 ## Galeria de análise
@@ -40,9 +40,15 @@ cada ciclo; Luna executou captura, construção, exportação e correções.
   e [3](github-kaio-baleeiro/analysis/v2-cycle-3-home-side-by-side-annotated.png).
   Evolução: `93,96 → 96,77 → 98,52`; o score visual passou, mas a revisão de
   conteúdo/fonte reprovou e o estado final é `NEEDS_REVIEW`.
-- Warframe: [planejamento v2](warframe-en/versions/v2/README.md). A origem é
-  dinâmica; o limite reproduzível proposto é `1440×5837` e não será pontuado
-  antes de aprovação explícita.
+- Warframe: [pacote v2](warframe-en/versions/v2/README.md), com
+  [referência dinâmica aprovada 1440×5837](warframe-en/versions/v2/source/reference-full-page.png)
+  e comparações públicas dos ciclos
+  [1](warframe-en/analysis/v2-cycle-1-home-side-by-side-annotated.png),
+  [2](warframe-en/analysis/v2-cycle-2-home-side-by-side-annotated.png) e
+  [3](warframe-en/analysis/v2-cycle-3-home-side-by-side-annotated.png).
+  Evolução: `78,94 → 71,94 → 83,34`; o terceiro ciclo corrigiu seções
+  invisíveis, mas score, cobertura e fidelidade de fonte permaneceram abaixo
+  dos gates, encerrando em `NEEDS_REVIEW`.
 
 Cada `analysis/v2-cycle-N-*` contém side-by-side, overlay e heatmap públicos.
 Os diretórios `cycles/cycle-N/` são evidência imutável do avaliador e não devem

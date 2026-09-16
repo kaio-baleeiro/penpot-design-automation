@@ -1,22 +1,35 @@
 # Warframe EN — benchmark version 2
 
-Esta versão prepara a reconstrução editável da home de `https://www.warframe.com/en` a partir da captura bounded v2. Ela ainda não está liberada para construção: a origem reportou `stable_after_wait: false` por overflow horizontal incidental e precisa de confirmação humana do limite vertical.
+Reconstrução editável da home de `https://www.warframe.com/en` no projeto
+Penpot **Penpot Benchmarks**, arquivo **Site Benchmarks**, página
+`Benchmark — Warframe EN v2`.
 
-## Estado
+## Estado terminal
 
-- boundary proposta: `1440×5837`, viewport de observação `1440×900`;
-- política vertical: `dynamic_bounded`;
-- política horizontal: `accidental_overflow` (o frame permanece em 1440px);
-- `stable: false`, `build_ready: false`, `requires_user_decision: true`;
-- nenhum score, ciclo de validação ou aprovação foi criado nesta versão.
+**NEEDS_REVIEW.** O usuário aprovou explicitamente o limite dinâmico
+`1440×5837`, mantendo a largura excedente como overflow horizontal acidental.
+O revisor principal pontuou os três ciclos permitidos:
 
-O diagnóstico da execução anterior (`cycle 2`) foi preservado: a origem permaneceu instável, portanto o score ficou bloqueado. A decisão pendente e a recaptura necessária estão em `planning/questions.md` e `planning/decisions.md`.
+| Ciclo | Score | Cobertura | Resultado |
+|---|---:|---:|---|
+| 1 | 78,94 | 66,1622% | Reprovado |
+| 2 | 71,94 | 65,6995% | Reprovado com regressão |
+| 3 | 83,34 | 60,7192% | Reprovado; terminal |
+
+O ciclo 3 corrigiu o posicionamento local de filhos em boards aninhados e fez
+todas as seções aparecerem no export full-page. Ainda assim, cobertura,
+espaçamento, densidade, assets e fidelidade semântica ficaram abaixo dos gates.
+Não existe quarto ciclo.
 
 ## Conteúdo
 
-- `source/`: mapa sanitizado e evidências da captura bounded v2;
-- `assets/`: inventário de assets first-party, sem cookies, tokens ou payloads privados;
+- `source/`: mapa sanitizado, frame-spec aprovado e evidências da captura;
+- `assets/`: inventário de assets first-party;
 - `planning/`: plano de seções, perguntas e decisões;
-- `../source/proposals/bounded-v2/`: proposta original e evidência bruta referenciada.
+- `design/`: exports editáveis, inventário estrutural e logs MCP;
+- `cycles/`: evidência imutável do avaliador para os três ciclos;
+- `review-cycle-N.md`: revisão e decisão do agente principal;
+- `delivery/`: pacote terminal e referências Penpot.
 
-Após confirmação do limite, o worker Luna deve atualizar o handoff canônico, construir a tela editável no Penpot e então iniciar até três ciclos append-only de validação. O revisor final é responsável pelo score e pelo gate.
+As imagens públicas de side-by-side, overlay e heatmap ficam em
+`../../analysis/v2-cycle-N-*`.

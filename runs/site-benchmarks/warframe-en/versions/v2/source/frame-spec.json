@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "screens": [
+    {
+      "screen_id": "home",
+      "viewport": {"width": 1440, "height": 900},
+      "document": {"width": 1983, "height": 5837},
+      "frame": {"width": 1440, "height": 5837},
+      "vertical_policy": "dynamic_bounded",
+      "horizontal_policy": "accidental_overflow",
+      "capture_mode": "bounded_state",
+      "stable": false,
+      "build_ready": true,
+      "requires_user_decision": false,
+      "boundary_status": "approved",
+      "approval": {
+        "response": "sim, aprovo",
+        "approved_frame": {"width": 1440, "height": 5837},
+        "overflow": "accidental horizontal overflow",
+        "recorded_at": "2026-09-16"
+      },
+      "evidence": [
+        "runs/site-benchmarks/warframe-en/versions/v2/source/capture-metadata.json",
+        "runs/site-benchmarks/warframe-en/versions/v2/source/reference-full-page.png"
+      ]
+    }
+  ]
+}

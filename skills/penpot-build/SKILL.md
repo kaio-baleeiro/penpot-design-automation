@@ -49,6 +49,14 @@ each semantic component must have substantive descendants. A one-image frame,
 or a component containing only a label that names the section, is an invalid
 build even when it looks pixel-perfect.
 
+When a section is a nested Penpot board, position its descendants in that
+board's local coordinate system; convert page coordinates with
+`local_x = page_x - board_x` and `local_y = page_y - board_y`. Do not mix local
+and page coordinates inside the same container. Before handing off any long
+page, inspect the exported full-page PNG and verify that every mapped section
+contains visible content; shape and image counts alone do not prove visibility.
+See [`LL - nested boards require local coordinates.md`](lessons-learned/project/LL%20-%20nested%20boards%20require%20local%20coordinates.md).
+
 Plan first in `design/plan.json`: screen id, route/state, viewport, frame bounds, source
 anchors or briefing requirements, content, components, `asset_refs` pointing to
 the source manifest and expected responsive behavior. Then call the project Penpot client with
