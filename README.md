@@ -231,7 +231,8 @@ bucket explica seu escopo.
 
 ## Segurança dos registros
 
-Manifestos, decisões, mapas e relatórios sanitizados podem ser versionados.
-Capturas privadas, cookies, tokens, dumps, exports do Penpot e demais artefatos
-sensíveis permanecem em diretórios ignorados. Nunca coloque a URL autenticada do
-MCP em commits, relatórios ou comandos registrados.
+Manifestos, decisões, mapas, relatórios sanitizados, exports editáveis e imagens
+de comparação dos ciclos podem ser versionados. Capturas privadas, cookies,
+tokens, dumps, exports operacionais e demais artefatos sensíveis permanecem em
+diretórios ignorados. Nunca coloque a URL autenticada do MCP em commits,
+relatórios ou comandos registrados.

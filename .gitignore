@@ -61,3 +61,8 @@ skills/*/lessons-learned/local/*
 !runs/site-benchmarks/**/public/**
 !runs/site-benchmarks/**/analysis/
 !runs/site-benchmarks/**/analysis/**
+# Evaluator-generated cycle evidence is public/sanitized and is versioned so
+# visitors can inspect the workflow without opening Penpot. Raw captures and
+# validation/session material remain covered by the ignore rules above.
+!runs/site-benchmarks/**/cycles/
+!runs/site-benchmarks/**/cycles/**

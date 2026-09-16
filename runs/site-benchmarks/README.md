@@ -50,6 +50,11 @@ cada ciclo; Luna executou captura, construção, exportação e correções.
   invisíveis, mas score, cobertura e fidelidade de fonte permaneceram abaixo
   dos gates, encerrando em `NEEDS_REVIEW`.
 
-Cada `analysis/v2-cycle-N-*` contém side-by-side, overlay e heatmap públicos.
-Os diretórios `cycles/cycle-N/` são evidência imutável do avaliador e não devem
-ser editados nem usados como destino de exportações do Penpot.
+Cada `analysis/v2-cycle-N-*` contém imagens públicas de side-by-side, overlay e
+heatmap para uma galeria rápida. Os diretórios `cycles/cycle-N/` também publicam
+as imagens PNG geradas pelo avaliador (incluindo score, side-by-side anotado,
+overlay e heatmap de cada iteração), para que alguém que clone o repositório
+consiga entender o processo sem abrir o Penpot. Esses diretórios são evidência
+imutável: não devem ser editados nem usados como destino de exportações do
+Penpot. Capturas brutas, dumps de DOM/estilos, cookies e estado de sessão
+continuam locais e ignorados.
