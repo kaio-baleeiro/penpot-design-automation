@@ -97,9 +97,9 @@ class WorkflowGateTests(unittest.TestCase):
         from pathlib import Path
 
         root = Path(__file__).resolve().parents[1]
-        manifest = json.loads((root / "runs/katiauinvest-e2e/manifest.json").read_text(encoding="utf-8"))
-        delivery = json.loads((root / "runs/katiauinvest-e2e/delivery/manifest.json").read_text(encoding="utf-8"))
-        cycle = json.loads((root / "runs/katiauinvest-e2e/cycles/cycle-3/score.json").read_text(encoding="utf-8"))
+        manifest = json.loads((root / "runs/site-benchmarks/warframe-en/versions/v2/manifest.json").read_text(encoding="utf-8"))
+        delivery = json.loads((root / "runs/site-benchmarks/warframe-en/versions/v2/delivery/manifest.json").read_text(encoding="utf-8"))
+        cycle = json.loads((root / "runs/site-benchmarks/warframe-en/versions/v2/cycles/cycle-3/score.json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["state"], "NEEDS_REVIEW")
         self.assertEqual(manifest["state"], delivery["state"])
         self.assertEqual(manifest["state"], cycle["next_state"])

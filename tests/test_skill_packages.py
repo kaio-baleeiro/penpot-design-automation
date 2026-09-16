@@ -51,7 +51,7 @@ class AgentSkillsPackageTests(unittest.TestCase):
         result = subprocess.run(
             [
                 str(self.skills / "penpot-delivery/scripts/check-package.py"),
-                str(self.root / "runs/katiauinvest-e2e"),
+                str(self.root / "runs/site-benchmarks/warframe-en/versions/v2"),
             ],
             cwd="/",
             capture_output=True,
