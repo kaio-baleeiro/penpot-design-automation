@@ -10,3 +10,5 @@ terceiro ciclo contém todas as seções editáveis, mas não atingiu score,
 cobertura nem ausência de P1.
 
 Análise visual da fonte: [side-by-side anotada](analysis/side-by-side-annotated.png) · [overlay](analysis/overlay.png) · [heatmap](analysis/heatmap.png). Comparação da composição editável: [side-by-side](analysis/editable-side-by-side.png) · [overlay](analysis/editable-overlay.png) · [heatmap](analysis/editable-heatmap.png).
+
+Revalidação nova: [v3-validation-rerun](versions/v3-validation-rerun/README.md), com três ciclos completos e PNGs públicos.

@@ -13,3 +13,5 @@ O frame contém 9 boards de seção, 47 textos, 24 formas e 5 fills de imagem;
 a captura full-page original permanece apenas como evidência de comparação.
 
 Análise visual: [side-by-side anotada](analysis/side-by-side-annotated.png) · [overlay](analysis/overlay.png) · [heatmap](analysis/heatmap.png).
+
+Revalidação nova: [v3-validation-rerun](versions/v3-validation-rerun/README.md), com três ciclos completos e PNGs públicos.

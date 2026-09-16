@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "run_id": "apple-br-v3-validation-rerun",
+  "parent_run_id": "apple-br-v2",
+  "route": "reproduction",
+  "mode": "source",
+  "state": "VALIDATING",
+  "review_reason": "Fresh deterministic three-cycle validation of the latest editable export; structural/source-fidelity gates remain authoritative.",
+  "worker_model": "gpt-5.6-luna",
+  "source_refs": [
+    {"source_id": "src-url-apple-br", "type": "url", "location": "https://www.apple.com/br/"},
+    {"source_id": "src-full-page-apple-br-v2", "type": "screenshot", "location": "runs/site-benchmarks/apple-br/versions/v2/source/reference-full-page.png"}
+  ],
+  "target_viewports": [{"width": 1440, "height": 900}],
+  "screens": [{
+    "id": "home",
+    "viewport": {"width": 1440, "height": 900},
+    "frame_spec": {
+      "screen_id": "home",
+      "viewport": {"width": 1440, "height": 900},
+      "document": {"width": 1440, "height": 5261},
+      "frame": {"width": 1440, "height": 5261},
+      "vertical_policy": "finite_document",
+      "horizontal_policy": "container_overflow",
+      "capture_mode": "full_page",
+      "stable": true,
+      "build_ready": true,
+      "requires_user_decision": false,
+      "evidence": ["../../v2/source/reference-full-page.png", "../../v2/source/source-inventory.md"]
+    },
+    "source": "runs/site-benchmarks/apple-br/versions/v2/source/reference-full-page.png",
+    "penpot_export": "runs/site-benchmarks/apple-br/versions/v2/design/exports/home/1440x5261-cycle3.png",
+    "penpot_page": "Benchmark — Apple BR v2",
+    "penpot_frame_id": "9a19287b-6930-802f-8008-a4f18603c814",
+    "design_type": "editable_composition"
+  }],
+  "validation_cycle": 0,
+  "max_validation_cycles": 3,
+  "user_review_round": 0,
+  "lesson_refs": [
+    "skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
+    "skills/penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md",
+    "skills/penpot-validate/lessons-learned/project/LL - baseline must match representation.md",
+    "skills/penpot-validate/lessons-learned/project/LL - Inventário estrutural vazio invalida o benchmark.md"
+  ],
+  "approvals": {"briefing": true, "version": false, "design_system": false},
+  "intake": {"initial_questions_completed": true, "addendum_question_completed": true, "ambiguity_analysis_completed": true, "evidence": ["../../questions.md", "../../decisions.md"]},
+  "structure_inventory": "../v2/design/structure-inventory.json"
+}

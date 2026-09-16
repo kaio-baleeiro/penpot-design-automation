@@ -8,9 +8,9 @@ fica ausente quando o gate não pôde comparar um export do Penpot.
 
 | Site | Run | Estado |
 |---|---|---|
-| Apple Brasil | [apple-br](apple-br/README.md) | v2 · NEEDS_REVIEW · 89,57 · 3 ciclos |
-| Warframe English | [warframe-en](warframe-en/README.md) | v2 · NEEDS_REVIEW · 83,34 · 3 ciclos |
-| GitHub kaio-baleeiro | [github-kaio-baleeiro](github-kaio-baleeiro/README.md) | v2 · NEEDS_REVIEW · 98,52 · 3 ciclos |
+| Apple Brasil | [apple-br](apple-br/README.md) | v3 revalidação · NEEDS_REVIEW · 89,57 · 3 ciclos |
+| Warframe English | [warframe-en](warframe-en/README.md) | v3 revalidação · NEEDS_REVIEW · 83,34 · 3 ciclos |
+| GitHub kaio-baleeiro | [github-kaio-baleeiro](github-kaio-baleeiro/README.md) | v3 revalidação · NEEDS_REVIEW · 98,52 · 3 ciclos |
 
 ## Galeria de análise
 
@@ -58,3 +58,17 @@ consiga entender o processo sem abrir o Penpot. Esses diretórios são evidênci
 imutável: não devem ser editados nem usados como destino de exportações do
 Penpot. Capturas brutas, dumps de DOM/estilos, cookies e estado de sessão
 continuam locais e ignorados.
+
+## Revalidação v3
+
+Os diretórios `*/versions/v3-validation-rerun/` são uma execução nova e
+reprodutível do avaliador sobre os exports editáveis registrados na v2. Cada
+um contém os três ciclos completos e os PNGs gerados em cada ciclo:
+
+- [Apple — v3](apple-br/versions/v3-validation-rerun/README.md): [ciclo 1](apple-br/versions/v3-validation-rerun/cycles/cycle-1/home-side-by-side-annotated.png), [ciclo 2](apple-br/versions/v3-validation-rerun/cycles/cycle-2/home-side-by-side-annotated.png), [ciclo 3](apple-br/versions/v3-validation-rerun/cycles/cycle-3/home-side-by-side-annotated.png).
+- [GitHub — v3](github-kaio-baleeiro/versions/v3-validation-rerun/README.md): [ciclo 1](github-kaio-baleeiro/versions/v3-validation-rerun/cycles/cycle-1/home-side-by-side-annotated.png), [ciclo 2](github-kaio-baleeiro/versions/v3-validation-rerun/cycles/cycle-2/home-side-by-side-annotated.png), [ciclo 3](github-kaio-baleeiro/versions/v3-validation-rerun/cycles/cycle-3/home-side-by-side-annotated.png).
+- [Warframe — v3](warframe-en/versions/v3-validation-rerun/README.md): [ciclo 1](warframe-en/versions/v3-validation-rerun/cycles/cycle-1/home-side-by-side-annotated.png), [ciclo 2](warframe-en/versions/v3-validation-rerun/cycles/cycle-2/home-side-by-side-annotated.png), [ciclo 3](warframe-en/versions/v3-validation-rerun/cycles/cycle-3/home-side-by-side-annotated.png).
+
+O avaliador foi executado novamente, sem copiar os scores. A aprovação
+continua bloqueada quando score, cobertura, fidelidade semântica ou o gate
+estrutural falham; consulte `score.json` e `report.md` de cada ciclo.

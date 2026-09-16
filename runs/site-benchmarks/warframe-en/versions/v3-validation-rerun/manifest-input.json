@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "run_id": "warframe-en-v3-validation-rerun",
+  "parent_run_id": "warframe-en-v2",
+  "route": "reproduction",
+  "mode": "source",
+  "state": "VALIDATING",
+  "review_reason": "Fresh deterministic three-cycle validation of the approved 1440×5837 bounded state; accidental horizontal overflow and structural/source-fidelity gates remain authoritative.",
+  "worker_model": "gpt-5.6-luna",
+  "source_refs": [
+    {"source_id": "src-url-warframe-en", "type": "url", "location": "https://www.warframe.com/en", "precedence": 1},
+    {"source_id": "src-bounded-warframe-v2", "type": "screenshot", "location": "runs/site-benchmarks/warframe-en/versions/v2/source/reference-full-page.png", "precedence": 2}
+  ],
+  "target_viewports": [{"width": 1440, "height": 900}],
+  "screens": [{
+    "id": "home",
+    "viewport": {"width": 1440, "height": 900},
+    "frame_spec": {
+      "screen_id": "home",
+      "viewport": {"width": 1440, "height": 900},
+      "document": {"width": 1983, "height": 5837},
+      "frame": {"width": 1440, "height": 5837},
+      "vertical_policy": "dynamic_bounded",
+      "horizontal_policy": "accidental_overflow",
+      "capture_mode": "bounded_state",
+      "stable": false,
+      "build_ready": true,
+      "requires_user_decision": false,
+      "boundary_status": "approved",
+      "evidence": ["../../v2/source/capture-metadata.json", "../../v2/source/reference-full-page.png"]
+    },
+    "source": "runs/site-benchmarks/warframe-en/versions/v2/source/reference-full-page.png",
+    "penpot_export": "runs/site-benchmarks/warframe-en/versions/v2/design/exports/home/1440x5837-cycle3.png",
+    "penpot_page": "Benchmark — Warframe EN v2",
+    "penpot_frame": "Warframe EN — Home — 1440x5837",
+    "penpot_frame_id": "9a19287b-6930-802f-8008-a563a222c4d2",
+    "design_type": "editable_composition"
+  }],
+  "validation_cycle": 0,
+  "max_validation_cycles": 3,
+  "user_review_round": 0,
+  "lesson_refs": [
+    "skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
+    "skills/penpot-source-map/lessons-learned/project/LL - bounded state before scoring.md",
+    "skills/penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md",
+    "skills/penpot-validate/lessons-learned/project/LL - heuristic score is not source fidelity.md",
+    "skills/penpot-validate/lessons-learned/project/LL - Inventário estrutural vazio invalida o benchmark.md"
+  ],
+  "approvals": {"briefing": true, "version": false, "design_system": false},
+  "intake": {"initial_questions_completed": true, "addendum_question_completed": true, "ambiguity_analysis_completed": true, "evidence": ["../../planning/questions.md", "../../planning/decisions.md"]},
+  "structure_inventory": "../v2/design/structure-inventory.json"
+}
