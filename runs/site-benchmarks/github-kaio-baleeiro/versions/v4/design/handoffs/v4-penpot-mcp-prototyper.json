@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "profile": "penpot-mcp-prototyper",
+  "worker_model": "gpt-5.6-luna",
+  "run_id": "github-kaio-baleeiro-v4",
+  "phase": "build",
+  "inputs": ["design/plan.json", "design/visual-spec.json", "design/content-inventory.json", "source/frame-spec.json", "source/assets-manifest.json"],
+  "outputs": ["design/penpot-mcp-log.jsonl", "design/structure-inventory.json", "exports/cycle-1.png"],
+  "decisions": [
+    {"id": "build-v4-01", "decision": "Created a new versioned Penpot page/frame and preserved v2/v3 pages.", "evidence": "design/penpot-mcp-log.jsonl"},
+    {"id": "build-v4-02", "decision": "Reconstructed visible sections with editable descendants, reusable Public badge instances and local tokens.", "evidence": "design/structure-inventory.json"}
+  ],
+  "open_issues": [],
+  "checks": [
+    {"name": "asset-provenance", "status": "pass", "evidence": "source/assets-manifest.json"},
+    {"name": "mcp-log", "status": "pass", "evidence": "design/penpot-mcp-log.jsonl"},
+    {"name": "full-page-export", "status": "pass", "evidence": "exports/cycle-1.png"},
+    {"name": "editable-composition", "status": "pass", "evidence": "design/structure-inventory.json"}
+  ],
+  "next_profile": "visual-qa-auditor",
+  "stop_condition": "Build and export complete; root performs validation, scoring and final review."
+}

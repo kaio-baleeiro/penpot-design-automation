@@ -7,7 +7,7 @@ from scripts.publish_benchmark_comparisons import ARTIFACTS, PNG_SIGNATURE, publ
 
 
 class PublishBenchmarkComparisonsTests(unittest.TestCase):
-    def test_publishes_three_versioned_images_without_mutating_cycle(self):
+    def test_publishes_four_versioned_images_without_mutating_cycle(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             run = root / "run"
@@ -20,7 +20,7 @@ class PublishBenchmarkComparisonsTests(unittest.TestCase):
 
             destinations = publish(run, root / "analysis", "v2", 3)
 
-            self.assertEqual(len(destinations), 3)
+            self.assertEqual(len(destinations), 4)
             self.assertTrue(all(path.name.startswith("v2-cycle-3-") for path in destinations))
             self.assertTrue(all(path.read_bytes() == PNG_SIGNATURE + b"evidence" for path in destinations))
             self.assertTrue(all((cycle / name).exists() for name in ARTIFACTS))

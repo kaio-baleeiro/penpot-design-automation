@@ -1,0 +1,963 @@
+{
+  "schema_version": "1.0",
+  "file": {
+    "id": "cf04346a-b044-818b-8008-a4ed84a51a17",
+    "name": "Site Benchmarks"
+  },
+  "pages": [
+    {
+      "id": "cf04346a-b044-818b-8008-a4ed84a51a18",
+      "name": "Benchmark — GitHub Kaio"
+    },
+    {
+      "id": "9a19287b-6930-802f-8008-a4f185ec0506",
+      "name": "Benchmark — Apple BR v2"
+    },
+    {
+      "id": "9a19287b-6930-802f-8008-a563a210a1a0",
+      "name": "Benchmark — Warframe EN v2"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a6714b37dc3b",
+      "name": "Benchmark — Apple BR v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a6725d4e8fbd",
+      "name": "Benchmark — GitHub Kaio v4"
+    }
+  ],
+  "shape_count": 1266,
+  "shape_type_counts": {
+    "board": 73,
+    "text": 444,
+    "rectangle": 732,
+    "group": 2,
+    "path": 2,
+    "ellipse": 13
+  },
+  "frame_summaries": [
+    {
+      "id": "9a19287b-6930-802f-8008-a4ee0b57f233",
+      "name": "GitHub Kaio — Home — 1440x1807",
+      "visible_children": 7,
+      "descendant_count": 295,
+      "editable_shape_count": 288,
+      "type_counts": {
+        "board": 7,
+        "text": 63,
+        "rectangle": 225
+      },
+      "image_shape_count": 16,
+      "image_only": false
+    },
+    {
+      "id": "9a19287b-6930-802f-8008-a4f18603c814",
+      "name": "Apple BR — Home — 1440x5261",
+      "visible_children": 15,
+      "descendant_count": 110,
+      "editable_shape_count": 95,
+      "type_counts": {
+        "board": 15,
+        "text": 81,
+        "rectangle": 14
+      },
+      "image_shape_count": 14,
+      "image_only": false
+    },
+    {
+      "id": "9a19287b-6930-802f-8008-a563a222c4d2",
+      "name": "Warframe EN — Home — 1440x5837",
+      "visible_children": 9,
+      "descendant_count": 113,
+      "editable_shape_count": 104,
+      "type_counts": {
+        "board": 9,
+        "rectangle": 47,
+        "text": 57
+      },
+      "image_shape_count": 17,
+      "image_only": false
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67202c01eef",
+      "name": "Apple BR — Home — 1440x5261 — v4",
+      "visible_children": 12,
+      "descendant_count": 84,
+      "editable_shape_count": 72,
+      "type_counts": {
+        "board": 12,
+        "text": 57,
+        "rectangle": 15
+      },
+      "image_shape_count": 15,
+      "image_only": false
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a6741a129cb3",
+      "name": "GitHub Kaio — Home — 1440x1807 — v4",
+      "visible_children": 8,
+      "descendant_count": 557,
+      "editable_shape_count": 541,
+      "type_counts": {
+        "board": 14,
+        "group": 2,
+        "path": 2,
+        "text": 117,
+        "rectangle": 409,
+        "ellipse": 13
+      },
+      "image_shape_count": 2,
+      "image_only": false
+    }
+  ],
+  "main_component_instances": [
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f84c",
+      "name": "Apple / Apple / Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f84d",
+      "name": "Nav / "
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f84e",
+      "name": "Nav / Loja"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f84f",
+      "name": "Nav / Mac"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f850",
+      "name": "Nav / iPad"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f851",
+      "name": "Nav / iPhone"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f852",
+      "name": "Nav / Apple Watch"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f853",
+      "name": "Nav / AirPods"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f854",
+      "name": "Nav / TV e Casa"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f855",
+      "name": "Nav / Entretenimento"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f856",
+      "name": "Nav / Acessórios"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f857",
+      "name": "Nav / Suporte"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f858",
+      "name": "Nav / ⌕"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f859",
+      "name": "Nav / ▢"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615793",
+      "name": "Apple / Apple / Hero Product — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615794",
+      "name": "Apple / iPhone 18 Pro / exact source asset"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615795",
+      "name": "Apple / iPhone 18 Pro / title"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615796",
+      "name": "Apple / iPhone 18 Pro / subtitle"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615797",
+      "name": "Apple / iPhone 18 Pro / availability"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615798",
+      "name": "Apple / iPhone 18 Pro / links"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af7b1252",
+      "name": "Apple / Promo / Apple / Promo Tile — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af7b1253",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / exact source asset"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af7b1254",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / title"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af7b1255",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / subtitle"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af7b1256",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / links"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945608",
+      "name": "Apple / Apple / TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945609",
+      "name": "TV / card Mayday"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560a",
+      "name": "TV / title Mayday"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560b",
+      "name": "TV / card Silo"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560c",
+      "name": "TV / title Silo"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560d",
+      "name": "TV / card Matéria Escura"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560e",
+      "name": "TV / title Matéria Escura"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560f",
+      "name": "TV / card Desaparecida"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945610",
+      "name": "TV / title Desaparecida"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945611",
+      "name": "TV / card Slow Horses"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945612",
+      "name": "TV / title Slow Horses"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945613",
+      "name": "TV / card O Segredo de Widow's Bay"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945614",
+      "name": "TV / title O Segredo de Widow's Bay"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945615",
+      "name": "TV / CTA"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a95d",
+      "name": "Apple / Apple / Footer — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a95e",
+      "name": "Footer / notes"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a95f",
+      "name": "Footer / Descobrir e Comprar"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a960",
+      "name": "Footer / Sua conta"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a961",
+      "name": "Footer / Apple Store"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a962",
+      "name": "Footer / Para Empresas"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a963",
+      "name": "Footer / Valores da Apple"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a964",
+      "name": "Footer / legal"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a6741a22aaca",
+      "name": "Component / GitHub / Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a6741a30961d",
+      "name": "Public badge / border"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a6741a3e0f4a",
+      "name": "Public badge / label"
+    }
+  ],
+  "tokens": [
+    {
+      "set": "GitHub v4 — source tokens",
+      "type": "color",
+      "name": "github.ink"
+    },
+    {
+      "set": "GitHub v4 — source tokens",
+      "type": "color",
+      "name": "github.link"
+    },
+    {
+      "set": "GitHub v4 — source tokens",
+      "type": "color",
+      "name": "github.border"
+    },
+    {
+      "set": "Apple BR v4",
+      "type": "color",
+      "name": "color.apple.black"
+    },
+    {
+      "set": "Apple BR v4",
+      "type": "color",
+      "name": "color.apple.surface"
+    },
+    {
+      "set": "Apple BR v4",
+      "type": "color",
+      "name": "color.apple.link"
+    },
+    {
+      "set": "Apple BR v4",
+      "type": "dimension",
+      "name": "space.section"
+    },
+    {
+      "set": "Apple BR v4",
+      "type": "borderRadius",
+      "name": "radius.tile"
+    }
+  ],
+  "components": [
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af4dfc98",
+      "name": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af8738ab",
+      "name": "Promo Tile — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa2c92e",
+      "name": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a6741a53205d",
+      "name": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afcd8a70",
+      "name": "Footer — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af6d21ef",
+      "name": "Hero Product — v4"
+    }
+  ],
+  "component_instances": [
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f84c",
+      "name": "Apple / Apple / Global Navigation — v4",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f84d",
+      "name": "Nav / ",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f84e",
+      "name": "Nav / Loja",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f84f",
+      "name": "Nav / Mac",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f850",
+      "name": "Nav / iPad",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f851",
+      "name": "Nav / iPhone",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f852",
+      "name": "Nav / Apple Watch",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f853",
+      "name": "Nav / AirPods",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f854",
+      "name": "Nav / TV e Casa",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f855",
+      "name": "Nav / Entretenimento",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f856",
+      "name": "Nav / Acessórios",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f857",
+      "name": "Nav / Suporte",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f858",
+      "name": "Nav / ⌕",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af42f859",
+      "name": "Nav / ▢",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acd3",
+      "name": "Apple / Global Navigation — v4 / Instance",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acd4",
+      "name": "Nav / ",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acd5",
+      "name": "Nav / Loja",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acd6",
+      "name": "Nav / Mac",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acd7",
+      "name": "Nav / iPad",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acd8",
+      "name": "Nav / iPhone",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acd9",
+      "name": "Nav / Apple Watch",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acda",
+      "name": "Nav / AirPods",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acdb",
+      "name": "Nav / TV e Casa",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acdc",
+      "name": "Nav / Entretenimento",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acdd",
+      "name": "Nav / Acessórios",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acde",
+      "name": "Nav / Suporte",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51acdf",
+      "name": "Nav / ⌕",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af51ace0",
+      "name": "Nav / ▢",
+      "component": "Global Navigation — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615793",
+      "name": "Apple / Apple / Hero Product — v4",
+      "component": "Hero Product — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615794",
+      "name": "Apple / iPhone 18 Pro / exact source asset",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615795",
+      "name": "Apple / iPhone 18 Pro / title",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615796",
+      "name": "Apple / iPhone 18 Pro / subtitle",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615797",
+      "name": "Apple / iPhone 18 Pro / availability",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af615798",
+      "name": "Apple / iPhone 18 Pro / links",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af70044e",
+      "name": "Apple / Hero Product — v4 / Instance",
+      "component": "Hero Product — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af70044f",
+      "name": "Apple / iPhone 18 Pro / exact source asset",
+      "component": "Hero Product — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af700450",
+      "name": "Apple / iPhone 18 Pro / title",
+      "component": "Hero Product — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af700451",
+      "name": "Apple / iPhone 18 Pro / subtitle",
+      "component": "Hero Product — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af700452",
+      "name": "Apple / iPhone 18 Pro / availability",
+      "component": "Hero Product — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af700453",
+      "name": "Apple / iPhone 18 Pro / links",
+      "component": "Hero Product — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af7b1252",
+      "name": "Apple / Promo / Apple / Promo Tile — v4",
+      "component": "Promo Tile — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af7b1253",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / exact source asset",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af7b1254",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / title",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af7b1255",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / subtitle",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af7b1256",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / links",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af89f96d",
+      "name": "Apple / Promo Tile — v4 / Instance",
+      "component": "Promo Tile — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af89f96e",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / exact source asset",
+      "component": "Promo Tile — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af89f96f",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / title",
+      "component": "Promo Tile — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af89f970",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / subtitle",
+      "component": "Promo Tile — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af89f971",
+      "name": "Apple / Promo / Apple Watch Ultra 4 / links",
+      "component": "Promo Tile — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945608",
+      "name": "Apple / Apple / TV Card — v4",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945609",
+      "name": "TV / card Mayday",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560a",
+      "name": "TV / title Mayday",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560b",
+      "name": "TV / card Silo",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560c",
+      "name": "TV / title Silo",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560d",
+      "name": "TV / card Matéria Escura",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560e",
+      "name": "TV / title Matéria Escura",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af94560f",
+      "name": "TV / card Desaparecida",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945610",
+      "name": "TV / title Desaparecida",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945611",
+      "name": "TV / card Slow Horses",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945612",
+      "name": "TV / title Slow Horses",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945613",
+      "name": "TV / card O Segredo de Widow's Bay",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945614",
+      "name": "TV / title O Segredo de Widow's Bay",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674af945615",
+      "name": "TV / CTA",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc50",
+      "name": "Apple / TV Card — v4 / Instance",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc51",
+      "name": "TV / card Mayday",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc52",
+      "name": "TV / title Mayday",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc53",
+      "name": "TV / card Silo",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc54",
+      "name": "TV / title Silo",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc55",
+      "name": "TV / card Matéria Escura",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc56",
+      "name": "TV / title Matéria Escura",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc57",
+      "name": "TV / card Desaparecida",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc58",
+      "name": "TV / title Desaparecida",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc59",
+      "name": "TV / card Slow Horses",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc5a",
+      "name": "TV / title Slow Horses",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc5b",
+      "name": "TV / card O Segredo de Widow's Bay",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa6fc5c",
+      "name": "TV / title O Segredo de Widow's Bay",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afa71519",
+      "name": "TV / CTA",
+      "component": "TV Card — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a95d",
+      "name": "Apple / Apple / Footer — v4",
+      "component": "Footer — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a95e",
+      "name": "Footer / notes",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a95f",
+      "name": "Footer / Descobrir e Comprar",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a960",
+      "name": "Footer / Sua conta",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a961",
+      "name": "Footer / Apple Store",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a962",
+      "name": "Footer / Para Empresas",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a963",
+      "name": "Footer / Valores da Apple",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afb5a964",
+      "name": "Footer / legal",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afd0d9f3",
+      "name": "Apple / Footer — v4 / Instance",
+      "component": "Footer — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afd0d9f4",
+      "name": "Footer / notes",
+      "component": "Footer — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afd0d9f5",
+      "name": "Footer / Descobrir e Comprar",
+      "component": "Footer — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afd0d9f6",
+      "name": "Footer / Sua conta",
+      "component": "Footer — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afd1188c",
+      "name": "Footer / Apple Store",
+      "component": "Footer — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afd1188d",
+      "name": "Footer / Para Empresas",
+      "component": "Footer — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afd1188e",
+      "name": "Footer / Valores da Apple",
+      "component": "Footer — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674afd1188f",
+      "name": "Footer / legal",
+      "component": "Footer — v4"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67420d0b185",
+      "name": "Repo Public badge / projeto-leitura-de-dados",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67420d0b186",
+      "name": "Public badge / border",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67420d0b187",
+      "name": "Public badge / label",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67421106c90",
+      "name": "Repo Public badge / projeto-estoque",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67421106c91",
+      "name": "Public badge / border",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67421106c92",
+      "name": "Public badge / label",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67421530b85",
+      "name": "Repo Public badge / bootcamp-react",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67421530b86",
+      "name": "Public badge / border",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67421530b87",
+      "name": "Public badge / label",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674219c1d73",
+      "name": "Repo Public badge / pipeline-spring-boot-azure",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674219c1d74",
+      "name": "Public badge / border",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674219c1d75",
+      "name": "Public badge / label",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67421db2d76",
+      "name": "Repo Public badge / kaio-baleeiro",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67421db2d77",
+      "name": "Public badge / border",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a67421db2d78",
+      "name": "Public badge / label",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674222dbf65",
+      "name": "Repo Public badge / code-grafos",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674222dbf66",
+      "name": "Public badge / border",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a674222dbf67",
+      "name": "Public badge / label",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a6741a22aaca",
+      "name": "Component / GitHub / Repository visibility badge",
+      "component": "Repository visibility badge"
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a6741a30961d",
+      "name": "Public badge / border",
+      "component": null
+    },
+    {
+      "id": "b9b9f43f-1dd3-801e-8008-a6741a3e0f4a",
+      "name": "Public badge / label",
+      "component": null
+    }
+  ],
+  "detached_instances": [],
+  "styles": [],
+  "required_component_instances": []
+}

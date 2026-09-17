@@ -3,22 +3,29 @@
 Runs de reprodução pública em viewport base 1440×900.
 
 Cada run preserva a fonte, decisões, frame-spec e o paralelo visual gerado
-pela análise. As imagens abaixo são evidências públicas sanitizadas; o score
-fica ausente quando o gate não pôde comparar um export do Penpot.
+pela análise. A rodada v4 é a reconstrução atual, executada com o avaliador
+regional `penpot-visual-v2`; os resultados anteriores permanecem como histórico.
 
 | Site | Run | Estado |
 |---|---|---|
-| Apple Brasil | [apple-br](apple-br/README.md) | v3 revalidação · NEEDS_REVIEW · 89,57 · 3 ciclos |
-| Warframe English | [warframe-en](warframe-en/README.md) | v3 revalidação · NEEDS_REVIEW · 83,34 · 3 ciclos |
-| GitHub kaio-baleeiro | [github-kaio-baleeiro](github-kaio-baleeiro/README.md) | v3 revalidação · NEEDS_REVIEW · 98,52 · 3 ciclos |
+| Apple Brasil | [Apple v4](apple-br/versions/v4/README.md) | NEEDS_REVIEW · `71,38 → 71,08 → 71,04` |
+| Warframe English | [Warframe v4](warframe-en/versions/v4/README.md) | NEEDS_REVIEW · `64,23 → 65,38 → 64,03` |
+| GitHub kaio-baleeiro | [GitHub v4](github-kaio-baleeiro/versions/v4/README.md) | NEEDS_REVIEW · `83,79 → 83,92 → 84,10` |
 
-## Galeria de análise
+## Galeria v4 — ciclo final
 
-| Site | Referência | Side-by-side | Overlay | Heatmap |
-|---|---|---|---|---|
-| Apple Brasil | ![referência Apple](apple-br/source/reference.png) | ![Apple side-by-side](apple-br/analysis/side-by-side-annotated.png) | [overlay](apple-br/analysis/overlay.png) | [heatmap](apple-br/analysis/heatmap.png) |
-| Warframe English | ![referência Warframe](warframe-en/source/reference.png) | ![Warframe side-by-side](warframe-en/analysis/side-by-side-annotated.png) | [overlay](warframe-en/analysis/overlay.png) | [heatmap](warframe-en/analysis/heatmap.png) |
-| GitHub kaio-baleeiro | ![referência GitHub](github-kaio-baleeiro/source/reference.png) | ![GitHub side-by-side](github-kaio-baleeiro/analysis/side-by-side-annotated.png) | [overlay](github-kaio-baleeiro/analysis/overlay.png) | [heatmap](github-kaio-baleeiro/analysis/heatmap.png) |
+O detail board mostra fonte, export do Penpot e heatmap em faixas verticais
+legíveis. Os links laterais dão acesso às imagens completas.
+
+| Site | Detail board | Comparações completas |
+|---|---|---|
+| Apple Brasil | ![Apple v4 detail board](apple-br/analysis/v4-cycle-3-home-detail-board.png) | [side-by-side](apple-br/analysis/v4-cycle-3-home-side-by-side-annotated.png) · [overlay](apple-br/analysis/v4-cycle-3-home-overlay.png) · [heatmap](apple-br/analysis/v4-cycle-3-home-heatmap.png) |
+| Warframe English | ![Warframe v4 detail board](warframe-en/analysis/v4-cycle-3-home-detail-board.png) | [side-by-side](warframe-en/analysis/v4-cycle-3-home-side-by-side-annotated.png) · [overlay](warframe-en/analysis/v4-cycle-3-home-overlay.png) · [heatmap](warframe-en/analysis/v4-cycle-3-home-heatmap.png) |
+| GitHub kaio-baleeiro | ![GitHub v4 detail board](github-kaio-baleeiro/analysis/v4-cycle-3-home-detail-board.png) | [side-by-side](github-kaio-baleeiro/analysis/v4-cycle-3-home-side-by-side-annotated.png) · [overlay](github-kaio-baleeiro/analysis/v4-cycle-3-home-overlay.png) · [heatmap](github-kaio-baleeiro/analysis/v4-cycle-3-home-heatmap.png) |
+
+Os quatro artefatos também estão publicados para os ciclos 1 e 2 com o prefixo
+`v4-cycle-N-` em cada pasta `analysis/`. Nenhum benchmark foi aprovado: Apple e
+Warframe falharam score e cobertura; GitHub passou cobertura, mas não o score.
 
 ## Reconstruções v2 e histórico de ciclos
 

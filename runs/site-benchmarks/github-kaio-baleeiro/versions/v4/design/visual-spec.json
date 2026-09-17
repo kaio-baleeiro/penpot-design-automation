@@ -1,0 +1,21 @@
+{
+  "screen_id": "home",
+  "source": "source/reference.png",
+  "frame": {"width": 1440, "height": 1807},
+  "palette": {"header": "#000000", "surface": "#FFFFFF", "ink": "#1F2328", "muted": "#656D76", "link": "#0969DA", "border": "#D0D7DE", "active": "#FD8C73"},
+  "anchors": {
+    "global_header": {"x": 0, "y": 0, "width": 1440, "height": 72},
+    "profile_navigation": {"x": 0, "y": 72, "width": 1440, "height": 70},
+    "profile_avatar": {"x": 110, "y": 110, "width": 290, "height": 290},
+    "readme_card": {"x": 422, "y": 165, "width": 876, "height": 457},
+    "popular_repositories": {"x": 422, "y": 648, "width": 876, "height": 366},
+    "contributions_calendar": {"x": 422, "y": 1052, "width": 876, "height": 207},
+    "activity": {"x": 422, "y": 1282, "width": 876, "height": 373},
+    "footer": {"x": 0, "y": 1689, "width": 1440, "height": 118}
+  },
+  "section_rules": [
+    "Use editable text, rectangles, ellipses, SVG vectors and mapped fills.",
+    "Keep nested descendants in parent-local coordinates while preserving the page-space anchors above.",
+    "Keep the source reference out of visible frame content."
+  ]
+}

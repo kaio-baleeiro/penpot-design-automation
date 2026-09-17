@@ -140,7 +140,10 @@ def validate_screen(screen: dict[str, Any], output_dir: Path, baseline_screen: d
             "horizontal": frame_spec.get("horizontal_policy", "viewport_bounded"),
             "capture_mode": frame_spec.get("capture_mode", "viewport"),
         },
-        "source": str(source_path), "penpot_export": str(export_path),
+        # Persist the portable manifest references, never machine-local absolute
+        # paths introduced only for image loading.
+        "source": str(screen.get("_source_ref", source_path)),
+        "penpot_export": str(screen.get("_penpot_export_ref", export_path)),
         "source_dimensions": {"width": source.width, "height": source.height},
         "export_dimensions": {"width": exported.width, "height": exported.height},
         "metric_table_version": METRIC_TABLE_VERSION, "metrics": visual_metrics["metrics"], "weighted_score": score,
@@ -478,15 +481,26 @@ def validate_run(
     prior_path = Path(baseline) if baseline else (root / "cycles" / f"cycle-{cycle - 1}" / "score.json" if cycle > 1 else Path())
     previous = json.loads(prior_path.read_text(encoding="utf-8")) if prior_path and str(prior_path) != "." and prior_path.exists() else None
     prior_by_screen = {screen["screen"]: screen for screen in previous.get("screens", [])} if previous else {}
+
+    def resolved_screen(screen: dict[str, Any]) -> dict[str, Any]:
+        value = dict(screen)
+        for key in ("source", "penpot_export"):
+            path = Path(value[key])
+            value[f"_{key}_ref"] = str(path)
+            if not path.is_absolute():
+                value[key] = str((root / path).resolve())
+        return value
+
+    resolved_screens = [resolved_screen(screen) for screen in manifest["screens"]]
     if previous and not previous.get("passed", False):
-        for screen in manifest["screens"]:
+        for screen in resolved_screens:
             prior = prior_by_screen.get(screen["id"])
             if prior and prior.get("export_sha256"):
                 current_hash = sha256(read_png(str(screen["penpot_export"])))
                 if current_hash == prior["export_sha256"]:
                     raise ValueError(f"screen {screen['id']} reuses the failed prior-cycle export; refactor and export a new Penpot render before validating")
     output_dir.mkdir(parents=True, exist_ok=True)
-    screens = [validate_screen(screen, output_dir, prior_by_screen.get(screen["id"])) for screen in manifest["screens"]]
+    screens = [validate_screen(screen, output_dir, prior_by_screen.get(screen["id"])) for screen in resolved_screens]
     aggregate_score = sum(screen["score"] for screen in screens) / len(screens)
     aggregate_coverage = sum(screen["coverage"] for screen in screens) / len(screens)
     result = {"run_id": manifest.get("run_id", root.name), "cycle": cycle, "mode": manifest.get("mode", "source"),

@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0",
+  "profile":"penpot-mcp-prototyper",
+  "worker_model":"gpt-5.6-luna",
+  "run_id":"apple-br-v4",
+  "phase":"build",
+  "inputs":["source/frame-spec.json","source/assets-manifest.json","design/plan.json","design/visual-spec.json"],
+  "outputs":["design/penpot-mcp-log.jsonl","design/structure-inventory.json","exports/cycle-1.png"],
+  "decisions":[{"id":"build-v4-01","decision":"Created new page/frame and editable section boards using exact imported source image assets.","evidence":"design/penpot-mcp-log.jsonl"}],
+  "open_issues":[{"region":"text layers","cause":"Text glyphs absent in immediate export despite editable text descendants","fix":"Apply known-valid typography and re-export in serial MCP pass."},{"region":"component layer","cause":"Components and tokens were deferred due global active-page conflict","fix":"Root creates real masters/instances/tokens without touching prior pages."}],
+  "checks":[{"name":"frame-bounds","status":"pass","evidence":"design/structure-inventory.json"},{"name":"asset-provenance","status":"pass","evidence":"source/assets-manifest.json"},{"name":"screenshot-only","status":"pass","evidence":"image_only=false in design/structure-inventory.json"}],
+  "next_profile":"visual-qa-auditor",
+  "stop_condition":"Root must complete text/component/token corrections and export before validation; no score assigned here."
+}

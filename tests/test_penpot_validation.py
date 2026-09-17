@@ -97,6 +97,23 @@ class PenpotValidationTests(unittest.TestCase):
                 validate_run(run, 2)
             self.assertFalse((run / "cycles/cycle-2").exists())
 
+    def test_run_resolves_source_and_export_paths_from_run_root(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            source, exported = self._fixture(directory)
+            run = directory / "run"
+            run.mkdir()
+            (run / "source.png").write_bytes(source.read_bytes())
+            (run / "export.png").write_bytes(exported.read_bytes())
+            manifest = self._manifest(Path("source.png"), Path("export.png"))
+            start_run(run, manifest)
+            result = validate_run(run, 1)
+            self.assertTrue(result["passed"])
+            self.assertEqual(result["screens"][0]["source"], "source.png")
+            self.assertEqual(result["screens"][0]["penpot_export"], "export.png")
+            score = (run / "cycles/cycle-1/score.json").read_text(encoding="utf-8")
+            self.assertNotIn(str(directory), score)
+
     def test_sparse_wrong_layout_does_not_pass_from_white_space(self) -> None:
         source = draw_rect(solid(480, 360, (255, 255, 255)), 20, 20, 180, 100, (20, 20, 20))
         source = draw_rect(source, 260, 220, 180, 100, (40, 110, 220))

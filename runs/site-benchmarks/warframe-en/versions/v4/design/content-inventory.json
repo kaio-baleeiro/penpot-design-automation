@@ -1,0 +1,7 @@
+{
+  "screen":"home",
+  "sections":["Navigation","Hero","News & Updates","Shop Warframe","Prime Resurgence","Player Guides & Tools","Community","Support and Legal","Footer"],
+  "exact_copy_source":"../../v2/source/source-map.json",
+  "excluded_incidental_state":["Cookie consent overlay"],
+  "editable_requirements":["real text nodes","real rectangle/vector/image descendants","reusable components and instances","real local tokens"]
+}

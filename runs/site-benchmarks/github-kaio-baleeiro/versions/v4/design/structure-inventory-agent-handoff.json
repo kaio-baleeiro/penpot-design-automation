@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "status": "build_inventory_pending_root_validation",
+  "page": {"id": "b9b9f43f-1dd3-801e-8008-a6725d4e8fbd", "name": "Benchmark — GitHub Kaio v4"},
+  "frame": {"id": "b9b9f43f-1dd3-801e-8008-a6741a129cb3", "name": "GitHub Kaio — Home — 1440x1807 — v4", "width": 1440, "height": 1807, "visible_children": 8},
+  "descendant_counts": {"board": 14, "group": 2, "rectangle": 411, "path": 2, "text": 117, "ellipse": 13},
+  "editable_shape_count": 559,
+  "image_fill_count": 2,
+  "image_only": false,
+  "components": [{"name": "Repository visibility badge", "library": "local", "instances_in_frame": 6}],
+  "tokens": ["github.ink", "github.link", "github.border"],
+  "detached_instances": [],
+  "required_component_instances": ["Repository visibility badge × 6"],
+  "source_reference_as_visible_content": false,
+  "note": "Counts are the post-build MCP inventory snapshot; root owns validation and final structural interpretation."
+}

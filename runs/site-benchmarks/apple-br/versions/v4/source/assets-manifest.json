@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "source_id": "src-url-apple-br",
+  "asset_policy": "prefer_exact_first_party_source_asset",
+  "assets": [
+    {"asset_id":"apple-iphone-18-pro","kind":"image","origin":"https://www.apple.com/v/homepage/images/iphone-18-pro/a/hero_iphone_18_pro_preorder__dd68unjbzswi_large.jpg","mime":"image/jpeg","usage":"iPhone 18 Pro hero","acquisition":"imported_via_penpot_uploadMediaUrl","license":"Apple first-party"},
+    {"asset_id":"apple-iphone-duo","kind":"image","origin":"https://www.apple.com/br/homepage/built/heroes/26_iphone-duo_09/images/hero_iphone_duo_announce__fh4u8yzndpe2_large.jpg","mime":"image/jpeg","usage":"iPhone Duo hero","acquisition":"imported_via_penpot_uploadMediaUrl","license":"Apple first-party"},
+    {"asset_id":"apple-watch-series-12","kind":"image","origin":"https://www.apple.com/br/homepage/built/heroes/26_apple-watch-series-12_09/images/hero_apple_watch_series_12_preorder__cv2wd7ow8926_large.jpg","mime":"image/jpeg","usage":"Apple Watch Series 12 hero","acquisition":"imported_via_penpot_uploadMediaUrl","license":"Apple first-party"},
+    {"asset_id":"apple-watch-ultra-4","kind":"image","origin":"https://www.apple.com/br/homepage/built/promos/26_apple-watch-ultra-4_09/images/promo_apple_watch_ultra_4_preorder__fvnta8sy0wa6_large.jpg","mime":"image/jpeg","usage":"Apple Watch Ultra 4 promo","acquisition":"imported_via_penpot_uploadMediaUrl","license":"Apple first-party"},
+    {"asset_id":"apple-airpods-5","kind":"image","origin":"https://www.apple.com/v/homepage/images/airpods-5/a/promo_airpods_5_preorder__lydvte0llb6i_large.jpg","mime":"image/jpeg","usage":"AirPods 5 promo","acquisition":"imported_via_penpot_uploadMediaUrl","license":"Apple first-party"},
+    {"asset_id":"apple-macbook-air-m5","kind":"image","origin":"https://www.apple.com/v/homepage/images/macbook-air-m5/a/promo_macbook_air_m5__e5xk2yysqiie_large.jpg","mime":"image/jpeg","usage":"MacBook Air promo","acquisition":"imported_via_penpot_uploadMediaUrl","license":"Apple first-party"},
+    {"asset_id":"apple-airpods-pro-3","kind":"image","origin":"https://www.apple.com/v/homepage/images/airpods-pro-3/a/promo_airpods_pro_3__e4755qofhnyq_large.jpg","mime":"image/jpeg","usage":"AirPods Pro 3 promo","acquisition":"imported_via_penpot_uploadMediaUrl","license":"Apple first-party"},
+    {"asset_id":"apple-ipad-air-m4","kind":"image","origin":"https://www.apple.com/v/homepage/images/ipad-air-m4/a/promo_ipad_air_m4__bgcv7t286k8y_large.jpg","mime":"image/jpeg","usage":"iPad Air promo","acquisition":"imported_via_penpot_uploadMediaUrl","license":"Apple first-party"},
+    {"asset_id":"apple-macbook-pro","kind":"image","origin":"https://www.apple.com/v/homepage/images/macbook-pro/a/promo_macbook_pro__c9td9w1mc8ia_large.jpg","mime":"image/jpeg","usage":"MacBook Pro promo","acquisition":"imported_via_penpot_uploadMediaUrl","license":"Apple first-party"},
+    {"asset_id":"apple-tv-gallery","kind":"image-gallery","origin":"https://is1-ssl.mzstatic.com/","mime":"image/jpeg","usage":"six TV+ gallery cards; exact IDs are preserved in v2 manifest","acquisition":"imported_via_penpot_uploadMediaUrl","license":"Apple first-party"}
+  ],
+  "font_policy":"Observed Apple SF Pro stack; current MCP fallback is Inter/Inter Tight until root confirms available SF font."
+}

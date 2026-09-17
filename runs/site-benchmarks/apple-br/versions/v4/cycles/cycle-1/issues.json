@@ -1,0 +1,499 @@
+{
+  "run_id": "apple-br-v4",
+  "cycle": 1,
+  "issues": [
+    {
+      "id": "home-1440x900-I1",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P0",
+      "title": "Visual difference region",
+      "detail": "567612 pixels (7.49% da tela) ultrapassam o limiar; delta médio=166.6, máximo=255.",
+      "region": "y=3932..4455",
+      "bounds": {
+        "x": 255,
+        "y": 3932,
+        "width": 1185,
+        "height": 523
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 567612 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.074924,
+        "mean_delta": 166.6,
+        "max_delta": 255
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I2",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "231915 pixels (3.06% da tela) ultrapassam o limiar; delta médio=104.0, máximo=255.",
+      "region": "y=361..736",
+      "bounds": {
+        "x": 232,
+        "y": 361,
+        "width": 988,
+        "height": 375
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 231915 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.030612,
+        "mean_delta": 103.99,
+        "max_delta": 255
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I3",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "189899 pixels (2.51% da tela) ultrapassam o limiar; delta médio=132.5, máximo=247.",
+      "region": "y=1040..1440",
+      "bounds": {
+        "x": 418,
+        "y": 1040,
+        "width": 603,
+        "height": 400
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 189899 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.025066,
+        "mean_delta": 132.48,
+        "max_delta": 247
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I4",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P0",
+      "title": "Visual difference region",
+      "detail": "144703 pixels (1.91% da tela) ultrapassam o limiar; delta médio=210.1, máximo=255.",
+      "region": "y=2156..2736",
+      "bounds": {
+        "x": 1118,
+        "y": 2156,
+        "width": 322,
+        "height": 580
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 144703 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.019101,
+        "mean_delta": 210.14,
+        "max_delta": 255
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I5",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "123875 pixels (1.64% da tela) ultrapassam o limiar; delta médio=139.8, máximo=255.",
+      "region": "y=3932..4455",
+      "bounds": {
+        "x": 0,
+        "y": 3932,
+        "width": 242,
+        "height": 523
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 123875 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.016351,
+        "mean_delta": 139.83,
+        "max_delta": 255
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I6",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "64049 pixels (0.85% da tela) ultrapassam o limiar; delta médio=100.8, máximo=255.",
+      "region": "y=1522..1948",
+      "bounds": {
+        "x": 449,
+        "y": 1522,
+        "width": 264,
+        "height": 426
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 64049 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.008454,
+        "mean_delta": 100.82,
+        "max_delta": 255
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I7",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P3",
+      "title": "Visual difference region",
+      "detail": "55292 pixels (0.73% da tela) ultrapassam o limiar; delta médio=79.3, máximo=255.",
+      "region": "y=1524..1934",
+      "bounds": {
+        "x": 729,
+        "y": 1524,
+        "width": 263,
+        "height": 410
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 55292 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.007298,
+        "mean_delta": 79.25,
+        "max_delta": 255
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I8",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P0",
+      "title": "Visual difference region",
+      "detail": "35209 pixels (0.46% da tela) ultrapassam o limiar; delta médio=160.4, máximo=247.",
+      "region": "y=2156..2736",
+      "bounds": {
+        "x": 726,
+        "y": 2156,
+        "width": 121,
+        "height": 580
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 35209 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.004648,
+        "mean_delta": 160.42,
+        "max_delta": 247
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I9",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P3",
+      "title": "Visual difference region",
+      "detail": "32032 pixels (0.42% da tela) ultrapassam o limiar; delta médio=70.9, máximo=247.",
+      "region": "y=2748..3060",
+      "bounds": {
+        "x": 0,
+        "y": 2748,
+        "width": 356,
+        "height": 312
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 32032 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.004228,
+        "mean_delta": 70.88,
+        "max_delta": 247
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I10",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "28148 pixels (0.37% da tela) ultrapassam o limiar; delta médio=89.1, máximo=227.",
+      "region": "y=3581..3859",
+      "bounds": {
+        "x": 922,
+        "y": 3581,
+        "width": 182,
+        "height": 278
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 28148 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.003715,
+        "mean_delta": 89.12,
+        "max_delta": 227
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I11",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "27804 pixels (0.37% da tela) ultrapassam o limiar; delta médio=140.6, máximo=255.",
+      "region": "y=3586..3860",
+      "bounds": {
+        "x": 110,
+        "y": 3586,
+        "width": 226,
+        "height": 274
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 27804 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.00367,
+        "mean_delta": 140.64,
+        "max_delta": 255
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I12",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "25798 pixels (0.34% da tela) ultrapassam o limiar; delta médio=106.2, máximo=255.",
+      "region": "y=2394..2638",
+      "bounds": {
+        "x": 184,
+        "y": 2394,
+        "width": 334,
+        "height": 244
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 25798 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.003405,
+        "mean_delta": 106.19,
+        "max_delta": 255
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I13",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "20301 pixels (0.27% da tela) ultrapassam o limiar; delta médio=108.2, máximo=255.",
+      "region": "y=3578..3823",
+      "bounds": {
+        "x": 337,
+        "y": 3578,
+        "width": 154,
+        "height": 245
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 20301 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.00268,
+        "mean_delta": 108.21,
+        "max_delta": 255
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I14",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "18374 pixels (0.24% da tela) ultrapassam o limiar; delta médio=138.0, máximo=183.",
+      "region": "y=2156..2290",
+      "bounds": {
+        "x": 785,
+        "y": 2156,
+        "width": 256,
+        "height": 134
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 18374 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.002425,
+        "mean_delta": 137.96,
+        "max_delta": 183
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I15",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P0",
+      "title": "Visual difference region",
+      "detail": "11745 pixels (0.16% da tela) ultrapassam o limiar; delta médio=172.7, máximo=247.",
+      "region": "y=2960..3123",
+      "bounds": {
+        "x": 259,
+        "y": 2960,
+        "width": 184,
+        "height": 163
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 11745 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.00155,
+        "mean_delta": 172.65,
+        "max_delta": 247
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I16",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "8852 pixels (0.12% da tela) ultrapassam o limiar; delta médio=118.3, máximo=244.",
+      "region": "y=3127..3292",
+      "bounds": {
+        "x": 259,
+        "y": 3127,
+        "width": 182,
+        "height": 165
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 8852 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.001168,
+        "mean_delta": 118.26,
+        "max_delta": 244
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I17",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "7601 pixels (0.10% da tela) ultrapassam o limiar; delta médio=110.1, máximo=225.",
+      "region": "y=3578..3828",
+      "bounds": {
+        "x": 1104,
+        "y": 3578,
+        "width": 84,
+        "height": 250
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 7601 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.001003,
+        "mean_delta": 110.09,
+        "max_delta": 225
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    }
+  ]
+}

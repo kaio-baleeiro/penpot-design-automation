@@ -1,0 +1,25 @@
+{
+  "version": "v4",
+  "route": "reproduction",
+  "worker_model": "gpt-5.6-luna",
+  "target": {"page_name": "Benchmark — Warframe EN v4", "frame_name": "Warframe EN — Home — 1440x5837 v4", "width": 1440, "height": 5837},
+  "source": "../source/source-map.json",
+  "sections": [
+    {"id":"navigation","bounds":{"x":0,"y":0,"width":1440,"height":66},"content":["logoWhite","WHAT’S NEW","GAME","STORE","COMMUNITY","GUIDES","MEDIA","PLAY FREE NOW","LOG IN"],"asset_refs":["logoWhite"]},
+    {"id":"hero","bounds":{"x":0,"y":66,"width":1440,"height":1403},"content":["WARFRAME","JADE SHADOWS: CONSTELLATIONS","AVAILABLE NOW ON ALL PLATFORMS","WATCH TRAILER","LEARN MORE","ICEBLADE OF NARIN","SOMETHING IS COMING..."],"asset_refs":["hero-red-key-art","editorial-1","editorial-2"]},
+    {"id":"news","bounds":{"x":0,"y":1469,"width":1440,"height":1330},"content":["NEWS & UPDATES","Epoch Operation: Taubound","Get Banshee as a Free Login Reward to Celebrate Her Evolution","ARK/8 x Warframe Online Drop Available Now","Citrine Prime Access","SEE ALL"],"asset_refs":["news-1","news-2","news-3","news-4"]},
+    {"id":"shop","bounds":{"x":0,"y":2799,"width":1440,"height":1249},"content":["SHOP WARFRAME","MESA HEIRLOOM COLLECTION","R$66.99 BRL","NEW & NOTABLE","STYANAX PRIME","CONSTELLATIONS COMPLETE COLLECTION","FULMIN BATTLEKIT"],"asset_refs":["shop-hero"]},
+    {"id":"prime","bounds":{"x":0,"y":4048,"width":1440,"height":352},"content":["BANSHEE PRIME & MIRAGE PRIME","PURCHASE REGAL AYA","LEARN MORE"],"asset_refs":["prime-logo"]},
+    {"id":"guides","bounds":{"x":0,"y":4400,"width":1440,"height":652},"content":["PLAYER GUIDES & TOOLS","PLAYER GUIDES","COMMUNITY","REFERRAL PROGRAM","LEARN MORE"],"asset_refs":["guide-1","guide-2","guide-3"]},
+    {"id":"community","bounds":{"x":0,"y":5052,"width":1440,"height":140},"content":["CONNECT WITH OTHER TENNO"],"asset_refs":["social-icons"]},
+    {"id":"legal","bounds":{"x":0,"y":5192,"width":1440,"height":170},"content":["SUPPORT","PRESS","TERMS OF USE","PRIVACY POLICY","EULA","DEFINIÇÕES DE COOKIES","ENGLISH"],"asset_refs":[]},
+    {"id":"footer","bounds":{"x":0,"y":5362,"width":1440,"height":475},"content":["copyright","platform marks","rating mark","Violência","Interação de usuários","Compras on-line"],"asset_refs":["platform-marks","classind"]}
+  ],
+  "component_plan": [
+    {"name":"Warframe / Card / Learn More","kind":"component","descendants":["image-or-media","title","body","cta"]},
+    {"name":"Warframe / Button / Primary","kind":"component","descendants":["background","label"]},
+    {"name":"Warframe / Nav Action","kind":"component","descendants":["label"]}
+  ],
+  "token_plan": ["warframe.color.red","warframe.color.green","warframe.color.gold","warframe.color.ink","warframe.color.night","warframe.frame.width","warframe.nav.height"],
+  "constraints": ["Use local coordinates for descendants of section boards.","Never use the source screenshot as visible content; it may be hidden evidence only.","Do not write to cycles/; evaluator owns cycle directories."]
+}

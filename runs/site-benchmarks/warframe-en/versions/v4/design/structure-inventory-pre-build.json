@@ -1,0 +1,11 @@
+{
+  "version":"v4",
+  "status":"pending_serial_mcp_build",
+  "frame_id":null,
+  "descendant_counts":{},
+  "components":[],
+  "instances":[],
+  "tokens":[],
+  "detached_count":0,
+  "note":"Populate only after the serial MCP build. Do not infer structural completion from this placeholder."
+}

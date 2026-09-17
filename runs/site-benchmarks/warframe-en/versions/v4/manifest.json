@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "run_id": "warframe-en-v4",
+  "route": "reproduction",
+  "mode": "source",
+  "state": "NEEDS_REVIEW",
+  "worker_model": "gpt-5.6-luna",
+  "source_refs": [
+    {"source_id": "src-url-warframe-en", "type": "url", "location": "https://www.warframe.com/en"},
+    {"source_id": "src-bounded-v2", "type": "screenshot", "location": "../v2/source/reference-full-page.png"},
+    {"source_id": "src-bounded-v2-map", "type": "code", "location": "../v2/source/source-map.json"}
+  ],
+  "target_viewports": [{"width": 1440, "height": 900}],
+  "screens": [{
+    "id": "home",
+    "viewport": {"width": 1440, "height": 900},
+    "frame_spec": {
+      "screen_id": "home",
+      "viewport": {"width": 1440, "height": 900},
+      "document": {"width": 1983, "height": 5837},
+      "frame": {"width": 1440, "height": 5837},
+      "vertical_policy": "dynamic_bounded",
+      "horizontal_policy": "accidental_overflow",
+      "capture_mode": "frame_bounds",
+      "stable": false,
+      "build_ready": true,
+      "requires_user_decision": false,
+      "boundary_status": "approved",
+      "evidence": ["../v2/source/capture-metadata.json", "../v2/source/reference-full-page.png"]
+    },
+    "source": "../v2/source/reference-full-page.png",
+    "penpot_page": "Benchmark — Warframe EN v4",
+    "penpot_frame": "Warframe EN — Home — 1440x5837 — v4",
+    "penpot_page_id": "b9b9f43f-1dd3-801e-8008-a67636574e02",
+    "penpot_frame_id": "b9b9f43f-1dd3-801e-8008-a67636745b0f",
+    "penpot_export": "exports/cycle-3.png"
+  }],
+  "validation_cycle": 3,
+  "max_validation_cycles": 3,
+  "user_review_round": 0,
+  "lesson_refs": [
+    "../../../../../../skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
+    "../../../../../../skills/penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md"
+  ],
+  "approval": {"briefing": true, "design": false, "design_system": false},
+  "intake": {"initial_questions_completed": true, "addendum_question_completed": true, "ambiguity_analysis_completed": true, "evidence": ["../../questions.md", "../../decisions.md"]},
+  "structure_inventory": "design/structure-inventory.json",
+  "review_reason": "Three v4 cycles completed; final score 64.03 remains below the approval gate despite coverage improving to 61.58%."
+}

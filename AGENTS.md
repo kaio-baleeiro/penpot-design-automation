@@ -37,7 +37,9 @@ workflow; the shared vault stores project context and human-review notes.
    correction and scoring to `gpt-5.6-luna`. If that worker is unavailable,
    stop with `BLOCKED_MODEL_UNAVAILABLE` instead of falling back silently.
    Use the selected profile's `AGENT.md` and write its required handoff before
-   advancing to the next phase.
+   advancing to the next phase. Source/script preparation may be parallel, but
+   mutations, inventory and exports of one Penpot file are serial because the
+   active page is shared.
 6. Never edit scores, thresholds, immutable cycle artifacts or source evidence
    to make a run pass. A failed gate returns to targeted refactoring; cycle 3
    ends in `NEEDS_REVIEW`.

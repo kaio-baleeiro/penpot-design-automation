@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "screen_id": "home",
+  "route": "/kaio-baleeiro",
+  "viewport": {"width": 1440, "height": 900},
+  "frame": {"width": 1440, "height": 1807},
+  "static": true,
+  "design_type": "editable_composition",
+  "source": "source/reference.png",
+  "components": [
+    "GitHub / Global Header",
+    "GitHub / Profile Navigation",
+    "GitHub / Profile Sidebar",
+    "GitHub / README",
+    "GitHub / Popular Repositories",
+    "GitHub / Contributions",
+    "GitHub / Contribution Activity",
+    "GitHub / Footer",
+    "GitHub / Repository visibility badge"
+  ],
+  "asset_refs": [
+    "github-profile-avatar",
+    "github-contribution-snake",
+    "github-pull-shark-source-crop",
+    "github-mark-and-icons"
+  ],
+  "tokens": ["github.ink", "github.link", "github.border"],
+  "expected_behavior": "Static desktop reproduction; viewport-bounded width and finite full-page height.",
+  "penpot_page": "Benchmark — GitHub Kaio v4",
+  "penpot_page_id": "b9b9f43f-1dd3-801e-8008-a6725d4e8fbd",
+  "penpot_frame": "GitHub Kaio — Home — 1440x1807 — v4",
+  "penpot_frame_id": "b9b9f43f-1dd3-801e-8008-a6741a129cb3",
+  "export": "versions/v4/exports/cycle-1.png",
+  "status": "exported_mcp"
+}

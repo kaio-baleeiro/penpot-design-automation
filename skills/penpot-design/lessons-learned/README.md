@@ -51,4 +51,6 @@ componentes; score visual não substitui o gate estrutural.
 - [Score heurístico alto não prova fidelidade da fonte](../../penpot-validate/lessons-learned/project/LL - heuristic score is not source fidelity.md)
 - [Inventário estrutural vazio invalida o benchmark](../../penpot-validate/lessons-learned/project/LL - Inventário estrutural vazio invalida o benchmark.md)
 - [Estabilidade dimensional não prova completude visual](../../penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md)
-- [Boards aninhados exigem coordenadas locais](../../penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md)
+- [Boards aninhados exigem contrato explícito de coordenadas](../../penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md)
+- [A página ativa do Penpot serializa mutações MCP](../../penpot-build/lessons-learned/project/LL - active Penpot page makes mutations serial.md)
+- [Inventário renderizado inclui CSS e vídeo](../../penpot-source-map/lessons-learned/project/LL - rendered asset inventory includes CSS and video.md)

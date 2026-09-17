@@ -1,0 +1,25 @@
+{
+  "schema_version":"1.0",
+  "version_id":"apple-br-v4",
+  "worker_model":"gpt-5.6-luna",
+  "screen_id":"home",
+  "route":"https://www.apple.com/br/",
+  "viewport":{"width":1440,"height":900},
+  "frame":{"width":1440,"height":5261},
+  "frame_spec":"source/frame-spec.json",
+  "reference":"../v2/source/reference-full-page.png",
+  "asset_refs":["source/assets-manifest.json"],
+  "penpot_page_id":"b9b9f43f-1dd3-801e-8008-a6714b37dc3b",
+  "penpot_frame_id":"b9b9f43f-1dd3-801e-8008-a67202c01eef",
+  "sections":[
+    {"id":"global-nav","bounds":{"x":0,"y":0,"width":1440,"height":44},"asset_refs":[],"component":"Apple / Global Navigation"},
+    {"id":"iphone-18-pro","bounds":{"x":0,"y":44,"width":1440,"height":692},"asset_refs":["apple-iphone-18-pro"],"component":"Apple / Hero Product"},
+    {"id":"iphone-duo","bounds":{"x":0,"y":748,"width":1440,"height":692},"asset_refs":["apple-iphone-duo"],"component":"Apple / Hero Product"},
+    {"id":"watch-series-12","bounds":{"x":0,"y":1452,"width":1440,"height":692},"asset_refs":["apple-watch-series-12"],"component":"Apple / Hero Product"},
+    {"id":"promo-grid","bounds":{"x":0,"y":2156,"width":1440,"height":1764},"asset_refs":["apple-watch-ultra-4","apple-airpods-5","apple-macbook-air-m5","apple-airpods-pro-3","apple-ipad-air-m4","apple-macbook-pro"],"component":"Apple / Promo Tile"},
+    {"id":"tv-gallery","bounds":{"x":0,"y":3932,"width":1440,"height":571},"asset_refs":["apple-tv-gallery"],"component":"Apple / TV Card"},
+    {"id":"footer","bounds":{"x":0,"y":4503,"width":1440,"height":758},"asset_refs":[],"component":"Apple / Footer"}
+  ],
+  "status":"mcp_composition_created",
+  "open_issues":["Text layers absent in immediate export; root to fix serially before validation.","Component masters/instances and token bindings pending root serial MCP pass."]
+}

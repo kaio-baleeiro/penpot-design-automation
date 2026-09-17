@@ -15,7 +15,8 @@ de layout para o designer e o prototyper, não uma implementação web.
 - Inspecione `main`, `header`, `nav`, `section`, `article`, `footer`, headings,
   links, controles, ordem de fonte e estados visíveis.
 - Extraia computed styles, box-model, grid/flex, `@media`, `@container`, fontes,
-  backgrounds e imagens referenciadas. Confronte medidas com a captura full-page.
+  backgrounds, pseudo-elementos, posters/sources de vídeo e imagens carregadas
+  por configuração/runtime. Confronte medidas com a captura full-page.
 - Faça inventário dos assets exatos sob `public`, `static`, `assets`, `src` e
   sprites; nunca baixe um ícone genérico para mascarar ausência de busca.
 - Registre breakpoints por comportamento (coluna, navegação, tipografia), não

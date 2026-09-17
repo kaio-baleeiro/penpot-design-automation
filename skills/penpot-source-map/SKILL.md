@@ -63,8 +63,11 @@ hash.
 
 The user grants standing permission to inspect and retrieve useful assets from
 the supplied site/runtime and codebase for the requested reconstruction. Before
-planning the build, inspect image/SVG elements, inline SVG, CSS backgrounds,
-font declarations and loaded first-party or source-referenced resources. In
+planning the build, inspect image/SVG elements, inline SVG, computed CSS
+backgrounds, pseudo-elements, `video` poster/source URLs, runtime/dynamic
+configuration, font declarations and loaded first-party or source-referenced
+resources. Inventory assets section by section from the rendered page; an
+HTML-only `<img>` list is incomplete and cannot enter build planning. In
 code, inspect the relevant `public`, `static`, `assets`, `src` and component
 paths, including icon sets, sprites, illustrations, logos and fonts. Follow a
 CDN/resource URL when the supplied source itself references it and the asset is
@@ -79,7 +82,10 @@ ignored storage and expose only sanitized provenance in versioned records.
 `deferred`, `observed_not_embedded` and equivalent statuses are discovery states,
 not build-ready states. Before handoff, each planned asset must have a resolvable
 URL or local path and the build plan must name its `asset_id`; unresolved assets
-block faithful reconstruction instead of silently becoming placeholders.
+block faithful reconstruction instead of silently becoming placeholders. When
+a frozen screenshot shows a video frame that differs from the available
+poster, record that mismatch explicitly; do not claim the poster is the
+captured frame.
 
 ## Persistent map
 

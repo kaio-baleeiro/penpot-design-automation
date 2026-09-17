@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0",
+  "status":"composition_created_pending_component_pass",
+  "file":{"id":"cf04346a-b044-818b-8008-a4ed84a51a17","name":"Site Benchmarks","project":"Penpot Benchmarks"},
+  "page":{"id":"b9b9f43f-1dd3-801e-8008-a6714b37dc3b","name":"Benchmark — Apple BR v4"},
+  "frame_summaries":[{"id":"b9b9f43f-1dd3-801e-8008-a67202c01eef","name":"Apple BR — Home — 1440x5261 — v4","frame":{"width":1440,"height":5261},"visible_children":12,"descendant_count":84,"editable_shape_count":84,"image_shape_count":15,"text_count":57,"board_count":12,"image_only":false}],
+  "tokens":[],
+  "components":[],
+  "component_instances":[],
+  "detached_instances":[],
+  "styles":[],
+  "required_component_instances":["Apple / Global Navigation","Apple / Hero Product","Apple / Promo Tile","Apple / TV Card","Apple / Footer"],
+  "open_issues":["Create and bind real component masters/instances and token sets in the active Penpot page during serial root pass.","Text visibility in export requires MCP correction before validation."]
+}

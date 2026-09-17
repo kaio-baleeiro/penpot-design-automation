@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "assets": [
+    {
+      "asset_id": "github-profile-avatar",
+      "kind": "raster",
+      "source_id": "src-screenshot-github-kaio-baleeiro-full-page",
+      "origin": "Penpot mapped fill reused from the prior source-mapped frame",
+      "source_evidence": "source/reference.png",
+      "mime": "image/*",
+      "intrinsic_dimensions": {"width": 260, "height": 260},
+      "usage": "profile avatar",
+      "acquisition": "reused_source_fill",
+      "license": "public GitHub profile asset"
+    },
+    {
+      "asset_id": "github-contribution-snake",
+      "kind": "raster",
+      "source_id": "src-url-github-kaio-baleeiro",
+      "origin": "mapped contribution graphic fill reused from source frame",
+      "source_evidence": "source/reference.png",
+      "mime": "image/*",
+      "intrinsic_dimensions": {"width": 820, "height": 86},
+      "usage": "README contribution snake",
+      "acquisition": "reused_source_fill",
+      "license": "public GitHub profile asset"
+    },
+    {
+      "asset_id": "github-pull-shark-source-crop",
+      "kind": "raster-crop",
+      "source_id": "src-screenshot-github-kaio-baleeiro-full-page",
+      "origin": "source crop prepared from the achievement badge",
+      "source_evidence": "source/reference.png#x108-y705-w73-h65",
+      "mime": "image/png",
+      "intrinsic_dimensions": {"width": 73, "height": 65},
+      "usage": "Pull Shark x2 achievement provenance",
+      "acquisition": "source_evidence_crop",
+      "license": "public GitHub profile asset",
+      "note": "The frame uses an editable vector fallback; this crop is retained as exact source provenance for root review."
+    },
+    {
+      "asset_id": "github-mark-and-icons",
+      "kind": "svg",
+      "source_id": "src-url-github-kaio-baleeiro",
+      "origin": "GitHub first-party icon geometry",
+      "source_evidence": "source/reference.png",
+      "mime": "image/svg+xml",
+      "usage": "global header and footer marks",
+      "acquisition": "reconstructed_vector",
+      "license": "GitHub public brand assets"
+    }
+  ]
+}

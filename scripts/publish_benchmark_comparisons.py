@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Publish sanitized comparison PNGs from an immutable benchmark run.
 
-Cycle evidence stays untouched. Only the three visual comparison artifacts are
+Cycle evidence stays untouched. Only the four visual comparison artifacts are
 copied into the benchmark's tracked analysis directory, with version/cycle
 names so a later reconstruction cannot erase earlier evidence.
 """
@@ -18,6 +18,7 @@ ARTIFACTS = (
     "home-side-by-side-annotated.png",
     "home-overlay.png",
     "home-heatmap.png",
+    "home-detail-board.png",
 )
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 

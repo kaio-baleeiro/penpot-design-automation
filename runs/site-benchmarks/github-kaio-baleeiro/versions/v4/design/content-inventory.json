@@ -1,0 +1,28 @@
+{
+  "screen_id": "home",
+  "profile": {"name": "Kaio Silva Baleeiro de Jesus", "handle": "kaio-baleeiro", "bio": "Estudante de Tecnologia", "followers": "3 followers · 3 following"},
+  "readme": {
+    "filename": "kaio-baleeiro / README.md",
+    "title": "Oláá!! Eu sou o Kaio 😁",
+    "bullets": [
+      "Atualmente sou um contribuinte do mundo DevOps",
+      "Tenho conhecimento em algumas tecnologias, dentre elas estão Terraform, AWS, Azure, GitHub, Ansible, Jenkins, e algumas outras...",
+      "Pode me contatar pelo linkedin: https://www.linkedin.com/in/kaio-baleeiro/"
+    ]
+  },
+  "repositories": [
+    {"name": "projeto-leitura-de-dados", "language": "Java"},
+    {"name": "projeto-estoque", "language": "Java"},
+    {"name": "bootcamp-react", "language": "HTML"},
+    {"name": "pipeline-spring-boot-azure", "language": "Java"},
+    {"name": "kaio-baleeiro", "forks": 1},
+    {"name": "code-grafos", "description": "Desafio code grafos", "language": "Python"}
+  ],
+  "contributions": {"summary": "50 contributions in the last year", "months": ["Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"], "grid": {"columns": 52, "rows": 7}},
+  "activity": [
+    {"date": "September 2026", "summary": "Created 7 commits in 1 repository", "repository": "kaio-baleeiro/penpot-design-automation", "detail": "7 commits"},
+    {"summary": "Created 1 repository", "repository": "kaio-baleeiro/penpot-design-automation", "language": "Python", "date": "Sep 14"},
+    {"summary": "6 contributions in private repositories", "date": "Sep 5 – Sep 7"}
+  ],
+  "footer_links": ["Terms", "Privacy", "Security", "Status", "Community", "Docs", "Contact", "Manage cookies", "Do not share my personal information"]
+}

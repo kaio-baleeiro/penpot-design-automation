@@ -1,0 +1,22 @@
+{
+  "source_id": "src-bounded-v2",
+  "provenance": "../../source/proposals/bounded-v2/assets-inventory.json",
+  "policy": "Reuse exact first-party URLs; no external substitutes.",
+  "assets": [
+    {"asset_id":"warframe-hero-poster","kind":"image","url":"https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/19bb4c95-23f8-4ac0-b5c4-17f1923c19a3-webp.webp","usage":"hero background frozen state","acquisition":"uploaded_to_penpot"},
+    {"asset_id":"warframe-guide-player","kind":"image","url":"https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/586d1969-5352-4910-a01d-38ca38623fe0-webp.webp","usage":"Player Guides card","acquisition":"uploaded_to_penpot"},
+    {"asset_id":"warframe-guide-community","kind":"image","url":"https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/5802a9f7-0b49-4969-aaff-32f0f5c1a2de-webp.webp","usage":"Community card","acquisition":"uploaded_to_penpot"},
+    {"asset_id":"warframe-guide-referral","kind":"image","url":"https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/45141a5f-a834-485f-af5d-ee574fe3a3ea-webp.webp","usage":"Referral card","acquisition":"uploaded_to_penpot"},
+    {"asset_id":"logoWhite","kind":"raster","url":"https://www-static.warframe.com/images/logoWhite.png","usage":"navigation/footer"},
+    {"asset_id":"hero-red-key-art","kind":"raster","url":"https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/cc1706f7-36bc-4bd9-8f40-d8f06d663e1f-webp.webp","usage":"hero"},
+    {"asset_id":"editorial-1","kind":"raster","url":"https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/6bdb5736-d378-4099-9010-38ee25c5eb70-webp.webp","usage":"hero feature"},
+    {"asset_id":"editorial-2","kind":"raster","url":"https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/ed7c11dc-f731-4a4f-b536-f317818650f7-webp.webp","usage":"hero feature"},
+    {"asset_id":"news-1","kind":"raster","url":"https://www-static.warframe.com/uploads/d4940c6cab0ad90994427983cc628371.jpg","usage":"news"},
+    {"asset_id":"news-2","kind":"raster","url":"https://www-static.warframe.com/uploads/dd1d6b0711b5de5b77af1ae6d95a33ad.png","usage":"news"},
+    {"asset_id":"news-3","kind":"raster","url":"https://www-static.warframe.com/uploads/fdf7fab4abfd9d6057aa167a5ae01482.png","usage":"news"},
+    {"asset_id":"news-4","kind":"raster","url":"https://www-static.warframe.com/uploads/b48e84d751e6fb9fc957fb63f97135a7.jpg","usage":"news"},
+    {"asset_id":"shop-hero","kind":"raster","url":"https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/f114d053-3f98-46f3-a6a3-84cca3272f0a-webp.webp","usage":"shop"},
+    {"asset_id":"prime-logo","kind":"raster","url":"https://www-static.warframe.com/images/home/prime-resurgence-logo.png","usage":"prime"}
+  ],
+  "remaining_assets": "See ../../source/proposals/bounded-v2/assets-inventory.json for product, guide, social, platform and rating URLs."
+}

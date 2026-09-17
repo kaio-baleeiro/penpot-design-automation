@@ -1,0 +1,10 @@
+{
+  "schema_version":"1.0",
+  "sections":[
+    {"id":"global-nav","texts":["","Loja","Mac","iPad","iPhone","Apple Watch","AirPods","TV e Casa","Entretenimento","Acessórios","Suporte"],"evidence":"../../v2/source/reference-full-page.png"},
+    {"id":"heroes","texts":["iPhone 18 Pro","Muito mais Pro.","iPhone Duo","Alô. Olá.","Apple Watch Series 12"],"evidence":"../../v2/source/reference-full-page.png"},
+    {"id":"promos","texts":["Apple Watch Ultra 4","AirPods 5","MacBook Air","AirPods Pro 3","iPad Air","MacBook Pro"],"evidence":"../../v2/source/reference-full-page.png"},
+    {"id":"tv-gallery","texts":["Mayday","Silo","Matéria Escura","Desaparecida","Slow Horses","O Segredo de Widow's Bay","Assista agora"],"evidence":"../../v2/source/reference-full-page.png"},
+    {"id":"footer","texts":["Descobrir e Comprar","Sua conta","Apple Store","Para Empresas","Valores da Apple"],"evidence":"../../v2/source/reference-full-page.png"}
+  ]
+}

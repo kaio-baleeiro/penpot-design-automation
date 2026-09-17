@@ -1,0 +1,407 @@
+{
+  "run_id": "github-kaio-baleeiro-v4",
+  "cycle": 1,
+  "mode": "source",
+  "state": "VALIDATING",
+  "metric_table_version": "penpot-visual-v2",
+  "metric_table": {
+    "geometry_alignment": {
+      "label": "Geometry/alignment",
+      "weight": 25,
+      "limit": "Tile occupancy and edge alignment; semantic hierarchy still requires review."
+    },
+    "spacing_grid": {
+      "label": "Spacing/grid",
+      "weight": 15,
+      "limit": "Local row/column and edge profiles; not a substitute for measured design tokens."
+    },
+    "typography": {
+      "label": "Typography",
+      "weight": 15,
+      "limit": "Local dark-pixel and edge density; font identity and copy require metadata."
+    },
+    "color_border_shadow": {
+      "label": "Color/border/shadow",
+      "weight": 15,
+      "limit": "Per-region RGB similarity and histogram evidence; subtle semantics may remain ambiguous."
+    },
+    "content_density": {
+      "label": "Content/density",
+      "weight": 15,
+      "limit": "Foreground agreement is evaluated per region so blank canvas cannot dominate."
+    },
+    "assets": {
+      "label": "Assets",
+      "weight": 15,
+      "limit": "Local pixel/edge agreement helps detect wrong imagery but provenance still requires a manifest."
+    }
+  },
+  "passed": false,
+  "aggregate_score": 83.79,
+  "minimum_score": 83.79,
+  "aggregate_coverage": 0.934649,
+  "screens": [
+    {
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "frame": {
+        "width": 1440,
+        "height": 1807
+      },
+      "frame_policy": {
+        "vertical": "finite_document",
+        "horizontal": "viewport_bounded",
+        "capture_mode": "full_page"
+      },
+      "source": "../v2/source/reference.png",
+      "penpot_export": "exports/cycle-1.png",
+      "source_dimensions": {
+        "width": 1440,
+        "height": 1807
+      },
+      "export_dimensions": {
+        "width": 1440,
+        "height": 1807
+      },
+      "metric_table_version": "penpot-visual-v2",
+      "metrics": {
+        "geometry_alignment": {
+          "label": "Geometry/alignment",
+          "weight": 25,
+          "score": 85.64,
+          "weighted_contribution": 21.41,
+          "explanation": "local foreground IoU=0.997, edge IoU=0.286, bbox IoU=1.000",
+          "evidence": {
+            "source_bbox": [
+              0,
+              7,
+              480,
+              595
+            ],
+            "export_bbox": [
+              0,
+              7,
+              480,
+              595
+            ],
+            "iou": 1.0,
+            "tile_count": 24
+          },
+          "limit": "Tile occupancy and edge alignment; semantic hierarchy still requires review."
+        },
+        "spacing_grid": {
+          "label": "Spacing/grid",
+          "weight": 15,
+          "score": 66.31,
+          "weighted_contribution": 9.95,
+          "explanation": "edge IoU=0.286, regional floor=0.797, row/column MAE=0.001/0.002",
+          "evidence": {
+            "row_mae": 0.000979,
+            "column_mae": 0.00226,
+            "regional_floor": 0.797123
+          },
+          "limit": "Local row/column and edge profiles; not a substitute for measured design tokens."
+        },
+        "typography": {
+          "label": "Typography",
+          "weight": 15,
+          "score": 83.26,
+          "weighted_contribution": 12.49,
+          "explanation": "local dark similarity=0.893, edge IoU=0.286; image-only heuristic",
+          "evidence": {
+            "source_dark_ratio": 0.069546,
+            "export_dark_ratio": 0.065009
+          },
+          "limit": "Local dark-pixel and edge density; font identity and copy require metadata."
+        },
+        "color_border_shadow": {
+          "label": "Color/border/shadow",
+          "weight": 15,
+          "score": 94.05,
+          "weighted_contribution": 14.11,
+          "explanation": "local pixel similarity=0.975, regional floor=0.797",
+          "evidence": {
+            "histogram_bins": 32
+          },
+          "limit": "Per-region RGB similarity and histogram evidence; subtle semantics may remain ambiguous."
+        },
+        "content_density": {
+          "label": "Content/density",
+          "weight": 15,
+          "score": 94.76,
+          "weighted_contribution": 14.21,
+          "explanation": "local foreground IoU=0.997, regional floor=0.797",
+          "evidence": {
+            "source_density": 0.962995,
+            "export_density": 0.963628
+          },
+          "limit": "Foreground agreement is evaluated per region so blank canvas cannot dominate."
+        },
+        "assets": {
+          "label": "Assets",
+          "weight": 15,
+          "score": 77.47,
+          "weighted_contribution": 11.62,
+          "explanation": "local pixel similarity=0.975, edge IoU=0.286; image-only heuristic",
+          "evidence": {
+            "source_components": 1,
+            "export_components": 1
+          },
+          "limit": "Local pixel/edge agreement helps detect wrong imagery but provenance still requires a manifest."
+        }
+      },
+      "weighted_score": 83.79,
+      "regional": {
+        "score": 83.33,
+        "floor": 79.71,
+        "worst_regions": [
+          {
+            "x": 240,
+            "y": 480,
+            "width": 120,
+            "height": 120,
+            "score": 79.0
+          },
+          {
+            "x": 120,
+            "y": 480,
+            "width": 120,
+            "height": 120,
+            "score": 79.02
+          },
+          {
+            "x": 360,
+            "y": 360,
+            "width": 120,
+            "height": 120,
+            "score": 79.23
+          },
+          {
+            "x": 240,
+            "y": 360,
+            "width": 120,
+            "height": 120,
+            "score": 79.44
+          },
+          {
+            "x": 120,
+            "y": 360,
+            "width": 120,
+            "height": 120,
+            "score": 79.71
+          },
+          {
+            "x": 360,
+            "y": 480,
+            "width": 120,
+            "height": 120,
+            "score": 79.81
+          },
+          {
+            "x": 0,
+            "y": 480,
+            "width": 120,
+            "height": 120,
+            "score": 79.83
+          },
+          {
+            "x": 120,
+            "y": 120,
+            "width": 120,
+            "height": 120,
+            "score": 80.15
+          }
+        ]
+      },
+      "export_sha256": "d87eab6ca7110d4d6494b78df0a1b329e266f17c02e48012743d040ce2efeb5b",
+      "pixel_similarity": 0.971981,
+      "exact_similarity": 0.865443,
+      "score": 83.79,
+      "coverage": 0.934649,
+      "thresholds": {
+        "score": 90.0,
+        "coverage": 0.8
+      },
+      "passed": false,
+      "issue_count": 5,
+      "artifacts": {
+        "heatmap": "home-heatmap.png",
+        "overlay": "home-overlay.png",
+        "side_by_side": "home-side-by-side-annotated.png",
+        "detail_board": "home-detail-board.png"
+      },
+      "issues": [
+        {
+          "id": "home-1440x900-I1",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P0",
+          "title": "Visual difference region",
+          "detail": "7854 pixels (0.30% da tela) ultrapassam o limiar; delta médio=195.9, máximo=246.",
+          "region": "y=1283..1347",
+          "bounds": {
+            "x": 436,
+            "y": 1283,
+            "width": 892,
+            "height": 64
+          },
+          "expected": "match approved source evidence",
+          "actual": "region differs on 7854 connected pixels",
+          "probable_cause": "geometry, style, typography or asset mismatch",
+          "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+          "evidence": {
+            "area_ratio": 0.003018,
+            "mean_delta": 195.9,
+            "max_delta": 246
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I2",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P3",
+          "title": "Visual difference region",
+          "detail": "5024 pixels (0.19% da tela) ultrapassam o limiar; delta médio=78.1, máximo=237.",
+          "region": "y=263..409",
+          "bounds": {
+            "x": 126,
+            "y": 263,
+            "width": 235,
+            "height": 146
+          },
+          "expected": "match approved source evidence",
+          "actual": "region differs on 5024 connected pixels",
+          "probable_cause": "geometry, style, typography or asset mismatch",
+          "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+          "evidence": {
+            "area_ratio": 0.001931,
+            "mean_delta": 78.09,
+            "max_delta": 237
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I3",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P3",
+          "title": "Visual difference region",
+          "detail": "4659 pixels (0.18% da tela) ultrapassam o limiar; delta médio=59.0, máximo=182.",
+          "region": "y=158..334",
+          "bounds": {
+            "x": 118,
+            "y": 158,
+            "width": 180,
+            "height": 176
+          },
+          "expected": "match approved source evidence",
+          "actual": "region differs on 4659 connected pixels",
+          "probable_cause": "geometry, style, typography or asset mismatch",
+          "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+          "evidence": {
+            "area_ratio": 0.00179,
+            "mean_delta": 59.04,
+            "max_delta": 182
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I4",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P2",
+          "title": "Visual difference region",
+          "detail": "3780 pixels (0.15% da tela) ultrapassam o limiar; delta médio=111.0, máximo=224.",
+          "region": "y=678..781",
+          "bounds": {
+            "x": 110,
+            "y": 678,
+            "width": 69,
+            "height": 103
+          },
+          "expected": "match approved source evidence",
+          "actual": "region differs on 3780 connected pixels",
+          "probable_cause": "geometry, style, typography or asset mismatch",
+          "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+          "evidence": {
+            "area_ratio": 0.001453,
+            "mean_delta": 111.05,
+            "max_delta": 224
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        },
+        {
+          "id": "home-1440x900-I5",
+          "screen": "home",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "severity": "P2",
+          "title": "Visual difference region",
+          "detail": "2880 pixels (0.11% da tela) ultrapassam o limiar; delta médio=135.0, máximo=230.",
+          "region": "y=71..73",
+          "bounds": {
+            "x": 0,
+            "y": 71,
+            "width": 1440,
+            "height": 2
+          },
+          "expected": "match approved source evidence",
+          "actual": "region differs on 2880 connected pixels",
+          "probable_cause": "geometry, style, typography or asset mismatch",
+          "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+          "evidence": {
+            "area_ratio": 0.001107,
+            "mean_delta": 135.0,
+            "max_delta": 230
+          },
+          "status": "open",
+          "source": "deterministic-validator"
+        }
+      ]
+    }
+  ],
+  "regressions": false,
+  "structure_gate": {
+    "passed": true,
+    "errors": [],
+    "missing_inventory_keys": [],
+    "missing_tokens": [],
+    "missing_components": [],
+    "missing_component_instances": [],
+    "detached_instances": 0,
+    "required_tokens": [],
+    "required_components": [],
+    "required_component_instances": [],
+    "inventory_counts": {
+      "tokens": 11,
+      "components": 14,
+      "component_instances": 193,
+      "styles": 0,
+      "frames": 6
+    },
+    "frame_errors": []
+  },
+  "next_state": "REFINEMENT"
+}

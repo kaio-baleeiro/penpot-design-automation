@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "run_id": "github-kaio-baleeiro-v4",
+  "parent_run_id": "github-kaio-baleeiro",
+  "route": "reproduction",
+  "mode": "source",
+  "state": "NEEDS_REVIEW",
+  "worker_model": "gpt-5.6-luna",
+  "source_refs": [
+    {
+      "source_id": "src-screenshot-github-kaio-baleeiro-full-page",
+      "type": "screenshot",
+      "location": "../v2/source/reference.png",
+      "precedence": 1
+    },
+    {
+      "source_id": "src-url-github-kaio-baleeiro",
+      "type": "url",
+      "location": "https://github.com/kaio-baleeiro",
+      "precedence": 2
+    }
+  ],
+  "target_viewports": [{"width": 1440, "height": 900}],
+  "screens": [
+    {
+      "id": "home",
+      "viewport": {"width": 1440, "height": 900},
+      "frame_spec": {
+        "screen_id": "home",
+        "viewport": {"width": 1440, "height": 900},
+        "document": {"width": 1440, "height": 1807},
+        "frame": {"width": 1440, "height": 1807},
+        "vertical_policy": "finite_document",
+        "horizontal_policy": "viewport_bounded",
+        "capture_mode": "full_page",
+        "stable": true,
+        "build_ready": true,
+        "requires_user_decision": false,
+        "evidence": ["../v2/source/frame-spec.json", "../v2/source/reference.png"]
+      },
+      "source": "../v2/source/reference.png",
+      "penpot_export": "exports/cycle-3.png",
+      "penpot_page": "Benchmark — GitHub Kaio v4",
+      "penpot_frame": "GitHub Kaio — Home — 1440x1807 — v4",
+      "penpot_page_id": "b9b9f43f-1dd3-801e-8008-a6725d4e8fbd",
+      "penpot_frame_id": "b9b9f43f-1dd3-801e-8008-a6741a129cb3",
+      "design_type": "editable_composition"
+    }
+  ],
+  "validation_cycle": 3,
+  "max_validation_cycles": 3,
+  "user_review_round": 0,
+  "lesson_refs": [
+    "skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
+    "skills/penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md",
+    "skills/penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md"
+  ],
+  "approval": {"briefing": true, "design": false, "design_system": false},
+  "intake": {
+    "initial_questions_completed": true,
+    "addendum_question_completed": true,
+    "ambiguity_analysis_completed": true,
+    "evidence": ["questions.md", "decisions.md"]
+  },
+  "design_evidence": [
+    "design/plan.json",
+    "design/visual-spec.json",
+    "design/content-inventory.json",
+    "design/structure-inventory.json",
+    "design/penpot-mcp-log.jsonl",
+    "exports/cycle-3.png"
+  ],
+  "structure_inventory": "design/structure-inventory.json",
+  "review_reason": "Three v4 cycles completed; score improved from 83.79 to 84.10 but remains below the 90-point approval gate."
+}

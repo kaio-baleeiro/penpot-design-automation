@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "profile": "visual-ui-designer",
+  "worker_model": "gpt-5.6-luna",
+  "run_id": "github-kaio-baleeiro-v4",
+  "phase": "planning",
+  "inputs": ["source/reference.png", "source/frame-spec.json", "source/assets-manifest.json"],
+  "outputs": ["design/visual-spec.json", "design/content-inventory.json", "design/plan.json"],
+  "decisions": [
+    {"id": "visual-v4-01", "decision": "Preserve the classic GitHub profile composition and full-page 1440×1807 bounds.", "evidence": "source/reference.png"},
+    {"id": "visual-v4-02", "decision": "Keep desktop page width viewport-bounded; do not expand for nested calendar/activity content.", "evidence": "source/frame-spec.json"}
+  ],
+  "open_issues": [],
+  "checks": [{"name": "source-anchors", "status": "pass", "evidence": "design/visual-spec.json"}, {"name": "content-inventory", "status": "pass", "evidence": "design/content-inventory.json"}],
+  "next_profile": "penpot-mcp-prototyper",
+  "stop_condition": "Plan and visual specification are complete; build proceeds through Penpot MCP."
+}

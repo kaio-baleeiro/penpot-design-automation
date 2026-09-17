@@ -63,13 +63,21 @@ each semantic component must have substantive descendants. A one-image frame,
 or a component containing only a label that names the section, is an invalid
 build even when it looks pixel-perfect.
 
-When a section is a nested Penpot board, position its descendants in that
-board's local coordinate system; convert page coordinates with
-`local_x = page_x - board_x` and `local_y = page_y - board_y`. Do not mix local
-and page coordinates inside the same container. Before handing off any long
+When a section is a nested Penpot board, declare whether each build helper
+accepts page-space or parent-local inputs and use that contract consistently.
+`penpotUtils.setParentXY` receives parent-local values; a helper that accepts
+page-space anchors must convert them exactly once with
+`local_x = page_x - board_x` and `local_y = page_y - board_y`. Never pass an
+already-local value through that conversion. Before handing off any long
 page, inspect the exported full-page PNG and verify that every mapped section
 contains visible content; shape and image counts alone do not prove visibility.
 See [`LL - nested boards require local coordinates.md`](lessons-learned/project/LL%20-%20nested%20boards%20require%20local%20coordinates.md).
+
+Penpot exposes one active page to MCP mutations. Serialize page opening,
+mutation, inventory and export operations; before every mutation/export assert
+the expected page id and frame id. Parallel workers may prepare source maps and
+scripts, but they must not mutate the same Penpot file concurrently. See
+[`LL - active Penpot page makes mutations serial.md`](lessons-learned/project/LL%20-%20active%20Penpot%20page%20makes%20mutations%20serial.md).
 
 Plan first in `design/plan.json`: screen id, route/state, viewport, frame bounds, source
 anchors or briefing requirements, content, components, `asset_refs` pointing to

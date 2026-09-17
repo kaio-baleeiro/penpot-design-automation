@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "source_id": "src-bounded-v2",
+  "precedence": ["src-url-warframe-en", "src-bounded-v2", "src-bounded-v2-dom"],
+  "decision": "The approved bounded capture at 1440x5837 is authoritative for v4. Root width stays 1440 because observed extra width is accidental off-canvas overflow.",
+  "sections": [
+    {"id": "navigation", "y": 0, "height": 66, "anchor": "DOM header/nav"},
+    {"id": "hero", "y": 66, "height": 1403, "anchor": "hero media + editorial feature cards"},
+    {"id": "news", "y": 1469, "height": 1330, "anchor": "News & Updates"},
+    {"id": "shop", "y": 2799, "height": 1249, "anchor": "Shop Warframe"},
+    {"id": "prime", "y": 4048, "height": 352, "anchor": "Prime Resurgence"},
+    {"id": "guides", "y": 4400, "height": 652, "anchor": "Player Guides & Tools"},
+    {"id": "community", "y": 5052, "height": 140, "anchor": "Connect with other Tenno"},
+    {"id": "legal", "y": 5192, "height": 170, "anchor": "Support and legal navigation"},
+    {"id": "footer", "y": 5362, "height": 475, "anchor": "platforms, copyright, rating"}
+  ],
+  "limitations": ["Source reports stable height but unstable extra width (1923→1914→1983).", "Cookie consent is incidental overlay and excluded from delivered composition."]
+}

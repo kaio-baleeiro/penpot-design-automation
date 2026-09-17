@@ -1,0 +1,151 @@
+{
+  "run_id": "github-kaio-baleeiro-v4",
+  "cycle": 2,
+  "issues": [
+    {
+      "id": "home-1440x900-I1",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P0",
+      "title": "Visual difference region",
+      "detail": "7854 pixels (0.30% da tela) ultrapassam o limiar; delta médio=195.9, máximo=246.",
+      "region": "y=1283..1347",
+      "bounds": {
+        "x": 436,
+        "y": 1283,
+        "width": 892,
+        "height": 64
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 7854 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.003018,
+        "mean_delta": 195.9,
+        "max_delta": 246
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I2",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P3",
+      "title": "Visual difference region",
+      "detail": "5024 pixels (0.19% da tela) ultrapassam o limiar; delta médio=78.1, máximo=237.",
+      "region": "y=263..409",
+      "bounds": {
+        "x": 126,
+        "y": 263,
+        "width": 235,
+        "height": 146
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 5024 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.001931,
+        "mean_delta": 78.09,
+        "max_delta": 237
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I3",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P3",
+      "title": "Visual difference region",
+      "detail": "4659 pixels (0.18% da tela) ultrapassam o limiar; delta médio=59.0, máximo=182.",
+      "region": "y=158..334",
+      "bounds": {
+        "x": 118,
+        "y": 158,
+        "width": 180,
+        "height": 176
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 4659 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.00179,
+        "mean_delta": 59.04,
+        "max_delta": 182
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I4",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "3155 pixels (0.12% da tela) ultrapassam o limiar; delta médio=92.9, máximo=224.",
+      "region": "y=704..781",
+      "bounds": {
+        "x": 113,
+        "y": 704,
+        "width": 66,
+        "height": 77
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 3155 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.001212,
+        "mean_delta": 92.95,
+        "max_delta": 224
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    },
+    {
+      "id": "home-1440x900-I5",
+      "screen": "home",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "severity": "P2",
+      "title": "Visual difference region",
+      "detail": "2880 pixels (0.11% da tela) ultrapassam o limiar; delta médio=135.0, máximo=230.",
+      "region": "y=71..73",
+      "bounds": {
+        "x": 0,
+        "y": 71,
+        "width": 1440,
+        "height": 2
+      },
+      "expected": "match approved source evidence",
+      "actual": "region differs on 2880 connected pixels",
+      "probable_cause": "geometry, style, typography or asset mismatch",
+      "suggested_fix": "inspect the marked source/export region and refactor only the mismatched elements",
+      "evidence": {
+        "area_ratio": 0.001107,
+        "mean_delta": 135.0,
+        "max_delta": 230
+      },
+      "status": "open",
+      "source": "deterministic-validator"
+    }
+  ]
+}
