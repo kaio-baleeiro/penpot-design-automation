@@ -172,9 +172,13 @@ def diff_values(source: Image, exported: Image) -> tuple[Image, list[int], float
         total_abs += sum(deltas)
         if maximum <= 32:
             matched += 1
-        # red heatmap, with a faint neutral background for matched pixels
-        intensity = min(255, maximum * 4)
-        pixels.extend((intensity, max(0, 255 - intensity), 0))
+        # Neutral matched pixels; yellow-to-red only after the coverage limit.
+        if maximum <= 32:
+            shade = 242 - maximum
+            pixels.extend((shade, shade, shade))
+        else:
+            intensity = min(255, (maximum - 32) * 2)
+            pixels.extend((255, max(0, 220 - intensity), max(0, 150 - intensity)))
     pixel_similarity = 1.0 - (total_abs / (len(values) * 3 * 255))
     coverage = matched / len(values)
     return Image(source.width, source.height, bytes(pixels)), values, pixel_similarity, coverage
@@ -217,6 +221,48 @@ def overlay(source: Image, exported: Image) -> Image:
     target = resize_nearest(exported, source.width, source.height)
     data = bytes((int((source.pixels[i] + target.pixels[i]) / 2) for i in range(len(source.pixels))))
     return Image(source.width, source.height, data)
+
+
+def crop(image: Image, x: int, y: int, width: int, height: int) -> Image:
+    x0, y0 = max(0, x), max(0, y)
+    x1, y1 = min(image.width, x + width), min(image.height, y + height)
+    data = bytearray()
+    for yy in range(y0, y1):
+        start, end = (yy * image.width + x0) * 3, (yy * image.width + x1) * 3
+        data.extend(image.pixels[start:end])
+    return Image(max(1, x1 - x0), max(1, y1 - y0), bytes(data))
+
+
+def detail_board(source: Image, exported: Image, heatmap: Image, slice_height: int = 720, panel_width: int = 360) -> Image:
+    """Readable full-page contact sheet: source, export and diff by vertical slice."""
+    target = resize_nearest(exported, source.width, source.height)
+    strips: list[tuple[Image, Image, Image]] = []
+    for y in range(0, source.height, slice_height):
+        height = min(slice_height, source.height - y)
+        panels = []
+        for image in (source, target, heatmap):
+            piece = crop(image, 0, y, source.width, height)
+            scaled_height = max(1, round(piece.height * panel_width / piece.width))
+            panels.append(resize_nearest(piece, panel_width, scaled_height))
+        strips.append((panels[0], panels[1], panels[2]))
+    header = 12
+    row_heights = [max(panel.height for panel in row) + header for row in strips]
+    width, height = panel_width * 3, sum(row_heights)
+    data = bytearray(bytes((248, 248, 248)) * (width * height))
+    offset_y = 0
+    headers = ((40, 110, 220), (30, 160, 95), (220, 55, 45))
+    for row, row_height in zip(strips, row_heights):
+        for index, panel in enumerate(row):
+            x0 = index * panel_width
+            for yy in range(header):
+                start = ((offset_y + yy) * width + x0) * 3
+                data[start:start + panel_width * 3] = bytes(headers[index]) * panel_width
+            for yy in range(panel.height):
+                source_start = yy * panel.width * 3
+                target_start = ((offset_y + header + yy) * width + x0) * 3
+                data[target_start:target_start + panel.width * 3] = panel.pixels[source_start:source_start + panel.width * 3]
+        offset_y += row_height
+    return Image(width, height, bytes(data))
 
 
 def connected_components(values: Sequence[int], width: int, height: int, threshold: int = 32) -> list[tuple[int, int, int, int, int]]:

@@ -28,6 +28,8 @@ busca web não relacionada à origem fornecida pelo usuário.
 - [Full-page screenshots — Playwright MCP](https://playwright.dev/mcp/tools/screenshots): `fullPage: true` captura conteúdo abaixo da dobra; screenshot e accessibility snapshot respondem a perguntas diferentes. Regra: guardar viewport e full-page separados e mapear seções inteiras.
 - [Visual comparisons — Playwright](https://playwright.dev/docs/next/test-snapshots): screenshots precisam de ambiente determinístico, esperam dois frames estáveis e produzem diff revisável. Regra: congelar estado dinâmico e não comparar capturas de ambientes diferentes.
 - [Accessibility testing — Playwright](https://playwright.dev/docs/accessibility-testing): axe encontra problemas comuns, mas não substitui avaliação manual. Regra: QA combina teste automatizado com revisão de conteúdo, semântica e uso.
+- [Image quality assessment: from error visibility to structural similarity — Wang et al.](https://ece.uwaterloo.ca/~z70wang/publications/ssim.pdf): erro médio por pixel não representa sozinho a estrutura percebida. Regra: combinar evidência de pixels, bordas, ocupação e regiões; nunca deixar o fundo global compensar uma seção incorreta.
+- [Penpot Plugin API](https://doc.plugins.penpot.app/interfaces/Penpot): a API oficial expõe upload de mídia, criação de shapes e bibliotecas/componentes. Regra: registrar upload e identidade do asset, e construir componentes reais em vez de simular reutilização pelo nome da camada.
 
 ## Como isso muda o benchmark
 
@@ -40,3 +42,8 @@ no GitHub sem inventário estrutural preenchido. Os perfis agora exigem:
 3. mapa de conteúdo e seções com cobertura full-page;
 4. reconstrução editável com inventário estrutural obrigatório;
 5. QA separado em pixel, conteúdo/proveniência, acessibilidade e estrutura.
+
+A auditoria seguinte acrescentou duas proteções: score regional com penalidade
+para o quintil mais fraco e rejeição de um novo ciclo quando o export reprovado
+não mudou. Os relatórios full-page também incluem um painel de detalhes em
+fatias, porque uma imagem de 2880×5000 reduzida no README não é evidência útil.

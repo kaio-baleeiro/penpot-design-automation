@@ -76,6 +76,10 @@ available, MIME type, intrinsic dimensions when applicable, screen/component
 usage, acquisition status and any known licensing/attribution note. Preserve
 the exact source asset whenever usable. Keep authenticated/private payloads in
 ignored storage and expose only sanitized provenance in versioned records.
+`deferred`, `observed_not_embedded` and equivalent statuses are discovery states,
+not build-ready states. Before handoff, each planned asset must have a resolvable
+URL or local path and the build plan must name its `asset_id`; unresolved assets
+block faithful reconstruction instead of silently becoming placeholders.
 
 ## Persistent map
 

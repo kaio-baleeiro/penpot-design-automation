@@ -159,6 +159,20 @@ class WorkflowGateTests(unittest.TestCase):
         }
         self.assertTrue(validate_structure_inventory(inventory)["passed"])
 
+    def test_structural_gate_normalises_page_scoped_inventory(self):
+        inventory = {
+            "tokens": ["color.primary"], "components": ["Card"],
+            "component_instances": ["Card/home"], "detached_instances": [],
+            "styles": ["body"], "required_component_instances": [],
+            "pages": [{"name": "Benchmark", "frame_summaries": [{
+                "name": "Home", "visible_children": 8,
+                "editable_shape_count": 24, "image_only": False,
+            }]}],
+        }
+        gate = validate_structure_inventory(inventory, require_reusable=True)
+        self.assertTrue(gate["passed"], gate["errors"])
+        self.assertEqual(gate["inventory_counts"]["frames"], 1)
+
     def test_strict_structural_gate_requires_reusable_components(self):
         inventory = {
             "tokens": [], "components": [], "component_instances": [],

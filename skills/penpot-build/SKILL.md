@@ -27,6 +27,9 @@ Delegate all hands-on MCP operations to `gpt-5.6-luna`; if unavailable stop
 with `BLOCKED_MODEL_UNAVAILABLE`. The worker must use the configured Penpot MCP,
 not an untracked manual substitute, and append every mutation/result to
 `design/penpot-mcp-log.jsonl`.
+Create a new versioned page/frame for every benchmark version. Never clear or
+replace the prior version in place: the prior frame is evidence and remains
+available for regression comparison.
 
 For reproduction, create static screens from the approved
 `source/frame-spec.json`; for directed creation, use the equivalent frame spec
@@ -48,6 +51,10 @@ unusable or legally restricted, record the reason and ask before introducing an
 externally sourced replacement. Do not claim a design system is complete during
 this initial pass; mark provisional styles. Do not add interactions unless
 separately authorized.
+Before the first MCP mutation, run the asset-readiness gate against the approved
+plan. Every planned `asset_ref` must resolve to the manifest and have a usable
+source URL/path; generic fallback rectangles and silent upload failures are blocking
+errors. After upload, record the resulting Penpot media id/status in the MCP log.
 
 The full-page source image is not the design. It may be imported only as a
 hidden/locked reference layer. Every visible section in the delivered frame

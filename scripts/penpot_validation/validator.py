@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from .images import connected_components, diff_values, overlay, read_png, side_by_side, write_png
+from .images import connected_components, detail_board, diff_values, overlay, read_png, sha256, side_by_side, write_png
 from .frame import CAPTURE_MODES, HORIZONTAL_POLICIES, VERTICAL_POLICIES
 from .metrics import METRIC_TABLE, METRIC_TABLE_VERSION, compare_metrics
 from .structure import load_inventory, validate_structure_inventory
@@ -59,20 +59,25 @@ def _write_exclusive_json(path: Path, value: Any) -> None:
         json.dump(value, handle, ensure_ascii=False, indent=2)
 
 
-def _severity(area_ratio: float, score: float, dimensions_match: bool) -> str:
-    if not dimensions_match or area_ratio >= 0.40 or score < 60:
+def _severity(area_ratio: float, mean_delta: float, dimensions_match: bool) -> str:
+    if not dimensions_match or area_ratio >= 0.40 or mean_delta >= 160:
         return "P0"
-    if area_ratio >= 0.20 or score < 90:
+    if area_ratio >= 0.20 or (area_ratio >= 0.08 and mean_delta >= 64):
         return "P1"
-    if area_ratio >= 0.02:
+    if area_ratio >= 0.02 or mean_delta >= 80:
         return "P2"
     return "P3"
 
 
-def _issue(screen_id: str, viewport: dict[str, Any], index: int, severity: str, title: str, detail: str, bounds: dict[str, int] | None = None) -> dict[str, Any]:
+def _issue(screen_id: str, viewport: dict[str, Any], index: int, severity: str, title: str, detail: str, bounds: dict[str, int] | None = None,
+           *, expected: str = "match approved source evidence", actual: str = "visual divergence in Penpot export",
+           probable_cause: str = "geometry, style, typography or asset mismatch", suggested_fix: str = "inspect the marked source/export region and refactor only the mismatched elements",
+           evidence: dict[str, Any] | None = None) -> dict[str, Any]:
     return {"id": f"{screen_id}-{viewport['width']}x{viewport['height']}-I{index}", "screen": screen_id,
             "viewport": viewport, "severity": severity, "title": title, "detail": detail,
-            "bounds": bounds, "status": "open", "source": "deterministic-validator"}
+            "region": f"y={bounds['y']}..{bounds['y'] + bounds['height']}" if bounds else "global",
+            "bounds": bounds, "expected": expected, "actual": actual, "probable_cause": probable_cause,
+            "suggested_fix": suggested_fix, "evidence": evidence or {}, "status": "open", "source": "deterministic-validator"}
 
 
 def validate_screen(screen: dict[str, Any], output_dir: Path, baseline_screen: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -108,10 +113,15 @@ def validate_screen(screen: dict[str, Any], output_dir: Path, baseline_screen: d
     for component in components:
         x, y, width, height, area = component
         ratio = area / total
-        severity = _severity(ratio, score, dimensions_match)
+        component_values = [values[yy * source.width + xx] for yy in range(y, min(source.height, y + height)) for xx in range(x, min(source.width, x + width)) if values[yy * source.width + xx] > 32]
+        mean_delta = sum(component_values) / max(1, len(component_values))
+        max_delta = max(component_values, default=0)
+        severity = _severity(ratio, mean_delta, dimensions_match)
         issues.append(_issue(screen_id, viewport, len(issues) + 1, severity, "Visual difference region",
-                             f"{area} pixels ({ratio * 100:.2f}% da tela) ultrapassam o limiar de diferença; ajuste a região x={x}, y={y}, w={width}, h={height}.",
-                             {"x": x, "y": y, "width": width, "height": height}))
+                             f"{area} pixels ({ratio * 100:.2f}% da tela) ultrapassam o limiar; delta médio={mean_delta:.1f}, máximo={max_delta}.",
+                             {"x": x, "y": y, "width": width, "height": height},
+                             actual=f"region differs on {area} connected pixels",
+                             evidence={"area_ratio": round(ratio, 6), "mean_delta": round(mean_delta, 2), "max_delta": max_delta}))
     if baseline_screen and score < float(baseline_screen.get("score", score)) - 2.0:
         issues.append(_issue(screen_id, viewport, len(issues) + 1, "P1", "Regression against previous cycle",
                              f"Score caiu de {baseline_screen['score']:.2f} para {score:.2f}; revisar antes de aprovar."))
@@ -121,6 +131,7 @@ def validate_screen(screen: dict[str, Any], output_dir: Path, baseline_screen: d
     write_png(heatmap, str(output_dir / f"{screen_id}-heatmap.png"))
     write_png(overlay(source, exported), str(output_dir / f"{screen_id}-overlay.png"))
     write_png(side_by_side(source, exported, [tuple(issue["bounds"][key] for key in ("x", "y", "width", "height")) for issue in issues if issue.get("bounds")]), str(output_dir / f"{screen_id}-side-by-side-annotated.png"))
+    write_png(detail_board(source, exported, heatmap), str(output_dir / f"{screen_id}-detail-board.png"))
     return {
         "screen": screen_id, "viewport": viewport,
         "frame": {"width": expected_width, "height": expected_height},
@@ -133,11 +144,12 @@ def validate_screen(screen: dict[str, Any], output_dir: Path, baseline_screen: d
         "source_dimensions": {"width": source.width, "height": source.height},
         "export_dimensions": {"width": exported.width, "height": exported.height},
         "metric_table_version": METRIC_TABLE_VERSION, "metrics": visual_metrics["metrics"], "weighted_score": score,
+        "regional": visual_metrics.get("regional", {}), "export_sha256": sha256(exported),
         "pixel_similarity": round(pixel_similarity, 6), "exact_similarity": round(exact_similarity, 6),
         "score": score, "coverage": round(coverage, 6), "thresholds": {"score": MIN_SCORE, "coverage": MIN_COVERAGE},
         "passed": passed, "issue_count": len(issues), "artifacts": {
             "heatmap": f"{screen_id}-heatmap.png", "overlay": f"{screen_id}-overlay.png",
-            "side_by_side": f"{screen_id}-side-by-side-annotated.png"}, "issues": issues,
+            "side_by_side": f"{screen_id}-side-by-side-annotated.png", "detail_board": f"{screen_id}-detail-board.png"}, "issues": issues,
     }
 
 
@@ -149,7 +161,7 @@ def render_report(result: dict[str, Any], output_path: Path) -> None:
              f"# Penpot validation report — cycle {result['cycle']}", "", f"Gate result: **{'PASS' if result['passed'] else 'FAIL'}**", "",
              f"Aggregate score: **{result['aggregate_score']:.2f}/100**", f"Minimum screen score: **{result['minimum_score']:.2f}/100**",
              f"Coverage: **{result['aggregate_coverage'] * 100:.2f}%** (required ≥80%)", "",
-             "Metric table: **penpot-visual-v1**. The annotated side-by-side artifact shows source on the left and Penpot export on the right. Red boxes identify actionable difference regions.", "",
+             f"Metric table: **{METRIC_TABLE_VERSION}**. The detail board presents source, Penpot export and heatmap in readable vertical slices; the full annotated comparison remains available.", "",
              "The six metrics are deterministic image heuristics. They cannot prove font family, semantic copy, asset provenance, or editable Penpot structure without DOM/Penpot metadata.", ""]
     if result.get("structure_gate") is not None:
         gate = result["structure_gate"]
@@ -162,7 +174,7 @@ def render_report(result: dict[str, Any], output_path: Path) -> None:
                   f"- Score: **{screen['score']:.2f}**; coverage: **{screen['coverage'] * 100:.2f}%**; status: **{'PASS' if screen['passed'] else 'FAIL'}**",
                   f"- Viewport: **{screen['viewport']['width']}×{screen['viewport']['height']}**; frame: **{screen['frame']['width']}×{screen['frame']['height']}**; capture: **{screen['frame_policy']['capture_mode']}**",
                   f"- Similarity evidence: pixel={screen['pixel_similarity']:.4f}, exact={screen['exact_similarity']:.4f}",
-                  f"- Comparison: `{screen['artifacts']['side_by_side']}`; overlay: `{screen['artifacts']['overlay']}`; heatmap: `{screen['artifacts']['heatmap']}`", ""]
+                  f"- Readable detail board: `{screen['artifacts']['detail_board']}`; full comparison: `{screen['artifacts']['side_by_side']}`; overlay: `{screen['artifacts']['overlay']}`; heatmap: `{screen['artifacts']['heatmap']}`", ""]
         lines += ["Metric breakdown:", "", "| Dimension | Weight | Score | Contribution | Explanation |", "|---|---:|---:|---:|---|"]
         for metric in screen["metrics"].values():
             lines.append(f"| {metric['label']} | {metric['weight']} | {metric['score']:.2f} | {metric['weighted_contribution']:.2f} | {metric['explanation']} |")
@@ -463,10 +475,17 @@ def validate_run(
     output_dir = root / "cycles" / f"cycle-{cycle}"
     if output_dir.exists() and any(output_dir.iterdir()):
         raise FileExistsError(f"cycle output already exists and is immutable: {output_dir}")
-    output_dir.mkdir(parents=True, exist_ok=True)
     prior_path = Path(baseline) if baseline else (root / "cycles" / f"cycle-{cycle - 1}" / "score.json" if cycle > 1 else Path())
     previous = json.loads(prior_path.read_text(encoding="utf-8")) if prior_path and str(prior_path) != "." and prior_path.exists() else None
     prior_by_screen = {screen["screen"]: screen for screen in previous.get("screens", [])} if previous else {}
+    if previous and not previous.get("passed", False):
+        for screen in manifest["screens"]:
+            prior = prior_by_screen.get(screen["id"])
+            if prior and prior.get("export_sha256"):
+                current_hash = sha256(read_png(str(screen["penpot_export"])))
+                if current_hash == prior["export_sha256"]:
+                    raise ValueError(f"screen {screen['id']} reuses the failed prior-cycle export; refactor and export a new Penpot render before validating")
+    output_dir.mkdir(parents=True, exist_ok=True)
     screens = [validate_screen(screen, output_dir, prior_by_screen.get(screen["id"])) for screen in manifest["screens"]]
     aggregate_score = sum(screen["score"] for screen in screens) / len(screens)
     aggregate_coverage = sum(screen["coverage"] for screen in screens) / len(screens)

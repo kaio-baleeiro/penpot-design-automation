@@ -29,7 +29,9 @@ run. A human or language model may
 explain a finding but may not override the evaluator.
 
 The CLI writes immutable `cycles/cycle-N/score.json`, `issues.json`, report,
-side-by-side, overlay and heatmap artifacts. Check the gate separately per viewport:
+side-by-side, detail-board, overlay and heatmap artifacts. The detail board is
+the primary human-review artifact for long pages because it keeps source,
+export and difference readable by vertical region. Check the gate separately per viewport:
 `score >= 90`, `coverage >= 80`, no P0/P1. Structural checks must also confirm
 components/styles/tokens are actually reusable, not only visually similar.
 Cross-check every planned `asset_ref` against the source asset manifest and the
@@ -80,6 +82,10 @@ issues as the only change list, then rerun the full evaluator. Increment
 `validation_cycle`; maximum is three. Avoid broad redesign when the issue calls
 for a local correction. Preserve all score files and reports. After cycle 3,
 set `NEEDS_REVIEW` with the best version and explicit remaining issues.
+Every failed-cycle refactor must produce a new Penpot export hash and a mutation
+record in the MCP log. The evaluator rejects an unchanged export before creating
+the next immutable cycle directory; a validation-only rerun must be recorded as
+such and never presented as a refinement cycle.
 
 In `directed_creation`, user review rounds are unlimited. Record each feedback
 message in `feedback/` and build a new version only after interpreting it;

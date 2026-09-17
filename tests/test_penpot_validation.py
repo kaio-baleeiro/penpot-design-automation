@@ -47,6 +47,7 @@ class PenpotValidationTests(unittest.TestCase):
             self.assertEqual(result["screens"][0]["issues"], [])
             self.assertTrue((run / "cycles/cycle-1/report.md").exists())
             self.assertTrue((run / "cycles/cycle-1/home-side-by-side-annotated.png").exists())
+            self.assertTrue((run / "cycles/cycle-1/home-detail-board.png").exists())
             history = json.loads((run / "history.json").read_text())
             self.assertEqual([entry["cycle"] for entry in history], [1])
             with self.assertRaises(FileExistsError):
@@ -83,6 +84,27 @@ class PenpotValidationTests(unittest.TestCase):
             self.assertTrue(any((issue.get("bounds") or {}).get("x", -1) >= 15 for issue in issues))
             for name in ("home-heatmap.png", "home-overlay.png", "home-side-by-side-annotated.png", "report.md", "score.json"):
                 self.assertTrue((run / "cycles/cycle-1" / name).exists(), name)
+
+    def test_failed_cycle_cannot_reuse_the_same_export(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            source, exported = self._fixture(directory, divergent=True)
+            run = directory / "run"
+            start_run(run, self._manifest(source, exported))
+            first = validate_run(run, 1)
+            self.assertFalse(first["passed"])
+            with self.assertRaisesRegex(ValueError, "reuses the failed prior-cycle export"):
+                validate_run(run, 2)
+            self.assertFalse((run / "cycles/cycle-2").exists())
+
+    def test_sparse_wrong_layout_does_not_pass_from_white_space(self) -> None:
+        source = draw_rect(solid(480, 360, (255, 255, 255)), 20, 20, 180, 100, (20, 20, 20))
+        source = draw_rect(source, 260, 220, 180, 100, (40, 110, 220))
+        exported = draw_rect(solid(480, 360, (255, 255, 255)), 260, 20, 180, 100, (40, 110, 220))
+        exported = draw_rect(exported, 20, 220, 180, 100, (20, 20, 20))
+        metrics = compare_metrics(source, exported)
+        self.assertLess(metrics["weighted_score"], 90)
+        self.assertLess(metrics["regional"]["score"], 90)
 
     def test_source_map_records_viewport_bounds_and_hash(self) -> None:
         with tempfile.TemporaryDirectory() as temp:

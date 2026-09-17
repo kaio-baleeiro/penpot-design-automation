@@ -3,22 +3,25 @@
 O score oficial é produzido por
 `scripts/validate.sh --run-dir <run-dir> --cycle <1..3>`;
 não substitua seu resultado por avaliação subjetiva do agente. A tabela
-versionada `penpot-visual-v1`, implementada em
+versionada `penpot-visual-v2`, implementada em
 pelo runtime versionado do projeto, usa estes pesos:
 
 | Dimensão | Peso |
 |---|---:|
-| Geometria e alinhamento | 30 |
-| Espaçamento e grid | 20 |
+| Geometria e alinhamento | 25 |
+| Espaçamento e grid | 15 |
 | Tipografia | 15 |
 | Cor, borda e sombra | 15 |
-| Conteúdo e densidade | 10 |
-| Imagens, ícones e assets | 10 |
+| Conteúdo e densidade | 15 |
+| Imagens, ícones e assets | 15 |
 | **Total** | **100** |
 
-Cada dimensão é uma heurística determinística de imagem, limitada a `0..100`;
-o score final é a soma das contribuições `dimensão_score * peso / 100`,
-arredondada a duas casas. O relatório preserva a versão da tabela e a
+Cada dimensão é uma heurística determinística de imagem, limitada a `0..100`.
+A v2 divide a página em regiões de 240 px, pondera conteúdo e bordas em cada
+região e aplica uma penalidade pelo quintil inferior. Isso impede que grandes
+fundos brancos escondam diferenças locais em páginas longas ou esparsas. O
+score final soma as contribuições `dimensão_score * peso / 100`, limita o
+resultado pelo score regional calibrado e arredonda a duas casas. O relatório preserva a versão da tabela e a
 explicação/evidência de cada métrica. As limitações (sem prova de semântica,
 família tipográfica, procedência de asset ou editabilidade Penpot) devem ser
 mantidas no relatório.
@@ -49,6 +52,9 @@ dimensões diferentes, área de diferença `>= 40%` ou score `< 60`; P1 para ár
 maior que 2 pontos em relação ao ciclo anterior gera P1 de regressão. O
 avaliador grava cada ciclo de forma exclusiva em `cycles/cycle-N/`, impedindo
 que um agente sobrescreva score ou issues já produzidos.
+Quando um ciclo anterior falhou, o próximo ciclo é recusado se o hash do export
+Penpot continuar idêntico. Revalidar o mesmo PNG não é refatorar e não consome
+uma das três tentativas.
 
 Um agregado geral nunca mascara uma tela que falhou. Se não houver fonte visual
 na rota de criação dirigida, o mesmo score mede aderência ao briefing aprovado e
@@ -62,6 +68,8 @@ Para cada tela/viewport aprovado ou reprovado, o CLI gera:
   direita, com regiões de diferença marcadas;
 - `<screen>-overlay.png`: sobreposição da fonte e do export;
 - `<screen>-heatmap.png`: magnitude espacial das diferenças;
+- `<screen>-detail-board.png`: fonte, export e heatmap lado a lado em fatias
+  verticais legíveis, inclusive para páginas muito longas;
 - `issues.json` e seção no relatório com região, diferença, causa e correção.
 
 Se uma imagem não puder ser comparada com segurança (escala desconhecida,

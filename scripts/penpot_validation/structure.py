@@ -87,6 +87,20 @@ def load_inventory(path: str | Path) -> dict[str, Any]:
     return value
 
 
+def _normalise_inventory(inventory: dict[str, Any]) -> dict[str, Any]:
+    """Flatten page-scoped inventories emitted by the current MCP collector."""
+    normalised = dict(inventory)
+    pages = _items(inventory.get("pages"))
+    for key in (*INVENTORY_KEYS, "frame_summaries", "required_tokens", "required_components"):
+        merged = _items(inventory.get(key))
+        for page in pages:
+            if isinstance(page, dict):
+                merged.extend(_items(page.get(key)))
+        if merged or key in inventory:
+            normalised[key] = merged
+    return normalised
+
+
 def validate_structure_inventory(
     inventory: dict[str, Any],
     manifest: dict[str, Any] | None = None,
@@ -101,6 +115,7 @@ def validate_structure_inventory(
     """
 
     manifest = manifest or {}
+    inventory = _normalise_inventory(inventory)
     missing_keys = [key for key in INVENTORY_KEYS if key not in inventory]
     errors: list[str] = []
     if missing_keys:

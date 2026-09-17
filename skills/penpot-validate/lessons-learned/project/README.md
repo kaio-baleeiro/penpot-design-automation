@@ -10,4 +10,6 @@ mesmo quando o score ultrapassa 90.
 ## Lessons
 
 - [LL - Inventário estrutural vazio invalida o benchmark](LL%20-%20Inventário%20estrutural%20vazio%20invalida%20o%20benchmark.md)
+- [LL - unchanged export is not a refinement cycle](LL%20-%20unchanged%20export%20is%20not%20a%20refinement%20cycle.md)
+- [LL - global white space cannot dominate fidelity](LL%20-%20global%20white%20space%20cannot%20dominate%20fidelity.md)
 <!-- lesson-links -->
