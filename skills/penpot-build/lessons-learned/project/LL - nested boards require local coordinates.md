@@ -3,7 +3,7 @@ id: build-nested-boards-local-coordinates
 kind: project
 status: mitigated
 title: Nested Penpot boards require one explicit coordinate contract
-integration: penpot-build/SKILL.md; Warframe EN v2 cycle 3 verification
+integration: penpot-build/SKILL.md; long-page benchmark cycle verification
 ---
 
 ## Failure
@@ -30,7 +30,7 @@ não substituem essa verificação visual.
 
 ## Verification
 
-O ciclo 3 do Warframe EN v2 converteu os 104 filhos aninhados e o export
+Um ciclo do benchmark Warframe EN converteu os filhos aninhados e o export
 `1440x5837-cycle3.png` passou a exibir Hero, News, Shop, Prime, Guides,
 Community, Legal e Footer. A revisão oficial confirmou geometria global 99,41;
 o benchmark permaneceu `NEEDS_REVIEW` por outras divergências de fidelidade.

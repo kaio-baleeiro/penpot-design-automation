@@ -4,6 +4,6 @@
   "frame":"1440x5837",
   "font_family":"Source Sans Pro",
   "tokens":{"red":"#D71920","green":"#11D83A","gold":"#E6C24A","ink":"#111116","night":"#101113","panel":"#172B45"},
-  "rules":["Hero uses the red Jade Shadows key art and warm red atmospheric wash.","News and shop retain the near-black/red Warframe palette with gold headings.","All cards use mapped first-party media and editable text descendants.","Footer platform/rating marks use the exact first-party URLs from the bounded-v2 inventory."],
+  "rules":["Hero uses the red Jade Shadows key art and warm red atmospheric wash.","News and shop retain the near-black/red Warframe palette with gold headings.","All cards use mapped first-party media and editable text descendants.","Footer platform/rating marks use the exact first-party URLs from the local canonical inventory."],
   "asset_source":"../source/assets-manifest.json"
 }

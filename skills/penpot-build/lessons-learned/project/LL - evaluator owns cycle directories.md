@@ -11,7 +11,7 @@ applies_to: [penpot-build, penpot-validate, penpot-delivery]
 
 ## Failure
 
-Uma execução colocou export do Penpot e README em `versions/v2/cycles/cycle-1`
+Uma execução legada colocou export do Penpot e README dentro de `cycles/cycle-1`
 antes do score. O avaliador append-only recusou a validação com
 `FileExistsError`, pois o diretório já não estava vazio.
 
@@ -30,8 +30,7 @@ validar, o orquestrador só pode selecionar o próximo ciclo vazio.
 ## Verification
 
 O teste de validação prepara um ciclo não vazio e confirma a recusa imutável.
-As execuções `runs/site-benchmarks/apple-br/versions/v2` e
-`runs/site-benchmarks/github-kaio-baleeiro/versions/v2` produziram os três
+Execuções legadas de Apple BR e GitHub produziram os três
 ciclos somente com `score.json`, `issues.json`, `report.md`, side-by-side,
 overlay e heatmap; exports permaneceram em `design/exports/`. A regra foi
 verificada no fluxo real e está mitigada.

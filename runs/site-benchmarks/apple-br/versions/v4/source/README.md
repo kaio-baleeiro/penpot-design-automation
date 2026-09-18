@@ -1,4 +1,5 @@
 # Source
 
-Manifesto de assets e frame-spec da Apple BR v4. A captura pública canônica
-fica em `../../v2/source/reference-full-page.png` e é reutilizada por hash.
+Pacote autocontido da origem Apple BR. `reference.png` é a captura full-page
+canônica (1440×5261), `frame-spec.json` registra a geometria e
+`assets-manifest.json` preserva as URLs first-party usadas na reconstrução.

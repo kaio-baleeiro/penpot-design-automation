@@ -18,14 +18,14 @@ class PublishBenchmarkComparisonsTests(unittest.TestCase):
             for name in ARTIFACTS:
                 (cycle / name).write_bytes(PNG_SIGNATURE + b"evidence")
 
-            destinations = publish(run, root / "analysis", "v2", 3)
+            destinations = publish(run, root / "analysis", "canonical", 3)
 
             self.assertEqual(len(destinations), 4)
-            self.assertTrue(all(path.name.startswith("v2-cycle-3-") for path in destinations))
+            self.assertTrue(all(path.name.startswith("canonical-cycle-3-") for path in destinations))
             self.assertTrue(all(path.read_bytes() == PNG_SIGNATURE + b"evidence" for path in destinations))
             self.assertTrue(all((cycle / name).exists() for name in ARTIFACTS))
             with self.assertRaises(FileExistsError):
-                publish(run, root / "analysis", "v2", 3)
+                publish(run, root / "analysis", "canonical", 3)
 
     def test_rejects_missing_score_and_unversioned_artifacts(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -33,7 +33,7 @@ class PublishBenchmarkComparisonsTests(unittest.TestCase):
             cycle = root / "run" / "cycles" / "cycle-1"
             cycle.mkdir(parents=True)
             with self.assertRaises(ValueError):
-                publish(root / "run", root / "analysis", "v2", 1)
+                publish(root / "run", root / "analysis", "canonical", 1)
             self.assertFalse((root / "analysis").exists())
 
 

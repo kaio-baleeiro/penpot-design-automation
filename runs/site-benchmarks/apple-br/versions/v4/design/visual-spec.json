@@ -5,6 +5,6 @@
   "colors":{"black":"#000000","surface":"#F5F5F7","link":"#0071E3","text":"#1D1D1F","muted":"#6E6E73"},
   "spacing":{"nav_height":44,"section_gap":12,"hero_height":692,"promo_tile_width":702,"promo_tile_height":580},
   "rules":["full-page source is evidence only","exact first-party image assets are used","hero images use source crop with overflow clipped by board","promo grid uses two columns with 36px gutter","TV+ gallery preserves centered active card and side-card framing","footer preserves five directory columns and legal notes"],
-  "evidence":"../../v2/source/reference-full-page.png",
+  "evidence":"source/reference.png",
   "confidence":0.88
 }

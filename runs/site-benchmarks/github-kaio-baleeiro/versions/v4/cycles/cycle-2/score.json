@@ -56,7 +56,7 @@
         "horizontal": "viewport_bounded",
         "capture_mode": "full_page"
       },
-      "source": "../v2/source/reference.png",
+      "source": "source/reference.png",
       "penpot_export": "exports/cycle-2.png",
       "source_dimensions": {
         "width": 1440,

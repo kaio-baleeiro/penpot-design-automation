@@ -29,14 +29,19 @@ O próximo perfil não começa se houver `BLOCKED_INPUT`, output ausente,
 
 ## Correções para os benchmarks
 
-- **Apple (89,57 / 71,42%):** o forense mede a tipografia real e o visual
+- **Apple BR oficial (71,04 / 75,72%):** o forense mede a tipografia real e o visual
   designer compara densidade e imagens por seção; o prototyper não encerra com
   footer/TV/promo incompletos.
-- **Warframe (83,34 / 60,72%):** o inventário de assets e a matriz de seções
+- **Warframe EN oficial (64,03 / 61,58%):** o inventário de assets e a matriz de seções
   bloqueiam placeholders; o QA agrupa as regiões grandes de hero, cards e
   fundos antes de consumir um ciclo.
-- **GitHub (98,52 visual):** o gate estrutural e semântico é obrigatório mesmo
-  com score alto; inventário vazio não pode resultar em aprovação.
+- **GitHub oficial (84,10 / 93,32%):** o gate estrutural e semântico é
+  obrigatório mesmo com cobertura alta; inventário vazio não pode resultar em
+  aprovação.
+
+Essas três versões foram escolhidas pelo usuário como baselines canônicas. A
+aceitação humana não altera o estado automático `NEEDS_REVIEW` nem converte um
+score abaixo de 90 em aprovação do gate.
 
 O score determinístico continua imutável. A melhoria vem de entradas melhores,
 de uma composição editável verificável e de uma revisão em camadas, não de

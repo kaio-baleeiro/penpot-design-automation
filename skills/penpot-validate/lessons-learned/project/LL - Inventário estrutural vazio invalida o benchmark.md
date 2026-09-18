@@ -21,7 +21,8 @@ Uma reconstrução pode parecer visualmente próxima, mas sem inventário de fra
 
 ## Context
 
-Os benchmarks v2 registraram structure-inventory.json vazio; GitHub chegou a 98,52 visual sem evidência estrutural.
+Um run legado registrou `structure-inventory.json` vazio e obteve score visual
+alto sem evidência estrutural.
 
 ## Evidence
 

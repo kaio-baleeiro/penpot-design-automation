@@ -1,7 +1,6 @@
 {
   "schema_version": "1.0",
   "run_id": "github-kaio-baleeiro-v4",
-  "parent_run_id": "github-kaio-baleeiro",
   "route": "reproduction",
   "mode": "source",
   "state": "NEEDS_REVIEW",
@@ -10,7 +9,8 @@
     {
       "source_id": "src-screenshot-github-kaio-baleeiro-full-page",
       "type": "screenshot",
-      "location": "../v2/source/reference.png",
+      "location": "source/reference.png",
+      "sha256": "d30db72640029fb7ad8bb8969e971db6dbca4ed43a4702f0bf229006c8bd523a",
       "precedence": 1
     },
     {
@@ -36,9 +36,9 @@
         "stable": true,
         "build_ready": true,
         "requires_user_decision": false,
-        "evidence": ["../v2/source/frame-spec.json", "../v2/source/reference.png"]
+        "evidence": ["source/reference.png", "source/assets-manifest.json"]
       },
-      "source": "../v2/source/reference.png",
+      "source": "source/reference.png",
       "penpot_export": "exports/cycle-3.png",
       "penpot_page": "Benchmark — GitHub Kaio v4",
       "penpot_frame": "GitHub Kaio — Home — 1440x1807 — v4",
@@ -51,11 +51,11 @@
   "max_validation_cycles": 3,
   "user_review_round": 0,
   "lesson_refs": [
-    "skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
-    "skills/penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md",
-    "skills/penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md"
+    "../../../../../skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
+    "../../../../../skills/penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md",
+    "../../../../../skills/penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md"
   ],
-  "approval": {"briefing": true, "design": false, "design_system": false},
+  "approval": {"briefing": true, "design": true, "design_system": false},
   "intake": {
     "initial_questions_completed": true,
     "addendum_question_completed": true,
@@ -71,5 +71,6 @@
     "exports/cycle-3.png"
   ],
   "structure_inventory": "design/structure-inventory.json",
-  "review_reason": "Three v4 cycles completed; score improved from 83.79 to 84.10 but remains below the 90-point approval gate."
+  "canonical": {"official": true, "version": "v4", "accepted_at": "2026-09-17", "acceptance_ref": "approvals/approval-v001.md", "automated_gate": "NEEDS_REVIEW"},
+  "review_reason": "User accepted v4 as the official benchmark; the immutable automated gate remains NEEDS_REVIEW at 84.10 score and 93.32% coverage."
 }

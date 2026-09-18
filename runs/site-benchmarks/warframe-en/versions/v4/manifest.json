@@ -7,8 +7,8 @@
   "worker_model": "gpt-5.6-luna",
   "source_refs": [
     {"source_id": "src-url-warframe-en", "type": "url", "location": "https://www.warframe.com/en"},
-    {"source_id": "src-bounded-v2", "type": "screenshot", "location": "../v2/source/reference-full-page.png"},
-    {"source_id": "src-bounded-v2-map", "type": "code", "location": "../v2/source/source-map.json"}
+    {"source_id": "src-bounded-reference", "type": "screenshot", "location": "source/reference.png", "sha256": "4afdc1028090817543c468b75345539f13d6daa6e8d40b0b3aa186297f0639a7"},
+    {"source_id": "src-bounded-reference-map", "type": "code", "location": "source/source-map.json"}
   ],
   "target_viewports": [{"width": 1440, "height": 900}],
   "screens": [{
@@ -26,9 +26,9 @@
       "build_ready": true,
       "requires_user_decision": false,
       "boundary_status": "approved",
-      "evidence": ["../v2/source/capture-metadata.json", "../v2/source/reference-full-page.png"]
+      "evidence": ["source/capture-metadata.json", "source/reference.png", "source/source-map.json"]
     },
-    "source": "../v2/source/reference-full-page.png",
+    "source": "source/reference.png",
     "penpot_page": "Benchmark — Warframe EN v4",
     "penpot_frame": "Warframe EN — Home — 1440x5837 — v4",
     "penpot_page_id": "b9b9f43f-1dd3-801e-8008-a67636574e02",
@@ -39,11 +39,12 @@
   "max_validation_cycles": 3,
   "user_review_round": 0,
   "lesson_refs": [
-    "../../../../../../skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
-    "../../../../../../skills/penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md"
+    "../../../../../skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
+    "../../../../../skills/penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md"
   ],
-  "approval": {"briefing": true, "design": false, "design_system": false},
-  "intake": {"initial_questions_completed": true, "addendum_question_completed": true, "ambiguity_analysis_completed": true, "evidence": ["../../questions.md", "../../decisions.md"]},
+  "approval": {"briefing": true, "design": true, "design_system": false},
+  "intake": {"initial_questions_completed": true, "addendum_question_completed": true, "ambiguity_analysis_completed": true, "evidence": ["questions.md", "decisions.md"]},
   "structure_inventory": "design/structure-inventory.json",
-  "review_reason": "Three v4 cycles completed; final score 64.03 remains below the approval gate despite coverage improving to 61.58%."
+  "canonical": {"official": true, "version": "v4", "accepted_at": "2026-09-17", "acceptance_ref": "approvals/approval-v001.md", "automated_gate": "NEEDS_REVIEW"},
+  "review_reason": "User accepted v4 as the official benchmark; the immutable automated gate remains NEEDS_REVIEW at 64.03 score and 61.58% coverage."
 }

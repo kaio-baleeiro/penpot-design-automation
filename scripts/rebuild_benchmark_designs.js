@@ -217,7 +217,7 @@ async function buildGithub() {
   const repos = [
     ["penpot-design-automation", "Automação de designs editáveis no Penpot", "TypeScript", "#3178C6", "12"],
     ["kaio-baleeiro", "Perfil, experimentos e documentação", "HTML", "#E34C26", "8"],
-    ["katiau-invest", "Workspace de investimentos com rastreabilidade", "Python", "#3572A5", "6"],
+    ["projeto-leitura-de-dados", "Projeto público de leitura e tratamento de dados", "Java", "#B07219", "6"],
     ["design-system", "Tokens e componentes para produtos digitais", "CSS", "#563D7C", "24"],
     ["data-workflows", "Pipelines e validações reproduzíveis", "Jupyter", "#DA5B0B", "15"],
     ["product-notes", "Notas de produto e decisões", "Markdown", "#083FA1", "4"]

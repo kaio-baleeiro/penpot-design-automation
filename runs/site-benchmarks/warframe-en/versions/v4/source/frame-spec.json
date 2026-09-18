@@ -13,6 +13,6 @@
     "requires_user_decision": false,
     "boundary_status": "approved",
     "approval": {"response": "sim, aprovo", "approved_frame": {"width": 1440, "height": 5837}, "overflow": "accidental horizontal overflow", "recorded_at": "2026-09-16"},
-    "evidence": ["../v2/source/capture-metadata.json", "../v2/source/reference-full-page.png"]
+    "evidence": ["source/capture-metadata.json", "source/reference.png", "source/source-map.json"]
   }]
 }

@@ -30,8 +30,8 @@ artefato comparados antes de interpretar uma queda como regressão.
 
 ## Verification
 
-Os novos runs GitHub/Apple em `versions/v2` não herdaram score da representação
-antiga: cada ciclo v2 compara a composição editável com a fonte e os ciclos
-seguintes usam somente a baseline da própria versão. Os manifestos v2 registram
+Os runs reconstruídos de GitHub e Apple não herdaram score da representação
+antiga: cada ciclo compara a composição editável com a fonte e os ciclos
+seguintes usam somente a baseline da própria versão. Os manifests registram
 `prior_version`, referenciam esta lição e preservam o histórico anterior sem
 usá-lo como regressão. A regra foi verificada e está mitigada.

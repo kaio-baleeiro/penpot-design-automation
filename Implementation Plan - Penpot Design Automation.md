@@ -2,7 +2,7 @@
 type: implementation-plan
 status: complete
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-18
 source_agent: codex
 agent_context: codex-desktop
 project: Penpot Design Automation
@@ -14,14 +14,14 @@ review: false
 
 ## Target Outcome
 
-Entregar infraestrutura migrada, skills instaláveis, scripts validados, teste com
-KatiauInvest e repositório público publicado.
+Entregar infraestrutura migrada, skills instaláveis, scripts validados,
+benchmarks públicos e repositório publicado.
 
 ## Files Or Systems Affected
 
 - Novo workspace no vault.
-- Infraestrutura Docker anteriormente mantida no KatiauInvest.
-- Perfil global de skills em `/Users/baleeiro/.agents/skills`.
+- Infraestrutura Docker migrada de uma instalação local anterior.
+- Perfil global de skills em `~/.agents/skills`.
 - Perfil MCP local do Codex.
 - Repositório GitHub `kaio-baleeiro/penpot-design-automation`.
 
@@ -34,8 +34,8 @@ KatiauInvest e repositório público publicado.
 5. [x] Implementar e testar captura, mapeamento e validação visual.
 6. [x] Migrar a composição e confirmar preservação dos dados.
 7. [x] Instalar a skill global e registrar o MCP sem expor o token.
-8. [x] Executar validação ponta a ponta com KatiauInvest.
-9. [x] Remover o acoplamento antigo do KatiauInvest e atualizar suas notas.
+8. [x] Executar validação ponta a ponta com fontes públicas.
+9. [x] Remover o acoplamento a projetos pessoais e manter detalhes de máquina fora do Git.
 10. [x] Criar, publicar e verificar o repositório, posteriormente tornado público
     por decisão do usuário.
 11. [x] Adequar as sete skills ao formato Agent Skills com recursos locais.
@@ -51,7 +51,7 @@ KatiauInvest e repositório público publicado.
 - Containers saudáveis e endpoints locais respondendo.
 - Skills sem erros de estrutura ou placeholders.
 - Testes automatizados aprovados.
-- Run do KatiauInvest com artefatos rastreáveis e comparação visual.
+- Runs públicos com artefatos rastreáveis e comparação visual.
 - Coerência automática entre estado terminal, score final e entrega.
 - Lição só pode ser marcada como mitigada depois de registrar verificação.
 - Captura registra dimensões do viewport/documento, overflow e estabilidade.

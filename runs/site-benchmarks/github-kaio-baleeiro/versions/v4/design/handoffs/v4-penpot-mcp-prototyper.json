@@ -7,7 +7,7 @@
   "inputs": ["design/plan.json", "design/visual-spec.json", "design/content-inventory.json", "source/frame-spec.json", "source/assets-manifest.json"],
   "outputs": ["design/penpot-mcp-log.jsonl", "design/structure-inventory.json", "exports/cycle-1.png"],
   "decisions": [
-    {"id": "build-v4-01", "decision": "Created a new versioned Penpot page/frame and preserved v2/v3 pages.", "evidence": "design/penpot-mcp-log.jsonl"},
+    {"id": "build-v4-01", "decision": "Created the canonical versioned Penpot page/frame without overwriting another active page.", "evidence": "design/penpot-mcp-log.jsonl"},
     {"id": "build-v4-02", "decision": "Reconstructed visible sections with editable descendants, reusable Public badge instances and local tokens.", "evidence": "design/structure-inventory.json"}
   ],
   "open_issues": [],

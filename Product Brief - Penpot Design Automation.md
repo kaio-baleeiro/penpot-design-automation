@@ -2,7 +2,7 @@
 type: product-brief
 status: approved
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-18
 source_agent: codex
 agent_context: codex-desktop
 project: Penpot Design Automation
@@ -55,7 +55,7 @@ Um workflow de duas rotas:
 
 ## Next Decision
 
-Validar o primeiro fluxo completo usando o KatiauInvest como fixture.
+Manter Apple BR, GitHub Kaio e Warframe EN como benchmarks públicos oficiais.
 
 ## Links
 

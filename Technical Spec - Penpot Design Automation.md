@@ -2,7 +2,7 @@
 type: technical-spec
 status: complete
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-18
 source_agent: codex
 agent_context: codex-desktop
 project: Penpot Design Automation
@@ -46,7 +46,7 @@ segredos e capturas privadas ficam em diretórios ignorados pelo Git.
 - Confirmar login e contagens persistidas após a migração.
 - Validar todas as skills com o validador oficial da `skill-creator`.
 - Testar imagens idênticas, divergentes e regressões na suíte visual.
-- Executar um run rastreável usando telas do KatiauInvest.
+- Executar runs rastreáveis com fontes públicas e artefatos sanitizados.
 
 ## Migration Or Rollback
 
@@ -75,4 +75,3 @@ caminhos, contratos e os casos de página longa/overflow.
 - [[Implementation Plan - Penpot Design Automation]]
 - [[Task - Renomear volumes legados do Penpot]]
 - [[Handoff - Penpot Design Automation]]
-- [[Technical Spec - Penpot MCP Local - KatiauInvest]]

@@ -92,19 +92,21 @@ class WorkflowGateTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "differs from source/frame-spec.json"):
                 _validate_canonical_frame_specs(root, manifest)
 
-    def test_fixture_persists_terminal_state_and_lessons(self):
+    def test_official_fixture_preserves_machine_state_and_human_acceptance(self):
         import json
         from pathlib import Path
 
         root = Path(__file__).resolve().parents[1]
-        manifest = json.loads((root / "runs/site-benchmarks/warframe-en/versions/v2/manifest.json").read_text(encoding="utf-8"))
-        delivery = json.loads((root / "runs/site-benchmarks/warframe-en/versions/v2/delivery/manifest.json").read_text(encoding="utf-8"))
-        cycle = json.loads((root / "runs/site-benchmarks/warframe-en/versions/v2/cycles/cycle-3/score.json").read_text(encoding="utf-8"))
+        run = root / "runs/site-benchmarks/warframe-en/versions/v4"
+        manifest = json.loads((run / "manifest.json").read_text(encoding="utf-8"))
+        cycle = json.loads((run / "cycles/cycle-3/score.json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["state"], "NEEDS_REVIEW")
-        self.assertEqual(manifest["state"], delivery["state"])
         self.assertEqual(manifest["state"], cycle["next_state"])
         self.assertEqual(manifest["validation_cycle"], 3)
         self.assertTrue(manifest["lesson_refs"])
+        self.assertTrue(manifest["canonical"]["official"])
+        self.assertEqual(manifest["canonical"]["automated_gate"], "NEEDS_REVIEW")
+        self.assertTrue((run / manifest["canonical"]["acceptance_ref"]).is_file())
 
     def test_validation_state_and_transition(self):
         self.assertTrue(validate_transition("VALIDATING", "REFINEMENT"))

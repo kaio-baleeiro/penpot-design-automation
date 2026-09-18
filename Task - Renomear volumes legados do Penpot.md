@@ -2,7 +2,7 @@
 type: task
 status: backlog
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-18
 source_agent: codex
 agent_context: codex-desktop
 project: Penpot Design Automation
@@ -16,8 +16,8 @@ review: false
 
 ## Outcome
 
-Substituir os nomes `katiauinvest-penpot_*` por nomes neutros do projeto sem
-perder banco ou assets.
+Substituir os nomes históricos registrados somente no `.env` e nas lições
+locais ignoradas por nomes neutros do projeto, sem perder banco ou assets.
 
 ## Checklist
 

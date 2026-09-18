@@ -56,7 +56,7 @@
         "horizontal": "accidental_overflow",
         "capture_mode": "frame_bounds"
       },
-      "source": "../v2/source/reference-full-page.png",
+      "source": "source/reference.png",
       "penpot_export": "exports/cycle-3.png",
       "source_dimensions": {
         "width": 1440,

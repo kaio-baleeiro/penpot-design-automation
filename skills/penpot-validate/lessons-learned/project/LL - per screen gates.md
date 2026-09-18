@@ -12,4 +12,4 @@ Uma média agregada não pode esconder dashboard ou estado que falhou. Score,
 cobertura, P0/P1, dimensões e estrutura devem passar individualmente para cada
 viewport solicitado.
 
-Verificação: fixture KatiauInvest em `NEEDS_REVIEW` e testes de gates.
+Verificação: fixture terminal em `NEEDS_REVIEW` e testes de gates.

@@ -36,7 +36,7 @@ skills/<skill>/
 ├── agents/openai.yaml
 ├── scripts/          # somente quando a skill executa código
 ├── references/       # somente para documentação carregada sob demanda
-└── assets/           # somente para recursos reutilizáveis reais
+├── assets/           # somente para recursos reutilizáveis reais
 └── lessons-learned/
     ├── project/      # regras do workflow, versionadas
     └── local/        # memória da máquina, ignorada pelo Git
@@ -179,15 +179,19 @@ teste reproduzível das fontes Apple Brasil, Warframe English e do perfil GitHub
 `kaio-baleeiro`. Cada run inclui perguntas, decisões, frame-spec, mapa de
 proveniência, inventário de assets e as imagens públicas de referência,
 side-by-side, overlay, heatmap e exports das composições editáveis do Penpot.
-As reconstruções atuais estão nas versões v4, com boards, textos, formas,
+As reconstruções oficiais estão nas versões v4, com boards, textos, formas,
 assets, componentes e tokens editáveis no arquivo Penpot `Site Benchmarks`; a
-captura full-page é apenas referência. Os três ciclos reais terminaram em
+captura full-page é apenas referência. O usuário aceitou Apple BR, Warframe EN
+e GitHub Kaio v4 como as versões canônicas. O gate automático permanece
 `NEEDS_REVIEW`: Apple `71,38 → 71,08 → 71,04`, Warframe
-`64,23 → 65,38 → 64,03` e GitHub `83,79 → 83,92 → 84,10`. O GitHub passou o
-gate de cobertura, mas nenhum benchmark atingiu 90 pontos. Cada ciclo publica
-detail board, side-by-side anotado, overlay e heatmap; os resultados v2/v3
-permanecem como histórico para demonstrar por que o avaliador regional v2 foi
-necessário e evitar falsos positivos dominados por fundo branco.
+`64,23 → 65,38 → 64,03` e GitHub `83,79 → 83,92 → 84,10`; nenhum resultado
+deve ser descrito como aprovação automática. Cada ciclo publica detail board,
+side-by-side anotado, overlay e heatmap.
+
+Para avaliar no Penpot, abra <http://localhost:9001>, entre no projeto `Penpot
+Benchmarks` e selecione o arquivo `Site Benchmarks`. O
+[índice dos benchmarks](runs/site-benchmarks/README.md) informa página, frame,
+IDs e links para todos os artefatos oficiais.
 
 ## Infraestrutura
 
@@ -198,8 +202,9 @@ infra/penpot/scripts/backup.sh
 infra/penpot/scripts/down.sh
 ```
 
-Interface: <http://localhost:9001>. O ambiente é local e usa volumes externos
-preservados da instalação original do KatiauInvest. Consulte
+Interface: <http://localhost:9001>. O ambiente é local e pode usar volumes
+externos preservados de uma instalação anterior. Os identificadores específicos
+da máquina permanecem somente no `.env` e nas lições locais ignoradas. Consulte
 [`infra/penpot/README.md`](infra/penpot/README.md) antes de restore ou atualização.
 
 ## Validação

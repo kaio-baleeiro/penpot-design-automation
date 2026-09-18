@@ -18,7 +18,7 @@ Only build after intake and material ambiguity gates pass.
 For the screenshot-versus-editable-design failure mode, apply
 [`LL - screenshot is not editable design.md`](lessons-learned/project/LL%20-%20screenshot%20is%20not%20editable%20design.md).
 The structural inventory is a required build output; apply
-[`LL - Inventário estrutural vazio invalida o benchmark.md`](lessons-learned/project/LL%20-%20Inventário%20estrutural%20vazio%20invalida%20o%20benchmark.md)
+[`LL - structural inventory is a build gate.md`](lessons-learned/project/LL%20-%20structural%20inventory%20is%20a%20build%20gate.md)
 before handing the frame to validation.
 
 ## Build contract

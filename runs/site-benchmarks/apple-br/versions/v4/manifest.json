@@ -1,16 +1,13 @@
 {
   "schema_version": "1.0",
   "run_id": "apple-br-v4",
-  "parent_run_id": "apple-br-v2",
   "route": "reproduction",
   "mode": "source",
   "state": "NEEDS_REVIEW",
   "worker_model": "gpt-5.6-luna",
   "source_refs": [
     {"source_id": "src-url-apple-br", "type": "url", "location": "https://www.apple.com/br/"},
-    {"source_id": "src-full-page-apple-br", "type": "screenshot", "location": "../v2/source/reference-full-page.png", "sha256": "ea9255cd46de0f5690cc98723528b2913189f732685ede2a10272ee5539b68af"},
-    {"source_id": "src-v2-artifacts", "type": "prior-version", "location": "../v2/"},
-    {"source_id": "src-v3-artifacts", "type": "prior-version", "location": "../v3-validation-rerun/"}
+    {"source_id": "src-full-page-apple-br", "type": "screenshot", "location": "source/reference.png", "sha256": "ea9255cd46de0f5690cc98723528b2913189f732685ede2a10272ee5539b68af"}
   ],
   "target_viewports": [{"width": 1440, "height": 900}],
   "screens": [{
@@ -27,9 +24,9 @@
       "stable": true,
       "build_ready": true,
       "requires_user_decision": false,
-      "evidence": ["../v2/source/frame-spec.json", "../v2/source/reference-full-page.png"]
+      "evidence": ["source/reference.png", "source/assets-manifest.json"]
     },
-    "source": "../v2/source/reference-full-page.png",
+    "source": "source/reference.png",
     "penpot_page": "Benchmark — Apple BR v4",
     "penpot_page_id": "b9b9f43f-1dd3-801e-8008-a6714b37dc3b",
     "penpot_frame": "Apple BR — Home — 1440x5261 — v4",
@@ -41,13 +38,13 @@
   "max_validation_cycles": 3,
   "user_review_round": 0,
   "lesson_refs": [
-    "../../../../skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
-    "../../../../skills/penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md",
-    "../../../../skills/penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md"
+    "../../../../../skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
+    "../../../../../skills/penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md",
+    "../../../../../skills/penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md"
   ],
-  "approval": {"briefing": true, "design": false, "design_system": false},
-  "intake": {"initial_questions_completed": true, "addendum_question_completed": true, "ambiguity_analysis_completed": true, "evidence": ["../../questions.md", "../../decisions.md"]},
+  "approval": {"briefing": true, "design": true, "design_system": false},
+  "intake": {"initial_questions_completed": true, "addendum_question_completed": true, "ambiguity_analysis_completed": true, "evidence": ["questions.md", "decisions.md"]},
   "structure_inventory": "design/structure-inventory.json",
-  "prior_version": {"run_id": "apple-br-v2", "last_cycle": 3, "score": 89.57, "coverage": 0.714164, "status": "NEEDS_REVIEW"},
-  "review_reason": "Three v4 cycles completed; final score 71.04 and coverage 75.72% remain below the approval gates."
+  "canonical": {"official": true, "version": "v4", "accepted_at": "2026-09-17", "acceptance_ref": "approvals/approval-v001.md", "automated_gate": "NEEDS_REVIEW"},
+  "review_reason": "User accepted v4 as the official benchmark; the immutable automated gate remains NEEDS_REVIEW at 71.04 score and 75.72% coverage."
 }

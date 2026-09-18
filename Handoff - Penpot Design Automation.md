@@ -2,7 +2,7 @@
 type: handoff
 status: complete
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-18
 source_agent: codex
 agent_context: codex-desktop
 project: Penpot Design Automation
@@ -23,7 +23,7 @@ preservou 1 perfil, 3 times, 5 projetos, 2 arquivos e 51 assets.
 
 O repositório público é
 `https://github.com/kaio-baleeiro/penpot-design-automation`. A skill global
-`/Users/baleeiro/.agents/skills/penpot-design` é um vínculo para a implementação
+`~/.agents/skills/penpot-design` é um vínculo para a implementação
 canônica deste projeto. O MCP local está registrado como `penpot-design`; sua
 URL autenticada permanece somente na configuração local ignorada.
 
@@ -68,13 +68,13 @@ infinito exige um limite reproduzível confirmado pelo usuário.
   compartilha regras entre fases e cinco falhas do desenvolvimento foram
   convertidas em regras mitigadas com evidência.
 - Auditoria Luna específica de dimensionamento incorporada ao gate executável.
-- KatiauInvest: score agregado 90,31; dashboard 88,42, investimentos 90,70,
-  importação 88,15 e assistente 93,99. O limite de três ciclos encerrou em
-  `NEEDS_REVIEW`, sem permitir que a média escondesse falhas individuais.
+- Os benchmarks públicos oficiais são Apple BR, GitHub Kaio e Warframe EN v4.
+  Todos preservam três ciclos e artefatos visuais; a escolha canônica do usuário
+  não altera o gate automático `NEEDS_REVIEW`.
 
 ## Manutenção
 
-Os volumes ainda têm nomes `katiauinvest-penpot_*`. A tarefa
+Uma instalação migrada pode manter nomes locais de volumes. A tarefa
 [[Task - Renomear volumes legados do Penpot]] registra o procedimento futuro;
 não remover os volumes atuais antes de backup, restore isolado e aceite.
 
@@ -86,4 +86,3 @@ não remover os volumes atuais antes de backup, restore isolado e aceite.
 - [[Technical Spec - Penpot Design Automation]]
 - [[Implementation Plan - Penpot Design Automation]]
 - [[35-Lessons-Learned/Projects/penpot-design-automation/README|Lições aprendidas do projeto]]
-- [[P - KatiauInvest]]

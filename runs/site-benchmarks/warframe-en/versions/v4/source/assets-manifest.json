@@ -1,6 +1,6 @@
 {
-  "source_id": "src-bounded-v2",
-  "provenance": "../../source/proposals/bounded-v2/assets-inventory.json",
+  "source_id": "src-bounded-reference",
+  "provenance": "assets-inventory.json",
   "policy": "Reuse exact first-party URLs; no external substitutes.",
   "assets": [
     {"asset_id":"warframe-hero-poster","kind":"image","url":"https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/19bb4c95-23f8-4ac0-b5c4-17f1923c19a3-webp.webp","usage":"hero background frozen state","acquisition":"uploaded_to_penpot"},
@@ -18,5 +18,5 @@
     {"asset_id":"shop-hero","kind":"raster","url":"https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/mainframe/dynamic-config/homepage/11/conversions/f114d053-3f98-46f3-a6a3-84cca3272f0a-webp.webp","usage":"shop"},
     {"asset_id":"prime-logo","kind":"raster","url":"https://www-static.warframe.com/images/home/prime-resurgence-logo.png","usage":"prime"}
   ],
-  "remaining_assets": "See ../../source/proposals/bounded-v2/assets-inventory.json for product, guide, social, platform and rating URLs."
+  "remaining_assets": "See assets-inventory.json for product, guide, social, platform and rating URLs."
 }

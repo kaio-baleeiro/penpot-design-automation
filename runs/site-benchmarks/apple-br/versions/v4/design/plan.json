@@ -7,7 +7,7 @@
   "viewport":{"width":1440,"height":900},
   "frame":{"width":1440,"height":5261},
   "frame_spec":"source/frame-spec.json",
-  "reference":"../v2/source/reference-full-page.png",
+  "reference":"source/reference.png",
   "asset_refs":["source/assets-manifest.json"],
   "penpot_page_id":"b9b9f43f-1dd3-801e-8008-a6714b37dc3b",
   "penpot_frame_id":"b9b9f43f-1dd3-801e-8008-a67202c01eef",

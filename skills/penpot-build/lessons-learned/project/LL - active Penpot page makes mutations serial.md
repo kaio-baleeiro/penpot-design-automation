@@ -27,4 +27,4 @@ resolvidos, preservando as versões históricas aprovadas.
 ## Verification
 
 A rodada v4 executou Apple, GitHub e Warframe em série e terminou com uma única
-página final por benchmark, mantendo as páginas v2 históricas.
+página final por benchmark, sem sobrescrever outra página ativa.

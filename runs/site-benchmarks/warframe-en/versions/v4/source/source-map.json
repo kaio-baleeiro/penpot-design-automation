@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "source_id": "src-bounded-v2",
-  "precedence": ["src-url-warframe-en", "src-bounded-v2", "src-bounded-v2-dom"],
+  "source_id": "src-bounded-reference",
+  "precedence": ["src-url-warframe-en", "src-bounded-reference", "src-bounded-reference-map"],
   "decision": "The approved bounded capture at 1440x5837 is authoritative for v4. Root width stays 1440 because observed extra width is accidental off-canvas overflow.",
   "sections": [
     {"id": "navigation", "y": 0, "height": 66, "anchor": "DOM header/nav"},

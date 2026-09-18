@@ -2,12 +2,12 @@
 type: project
 status: active
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-18
 source_agent: codex
 agent_context: codex-desktop
 confidence: high
 review: false
-workspace: /Users/baleeiro/AI-Second-Brain/02-Projects/P - Penpot Design Automation
+workspace: .
 repository: https://github.com/kaio-baleeiro/penpot-design-automation
 next: Usar $penpot-design em um novo pedido e planejar a renomeação futura dos volumes
 ---
@@ -23,7 +23,7 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
 
 ## Critério de conclusão
 
-- [x] Infraestrutura do Penpot migrada do KatiauInvest sem perda de dados.
+- [x] Infraestrutura do Penpot migrada de uma instalação local sem perda de dados.
 - [x] Repositório público criado e publicado no GitHub.
 - [x] Skill global instalada a partir da implementação versionada no projeto.
 - [x] Rotas de reprodução e criação dirigida implementadas.
@@ -31,7 +31,7 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
   e ausência de problemas P0/P1.
 - [x] Comparação lado a lado, overlay, heatmap e issues localizadas gerados.
 - [x] Ciclo de correção limitado a três tentativas por versão.
-- [x] Workflow testado de ponta a ponta com o KatiauInvest.
+- [x] Workflow testado de ponta a ponta com benchmarks públicos.
 - [x] As sete skills seguem o formato Agent Skills com recursos locais e
   validação estrutural automatizada.
 - [x] Lições aprendidas versionadas dentro de cada skill, com índice transversal,
@@ -59,9 +59,9 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
   no máximo três ciclos internos de correção.
 - 2026-09-14: a migração preservou 1 perfil, 3 times, 5 projetos, 2 arquivos e
   51 assets; backups anterior e posterior passaram nos checksums.
-- 2026-09-14: o benchmark KatiauInvest encerrou corretamente em `NEEDS_REVIEW`
-  após três ciclos porque dashboard e imports ficaram abaixo do gate por tela,
-  mesmo com score agregado 90,31.
+- 2026-09-17: Apple BR, GitHub Kaio e Warframe EN v4 foram escolhidos pelo
+  usuário como baselines canônicas; os gates automáticos permanecem
+  `NEEDS_REVIEW` e não foram reescritos.
 - 2026-09-14: cada skill referencia somente recursos diretos da própria pasta;
   o runtime compartilhado permanece único e é acessado por wrappers locais.
 - 2026-09-14: lições operacionais vivem em `skills/<skill>/lessons-learned/`;
@@ -88,5 +88,4 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
 - [[Handoff - Penpot Design Automation]]
 - [[35-Lessons-Learned/Projects/penpot-design-automation/README|Lições aprendidas do projeto]]
 - [[LL - Penpot viewport is not the final frame extent]]
-- [[P - KatiauInvest]]
 - [[_Project Index|Índice de projetos]]

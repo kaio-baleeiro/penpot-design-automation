@@ -11,6 +11,6 @@
     "stable": true,
     "build_ready": true,
     "requires_user_decision": false,
-    "evidence": ["../v2/source/frame-spec.json", "../v2/source/reference-full-page.png"]
+    "evidence": ["source/reference.png", "source/assets-manifest.json"]
   }]
 }

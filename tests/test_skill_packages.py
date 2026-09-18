@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import subprocess
 from pathlib import Path
+import json
+import tempfile
 import unittest
 
 from scripts.validate_skills import REQUIRED_SKILLS, validate_skill
@@ -48,16 +50,23 @@ class AgentSkillsPackageTests(unittest.TestCase):
                 self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_delivery_checker_accepts_the_terminal_fixture(self):
-        result = subprocess.run(
-            [
-                str(self.skills / "penpot-delivery/scripts/check-package.py"),
-                str(self.root / "runs/site-benchmarks/warframe-en/versions/v2"),
-            ],
-            cwd="/",
-            capture_output=True,
-            text=True,
-        )
-        self.assertEqual(result.returncode, 0, result.stderr)
+        with tempfile.TemporaryDirectory() as temporary:
+            run = Path(temporary) / "terminal-run"
+            delivery = run / "delivery"
+            delivery.mkdir(parents=True)
+            (delivery / "manifest.json").write_text(json.dumps({
+                "state": "NEEDS_REVIEW",
+                "visual_artifacts": ["side_by_side_annotated", "overlay", "heatmap", "issues"],
+                "lesson_refs": [],
+            }), encoding="utf-8")
+            (delivery / "report.md").write_text("# Terminal report\n", encoding="utf-8")
+            result = subprocess.run(
+                [str(self.skills / "penpot-delivery/scripts/check-package.py"), str(run)],
+                cwd="/",
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
 
 
 if __name__ == "__main__":

@@ -22,12 +22,11 @@ A composição contém sete serviços: frontend, backend, MCP, exporter, Postgre
 
 ## Dados e migração
 
-O compose usa, como volumes externos, os dados que já pertenciam à instalação do KatiauInvest:
-
-- `katiauinvest-penpot_penpot_postgres_data` — banco PostgreSQL
-- `katiauinvest-penpot_penpot_assets` — assets do Penpot
-
-Isso evita copiar ou apagar dados na primeira migração. O nome do projeto Compose é genérico (`penpot-design-automation`), portanto a identidade da composição não fica acoplada ao produto KatiauInvest.
+O compose aceita volumes externos para preservar dados de uma instalação local
+anterior sem copiar ou apagar conteúdo na primeira migração. Os nomes concretos
+dos volumes pertencem à máquina, ficam no `.env` ignorado e não fazem parte do
+contrato público. O nome do projeto Compose é genérico:
+`penpot-design-automation`.
 
 Segredos e persistência não são versionados. O arquivo `infra/penpot/.env` deve ser criado localmente a partir de `.env.example`. A URL/token do MCP deve permanecer apenas na configuração local do Codex.
 
@@ -66,7 +65,9 @@ O restore exige `PENPOT_RESTORE_CONFIRM=YES` e um diretório de backup válido. 
 
 ## Manutenção posterior
 
-Os volumes ainda têm os nomes históricos do KatiauInvest para viabilizar a migração sem cópia. Depois de validar a operação e uma restauração completa, planejar uma janela de manutenção para:
+Uma estação migrada pode manter nomes históricos de volumes para viabilizar a
+migração sem cópia. Depois de validar a operação e uma restauração completa,
+planeje uma janela de manutenção para:
 
 1. criar volumes com nomes neutros do projeto;
 2. copiar os dados com o stack parado e backup verificado;

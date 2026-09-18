@@ -26,10 +26,9 @@ existente.
 
 ### Instalação migrada
 
-Nesta máquina, o `.env` ignorado mantém os volumes históricos
-`katiauinvest-penpot_penpot_postgres_data` e
-`katiauinvest-penpot_penpot_assets`. Não copie esses nomes para um clone novo;
-use o bootstrap ou um restore documentado.
+Nesta máquina, o `.env` ignorado pode manter volumes históricos. Os nomes
+concretos pertencem à configuração local e não devem ser copiados para um clone
+novo; use o bootstrap ou um restore documentado.
 
 O `.env`, os backups e os dados persistentes ficam fora do Git. Os volumes externos são deliberados: a migração troca a composição sem copiar nem apagar os dados existentes.
 

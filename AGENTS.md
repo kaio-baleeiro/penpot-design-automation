@@ -18,6 +18,12 @@ workflow; the shared vault stores project context and human-review notes.
 - Uses deterministic visual gates: score `>= 90`, coverage `>= 80%`, no P0/P1,
   and at most three internal correction cycles per version.
 
+The public benchmark tree is canonical at v4. Apple BR, Warframe EN and GitHub
+Kaio v4 were accepted by the user as the official reference versions. This
+human acceptance is separate from the automated visual gate: a benchmark may
+remain `NEEDS_REVIEW` when score, coverage or issue thresholds fail. Never
+rewrite a score or call a failed automated gate a pass.
+
 ## Required operating contract
 
 1. Start from `skills/penpot-design/SKILL.md` and read only the phase skill and
@@ -106,8 +112,8 @@ python3 scripts/validate_skills.py
 
 `setup.sh` is idempotent: it never overwrites an existing `.env`, skill link or
 volume. On a fresh clone it generates local secrets and creates neutral Docker
-volumes; the migrated KatiauInvest machine keeps its legacy volume names only
-in its ignored `.env`.
+volumes; a migrated workstation keeps any legacy volume names only in its
+ignored `.env` and local lessons.
 
 The installer creates a single global symlink to
 `skills/penpot-design`; it does not copy or fork the skill. Use the wrappers
