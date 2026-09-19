@@ -1,24 +1,42 @@
-# GitHub kaio-baleeiro benchmark
+# GitHub Kaio — v4
 
-Fonte pública: <https://github.com/kaio-baleeiro>
-Viewport observado: 1440×900. Documento e frame aprovados: 1440×1807, sem
-overflow horizontal de página. [Referência oficial](versions/v4/source/reference.png).
+Reconstrução editável canônica do perfil público `kaio-baleeiro`, baseada na
+fonte full-page do pacote e no frame finito 1440×1807. Este pacote único contém
+a v4 aceita pelo usuário como baseline oficial/canônico do benchmark.
 
-Versão oficial/canônica: [v4](versions/v4/README.md), aceita pelo usuário.
-O gate automático permanece **NEEDS_REVIEW** após três ciclos:
-`83,79 → 83,92 → 84,10`. A cobertura final de `93,32%` passou, mas o score
-permaneceu abaixo de 90.
+- página Penpot: `Benchmark — GitHub Kaio v4`
+- frame: `GitHub Kaio — Home — 1440x1807 — v4`
+- página id: `b9b9f43f-1dd3-801e-8008-a6725d4e8fbd`
+- frame id: `b9b9f43f-1dd3-801e-8008-a6741a129cb3`
+- export atual: `exports/cycle-3.png`
+- aceitação humana: `CANÔNICA / ACEITA PELO USUÁRIO`
+- gate automático: `NEEDS_REVIEW`
 
-Frame Penpot editável: `GitHub Kaio — Home — 1440x1807 — v4`.
-[Render do ciclo 3](versions/v4/exports/cycle-3.png). A captura full-page
-original permanece apenas como evidência de comparação.
+## Ciclos
 
-Análise v4 final: [detail board](analysis/v4-cycle-3-home-detail-board.png) ·
-[side-by-side](analysis/v4-cycle-3-home-side-by-side-annotated.png) ·
-[overlay](analysis/v4-cycle-3-home-overlay.png) ·
-[heatmap](analysis/v4-cycle-3-home-heatmap.png).
+| Ciclo | Score | Cobertura | Resultado | Evidência legível |
+|---:|---:|---:|---|---|
+| 1 | 83,79 | 93,46% | REFINEMENT | [detail board](cycles/cycle-1/home-detail-board.png) |
+| 2 | 83,92 | 93,42% | REFINEMENT | [detail board](cycles/cycle-2/home-detail-board.png) |
+| 3 | 84,10 | 93,32% | NEEDS_REVIEW | [detail board](cycles/cycle-3/home-detail-board.png) |
 
-O quickstart do Penpot está no índice de [benchmarks](../README.md). Abra o
-projeto `Penpot Benchmarks`, arquivo `Site Benchmarks`, página `Benchmark —
-GitHub Kaio v4` e frame `GitHub Kaio — Home — 1440x1807 — v4`. Consulte o README
-da v4 para os IDs e a descrição dos artefatos.
+O ciclo 2 restaurou pills editáveis e o asset exato do Pull Shark. O ciclo 3
+corrigiu a navegação de perfil recortada por mistura de coordenadas locais e
+globais. A cobertura passou, mas o score permaneceu abaixo de 90, sobretudo por
+tipografia, bordas/spacing e diferenças finas de assets.
+
+## Quickstart no Penpot
+
+Abra [http://localhost:9001](http://localhost:9001), selecione o projeto
+`Penpot Benchmarks` e o arquivo `Site Benchmarks`. A página é `Benchmark —
+GitHub Kaio v4` e o frame é `GitHub Kaio — Home — 1440x1807 — v4`.
+
+- página id: `b9b9f43f-1dd3-801e-8008-a6725d4e8fbd`
+- frame id: `b9b9f43f-1dd3-801e-8008-a6741a129cb3`
+
+`source/` contém a referência e a procedência; `design/` contém plano,
+inventários e log MCP; `exports/` contém renders dos frames editáveis; `cycles/` contém
+score, issues, relatório, comparação, overlay e heatmap. O estado automático
+`NEEDS_REVIEW` não invalida a aceitação humana da v4 como canônica.
+
+Registro da decisão: [aprovação canônica v001](approvals/approval-v001.md).

@@ -4,20 +4,20 @@
     "score": 64.23,
     "coverage": 0.569783,
     "passed": false,
-    "score_path": "runs/site-benchmarks/warframe-en/versions/v4/cycles/cycle-1/score.json"
+    "score_path": "runs/site-benchmarks/warframe-en/cycles/cycle-1/score.json"
   },
   {
     "cycle": 2,
     "score": 65.38,
     "coverage": 0.566532,
     "passed": false,
-    "score_path": "runs/site-benchmarks/warframe-en/versions/v4/cycles/cycle-2/score.json"
+    "score_path": "runs/site-benchmarks/warframe-en/cycles/cycle-2/score.json"
   },
   {
     "cycle": 3,
     "score": 64.03,
     "coverage": 0.615806,
     "passed": false,
-    "score_path": "runs/site-benchmarks/warframe-en/versions/v4/cycles/cycle-3/score.json"
+    "score_path": "runs/site-benchmarks/warframe-en/cycles/cycle-3/score.json"
   }
 ]

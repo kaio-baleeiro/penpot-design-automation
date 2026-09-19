@@ -1,25 +1,42 @@
-# Apple Brasil benchmark
+# Apple BR v4
 
-Fonte pública: <https://www.apple.com/br/>
-Viewport observado: 1440×900. A captura registrou conteúdo fora do viewport,
-mas o frame aprovado contém a página em 1440×5261 e trata a largura extra como
-overflow acidental. [Referência oficial](versions/v4/source/reference.png).
+Reconstrução editável canônica da página inicial da Apple Brasil. A fonte é a
+captura full-page `1440×5261` registrada no pacote; a imagem não foi usada como
+camada visível da entrega. Este pacote único contém a v4 aceita pelo usuário
+como baseline oficial/canônico do benchmark.
 
-Versão oficial/canônica: [v4](versions/v4/README.md), aceita pelo usuário.
-O gate automático permanece **NEEDS_REVIEW** após três ciclos:
-`71,38 → 71,08 → 71,04`; cobertura final `75,72%`. Score e cobertura continuam
-abaixo da régua automática.
+- página Penpot: `Benchmark — Apple BR v4`
+- frame: `Apple BR — Home — 1440x5261 — v4`
+- página id: `b9b9f43f-1dd3-801e-8008-a6714b37dc3b`
+- frame id: `b9b9f43f-1dd3-801e-8008-a67202c01eef`
+- aceitação humana: `CANÔNICA / ACEITA PELO USUÁRIO`
+- gate automático: `NEEDS_REVIEW`
 
-Frame Penpot editável: `Apple BR — Home — 1440x5261 — v4`.
-[Render do ciclo 3](versions/v4/exports/cycle-3.png). A captura full-page
-original permanece apenas como evidência de comparação.
+## Ciclos
 
-Análise v4 final: [detail board](analysis/v4-cycle-3-home-detail-board.png) ·
-[side-by-side](analysis/v4-cycle-3-home-side-by-side-annotated.png) ·
-[overlay](analysis/v4-cycle-3-home-overlay.png) ·
-[heatmap](analysis/v4-cycle-3-home-heatmap.png).
+| Ciclo | Score | Cobertura | Resultado | Evidência legível |
+|---:|---:|---:|---|---|
+| 1 | 71,38 | 75,76% | REFINEMENT | [detail board](cycles/cycle-1/home-detail-board.png) |
+| 2 | 71,08 | 76,83% | REFINEMENT | [detail board](cycles/cycle-2/home-detail-board.png) |
+| 3 | 71,04 | 75,72% | NEEDS_REVIEW | [detail board](cycles/cycle-3/home-detail-board.png) |
 
-O quickstart do Penpot está no índice de [benchmarks](../README.md). Abra o
-projeto `Penpot Benchmarks`, arquivo `Site Benchmarks`, página `Benchmark — Apple
-BR v4` e frame `Apple BR — Home — 1440x5261 — v4`. Consulte o README da v4 para
-os IDs e a descrição dos artefatos.
+O frame permaneceu abaixo dos gates automáticos de score e cobertura após três
+ciclos. A divergência principal está na escala/crop dos assets hero e TV, seguida da
+densidade incompleta do rodapé. Consulte o `report.md`, side-by-side, overlay e
+heatmap em cada diretório de ciclo.
+
+## Quickstart no Penpot
+
+Abra [http://localhost:9001](http://localhost:9001), selecione o projeto
+`Penpot Benchmarks` e o arquivo `Site Benchmarks`. A página é `Benchmark — Apple
+BR v4` e o frame é `Apple BR — Home — 1440x5261 — v4`.
+
+- página id: `b9b9f43f-1dd3-801e-8008-a6714b37dc3b`
+- frame id: `b9b9f43f-1dd3-801e-8008-a67202c01eef`
+
+`source/` contém a referência e a procedência; `design/` contém plano,
+inventários e log MCP; `exports/` contém renders dos frames editáveis; `cycles/` contém
+score, issues, relatório, comparação, overlay e heatmap. O estado automático
+`NEEDS_REVIEW` não invalida a aceitação humana da v4 como canônica.
+
+Registro da decisão: [aprovação canônica v001](approvals/approval-v001.md).

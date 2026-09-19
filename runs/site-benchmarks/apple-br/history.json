@@ -4,20 +4,20 @@
     "score": 71.38,
     "coverage": 0.757583,
     "passed": false,
-    "score_path": "runs/site-benchmarks/apple-br/versions/v4/cycles/cycle-1/score.json"
+    "score_path": "runs/site-benchmarks/apple-br/cycles/cycle-1/score.json"
   },
   {
     "cycle": 2,
     "score": 71.08,
     "coverage": 0.768303,
     "passed": false,
-    "score_path": "runs/site-benchmarks/apple-br/versions/v4/cycles/cycle-2/score.json"
+    "score_path": "runs/site-benchmarks/apple-br/cycles/cycle-2/score.json"
   },
   {
     "cycle": 3,
     "score": 71.04,
     "coverage": 0.757218,
     "passed": false,
-    "score_path": "runs/site-benchmarks/apple-br/versions/v4/cycles/cycle-3/score.json"
+    "score_path": "runs/site-benchmarks/apple-br/cycles/cycle-3/score.json"
   }
 ]

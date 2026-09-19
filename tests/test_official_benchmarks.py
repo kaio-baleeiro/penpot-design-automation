@@ -13,17 +13,22 @@ class OfficialBenchmarkPackageTests(unittest.TestCase):
         cls.benchmarks = cls.root / "runs/site-benchmarks"
         cls.sites = ("apple-br", "github-kaio-baleeiro", "warframe-en")
 
-    def test_only_canonical_version_is_present(self):
+    def test_only_canonical_package_is_present(self):
         for site in self.sites:
             with self.subTest(site=site):
-                versions = self.benchmarks / site / "versions"
-                directories = sorted(item.name for item in versions.iterdir() if item.is_dir())
-                self.assertEqual(directories, ["v4"])
+                run = self.benchmarks / site
+                self.assertFalse((run / "versions").exists())
+                expected = {
+                    "README.md", "analysis", "approvals", "cycles", "decisions.md",
+                    "design", "exports", "history.json", "manifest.json", "questions.md",
+                    "source",
+                }
+                self.assertTrue(expected.issubset({item.name for item in run.iterdir()}))
 
     def test_canonical_manifest_keeps_human_acceptance_separate_from_gate(self):
         for site in self.sites:
             with self.subTest(site=site):
-                run = self.benchmarks / site / "versions/v4"
+                run = self.benchmarks / site
                 manifest = json.loads((run / "manifest.json").read_text(encoding="utf-8"))
                 self.assertEqual(manifest["state"], "NEEDS_REVIEW")
                 self.assertEqual(manifest["validation_cycle"], 3)
@@ -39,7 +44,7 @@ class OfficialBenchmarkPackageTests(unittest.TestCase):
     def test_source_package_and_cycle_paths_are_self_contained(self):
         for site in self.sites:
             with self.subTest(site=site):
-                run = self.benchmarks / site / "versions/v4"
+                run = self.benchmarks / site
                 manifest = json.loads((run / "manifest.json").read_text(encoding="utf-8"))
                 screenshot_refs = [ref for ref in manifest["source_refs"] if ref["type"] == "screenshot"]
                 self.assertEqual(len(screenshot_refs), 1)

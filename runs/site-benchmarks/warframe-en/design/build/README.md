@@ -7,5 +7,5 @@ nested boards, adds exact first-party media, and creates real tokens plus a
 visible component instance.
 
 After execution, append the MCP request/response to
-`../penpot-mcp-log.jsonl`, export the frame to `../exports/cycle-1.png`, and
+`design/penpot-mcp-log.jsonl`, export the frame to `exports/cycle-1.png`, and
 fill `../structure-inventory.json` from the actual Penpot tree.

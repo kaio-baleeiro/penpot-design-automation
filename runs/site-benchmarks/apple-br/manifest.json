@@ -38,9 +38,9 @@
   "max_validation_cycles": 3,
   "user_review_round": 0,
   "lesson_refs": [
-    "../../../../../skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
-    "../../../../../skills/penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md",
-    "../../../../../skills/penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md"
+    "../../../skills/penpot-build/lessons-learned/project/LL - screenshot is not editable design.md",
+    "../../../skills/penpot-source-map/lessons-learned/project/LL - dimensions do not prove asset readiness.md",
+    "../../../skills/penpot-build/lessons-learned/project/LL - nested boards require local coordinates.md"
   ],
   "approval": {"briefing": true, "design": true, "design_system": false},
   "intake": {"initial_questions_completed": true, "addendum_question_completed": true, "ambiguity_analysis_completed": true, "evidence": ["questions.md", "decisions.md"]},

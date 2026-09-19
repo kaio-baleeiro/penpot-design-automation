@@ -3,15 +3,16 @@
 Runs de reprodução pública em viewport base 1440×900.
 
 Cada run preserva a fonte, decisões, frame-spec e o paralelo visual gerado
-pela análise. A árvore pública contém somente as reconstruções v4, aceitas pelo
-usuário como versões oficiais/canônicas. O avaliador regional `penpot-visual-v2`
+pela análise. Cada benchmark usa sua estrutura normal diretamente na raiz do
+pacote; não há diretório de versões arquivadas. O conteúdo v4 é a reconstrução
+oficial/canônica escolhida pelo usuário. O avaliador regional `penpot-visual-v2`
 continua sendo um gate automático independente da aceitação humana.
 
 | Site | Run | Estado |
 |---|---|---|
-| Apple Brasil | [Apple v4](apple-br/versions/v4/README.md) | CANÔNICA · gate automático `NEEDS_REVIEW` · `71,38 → 71,08 → 71,04` |
-| Warframe English | [Warframe v4](warframe-en/versions/v4/README.md) | CANÔNICA · gate automático `NEEDS_REVIEW` · `64,23 → 65,38 → 64,03` |
-| GitHub kaio-baleeiro | [GitHub v4](github-kaio-baleeiro/versions/v4/README.md) | CANÔNICA · gate automático `NEEDS_REVIEW` · `83,79 → 83,92 → 84,10` |
+| Apple Brasil | [Apple v4](apple-br/README.md) | CANÔNICA · gate automático `NEEDS_REVIEW` · `71,38 → 71,08 → 71,04` |
+| Warframe English | [Warframe v4](warframe-en/README.md) | CANÔNICA · gate automático `NEEDS_REVIEW` · `64,23 → 65,38 → 64,03` |
+| GitHub kaio-baleeiro | [GitHub v4](github-kaio-baleeiro/README.md) | CANÔNICA · gate automático `NEEDS_REVIEW` · `83,79 → 83,92 → 84,10` |
 
 ## Galeria v4 — ciclo final
 
@@ -38,7 +39,7 @@ automático `NEEDS_REVIEW`, sem retirar a aceitação humana da v4 como canônic
    registrados nos manifests v4 são a referência inequívoca quando houver nomes
    duplicados.
 
-Cada pacote v4 contém `source/` (referência e procedência), `design/` (plano,
+Cada pacote contém `source/` (referência e procedência), `design/` (plano,
 inventários e log MCP), `exports/` (renders dos frames editáveis) e `cycles/` (score,
 issues, relatório, comparação, overlay e heatmap). Os artefatos publicados são
 sanitizados e não incluem cookies, tokens ou estado de sessão.
