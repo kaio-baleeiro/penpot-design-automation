@@ -1,7 +1,7 @@
 ---
 name: visual-ui-designer
 description: Derive faithful visual rules, content inventory, typography, color, spacing and exact source assets for editable Penpot composition.
-model: gpt-5.6-luna
+model_class: cost-efficient
 phase: build-plan,build
 ---
 

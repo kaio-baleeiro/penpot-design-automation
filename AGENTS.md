@@ -40,8 +40,11 @@ rewrite a score or call a failed automated gate a pass.
    navigation. Require an approved bounded state for dynamic or infinite
    content.
 5. Delegate hands-on capture, inspection, MCP construction, rendering,
-   correction and scoring to `gpt-5.6-luna`. If that worker is unavailable,
-   stop with `BLOCKED_MODEL_UNAVAILABLE` instead of falling back silently.
+   correction and scoring to the runtime's cost-efficient worker selected by
+   `agents/runtime-policy.yaml`. Codex prefers `gpt-5.6-luna`; other hosts use
+   their native worker mapping. Record the resolved runtime and model in every
+   handoff. If no delegated worker is available, stop with
+   `BLOCKED_WORKER_UNAVAILABLE`.
    Use the selected profile's `AGENT.md` and write its required handoff before
    advancing to the next phase. Source/script preparation may be parallel, but
    mutations, inventory and exports of one Penpot file are serial because the
@@ -120,11 +123,21 @@ The installer creates a single global symlink to
 inside the selected skill for capture, source mapping, MCP and validation so
 they resolve the repository even when launched from `/` or another checkout.
 
-## Adapter guidance
+## Runtime adapters
 
-- Codex: invoke `$penpot-design` after installing with `./install.sh`.
-- Devin CLI, Claude Code, Gemini and Cursor: read this file, then invoke the
-  relevant `skills/<name>/SKILL.md` directly and preserve the same artifacts,
-  gates and lesson protocol.
-- Any agent may run tests and read sanitized manifests. Only an explicitly
-  delegated Luna worker may perform hands-on Penpot mutations for a run.
+- Codex: invoke `$penpot-design` after `./install.sh`; the preferred worker is
+  `gpt-5.6-luna`.
+- Claude Code: `CLAUDE.md` loads this contract and `.claude/agents/` exposes
+  the phase profiles.
+- Devin CLI: this `AGENTS.md` is loaded directly and `.devin/agents/` exposes
+  the phase profiles.
+- Gemini CLI: `GEMINI.md` imports this contract and `.gemini/agents/` exposes
+  the phase profiles.
+- Other agents: read this file, `skills/penpot-design/SKILL.md`, and the
+  canonical profile under `agents/profiles/`; use a separate cost-efficient
+  worker when the host supports delegation.
+
+Run `python3 scripts/sync_agent_adapters.py --check` after changing a canonical
+profile. Generated adapters must stay synchronized with `agents/profiles/`.
+Any agent may run tests and read sanitized manifests. A delegated worker may
+mutate Penpot only after its runtime and concrete model are recorded.

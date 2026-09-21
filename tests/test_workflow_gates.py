@@ -19,7 +19,13 @@ def _manifest(**overrides):
         "schema_version": "1.0",
         "route": "reproduction",
         "state": "VALIDATING",
-        "worker_model": "gpt-5.6-luna",
+        "execution": {
+            "runtime": "claude-code",
+            "orchestrator_model": "opus",
+            "worker_model": "haiku",
+            "worker_class": "cost-efficient",
+            "delegation": "subagent",
+        },
         "source_refs": ["source.png"],
         "target_viewports": [{"width": 80, "height": 60}],
         "screens": [{
@@ -63,10 +69,20 @@ class WorkflowGateTests(unittest.TestCase):
         self.assertIn("status: active", lesson)
         self.assertIn("NEEDS_REVIEW", scoring)
 
-    def test_schema_and_worker_are_strict(self):
+    def test_schema_and_execution_record_are_strict(self):
         validate_manifest(_manifest())
-        with self.assertRaisesRegex(ValueError, "worker_model"):
-            validate_manifest(_manifest(worker_model="gpt-5.6-sol"))
+        invalid = _manifest()
+        invalid["execution"]["worker_model"] = ""
+        with self.assertRaisesRegex(ValueError, "execution"):
+            validate_manifest(invalid)
+        invalid_runtime = _manifest()
+        invalid_runtime["execution"]["runtime"] = "Claude Code: local"
+        with self.assertRaisesRegex(ValueError, "runtime"):
+            validate_manifest(invalid_runtime)
+        legacy = _manifest()
+        legacy.pop("execution")
+        legacy["worker_model"] = "gpt-5.6-luna"
+        validate_manifest(legacy)
         with self.assertRaisesRegex(ValueError, "lesson_refs"):
             validate_manifest(_manifest(lesson_refs="not-a-list"))
 

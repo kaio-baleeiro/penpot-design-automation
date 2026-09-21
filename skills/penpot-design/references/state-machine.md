@@ -21,7 +21,8 @@ Estados persistidos no manifesto da execução:
 | `READY_FOR_DELIVERY` | gates e aprovações passaram | pacote final | `DELIVERED` |
 | `DELIVERED` | gates finais passados | pacote de entrega + relatório | terminal |
 | `NEEDS_REVIEW` | ciclo 3 falhou ou gate final falhou | melhor versão + bloqueios explícitos | terminal |
-| `BLOCKED_MODEL_UNAVAILABLE` | Luna indisponível | erro e retomada segura | terminal |
+| `BLOCKED_WORKER_UNAVAILABLE` | worker delegado indisponível | erro e retomada segura | terminal |
+| `BLOCKED_MODEL_UNAVAILABLE` | alias legado de runs schema 1.0 | erro e retomada segura | terminal |
 
 Regras de transição:
 

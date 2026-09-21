@@ -1,15 +1,26 @@
 from __future__ import annotations
 
 from pathlib import Path
+import subprocess
 import unittest
 
 from scripts.validate_agent_profiles import validate
 
 
 class AgentProfileTests(unittest.TestCase):
-    def test_manifested_profiles_are_portable_and_luna_bound(self) -> None:
+    def test_manifested_profiles_are_portable_and_runtime_neutral(self) -> None:
         root = Path(__file__).resolve().parents[1]
         self.assertEqual(validate(root), [])
+
+    def test_native_runtime_adapters_are_in_sync(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        result = subprocess.run(
+            ["python3", str(root / "scripts/sync_agent_adapters.py"), "--check"],
+            cwd=root,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_every_profile_has_a_mission_and_stop_rules(self) -> None:
         root = Path(__file__).resolve().parents[1]

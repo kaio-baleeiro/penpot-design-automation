@@ -112,9 +112,7 @@ def validate_skill(skill_dir: Path) -> list[str]:
             if not script.stat().st_mode & 0o111:
                 errors.append(f"{skill_dir.name}: script is not executable: {script.relative_to(skill_dir)}")
     agent_file = skill_dir / "agents" / "openai.yaml"
-    if not agent_file.is_file():
-        errors.append(f"{skill_dir.name}: missing agents/openai.yaml")
-    elif f"${skill_dir.name}" not in agent_file.read_text(encoding="utf-8"):
+    if agent_file.is_file() and f"${skill_dir.name}" not in agent_file.read_text(encoding="utf-8"):
         errors.append(f"{skill_dir.name}: default prompt must reference ${skill_dir.name}")
     return errors
 

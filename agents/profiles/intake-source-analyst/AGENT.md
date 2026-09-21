@@ -1,7 +1,7 @@
 ---
 name: intake-source-analyst
 description: Capture the complete supplied source, states, responsive evidence and exact asset provenance before any Penpot mutation.
-model: gpt-5.6-luna
+model_class: cost-efficient
 phase: intake,source-map
 ---
 

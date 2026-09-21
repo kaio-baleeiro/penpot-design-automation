@@ -1,6 +1,6 @@
 ---
 name: penpot-validate
-description: Rigorously compare editable Penpot renders against source evidence or an approved prototype with immutable per-viewport scoring (>=90/80), semantic/source-fidelity review, visual diffs, and targeted Luna refactoring capped at three cycles.
+description: Rigorously compare editable Penpot renders against source evidence or an approved prototype with immutable per-viewport gates of 90 score and 80 percent coverage, semantic/source-fidelity review, visual diffs, and targeted delegated refactoring capped at three cycles.
 metadata:
   short-description: Score, compare and correct Penpot screens
   compatibility: Requires the project checkout and Python 3; Penpot export uses the local MCP connection.
@@ -18,8 +18,8 @@ skill owns `VALIDATING`, `REFACTORING` and `DS_REVALIDATING`.
 
 ## Validation pass
 
-For every requested screen and viewport, delegate render/capture work to
-`gpt-5.6-luna`. Luna may render, collect evidence and perform the targeted
+For every requested screen and viewport, delegate render/capture work to the
+configured cost-efficient worker. The worker may render, collect evidence and perform the targeted
 refactor, but the orchestrator/reviewer is responsible for the official score,
 gate decision and approval transition. Run the deterministic evaluator with
 `scripts/validate.sh --run-dir <run-dir> --cycle <1..3>` from this skill's
@@ -70,14 +70,14 @@ For unstable/infinite content, validate only the explicitly approved finite
 state and name that boundary in the report.
 
 Each deterministic issue identifies a region/coordinates where available,
-expected vs actual, magnitude and evidence. The Luna worker must add likely root
+expected vs actual, magnitude and evidence. The configured worker must add likely root
 cause and a precise fix in the refactoring handoff without altering the
 machine-written score/issues files. Penpot exports are produced through
 the `$penpot-build` MCP wrapper before validation.
 
 ## Refinement loop
 
-If any gate fails after initial build, delegate targeted fixes to Luna using the
+If any gate fails after initial build, delegate targeted fixes to the configured worker using the
 issues as the only change list, then rerun the full evaluator. Increment
 `validation_cycle`; maximum is three. Avoid broad redesign when the issue calls
 for a local correction. Preserve all score files and reports. After cycle 3,
@@ -92,8 +92,8 @@ message in `feedback/` and build a new version only after interpreting it;
 internal validation still starts at cycle 1 for that version.
 
 If the source is incomplete or comparison is unsafe, request clarification;
-do not turn missing evidence into a pass. If Luna is unavailable, stop with
-`BLOCKED_MODEL_UNAVAILABLE`.
+do not turn missing evidence into a pass. If delegation is unavailable, stop with
+`BLOCKED_WORKER_UNAVAILABLE`.
 
 For the post-componentization pass, provide `--inventory
 design/structure-inventory.json`. A visual pass alone cannot enter delivery.

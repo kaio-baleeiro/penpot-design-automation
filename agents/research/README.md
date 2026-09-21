@@ -5,6 +5,27 @@ serem documentação primária, padrão normativo ou material do próprio Penpot
 Cada item vira uma regra operacional nos perfis; a execução não deve fazer
 busca web não relacionada à origem fornecida pelo usuário.
 
+## Portabilidade entre agentes — revisão de 21/09/2026
+
+- [Agent Skills specification](https://agentskills.io/specification): o núcleo
+  portável é `SKILL.md` com recursos relativos; `agents/openai.yaml` é metadata
+  opcional de um cliente. Regra: o validador não pode exigir metadata OpenAI.
+- [Claude Code custom subagents](https://code.claude.com/docs/en/sub-agents):
+  perfis de projeto vivem em `.claude/agents/` e podem escolher um modelo
+  econômico. Regra: gerar wrappers finos que apontam ao perfil canônico.
+- [Gemini CLI project context](https://geminicli.com/docs/cli/gemini-md/) e
+  [subagents](https://geminicli.com/docs/core/subagents/): `GEMINI.md` carrega
+  o contrato e `.gemini/agents/` registra workers. Regra: manter o mesmo nome e
+  descrição dos perfis canônicos.
+- [Devin CLI rules and AGENTS.md](https://docs.devin.ai/cli/extensibility/rules)
+  e [subagents](https://docs.devin.ai/cli/subagents): Devin lê `AGENTS.md` e
+  perfis em `.devin/agents/`; o router padrão de subagentes é econômico. Regra:
+  não exigir um modelo de outro fornecedor.
+
+Essas fontes sustentam a separação entre contrato funcional, perfil canônico e
+adaptador do runtime. O manifesto registra o runtime e o modelo resolvidos para
+que economia, auditoria e reprodução não dependam de inferência posterior.
+
 ## Penpot e design systems
 
 - [Components — Penpot User Guide](https://help.penpot.app/user-guide/design-systems/components/): componente principal é a fonte de verdade e instâncias herdam mudanças. Regra: prototipar componentes reais e verificar instâncias, não apenas nomes de camadas.

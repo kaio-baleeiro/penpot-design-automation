@@ -15,8 +15,9 @@ Read [`lessons-learned/README.md`](lessons-learned/README.md). Run only after fo
 briefing/version in directed creation). Use append-only run artifacts and never
 replace the approved reference version.
 
-Delegate extraction and MCP refactoring to `gpt-5.6-luna`; no fallback if Luna
-is unavailable. Extract the inventory from the approved frames/code and apply
+Delegate extraction and MCP refactoring to the configured cost-efficient
+worker; stop with `BLOCKED_WORKER_UNAVAILABLE` if delegation is unavailable.
+Extract the inventory from the approved frames/code and apply
 the changes through `scripts/penpot-mcp.sh execute --args '<JSON>' --log-path design/penpot-mcp-log.jsonl` from this skill's physical directory (or
 `scripts/penpot-mcp.sh call <tool-name> --args '<JSON>' --log-path design/penpot-mcp-log.jsonl`). Record the inventory, MCP requests and
 responses; do not assume a separate token-extraction script exists.

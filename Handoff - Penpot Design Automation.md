@@ -2,7 +2,7 @@
 type: handoff
 status: complete
 created: 2026-09-14
-updated: 2026-09-18
+updated: 2026-09-21
 source_agent: codex
 agent_context: codex-desktop
 project: Penpot Design Automation
@@ -37,9 +37,11 @@ infra/penpot/scripts/down.sh
 ```
 
 Novos pedidos começam com `$penpot-design`. A skill resolve as perguntas de
-intake/adendo, escolhe reprodução ou criação dirigida, delega tarefas manuais a
-`gpt-5.6-luna`, registra fontes e conduz construção, score, correção, aprovação,
-formalização do design system e entrega.
+intake/adendo, escolhe reprodução ou criação dirigida, delega tarefas manuais ao
+worker econômico configurado para o runtime, registra fontes e conduz construção,
+score, correção, aprovação, formalização do design system e entrega. Os perfis
+canônicos são compartilhados; Codex, Claude Code, Devin CLI e Gemini CLI usam
+adaptadores nativos sincronizados a partir deles.
 
 As sete skills estão empacotadas no formato Agent Skills. Contratos extensos,
 wrappers e configuração ficam respectivamente em `references/`, `scripts/` e
@@ -59,11 +61,12 @@ infinito exige um limite reproduzível confirmado pelo usuário.
 
 ## Validação concluída
 
-- 50 testes unitários/integrados aprovados.
+- 75 testes unitários/integrados aprovados.
 - 7 skills aprovadas no validador oficial e no validador local.
 - Compose, scripts, instalador, healthcheck, MCP, export e inventário validados.
 - Backups pré e pós-migração com checksums válidos.
-- Forward test independente Luna aprovado após correções.
+- Adaptadores nativos dos sete perfis validados para Codex, Claude Code, Devin
+  CLI e Gemini CLI; o worker concreto continua sendo registrado por execução.
 - Cada skill possui `lessons-learned/`; o índice transversal do orquestrador
   compartilha regras entre fases e cinco falhas do desenvolvimento foram
   convertidas em regras mitigadas com evidência.

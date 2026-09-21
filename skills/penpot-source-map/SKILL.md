@@ -21,7 +21,7 @@ before capture and persist its decision per screen.
 
 ## Capture and inventory
 
-Delegate hands-on capture/inspection to `gpt-5.6-luna`. For a public URL, use
+Delegate hands-on capture/inspection to the configured cost-efficient worker. For a public URL, use
 the project CLI command
 `scripts/source-map.sh capture --url <URL> --output <dir> --viewport <WxH>`
 (add `--full-page` only when the requested evidence is a full page). Use
@@ -118,5 +118,5 @@ guess or proceed with a silent choice. Non-material assumptions must be
 recorded with impact and reversal.
 
 Conclude with a screen/viewport inventory and a build handoff. A missing source,
-blocked authentication or unavailable Luna is an explicit blocker, not a
+blocked authentication or unavailable delegated worker is an explicit blocker, not a
 fabricated capture.

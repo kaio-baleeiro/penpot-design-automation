@@ -1,7 +1,7 @@
 ---
 name: design-system-architect
 description: Formalize approved Penpot screens into interoperable tokens, styles, variants and reusable component instances.
-model: gpt-5.6-luna
+model_class: cost-efficient
 phase: design-system
 ---
 

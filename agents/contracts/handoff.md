@@ -9,7 +9,12 @@ Todo handoff é um arquivo versionado dentro do run (por exemplo,
 {
   "schema_version": "1.0",
   "profile": "penpot-mcp-prototyper",
-  "worker_model": "gpt-5.6-luna",
+  "execution": {
+    "runtime": "codex|claude-code|devin-cli|gemini-cli|other",
+    "worker_model": "resolved-model-id",
+    "worker_class": "cost-efficient",
+    "delegation": "subagent"
+  },
   "run_id": "...",
   "phase": "build",
   "inputs": ["..."],
@@ -30,7 +35,7 @@ causa provável e correção sugerida quando houver falha. `checks` só pode diz
 ## Gatilhos de bloqueio
 
 O perfil deve parar e devolver `BLOCKED_INPUT` quando faltar fonte, asset
-essencial, frame-spec, estado dinâmico aprovado ou acesso ao MCP/Luna. Não
+essencial, frame-spec, estado dinâmico aprovado, worker delegado ou acesso ao MCP. Não
 preencha lacunas com um screenshot colado, texto inventado ou ícone genérico.
 
 O perfil de QA devolve `NEEDS_REVIEW` se score < 90, coverage < 80%, houver P0/P1,

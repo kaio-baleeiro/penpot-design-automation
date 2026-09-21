@@ -13,7 +13,7 @@ class SelfContainedTests(unittest.TestCase):
         cls.root = Path(__file__).resolve().parents[1]
 
     def test_public_entrypoints_and_skill_lessons_are_present(self):
-        for relative in ("AGENTS.md", "README.md", "setup.sh", "infra/penpot/.env.example"):
+        for relative in ("AGENTS.md", "CLAUDE.md", "GEMINI.md", "README.md", "setup.sh", "infra/penpot/.env.example"):
             self.assertTrue((self.root / relative).is_file(), relative)
         skills = sorted(path for path in (self.root / "skills").iterdir() if path.is_dir())
         self.assertEqual(len(skills), 7)

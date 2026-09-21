@@ -46,8 +46,9 @@ directed-creation briefing gate.
   Ask only about material licensing, privacy or source-precedence restrictions.
 
 Write `questions.md`, `decisions.md` and `manifest.json` with the required
-schema. Set `worker_model` to `gpt-5.6-luna` for any delegated acquisition or
-inspection. If unavailable, return `BLOCKED_MODEL_UNAVAILABLE`.
+schema. Record the actual runtime, resolved worker model and delegation mode
+selected through `agents/runtime-policy.yaml`. If no delegated worker is
+available, return `BLOCKED_WORKER_UNAVAILABLE`.
 
 ## CLI handoff
 
@@ -58,5 +59,5 @@ For authenticated sources, add `--storage-state <ignored-private-json>`; the
 capture manifest records only `authenticated: true`, a sanitized URL and its
 hash, never cookies or the private path.
 For a supplied screenshot, hand it to `$penpot-source-map`.
-Repository inspection is performed by the Luna worker against the checked-out
+Repository inspection is performed by the configured worker against the checked-out
 code and recorded in the source inventory; no unimplemented helper is assumed.

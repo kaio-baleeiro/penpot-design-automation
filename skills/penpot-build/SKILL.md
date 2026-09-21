@@ -23,8 +23,8 @@ before handing the frame to validation.
 
 ## Build contract
 
-Delegate all hands-on MCP operations to `gpt-5.6-luna`; if unavailable stop
-with `BLOCKED_MODEL_UNAVAILABLE`. The worker must use the configured Penpot MCP,
+Delegate all hands-on MCP operations to the cost-efficient worker resolved for
+the current host; if unavailable stop with `BLOCKED_WORKER_UNAVAILABLE`. The worker must use the configured Penpot MCP,
 not an untracked manual substitute, and append every mutation/result to
 `design/penpot-mcp-log.jsonl`.
 Create a new versioned page/frame for every benchmark version. Never clear or

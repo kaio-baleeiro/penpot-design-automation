@@ -13,8 +13,10 @@ Os scripts da raiz são utilitários determinísticos usados pelas skills:
   MCP das correções v2 que produziram os exports auditados; eles são histórico
   reproduzível e não devem ser usados para sobrescrever ciclos existentes;
 - `validate_skills.py` valida os pacotes Agent Skills do repositório.
-- `validate_agent_profiles.py` valida manifesto, frontmatter, modelo Luna e
-  README dos perfis portáveis em `agents/`.
+- `validate_agent_profiles.py` valida manifesto, frontmatter, classe de worker e
+  sincronização dos adaptadores portáveis em `agents/`.
+- `sync_agent_adapters.py` gera ou confere os wrappers nativos de Claude Code,
+  Devin CLI e Gemini CLI a partir dos perfis canônicos.
 - `publish_benchmark_comparisons.py` copia somente side-by-side, overlay e
   heatmap de ciclos já pontuados para `analysis/`, com nomes versionados e sem
   sobrescrever a evidência original.

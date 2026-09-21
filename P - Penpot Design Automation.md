@@ -2,7 +2,7 @@
 type: project
 status: active
 created: 2026-09-14
-updated: 2026-09-18
+updated: 2026-09-21
 source_agent: codex
 agent_context: codex-desktop
 confidence: high
@@ -19,7 +19,7 @@ next: Usar $penpot-design em um novo pedido e planejar a renomeação futura dos
 Manter uma instância local e compartilhada do Penpot e um workflow versionado
 capaz de criar telas a partir de URL, screenshot, código ou briefing sem fonte,
 com construção via MCP, rastreabilidade da origem, validação visual determinística
-e correções executadas por trabalhadores `gpt-5.6-luna`.
+e correções executadas por trabalhadores econômicos selecionados pelo runtime.
 
 ## Critério de conclusão
 
@@ -48,8 +48,9 @@ e correções executadas por trabalhadores `gpt-5.6-luna`.
   usarão o time geral `Design Studio`.
 - 2026-09-14: skills e scripts canônicos vivem neste repositório; uma skill global
   fina aponta para o orquestrador versionado.
-- 2026-09-14: trabalho operacional delegado usa `gpt-5.6-luna`; indisponibilidade
-  do modelo interrompe o fluxo em vez de escolher silenciosamente outro modelo.
+- 2026-09-21: os perfis canônicos são neutros de fornecedor; cada runtime resolve
+  seu trabalhador econômico por `agents/runtime-policy.yaml`, registra runtime e
+  modelo concretos e interrompe o fluxo se a delegação exigida estiver indisponível.
 - 2026-09-14: toda execução começa com perguntas, encerra a descoberta perguntando
   por adendos ou mudanças e reavalia ambiguidades antes de construir.
 - 2026-09-14: divergências entre fontes exigem decisão do usuário.

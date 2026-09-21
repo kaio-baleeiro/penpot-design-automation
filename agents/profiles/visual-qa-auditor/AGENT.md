@@ -1,7 +1,7 @@
 ---
 name: visual-qa-auditor
 description: Audit Penpot renders against full-page evidence with deterministic diffs, semantic checks, asset provenance and structural gates.
-model: gpt-5.6-luna
+model_class: cost-efficient
 phase: validate,delivery
 ---
 

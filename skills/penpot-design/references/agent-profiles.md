@@ -6,7 +6,7 @@ podem pular as fases nem trocar o revisor final por um worker.
 
 ## Seleção por fase
 
-| Fase | Perfil Luna | Handoff mínimo | Gate do orquestrador |
+| Fase | Perfil de worker | Handoff mínimo | Gate do orquestrador |
 |---|---|---|---|
 | Intake/captura | `intake-source-analyst` | perguntas, mapa, inventário, full-page e frame-spec | fonte preservada, limites e viewports resolvidos |
 | Código/runtime | `frontend-forensics-engineer` | contrato DOM/CSS, semântica, breakpoints e assets | conflitos registrados e medidas ancoradas |
@@ -15,8 +15,9 @@ podem pular as fases nem trocar o revisor final por um worker.
 | Validação | `visual-qa-auditor` | score, coverage, issues, diffs e revisão semântica | score ≥90, coverage ≥80, zero P0/P1 e estrutura válida |
 | Pós-aprovação | `design-system-architect` | tokens, estilos, componentes, instâncias e revalidação | aparência preservada e detached count zero |
 
-Todos recebem `worker_model: gpt-5.6-luna`. O host deve interromper com
-`BLOCKED_MODEL_UNAVAILABLE` se Luna não puder ser criado. O orquestrador é o
+Todos recebem `model_class: cost-efficient`. O host resolve o modelo em
+`agents/runtime-policy.yaml` e deve interromper com
+`BLOCKED_WORKER_UNAVAILABLE` se o worker não puder ser criado. O orquestrador é o
 único responsável por chamar o avaliador, conferir a estrutura e decidir
 `REFINEMENT`, `READY_FOR_USER_REVIEW`, `NEEDS_REVIEW` ou `DELIVERED`.
 

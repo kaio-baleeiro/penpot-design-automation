@@ -3,7 +3,8 @@
 Infraestrutura local compartilhada do Penpot e workflow de criação de telas a
 partir de URL, screenshot, código ou briefing sem fonte. Este repositório é
 executável por Codex, Devin CLI e outros agentes que consigam ler
-`AGENTS.md`/`SKILL.md`; não depende de uma cópia proprietária do Codex.
+`AGENTS.md`/`SKILL.md`; adaptadores nativos incluem Claude Code, Devin CLI e
+Gemini CLI.
 
 O projeto mantém duas rotas:
 
@@ -12,13 +13,19 @@ O projeto mantém duas rotas:
   formaliza o design system depois da aprovação explícita.
 
 Ambas exigem descoberta em duas etapas, rastreabilidade persistente, construção
-via Penpot MCP, trabalho operacional com `gpt-5.6-luna` e validação determinística
-por tela e viewport.
+via Penpot MCP, trabalho operacional em worker econômico do host e validação
+determinística por tela e viewport. No Codex, o worker preferido continua sendo
+`gpt-5.6-luna`.
 
 ## Estrutura
 
 ```text
-AGENTS.md           Instruções portáteis para Codex, Devin CLI e outros agentes
+AGENTS.md           Contrato portátil compartilhado por todos os agentes
+CLAUDE.md           Entrada do Claude Code
+GEMINI.md           Entrada do Gemini CLI
+.claude/agents/     Adaptadores dos perfis para Claude Code
+.devin/agents/      Adaptadores dos perfis para Devin CLI
+.gemini/agents/     Adaptadores dos perfis para Gemini CLI
 docs/               Documentação transversal da infraestrutura
 infra/penpot/       Compose, backup, restore, healthcheck e atualização
 skills/             Skills versionadas do workflow
@@ -33,7 +40,7 @@ Cada pasta em `skills/` é um pacote [Agent Skills](https://agentskills.io/speci
 ```text
 skills/<skill>/
 ├── SKILL.md
-├── agents/openai.yaml
+├── agents/openai.yaml # metadados opcionais para clientes OpenAI
 ├── scripts/          # somente quando a skill executa código
 ├── references/       # somente para documentação carregada sob demanda
 ├── assets/           # somente para recursos reutilizáveis reais
@@ -45,7 +52,9 @@ skills/<skill>/
 Diretórios opcionais vazios não são criados. Os `SKILL.md` usam apenas
 referências diretas a recursos da própria skill; wrappers locais resolvem a
 raiz física do checkout antes de chamar o runtime compartilhado do projeto.
-Cada pasta de trabalho possui um README próprio. O índice em
+`SKILL.md` é o único arquivo obrigatório pelo padrão Agent Skills; os demais
+recursos existem somente quando a skill precisa deles. Cada pasta de trabalho
+possui um README próprio. O índice em
 `skills/penpot-design/lessons-learned/README.md` conecta aprendizados que
 atravessam mais de uma fase.
 
@@ -61,9 +70,10 @@ O workflow agora separa a operação em perfis com responsabilidades verificáve
 - `visual-qa-auditor` cruza pixels, conteúdo, acessibilidade, assets e estrutura;
 - `design-system-architect` formaliza tokens, componentes, variantes e instâncias.
 
-O manifesto e os prompts estão em [`agents/`](agents/). Cada fase usa
-`gpt-5.6-luna`; o orquestrador continua revisor final e não pode alterar score,
-limiares ou evidência. O contrato de handoff impede que um perfil avance com
+O manifesto e os prompts canônicos estão em [`agents/`](agents/). Cada host
+seleciona seu worker econômico em `agents/runtime-policy.yaml`; o orquestrador
+continua revisor final e não pode alterar score, limiares ou evidência. O
+contrato de handoff impede que um perfil avance com
 inventário vazio, asset sem procedência, seção sem cobertura ou frame baseado
 somente em screenshot.
 
@@ -118,7 +128,7 @@ investiga desktop/mobile e não começa a construir antes da aprovação do esco
    sem fonte. O intake pergunta escopo, precedência, viewports e aprovação; a
    resposta de adendo/mudança é obrigatória.
 4. O fluxo cria `runs/<run-id>/`, mapeia a origem, inventaria assets, mede
-   viewport/documento/frame e entrega um plano para o worker Luna construir no
+   viewport/documento/frame e entrega um plano para o worker configurado construir no
    Penpot via MCP.
 5. A validação exporta a tela, calcula score por viewport e produz comparação
    lado a lado, overlay, heatmap e issues. Falhas retornam para correção precisa

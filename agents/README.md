@@ -17,15 +17,19 @@ CLI, Claude Code, Gemini, Cursor ou outro agente que leia `AGENTS.md`.
 | `design-system-architect` | design-system | Formalizar tokens, estilos, variantes e instâncias reutilizáveis |
 | `visual-qa-auditor` | validate/delivery | Coletar diffs, verificar estrutura e apontar correções por região |
 
-Todos os perfis de operação usam `worker_model: gpt-5.6-luna`. O orquestrador
-Codex (ou o agente host) continua sendo o revisor final: executa/confere o
-avaliador determinístico, aplica os gates 90/80/P0-P1 e decide o estado. Um
-perfil não pode alterar score, limiares ou evidência imutável.
+Os perfis declaram `model_class: cost-efficient` e não fixam fornecedor. O
+arquivo `runtime-policy.yaml` resolve esse papel para cada host: Luna no Codex,
+Haiku no Claude Code, o router econômico no Devin CLI e Flash no Gemini CLI.
+O agente principal continua sendo o revisor final: executa/confere o avaliador
+determinístico, aplica os gates 90/80/P0-P1 e decide o estado. Um perfil não
+pode alterar score, limiares ou evidência imutável.
 
 ## Como invocar em qualquer CLI
 
 1. Leia `AGENTS.md` na raiz e `skills/penpot-design/SKILL.md`.
-2. Escolha o perfil pelo manifesto `manifest.yaml` e leia seu `AGENT.md`.
+2. Escolha o perfil pelo manifesto `manifest.yaml`. Use o adaptador nativo em
+   `.claude/agents/`, `.devin/agents/` ou `.gemini/agents/`; em outro host,
+   leia o `AGENT.md` canônico.
 3. Passe ao perfil os caminhos do run e o contrato
    [`contracts/handoff.md`](contracts/handoff.md).
 4. O perfil grava apenas os artefatos da sua fase e devolve um handoff
@@ -35,6 +39,10 @@ perfil não pode alterar score, limiares ou evidência imutável.
 Não é necessário instalar um runtime proprietário: o host deve fornecer
 Playwright quando houver URL/app, o cliente MCP configurado quando houver
 construção no Penpot e Python 3 para os scripts do repositório.
+
+Os adaptadores são gerados por `scripts/sync_agent_adapters.py`. Edite apenas o
+perfil canônico e rode o gerador; `--check` valida que os 21 wrappers estão em
+sincronia.
 
 ## Pipeline
 

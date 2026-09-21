@@ -38,7 +38,13 @@ runs/<run-id>/
   "run_id": "stable-id",
   "route": "reproduction|directed_creation",
   "state": "INTAKE_PENDING",
-  "worker_model": "gpt-5.6-luna",
+  "execution": {
+    "runtime": "codex|claude-code|devin-cli|gemini-cli|other",
+    "orchestrator_model": "resolved-model-id",
+    "worker_model": "resolved-model-id",
+    "worker_class": "cost-efficient",
+    "delegation": "subagent"
+  },
   "source_refs": [],
   "target_viewports": [],
   "screens": [],
@@ -59,8 +65,12 @@ runs/<run-id>/
 ```
 
 O CLI é estrito: além dos campos acima, `target_viewports` e `screens` devem ser
-não vazios, `worker_model` deve ser exatamente `gpt-5.6-luna`, e a evidência das
+não vazios, `execution` deve registrar runtime/modelos/delegação, e a evidência das
 duas perguntas mais a análise de ambiguidades deve existir. Exemplo executável:
+
+Runs antigos com `worker_model` no topo continuam válidos para leitura e
+revalidação. Novos runs devem usar `execution`; o campo legado não identifica o
+orquestrador nem o runtime e não deve ser usado em novos manifestos.
 
 ```json
 {
@@ -69,7 +79,13 @@ duas perguntas mais a análise de ambiguidades deve existir. Exemplo executável
   "route": "reproduction",
   "mode": "source",
   "state": "VALIDATING",
-  "worker_model": "gpt-5.6-luna",
+  "execution": {
+    "runtime": "codex",
+    "orchestrator_model": "gpt-5.6-sol",
+    "worker_model": "gpt-5.6-luna",
+    "worker_class": "cost-efficient",
+    "delegation": "subagent"
+  },
   "source_refs": [{"source_id": "src-1", "type": "screenshot"}],
   "target_viewports": [{"width": 1440, "height": 900}],
   "screens": [
@@ -143,7 +159,7 @@ os limites vêm do briefing/conteúdo aprovado em vez de uma medição de origem
 
 O CLI escreve `issues.json` como `{run_id, cycle, issues}`. Cada issue
 determinístico possui `id`, `screen`, `viewport`, `severity` (`P0`..`P3`),
-`title`, `detail`, `bounds`, `status` e `source`; a interpretação Luna deve
+`title`, `detail`, `bounds`, `status` e `source`; a interpretação do worker deve
 registrar `root_cause` e `fix` no handoff/relatório sem editar a evidência
 imutável.
 

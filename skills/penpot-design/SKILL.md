@@ -1,9 +1,9 @@
 ---
 name: penpot-design
-description: Orchestrate creation or faithful reconstruction of static Penpot screens from URLs, screenshots, code repositories, or a refined prompt, including source traceability, Luna execution, deterministic validation, design-system formalization, and delivery.
+description: Orchestrate creation or faithful reconstruction of static Penpot screens from URLs, screenshots, code repositories, or a refined prompt, including source traceability, delegated execution, deterministic validation, design-system formalization, and delivery.
 metadata:
   short-description: Build and validate Penpot designs from sources or prompts
-  compatibility: Requires the project checkout, Python 3, Penpot MCP, and Luna subagents.
+  compatibility: Requires the project checkout, Python 3, Penpot MCP, and a host capable of delegated workers.
 ---
 
 # Penpot Design Orchestrator
@@ -60,11 +60,13 @@ component-instance counts in `design/structure-inventory.json`.
 
 ## Delegation policy
 
-All hands-on work must use `worker_model: gpt-5.6-luna`: source capture,
-inspection, MCP construction, correction, token extraction, rendering and
-scoring. If Luna is unavailable, stop with `BLOCKED_MODEL_UNAVAILABLE`; do not
-silently fall back. Keep the orchestrator focused on routing, user questions,
-gate decisions and records.
+All hands-on work uses the cost-efficient worker selected for the current host
+by `agents/runtime-policy.yaml`: source capture, inspection, MCP construction,
+correction, token extraction, rendering and scoring. Codex prefers
+`gpt-5.6-luna`; other runtimes use their declared native mapping. Record the
+resolved runtime and model in the run manifest and every handoff. If no
+delegated worker is available, stop with `BLOCKED_WORKER_UNAVAILABLE`. Keep the
+orchestrator focused on routing, user questions, gate decisions and records.
 
 Use the specialized portable profiles in `agents/` for each phase: source
 analyst, frontend forensics, UX/IA, visual UI, Penpot MCP prototyper, visual QA
@@ -73,9 +75,9 @@ and design-system architect. Every handoff must follow
 unmapped asset or unresolved layout contract blocks the next phase. The profile
 does not replace the orchestrator's final score or semantic review.
 
-Follow `references/delegation.md`: create a Codex subagent with
-the Luna model for each operational phase and treat quota/model errors as
-`BLOCKED_MODEL_UNAVAILABLE`.
+Follow `references/delegation.md`: invoke the native adapter for the current
+host, or pass the canonical profile to an equivalent delegated worker. Treat
+quota/model/delegation errors as `BLOCKED_WORKER_UNAVAILABLE`.
 
 ## Pipeline
 
@@ -91,7 +93,7 @@ the Luna model for each operational phase and treat quota/model errors as
 4. `penpot-validate`: render every requested screen/viewport, run the immutable
    deterministic score, and produce side-by-side, overlay, heatmap and issues.
 5. If any screen fails `score >= 90`, `coverage >= 80`, or has P0/P1, delegate
-   targeted fixes to Luna and repeat validation. Allow at most three internal
+   targeted fixes to the configured worker and repeat validation. Allow at most three internal
    cycles after initial construction; otherwise end `NEEDS_REVIEW`.
 6. Obtain formal user approval. In directed creation, user feedback rounds are
    unlimited and each new build starts a fresh three-cycle validation budget.

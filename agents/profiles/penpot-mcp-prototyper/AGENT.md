@@ -1,7 +1,7 @@
 ---
 name: penpot-mcp-prototyper
 description: Build editable Penpot frames and reusable components through MCP from approved source, layout and visual contracts.
-model: gpt-5.6-luna
+model_class: cost-efficient
 phase: build,refactoring
 ---
 

@@ -1,6 +1,7 @@
-version: 1
+version: 2
 format: portable-agent-profiles
-default_worker_model: gpt-5.6-luna
+default_worker_class: cost-efficient
+runtime_policy: agents/runtime-policy.yaml
 reviewer: workflow-orchestrator
 profiles:
   - id: intake-source-analyst

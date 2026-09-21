@@ -30,10 +30,10 @@
 7. O escopo inicial é estático: telas, componentes, estilos/tokens e design
    system. Interações/protótipos ficam fora, salvo pedido posterior explícito.
 8. Toda tarefa manual de aquisição, análise, construção no MCP, correção,
-   extração e validação deve ser delegada com o perfil `gpt-5.6-luna`. Se esse
-   modelo não estiver disponível, interrompa com `BLOCKED_MODEL_UNAVAILABLE`;
-   não faça fallback para outro modelo.
-9. Luna faz a operação e coleta evidências, mas o orquestrador/revisor final
+   extração e validação deve ser delegada ao worker econômico resolvido por
+   `agents/runtime-policy.yaml`. Registre runtime e modelo concretos. Se o host
+   não oferecer delegação, interrompa com `BLOCKED_WORKER_UNAVAILABLE`.
+9. O worker faz a operação e coleta evidências, mas o orquestrador/revisor final
    executa ou confere o avaliador determinístico invocado por `scripts/start-run.sh`
    e pelo wrapper de validação da skill `$penpot-validate`, atribui a pontuação
    oficial e decide a transição. Nenhum agente pode editar fórmula, limiares,
@@ -63,17 +63,17 @@
     contramedida e só marque a lição como `mitigated` depois de uma verificação
     que cubra o caso original.
 
-## Delegação Luna
+## Delegação portável
 
-Cada delegação deve incluir: `worker_model: gpt-5.6-luna`, objetivo observável,
+Cada delegação deve incluir runtime, modelo resolvido, perfil canônico, objetivo observável,
 arquivos de entrada, artefatos de saída, restrições desta contract e condição de
 parada. O worker não pode alterar o contrato, pesos de score, limiar de 90,
 limite de três ciclos ou registros históricos.
 
 O procedimento de criação e verificação do subagente está em
 `references/delegation.md`.
-Erro de cota ou indisponibilidade do modelo é indisponibilidade real e aciona o
-estado bloqueado; o orquestrador não executa a tarefa manualmente como fallback.
+Erro de cota ou indisponibilidade de delegação aciona o estado bloqueado; o
+orquestrador não executa a tarefa manualmente como fallback.
 
 ## Segurança e rastreabilidade
 

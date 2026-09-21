@@ -1,0 +1,23 @@
+version: 1
+strategy: cost-optimized
+canonical_profiles: agents/profiles
+require_delegated_worker: true
+require_orchestrator_review: true
+record_resolved_runtime_and_model: true
+runtimes:
+  codex:
+    worker_model: gpt-5.6-luna
+    adapter: dynamic-subagent
+  claude-code:
+    worker_model: haiku
+    adapter: .claude/agents
+  devin-cli:
+    worker_model: default-subagent-router
+    adapter: .devin/agents
+  gemini-cli:
+    worker_model: gemini-3-flash-preview
+    adapter: .gemini/agents
+  other:
+    worker_model: host-cost-efficient
+    adapter: canonical-profile
+unavailable: blocked-worker-unavailable

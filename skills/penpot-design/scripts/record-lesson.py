@@ -68,11 +68,16 @@ def ensure_index(target: Path, skill_name: str) -> Path:
             ),
             encoding="utf-8",
         )
+    elif "<!-- lesson-links -->" not in index.read_text(encoding="utf-8"):
+        with index.open("a", encoding="utf-8") as handle:
+            handle.write("\n## Lessons\n\n<!-- lesson-links -->\n")
     return index
 
 
 def add_index_link(index: Path, lesson_path: Path) -> None:
-    link = f"- [{lesson_path.stem}]({lesson_path.name})"
+    # CommonMark requires destinations containing spaces to be wrapped in
+    # angle brackets. Lesson filenames intentionally remain human-readable.
+    link = f"- [{lesson_path.stem}](<{lesson_path.name}>)"
     text = index.read_text(encoding="utf-8")
     if link in text:
         return

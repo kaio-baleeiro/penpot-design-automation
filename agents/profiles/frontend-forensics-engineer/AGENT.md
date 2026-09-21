@@ -1,7 +1,7 @@
 ---
 name: frontend-forensics-engineer
 description: Inspect DOM, CSS, runtime and repository code to derive measured geometry, semantics, assets and responsive behavior for a Penpot build plan.
-model: gpt-5.6-luna
+model_class: cost-efficient
 phase: source-map,build-plan
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: ux-ia-responsive-designer
 description: Convert mapped evidence into semantic hierarchy, section coverage and an explicit responsive matrix for static Penpot screens.
-model: gpt-5.6-luna
+model_class: cost-efficient
 phase: build-plan
 ---
 

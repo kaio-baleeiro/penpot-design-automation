@@ -77,7 +77,10 @@ class LessonRecorderTests(unittest.TestCase):
             self.assertIn("integration: tests/test_lessons.py", text)
             self.assertIn("/project/", str(lesson))
             index = lesson.parent / "README.md"
-            self.assertIn("[LL - A repeatable failure]", index.read_text(encoding="utf-8"))
+            self.assertIn(
+                "](<LL - A repeatable failure.md>)",
+                index.read_text(encoding="utf-8"),
+            )
 
     def test_machine_lesson_is_stored_in_ignored_local_bucket(self):
         root = Path(__file__).resolve().parents[1]
@@ -168,6 +171,31 @@ class LessonRecorderTests(unittest.TestCase):
             )
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("exigem --integration", result.stderr)
+
+    def test_recorder_upgrades_a_legacy_index_without_a_marker(self):
+        root = Path(__file__).resolve().parents[1]
+        script = root / "skills/penpot-design/scripts/record-lesson.py"
+        with tempfile.TemporaryDirectory() as temp:
+            project = Path(temp)
+            skill = project / "skills" / "penpot-design"
+            lesson_dir = skill / "lessons-learned" / "project"
+            lesson_dir.mkdir(parents=True)
+            (skill / "SKILL.md").write_text("---\nname: penpot-design\n---\n", encoding="utf-8")
+            (lesson_dir / "README.md").write_text("# Legacy lessons\n", encoding="utf-8")
+            result = subprocess.run(
+                [
+                    sys.executable, str(script), "--project-root", str(project), "record",
+                    "--title", "Portable profiles", "--lesson", "x", "--context", "x",
+                    "--evidence", "x", "--future-rule", "x", "--kind", "project",
+                    "--integration", "AGENTS.md",
+                ],
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            index = (lesson_dir / "README.md").read_text(encoding="utf-8")
+            self.assertIn("<!-- lesson-links -->", index)
+            self.assertIn("[LL - Portable profiles]", index)
 
 
 if __name__ == "__main__":

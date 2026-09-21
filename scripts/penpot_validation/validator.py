@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 import json
 from pathlib import Path
+import re
 from typing import Any
 
 from .images import connected_components, detail_board, diff_values, overlay, read_png, sha256, side_by_side, write_png
@@ -17,12 +18,11 @@ MIN_SCORE = 90.0
 MIN_COVERAGE = 0.80
 MAX_CYCLES = 3
 SCHEMA_VERSION = "1.0"
-WORKER_MODEL = "gpt-5.6-luna"
 VALID_STATES = {
     "INTAKE_PENDING", "INTAKE_REVIEW", "AMBIGUITY_ANALYSIS", "SOURCE_CAPTURED",
     "BRIEF_REFINEMENT", "BUILD_PLANNED", "BUILDING", "VALIDATING", "REFACTORING",
     "USER_REVIEW", "DS_FORMALIZATION", "DS_REVALIDATING", "DELIVERED", "NEEDS_REVIEW",
-    "BLOCKED_MODEL_UNAVAILABLE", "READY_FOR_USER_REVIEW", "READY_FOR_DELIVERY", "REFINEMENT",
+    "BLOCKED_WORKER_UNAVAILABLE", "BLOCKED_MODEL_UNAVAILABLE", "READY_FOR_USER_REVIEW", "READY_FOR_DELIVERY", "REFINEMENT",
 }
 VALIDATION_STATES = {"VALIDATING", "DS_REVALIDATING"}
 FRAME_SPEC_KEYS = {
@@ -50,6 +50,7 @@ STATE_TRANSITIONS = {
     "DELIVERED": set(),
     "NEEDS_REVIEW": set(),
     "BLOCKED_MODEL_UNAVAILABLE": set(),
+    "BLOCKED_WORKER_UNAVAILABLE": set(),
 }
 
 
@@ -158,8 +159,9 @@ def validate_screen(screen: dict[str, Any], output_dir: Path, baseline_screen: d
 
 def render_report(result: dict[str, Any], output_path: Path) -> None:
     today = datetime.now(timezone.utc).date().isoformat()
+    runtime = str(result.get("execution", {}).get("runtime", "unknown-agent")).replace(" ", "-")
     lines = ["---", "type: validation-report", f"status: {'complete' if result['passed'] else 'needs-review'}",
-             f"created: {today}", f"updated: {today}", "source_agent: codex", "agent_context: penpot-design-automation",
+             f"created: {today}", f"updated: {today}", f"source_agent: {runtime}", "agent_context: penpot-design-automation",
              "confidence: high", f"review: {'false' if result['passed'] else 'true'}", "---", "",
              f"# Penpot validation report — cycle {result['cycle']}", "", f"Gate result: **{'PASS' if result['passed'] else 'FAIL'}**", "",
              f"Aggregate score: **{result['aggregate_score']:.2f}/100**", f"Minimum screen score: **{result['minimum_score']:.2f}/100**",
@@ -197,7 +199,12 @@ def render_report(result: dict[str, Any], output_path: Path) -> None:
 
 
 def _is_legacy_manifest(manifest: dict[str, Any]) -> bool:
-    return "schema_version" not in manifest and "route" not in manifest and "worker_model" not in manifest
+    return (
+        "schema_version" not in manifest
+        and "route" not in manifest
+        and "worker_model" not in manifest
+        and "execution" not in manifest
+    )
 
 
 def _evidence_present(value: Any) -> bool:
@@ -329,9 +336,11 @@ def _approval_values(manifest: dict[str, Any]) -> dict[str, bool]:
 
 
 def _required_manifest_fields(manifest: dict[str, Any]) -> list[str]:
-    required = ["schema_version", "route", "state", "worker_model", "source_refs", "target_viewports",
+    required = ["schema_version", "route", "state", "source_refs", "target_viewports",
                 "screens", "validation_cycle", "max_validation_cycles", "user_review_round", "lesson_refs"]
     missing = [key for key in required if key not in manifest]
+    if "execution" not in manifest and "worker_model" not in manifest:
+        missing.append("execution")
     if "approvals" not in manifest and "approval" not in manifest and "approval_flags" not in manifest:
         missing.append("approvals")
     if "evidence" not in manifest and "question_evidence" not in manifest and "intake" not in manifest:
@@ -357,8 +366,24 @@ def validate_manifest(manifest: dict[str, Any], strict: bool = True) -> None:
             raise ValueError("manifest route must be reproduction or directed_creation")
         if manifest.get("state") not in VALID_STATES:
             raise ValueError(f"manifest state is invalid: {manifest.get('state')}")
-        if manifest.get("worker_model") != WORKER_MODEL:
-            raise ValueError(f"manifest worker_model must be exactly {WORKER_MODEL}")
+        execution = manifest.get("execution")
+        if execution is not None:
+            if not isinstance(execution, dict):
+                raise ValueError("manifest execution must be an object")
+            required_execution = {"runtime", "orchestrator_model", "worker_model", "worker_class", "delegation"}
+            missing_execution = sorted(required_execution - execution.keys())
+            if missing_execution:
+                raise ValueError("manifest execution missing field(s): " + ", ".join(missing_execution))
+            if any(not isinstance(execution[key], str) or not execution[key].strip() for key in required_execution):
+                raise ValueError("manifest execution fields must be non-empty strings")
+            if not re.fullmatch(r"[a-z0-9][a-z0-9._-]*", execution["runtime"]):
+                raise ValueError("manifest execution runtime must be a portable lowercase identifier")
+            if execution["worker_class"] != "cost-efficient":
+                raise ValueError("manifest execution worker_class must be cost-efficient")
+            if execution["delegation"] != "subagent":
+                raise ValueError("manifest execution delegation must be subagent")
+        elif not isinstance(manifest.get("worker_model"), str) or not manifest["worker_model"].strip():
+            raise ValueError("legacy manifest worker_model must be a non-empty string")
         if not isinstance(manifest.get("lesson_refs"), list) or any(
             not isinstance(value, str) or not value.strip() for value in manifest["lesson_refs"]
         ):
@@ -503,8 +528,16 @@ def validate_run(
     screens = [validate_screen(screen, output_dir, prior_by_screen.get(screen["id"])) for screen in resolved_screens]
     aggregate_score = sum(screen["score"] for screen in screens) / len(screens)
     aggregate_coverage = sum(screen["coverage"] for screen in screens) / len(screens)
+    execution = manifest.get("execution") or {
+        "runtime": "legacy",
+        "orchestrator_model": "unrecorded",
+        "worker_model": manifest.get("worker_model", "unrecorded"),
+        "worker_class": "legacy",
+        "delegation": "unrecorded",
+    }
     result = {"run_id": manifest.get("run_id", root.name), "cycle": cycle, "mode": manifest.get("mode", "source"),
               "state": manifest.get("state", "VALIDATING"),
+              "execution": execution,
               "metric_table_version": METRIC_TABLE_VERSION,
               "metric_table": {key: {"label": value["label"], "weight": value["weight"], "limit": value["limit"]} for key, value in METRIC_TABLE.items()},
               "passed": all(screen["passed"] for screen in screens), "aggregate_score": round(aggregate_score, 2),
