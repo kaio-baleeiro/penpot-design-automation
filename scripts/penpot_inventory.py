@@ -106,6 +106,11 @@ def extract_inventory(response: Any) -> dict[str, Any]:
 
 
 def main() -> int:
+    project_root = Path(__file__).resolve().parents[1]
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
+    from scripts.workflow_guard import require
+    require("design")
     parser = argparse.ArgumentParser(description="Export the connected Penpot file's structural inventory")
     parser.add_argument("--output", required=True)
     parser.add_argument("--log-path")

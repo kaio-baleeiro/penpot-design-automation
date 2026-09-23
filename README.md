@@ -17,10 +17,27 @@ via Penpot MCP, trabalho operacional em worker econômico do host e validação
 determinística por tela e viewport. No Codex, o worker preferido continua sendo
 `gpt-5.6-luna`.
 
+## Mandatory entry
+
+Launch a supported client using `./agent codex|claude|devin|gemini`. Each new
+session asks whether to prepare Penpot infrastructure or work on designs. The
+controller records the user's answer, guards operational scripts and checks
+required artifacts at each state transition. Clients started directly still
+read native project instructions, but a CLI that ignores them cannot be
+controlled by repository files; `./agent` is the supported entrypoint.
+
+For infrastructure, select the `infrastructure` route and run
+`./penpot-workflow bootstrap-infra`. It creates the root `.env`, starts Penpot,
+creates/reuses a local automation account and provisions MCP. It returns the
+account email/password and saves the MCP token privately in `.env`.
+
 ## Estrutura
 
 ```text
 AGENTS.md           Contrato portátil compartilhado por todos os agentes
+agent               Launcher para Codex, Claude, Devin e Gemini
+penpot-workflow     Controlador de entrada, estados e artefatos
+workflow/           Contrato executável e prova visual
 CLAUDE.md           Entrada do Claude Code
 GEMINI.md           Entrada do Gemini CLI
 .claude/agents/     Adaptadores dos perfis para Claude Code
@@ -86,9 +103,9 @@ Para um clone novo, o caminho recomendado é o bootstrap completo:
 ```
 
 Ele cria o ambiente Python, instala Playwright/Chromium, instala o vínculo da
-skill global, gera `.env` local com segredos aleatórios, prepara volumes neutros
-e valida o Compose. Depois, suba os serviços com os comandos da seção de
-infraestrutura.
+skill global, gera `.env` local com segredos aleatórios e valida o Compose. A
+rota recomendada `./penpot-workflow bootstrap-infra` também sobe os serviços,
+provisiona a conta e ativa o MCP; não é necessário subir os serviços à parte.
 
 Se o Penpot já estiver configurado e você só quiser instalar a skill global:
 
@@ -117,12 +134,11 @@ investiga desktop/mobile e não começa a construir antes da aprovação do esco
 
 1. Leia [`AGENTS.md`](AGENTS.md) e escolha a skill de entrada
    [`penpot-design`](skills/penpot-design/SKILL.md).
-2. Suba o Penpot local e confirme o healthcheck:
+2. Se a infraestrutura ainda não estiver pronta, selecione a rota
+   `infrastructure` e execute `./penpot-workflow bootstrap-infra`.
 
-   ```sh
-   infra/penpot/scripts/up.sh
-   infra/penpot/scripts/healthcheck.sh
-   ```
+   Para uma sessão já iniciada, registre sua escolha literal com
+   `./penpot-workflow select infrastructure --user-answer "..."`.
 
 3. Envie uma URL, screenshot, diretório/repositório do código ou um briefing
    sem fonte. O intake pergunta escopo, precedência, viewports e aprovação; a
@@ -177,7 +193,7 @@ scroll horizontal intencional da página. Overflow acidental ou interno continua
 contido, e conteúdo infinito exige um limite reproduzível aprovado.
 
 O cliente MCP de terminal usa `scripts/penpot-mcp.sh`, que carrega a URL local
-do arquivo ignorado `infra/penpot/.env` sem colocá-la no histórico de comandos.
+do `.env` ignorado na raiz sem colocá-la no histórico de comandos.
 Depois de regenerar uma chave na interface do Penpot, copie somente a chave e
 execute `scripts/update-mcp-key-from-clipboard.sh`. O utilitário atualiza o
 `.env` local e o registro `penpot-design` do Codex sem imprimir a credencial.
@@ -206,7 +222,9 @@ IDs e links para todos os artefatos oficiais.
 ## Infraestrutura
 
 ```sh
-infra/penpot/scripts/up.sh
+./penpot-workflow begin
+./penpot-workflow select infrastructure --user-answer "quero preparar a infraestrutura"
+./penpot-workflow bootstrap-infra
 infra/penpot/scripts/healthcheck.sh
 infra/penpot/scripts/backup.sh
 infra/penpot/scripts/down.sh

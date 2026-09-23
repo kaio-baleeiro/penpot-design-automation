@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+python="${PENPOT_AUTOMATION_PYTHON:-$root/.venv/bin/python}"
+[[ -x "$python" ]] || python="$(command -v python3)"
+if [[ "${1:-}" == bootstrap-infra ]]; then
+  shift
+  "$python" "$root/scripts/workflow_guard.py" require infrastructure
+  PENPOT_BOOTSTRAP_IN_PROGRESS=1 "$root/setup.sh"
+  "$root/infra/penpot/scripts/up.sh"
+  "$root/infra/penpot/scripts/wait-ready.sh"
+  "$root/infra/penpot/scripts/provision.sh" --show-account-credentials "$@"
+  "$python" "$root/scripts/workflow_guard.py" mark-infra-ready --env-file "${PENPOT_ENV_FILE:-$root/.env}"
+  exit 0
+fi
+exec "$python" "$root/scripts/workflow_guard.py" "$@"

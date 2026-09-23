@@ -7,4 +7,5 @@ como mitigadas.
 ## Lessons
 
 - [LL - Vendor model cannot define a portable workflow](<LL - Vendor model cannot define a portable workflow.md>)
+- [LL - Repository rules need executable gates](<LL - Repository rules need executable gates.md>)
 <!-- lesson-links -->

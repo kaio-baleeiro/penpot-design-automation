@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 import subprocess
 import tempfile
@@ -47,12 +48,17 @@ class FrameSizingTests(unittest.TestCase):
             output_path = directory / "frame.json"
             capture_path.write_text(json.dumps(_capture(document_height=2200)), encoding="utf-8")
             wrapper = Path(__file__).resolve().parents[1] / "skills/penpot-source-map/scripts/source-map.sh"
+            session_path = directory / "session.json"
+            session_path.write_text('{"mode":"design","state":"DESIGN_SELECTED"}', encoding="utf-8")
+            environment = os.environ.copy()
+            environment["PENPOT_WORKFLOW_SESSION"] = str(session_path)
             result = subprocess.run(
                 [
                     str(wrapper), "frame-spec", "--capture", str(capture_path),
                     "--screen-id", "home", "--output", str(output_path),
                 ],
                 cwd="/",
+                env=environment,
                 capture_output=True,
                 text=True,
             )

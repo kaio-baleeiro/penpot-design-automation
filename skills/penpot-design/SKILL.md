@@ -22,6 +22,14 @@ mapping](references/agent-profiles.md) before acting. Read
 end of every run. The machine-readable defaults are in
 `assets/workflow-config.yaml`.
 
+At the beginning of every new agent session run `<repo>/penpot-workflow begin`
+and ask its exact infrastructure-or-design question. Record the user's answer
+with `select <mode> --user-answer "<verbatim answer>"`. Infrastructure uses
+`bootstrap-infra`; design runs use `new-run` and guarded state transitions.
+Before visual delegation, the worker must open an image and record its hash and
+what it observed. This is auditable evidence of capability, not proof of inner
+model cognition.
+
 The sibling skills `penpot-intake`, `penpot-source-map`,
 `penpot-build`, `penpot-validate`, `penpot-design-system` and `penpot-delivery`
 are the authoritative phase instructions. Read their `SKILL.md` from the
@@ -38,8 +46,9 @@ Run the mandatory interaction defined by `penpot-intake`: ask the initial
 questions, ask the second adendo/mudança question, then analyze ambiguities.
 Do not construct before material decisions are resolved. Persist every answer,
 decision, source, feedback and applicable `lesson_refs` in the run directory
-described by `references/artifacts.md`. Initialize a strict run from the skill
-root with `scripts/start-run.sh --run-dir <run-dir> --manifest <manifest.json>`.
+described by `references/artifacts.md`. Initialize a new run with the project
+controller; the older `scripts/start-run.sh` only imports controller-owned
+manifests.
 
 For reproduction, treat the supplied site/runtime and codebase as the primary
 asset library. The user grants standing permission to inspect and retrieve

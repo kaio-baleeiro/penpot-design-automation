@@ -1,7 +1,7 @@
 name: penpot-design-automation
 
 x-penpot-flags: &penpot-flags
-  PENPOT_FLAGS: disable-email-verification enable-smtp enable-prepl-server disable-secure-session-cookies enable-access-tokens enable-mcp
+  PENPOT_FLAGS: disable-email-verification enable-smtp disable-secure-session-cookies enable-access-tokens enable-mcp
 
 x-penpot-public-uri: &penpot-public-uri
   PENPOT_PUBLIC_URI: ${PENPOT_PUBLIC_URI}

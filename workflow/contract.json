@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "entry_question": "Você quer preparar/subir a infraestrutura do Penpot (conta local e MCP incluídos) ou iniciar/continuar a implementação de designs no Penpot?",
+  "entry_modes": ["infrastructure", "design"],
+  "required_visual_capability": "image-input-or-image-inspection-tool",
+  "state_artifacts": {
+    "INTAKE_PENDING": [],
+    "INTAKE_REVIEW": ["questions.md"],
+    "AMBIGUITY_ANALYSIS": ["questions.md", "decisions.md"],
+    "SOURCE_CAPTURED": ["source/source-map.json", "source/source-inventory.md", "source/assets-manifest.json", "source/frame-spec.json"],
+    "BRIEF_REFINEMENT": ["briefing/brief-v*.md"],
+    "BUILD_PLANNED": ["design/plan.json"],
+    "BUILDING": ["design/plan.json"],
+    "VALIDATING": ["design/penpot-mcp-log.jsonl", "design/structure-inventory.json", "design/exports/**/*.png"],
+    "REFACTORING": ["cycles/cycle-*/score.json", "cycles/cycle-*/issues.json"],
+    "REFINEMENT": ["cycles/cycle-*/score.json", "cycles/cycle-*/issues.json"],
+    "READY_FOR_USER_REVIEW": ["cycles/cycle-*/score.json", "cycles/cycle-*/issues.json"],
+    "USER_REVIEW": ["cycles/cycle-*/score.json"],
+    "DS_FORMALIZATION": ["approvals/approval-v*.md"],
+    "DS_REVALIDATING": ["design/structure-inventory.json", "design/exports/**/*.png"],
+    "READY_FOR_DELIVERY": ["cycles/cycle-*/score.json", "design/structure-inventory.json"],
+    "DELIVERED": ["delivery/report.md", "delivery/manifest.json"],
+    "NEEDS_REVIEW": ["cycles/cycle-*/score.json", "cycles/cycle-*/issues.json"]
+  }
+}

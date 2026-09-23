@@ -2,13 +2,28 @@
 
 set -Eeuo pipefail
 
-PENPOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-ENV_FILE="${PENPOT_ENV_FILE:-$PENPOT_DIR/.env}"
+PENPOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
+PROJECT_ROOT="$(cd "$PENPOT_DIR/../.." && pwd -P)"
+if [[ -n "${PENPOT_ENV_FILE:-}" ]]; then
+  ENV_FILE="$PENPOT_ENV_FILE"
+elif [[ -f "$PROJECT_ROOT/.env" ]]; then
+  ENV_FILE="$PROJECT_ROOT/.env"
+elif [[ -f "$PENPOT_DIR/.env" ]]; then
+  ENV_FILE="$PENPOT_DIR/.env"
+else
+  ENV_FILE="$PROJECT_ROOT/.env"
+fi
 COMPOSE_FILE="$PENPOT_DIR/compose.yml"
 
 die() {
   printf 'Erro: %s\n' "$*" >&2
   exit 1
+}
+
+require_infrastructure_mode() {
+  local python_bin="${PENPOT_AUTOMATION_PYTHON:-$PROJECT_ROOT/.venv/bin/python}"
+  [[ -x "$python_bin" ]] || python_bin="$(command -v python3)"
+  "$python_bin" "$PROJECT_ROOT/scripts/workflow_guard.py" require infrastructure >/dev/null
 }
 
 require_command() {

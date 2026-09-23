@@ -299,6 +299,11 @@ def _repl(client: PenpotMCPClient) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    project_root = Path(__file__).resolve().parents[1]
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
+    from scripts.workflow_guard import require
+    require("design")
     if argv is None:
         argv = sys.argv[1:]
     if argv and argv[0].lower() in {"repl", "interactive"}:

@@ -24,11 +24,15 @@ qualquer modelo diferente do mapeamento padrão precisa ser registrado antes da
 fase. Scripts locais não escolhem modelo; essa decisão pertence ao runtime de
 agentes, não ao Penpot ou ao Playwright.
 
+Para uma etapa visual, o worker deve abrir uma imagem real usando entrada visual
+nativa ou ferramenta de inspeção. Registre imagem, hash, uma observação concreta
+e `visual_capability_verified: true`; caso contrário pare antes de delegar.
+
 ## Adaptadores oficiais
 
 - Codex: subagente dinâmico com preferência por `gpt-5.6-luna`.
 - Claude Code: `.claude/agents/<profile>.md`.
-- Devin CLI: `.devin/agents/<profile>.md`.
-- Gemini CLI: `.gemini/agents/<profile>.md`.
+- Devin CLI: `.devin/agents/<profile>.md`, worker `gemini-3-8-flash-low`.
+- Gemini CLI: `.gemini/agents/<profile>.md`, worker `gemini-3.8-flash`.
 - Outros hosts: fornecer o `AGENT.md` canônico a um worker separado e registrar
   runtime/modelo no handoff.

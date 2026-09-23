@@ -2,6 +2,9 @@
 
 set -Eeuo pipefail
 project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+python_guard="${PENPOT_AUTOMATION_PYTHON:-$(command -v python3 || true)}"
+[[ -n "$python_guard" ]] || { printf 'python3 is required\n' >&2; exit 1; }
+"$python_guard" "$project_root/scripts/workflow_guard.py" require infrastructure >/dev/null
 
 command -v python3 >/dev/null 2>&1 || {
   printf 'Erro: python3 é necessário.\n' >&2
@@ -25,7 +28,6 @@ fi
 "$project_root/infra/penpot/scripts/bootstrap.sh"
 "$project_root/infra/penpot/scripts/validate.sh"
 
-printf '\nPronto para uso. Execute:\n'
-printf '  %s/infra/penpot/scripts/up.sh\n' "$project_root"
-printf '  %s/infra/penpot/scripts/healthcheck.sh\n' "$project_root"
-printf 'Depois configure o MCP local conforme infra/penpot/README.md.\n'
+if [[ "${PENPOT_BOOTSTRAP_IN_PROGRESS:-false}" != "1" ]]; then
+  printf '\nSetup concluído. Execute ./penpot-workflow bootstrap-infra.\n'
+fi

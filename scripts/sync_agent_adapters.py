@@ -11,8 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 PROFILE_ROOT = ROOT / "agents" / "profiles"
 TARGETS = {
     "claude-code": (ROOT / ".claude" / "agents", "haiku"),
-    "devin-cli": (ROOT / ".devin" / "agents", None),
-    "gemini-cli": (ROOT / ".gemini" / "agents", "gemini-3-flash-preview"),
+    "devin-cli": (ROOT / ".devin" / "agents", "gemini-3-8-flash-low"),
+    "gemini-cli": (ROOT / ".gemini" / "agents", "gemini-3.8-flash"),
 }
 
 
@@ -44,7 +44,7 @@ def render(runtime: str, profile: Path, model: str | None) -> str:
         f"Read `agents/profiles/{profile_id}/AGENT.md` completely and follow it as the\n"
         "canonical profile. Read `agents/contracts/handoff.md` before returning work.\n"
         f"The active runtime is `{runtime}`. Record its resolved model and runtime in the\n"
-        "handoff. Do not change scores, thresholds, source evidence, or prior cycles.\n"
+        "handoff. Before visual work, open an assigned image using native vision or an image tool and record visual_capability_verified plus the image hash. Do not change scores, thresholds, source evidence, or prior cycles.\n"
     )
 
 

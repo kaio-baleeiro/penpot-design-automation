@@ -7,4 +7,6 @@ python_bin="${PENPOT_AUTOMATION_PYTHON:-$project_root/.venv/bin/python}"
 [[ -x "$python_bin" ]] || python_bin="$(command -v python3)"
 
 cd "$project_root"
+for argument in "$@"; do [[ "$argument" != --help && "$argument" != -h ]] || exec "$python_bin" -m scripts.penpot_validation capture "$@"; done
+"$python_bin" "$project_root/scripts/workflow_guard.py" require design >/dev/null
 exec "$python_bin" -m scripts.penpot_validation capture "$@"

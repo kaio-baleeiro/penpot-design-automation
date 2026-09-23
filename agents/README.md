@@ -19,7 +19,9 @@ CLI, Claude Code, Gemini, Cursor ou outro agente que leia `AGENTS.md`.
 
 Os perfis declaram `model_class: cost-efficient` e não fixam fornecedor. O
 arquivo `runtime-policy.yaml` resolve esse papel para cada host: Luna no Codex,
-Haiku no Claude Code, o router econômico no Devin CLI e Flash no Gemini CLI.
+Haiku no Claude Code, Gemini 3.8 Flash Low no Devin CLI e Gemini 3.8 Flash no
+Gemini CLI. O workflow exige abertura real de imagem por worker e evidência
+registrada; nomes de modelo e documentação de visão são só pré-requisito.
 O agente principal continua sendo o revisor final: executa/confere o avaliador
 determinístico, aplica os gates 90/80/P0-P1 e decide o estado. Um perfil não
 pode alterar score, limiares ou evidência imutável.

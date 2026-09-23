@@ -7,8 +7,14 @@ import json
 from pathlib import Path
 import sys
 
+ROOT = Path(__file__).resolve().parents[3]
+if str(ROOT) not in sys.path: sys.path.insert(0, str(ROOT))
+
 
 def main() -> int:
+    from scripts.workflow_guard import require
+    try: require("design")
+    except ValueError as error: print(f"workflow guard: {error}", file=sys.stderr); return 2
     if len(sys.argv) != 2:
         print(f"uso: {Path(sys.argv[0]).name} <run-dir>", file=sys.stderr)
         return 2

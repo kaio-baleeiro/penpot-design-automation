@@ -18,6 +18,7 @@ MIN_SCORE = 90.0
 MIN_COVERAGE = 0.80
 MAX_CYCLES = 3
 SCHEMA_VERSION = "1.0"
+VISUAL_CAPABILITY = "image-input-or-image-inspection-tool"
 VALID_STATES = {
     "INTAKE_PENDING", "INTAKE_REVIEW", "AMBIGUITY_ANALYSIS", "SOURCE_CAPTURED",
     "BRIEF_REFINEMENT", "BUILD_PLANNED", "BUILDING", "VALIDATING", "REFACTORING",
@@ -382,6 +383,13 @@ def validate_manifest(manifest: dict[str, Any], strict: bool = True) -> None:
                 raise ValueError("manifest execution worker_class must be cost-efficient")
             if execution["delegation"] != "subagent":
                 raise ValueError("manifest execution delegation must be subagent")
+            if manifest.get("workflow_controller") is True:
+                proof = execution.get("visual_evidence")
+                if execution.get("visual_capability") != VISUAL_CAPABILITY or execution.get("visual_capability_verified") is not True:
+                    raise ValueError("controlled manifest requires verified visual capability")
+                if (not isinstance(proof, dict) or not re.fullmatch(r"[a-f0-9]{64}", str(proof.get("sha256", "")))
+                    or proof.get("opened_by_worker") is not True or not str(proof.get("observation", "")).strip()):
+                    raise ValueError("controlled manifest requires opened and hashed visual evidence")
         elif not isinstance(manifest.get("worker_model"), str) or not manifest["worker_model"].strip():
             raise ValueError("legacy manifest worker_model must be a non-empty string")
         if not isinstance(manifest.get("lesson_refs"), list) or any(

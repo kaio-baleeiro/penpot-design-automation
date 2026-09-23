@@ -5,6 +5,26 @@ Gemini, Cursor and other repository-aware agents. Read it before modifying or
 running the project. The repository is the source of truth for the executable
 workflow; the shared vault stores project context and human-review notes.
 
+## Mandatory first turn
+
+Every client session must begin with `./penpot-workflow begin`. Ask the exact
+question it prints and wait for the user's choice before inspecting a source,
+editing files, starting containers, or resuming a design run. Record the
+verbatim answer with `./penpot-workflow select <mode> --user-answer "..."`.
+
+For `infrastructure`, execute `./penpot-workflow bootstrap-infra`; this creates
+the ignored root `.env`, starts Penpot, provisions the local automation account
+and MCP, returns account email/password, and stores the MCP token only in `.env`.
+For `design`, use the controller and guarded wrappers. Never bypass them by
+calling underlying capture, MCP, inventory, validation or delivery scripts.
+
+Launch supported CLIs through `./agent codex|claude|devin|gemini`. A raw
+third-party CLI that intentionally ignores repository instructions cannot be
+forced to comply; the launcher and internal gates define the supported flow.
+The gates block repository-provided mutation commands when the route/state is
+wrong, but cannot prevent a client from bypassing the repository and invoking
+an external MCP/server directly. Treat such direct calls as unsupported.
+
 ## What this repository does
 
 - Runs one shared local Penpot instance for future projects.
@@ -26,7 +46,8 @@ rewrite a score or call a failed automated gate a pass.
 
 ## Required operating contract
 
-1. Start from `skills/penpot-design/SKILL.md` and read only the phase skill and
+1. Pass the mandatory first-turn gate above. Start from
+   `skills/penpot-design/SKILL.md` and read only the phase skill and
    references needed for the current request.
 2. In every run, ask the mandatory intake questions, ask the final
    adendo/mudança question, then analyze unresolved decisions before building.
@@ -45,6 +66,8 @@ rewrite a score or call a failed automated gate a pass.
    their native worker mapping. Record the resolved runtime and model in every
    handoff. If no delegated worker is available, stop with
    `BLOCKED_WORKER_UNAVAILABLE`.
+   For visual phases, the worker must open a representative image and record a
+   hashed visual observation. A model alias alone is not evidence.
    Use the selected profile's `AGENT.md` and write its required handoff before
    advancing to the next phase. Source/script preparation may be parallel, but
    mutations, inventory and exports of one Penpot file are serial because the
@@ -105,18 +128,29 @@ Run commands from the repository root, or use absolute paths when a CLI starts
 in another directory:
 
 ```sh
-./setup.sh
-infra/penpot/scripts/up.sh
-infra/penpot/scripts/healthcheck.sh
+# Recommended: launcher asks the first question in a fresh CLI session.
+./agent codex
+
+# Or initialize the controller manually, then choose exactly one route:
+./penpot-workflow begin
+./penpot-workflow select infrastructure --user-answer "quero preparar a infraestrutura"
+./penpot-workflow bootstrap-infra
+
+# For a design session, select design instead; do not run setup/bootstrap.
+./penpot-workflow begin
+./penpot-workflow select design --user-answer "quero trabalhar nos designs"
+
+# Automated checks:
 python3 -m unittest discover -s tests -v
 python3 scripts/validate_skills.py
 ./install.sh
 ```
 
-`setup.sh` is idempotent: it never overwrites an existing `.env`, skill link or
-volume. On a fresh clone it generates local secrets and creates neutral Docker
-volumes; a migrated workstation keeps any legacy volume names only in its
-ignored `.env` and local lessons.
+`bootstrap-infra` invokes `setup.sh` for prerequisites, then starts Penpot and
+provisions account/MCP. `setup.sh` is idempotent: it never overwrites an
+existing `.env`, skill link or volume. On a fresh clone it generates local
+secrets and creates neutral Docker volumes; a migrated workstation keeps any
+legacy volume names only in its ignored `.env` and local lessons.
 
 The installer creates a single global symlink to
 `skills/penpot-design`; it does not copy or fork the skill. Use the wrappers
@@ -135,7 +169,8 @@ they resolve the repository even when launched from `/` or another checkout.
   the phase profiles.
 - Other agents: read this file, `skills/penpot-design/SKILL.md`, and the
   canonical profile under `agents/profiles/`; use a separate cost-efficient
-  worker when the host supports delegation.
+  worker when the host supports delegation. Unknown workers must pass the
+  visual probe before a visual phase.
 
 Run `python3 scripts/sync_agent_adapters.py --check` after changing a canonical
 profile. Generated adapters must stay synchronized with `agents/profiles/`.

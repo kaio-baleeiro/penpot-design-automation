@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+runtime="${1:-}"
+[[ $# -gt 0 ]] && shift || true
+[[ $# -eq 0 ]] || { printf 'Do not pass a task prompt to the project launcher.\n' >&2; exit 2; }
+[[ -n "$runtime" ]] || { printf 'usage: ./agent codex|claude|devin|gemini\n'; exit 2; }
+export PENPOT_WORKFLOW_SESSION="$root/.local/workflow-session-$$.json"
+mkdir -p "$root/.local"
+"$root/penpot-workflow" begin >/dev/null
+prompt='Read AGENTS.md and the native project instructions. Before any other action ask the exact question from ./penpot-workflow entry. Wait for the user response, then record the selected mode and verbatim answer with ./penpot-workflow select <mode> --user-answer "<answer>".'
+cd "$root"
+case "$runtime" in
+ codex) exec codex -C "$root" "$prompt" ;;
+ claude|claude-code) exec claude "$prompt" ;;
+ devin|devin-cli) exec devin "$root" -- "$prompt" ;;
+ gemini|gemini-cli) exec gemini --prompt-interactive "$prompt" ;;
+ *) printf 'unsupported runtime: %s\n' "$runtime" >&2; exit 2 ;;
+esac

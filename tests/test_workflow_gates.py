@@ -17,6 +17,7 @@ from scripts.penpot_validation.validator import (
 def _manifest(**overrides):
     value = {
         "schema_version": "1.0",
+        "workflow_controller": True,
         "route": "reproduction",
         "state": "VALIDATING",
         "execution": {
@@ -25,6 +26,9 @@ def _manifest(**overrides):
             "worker_model": "haiku",
             "worker_class": "cost-efficient",
             "delegation": "subagent",
+            "visual_capability": "image-input-or-image-inspection-tool",
+            "visual_capability_verified": True,
+            "visual_evidence": {"reference": "workflow/visual-probe.svg", "sha256": "0" * 64, "observation": "mint circle and text", "opened_by_worker": True},
         },
         "source_refs": ["source.png"],
         "target_viewports": [{"width": 80, "height": 60}],

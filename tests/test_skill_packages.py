@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import subprocess
+import os
 from pathlib import Path
 import json
 import tempfile
@@ -60,9 +61,14 @@ class AgentSkillsPackageTests(unittest.TestCase):
                 "lesson_refs": [],
             }), encoding="utf-8")
             (delivery / "report.md").write_text("# Terminal report\n", encoding="utf-8")
+            session_path = Path(temporary) / "session.json"
+            session_path.write_text('{"mode":"design","state":"DESIGN_SELECTED"}', encoding="utf-8")
+            environment = os.environ.copy()
+            environment["PENPOT_WORKFLOW_SESSION"] = str(session_path)
             result = subprocess.run(
                 [str(self.skills / "penpot-delivery/scripts/check-package.py"), str(run)],
                 cwd="/",
+                env=environment,
                 capture_output=True,
                 text=True,
             )

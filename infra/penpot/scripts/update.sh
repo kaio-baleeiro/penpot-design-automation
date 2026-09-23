@@ -5,6 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # shellcheck disable=SC1091
 . "$SCRIPT_DIR/common.sh"
 
+require_infrastructure_mode
 require_command docker
 load_runtime_env
 ensure_external_volumes

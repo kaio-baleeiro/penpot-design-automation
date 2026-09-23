@@ -13,7 +13,7 @@ class SelfContainedTests(unittest.TestCase):
         cls.root = Path(__file__).resolve().parents[1]
 
     def test_public_entrypoints_and_skill_lessons_are_present(self):
-        for relative in ("AGENTS.md", "CLAUDE.md", "GEMINI.md", "README.md", "setup.sh", "infra/penpot/.env.example"):
+        for relative in ("AGENTS.md", "CLAUDE.md", "GEMINI.md", "README.md", "setup.sh", ".env.example", "agent", "penpot-workflow", "workflow/contract.json", "scripts/workflow_guard.py", "scripts/penpot_provision.py", "infra/penpot/.env.example"):
             self.assertTrue((self.root / relative).is_file(), relative)
         skills = sorted(path for path in (self.root / "skills").iterdir() if path.is_dir())
         self.assertEqual(len(skills), 7)
@@ -28,13 +28,17 @@ class SelfContainedTests(unittest.TestCase):
         script = self.root / "infra/penpot/scripts/bootstrap.sh"
         with tempfile.TemporaryDirectory() as temp:
             env_path = Path(temp) / ".env"
+            session_path = Path(temp) / "session.json"
+            session_path.write_text('{"mode":"infrastructure","state":"INFRA_SELECTED"}', encoding="utf-8")
             env = os.environ.copy()
             env["PENPOT_ENV_FILE"] = str(env_path)
+            env["PENPOT_WORKFLOW_SESSION"] = str(session_path)
             first = subprocess.run([str(script)], env=env, capture_output=True, text=True)
             self.assertEqual(first.returncode, 0, first.stderr)
             contents = env_path.read_text(encoding="utf-8")
             self.assertNotIn("replace-with-", contents)
             self.assertIn("PENPOT_CREATE_VOLUMES=true", contents)
+            self.assertRegex(contents, r"(?m)^PENPOT_ADMIN_PASSWORD=.+$")
             self.assertEqual(env_path.stat().st_mode & 0o777, 0o600)
             second = subprocess.run([str(script)], env=env, capture_output=True, text=True)
             self.assertEqual(second.returncode, 0, second.stderr)

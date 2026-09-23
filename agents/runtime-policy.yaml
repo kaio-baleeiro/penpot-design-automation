@@ -4,20 +4,32 @@ canonical_profiles: agents/profiles
 require_delegated_worker: true
 require_orchestrator_review: true
 record_resolved_runtime_and_model: true
+required_visual_capability: image-input-or-image-inspection-tool
+visual_capability_must_be_verified_by_opening_image: true
 runtimes:
   codex:
     worker_model: gpt-5.6-luna
     adapter: dynamic-subagent
+    visual_capability: image-input-and-image-inspection-tool
+    visual_evidence: https://developers.openai.com/api/docs/models/gpt-5.6-luna
   claude-code:
     worker_model: haiku
     adapter: .claude/agents
+    visual_capability: image-input
+    visual_evidence: https://platform.claude.com/docs/en/models/overview
   devin-cli:
-    worker_model: default-subagent-router
+    worker_model: gemini-3-8-flash-low
     adapter: .devin/agents
+    visual_capability: image-input
+    visual_evidence: https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash
   gemini-cli:
-    worker_model: gemini-3-flash-preview
+    worker_model: gemini-3.8-flash
     adapter: .gemini/agents
+    visual_capability: image-input
+    visual_evidence: https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash
   other:
     worker_model: host-cost-efficient
     adapter: canonical-profile
+    visual_capability: probe-required
+    visual_evidence: runtime-record
 unavailable: blocked-worker-unavailable

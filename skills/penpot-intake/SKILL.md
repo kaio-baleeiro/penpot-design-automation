@@ -13,6 +13,10 @@ Read [the mandatory questionnaire](references/questions.md) and the local
 This skill owns `INTAKE_PENDING`, `INTAKE_REVIEW`, `AMBIGUITY_ANALYSIS` and the
 directed-creation briefing gate.
 
+Before intake, require `design` mode with `<repo>/penpot-workflow require
+design`. If the controller reports `ENTRYPOINT_PENDING`, ask the exact question
+from `./penpot-workflow entry` and wait before inspecting sources.
+
 ## Required behavior
 
 - Ask the initial questions before any build or source mutation.

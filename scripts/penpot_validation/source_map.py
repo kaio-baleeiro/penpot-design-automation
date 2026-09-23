@@ -234,6 +234,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--viewport", help="Observation viewport WxH for full_page/bounded_state screenshots")
     parser.add_argument("--capture-mode", choices=("viewport", "full_page", "bounded_state"), default="viewport")
     args = parser.parse_args(argv)
+    from scripts.workflow_guard import require
+    require("design")
     if args.image:
         viewport = tuple(int(value) for value in args.viewport.lower().split("x", 1)) if args.viewport else None
         map_screenshot(args.image, args.output, threshold=args.threshold, viewport=viewport,

@@ -13,6 +13,15 @@ operation="${1:-}"
 }
 shift
 cd "$project_root"
+for argument in "$@"; do
+  if [[ "$argument" == --help || "$argument" == -h ]]; then
+    case "$operation" in
+      capture|map-screenshot|frame-spec) exec "$python_bin" -m scripts.penpot_validation "$operation" "$@" ;;
+      compile) exec "$python_bin" -m scripts.penpot_validation.source_map "$@" ;;
+    esac
+  fi
+done
+"$python_bin" "$project_root/scripts/workflow_guard.py" require design >/dev/null
 
 case "$operation" in
   capture|map-screenshot|frame-spec)

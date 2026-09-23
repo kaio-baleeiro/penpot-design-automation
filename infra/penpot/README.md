@@ -7,6 +7,10 @@ Esta composição mantém uma instância Penpot local e compartilhada para os pr
 
 Os sete serviços são `penpot-frontend`, `penpot-backend`, `penpot-mcp`, `penpot-exporter`, `penpot-postgres`, `penpot-valkey` e `penpot-mailcatch`.
 
+A instância foi configurada para HTTP em loopback. Não a exponha por domínio,
+IP ou proxy sem ativar HTTPS e restaurar cookies seguros. O servidor PREPL de
+desenvolvimento está desabilitado.
+
 ## Preparação
 
 ### Clone novo
@@ -14,14 +18,15 @@ Os sete serviços são `penpot-frontend`, `penpot-backend`, `penpot-mcp`, `penpo
 Na raiz do repositório, execute:
 
 ```sh
-./setup.sh
-infra/penpot/scripts/up.sh
-infra/penpot/scripts/healthcheck.sh
+./penpot-workflow begin
+./penpot-workflow select infrastructure --user-answer "quero preparar a infraestrutura"
+./penpot-workflow bootstrap-infra
 ```
 
-O bootstrap cria `.env` com segredos aleatórios, usa os volumes neutros
+O bootstrap cria `.env` na raiz com segredos aleatórios, provisiona uma conta local e habilita o MCP. Usa os volumes neutros
 `penpot-design-automation_postgres_data` e `penpot-design-automation_assets` e
-permite que o `up.sh` os crie na primeira execução. Nada sobrescreve um `.env`
+permite que o `up.sh` os crie na primeira execução. O terminal mostra o email e
+a senha da conta; o token MCP fica somente no `.env`. Nada sobrescreve um `.env`
 existente.
 
 ### Instalação migrada
@@ -53,7 +58,9 @@ Consulte [docs/infra.md](../../docs/infra.md) para migração, backup, restore, 
 
 ## MCP
 
-A composição habilita o MCP oficial do Penpot com `enable-mcp`. Depois de criar ou acessar a conta local e abrir um arquivo, use **Your account → Integrations → MCP Server**, habilite o servidor e gere uma URL/token. O token é pessoal e não deve entrar no repositório.
+A composição habilita o MCP oficial do Penpot com `enable-mcp`. O bootstrap
+provisiona o usuário e a chave pela API local; use **Your account → Integrations
+→ MCP Server** como fallback manual.
 
 Para qualquer agente, registre a URL e o token somente no `.env` local como
 `PENPOT_MCP_URL` e `PENPOT_MCP_TOKEN`, ou injete essas variáveis no ambiente.

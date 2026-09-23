@@ -69,10 +69,14 @@ def main(argv: list[str] | None = None) -> int:
     sizing.add_argument("--horizontal-evidence", action="append")
     sizing.add_argument("--dynamic-boundary", type=int)
     args = parser.parse_args(argv)
+    from scripts.workflow_guard import require
+    require("design")
     if args.command == "start-run":
         payload = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
         if _is_legacy_manifest(payload):
             raise ValueError("CLI start-run requires a complete schema 1.0 manifest")
+        if payload.get("workflow_controller") is not True:
+            raise ValueError("start new runs with ./penpot-workflow new-run")
         start_run(args.run_dir, payload)
     elif args.command == "validate":
         validate_run(args.run_dir, args.cycle, args.baseline, strict=True, inventory=args.inventory)
