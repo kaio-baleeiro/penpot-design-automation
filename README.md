@@ -50,7 +50,15 @@ agents/             Perfis especializados portáveis e contratos de handoff
 scripts/            Captura, mapeamento, MCP e comparação visual
 tests/              Testes determinísticos
 runs/               Metadados sanitizados; material privado fica ignorado
+docs/architecture/  Diagrama visual e contrato JSON da arquitetura ponta a ponta
 ```
+
+O contrato estruturado para agentes está em
+[`docs/architecture/penpot-workflow.json`](docs/architecture/penpot-workflow.json);
+o [diagrama visual em SVG](docs/architecture/penpot-workflow-architecture.svg)
+resume as mesmas rotas do início à entrega.
+
+![Diagrama da arquitetura do workflow Penpot](docs/architecture/penpot-workflow-architecture.svg)
 
 Cada pasta em `skills/` é um pacote [Agent Skills](https://agentskills.io/specification):
 

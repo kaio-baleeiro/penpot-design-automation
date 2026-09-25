@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="1540" viewBox="0 0 1900 1540" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitetura do workflow Penpot, do início à entrega</title>
+  <desc id="desc">Fluxo com escolha inicial entre provisionar Penpot ou criar designs, descoberta e rastreabilidade, prototipação por especialistas, validação em até três ciclos, revisão humana, design system e entrega.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1220"/><stop offset="1" stop-color="#111c30"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#2dd4bf"/><stop offset="1" stop-color="#60a5fa"/></linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1L11 6 1 11Z" fill="#6f87a8"/></marker>
+    <marker id="arrowMint" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1L11 6 1 11Z" fill="#2dd4bf"/></marker>
+    <style>
+      text{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#e7eef9}
+      .title{font-size:34px;font-weight:750;letter-spacing:-.6px}.sub{font-size:15px;fill:#9caec5}
+      .lane{fill:#101c2e;stroke:#24354d;stroke-width:1.5}.lanehead{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#8ca3be}
+      .card{fill:#17263b;stroke:#38506d;stroke-width:1.5}.card2{fill:#162c38;stroke:#2a776f;stroke-width:1.5}.card3{fill:#20233c;stroke:#625b99;stroke-width:1.5}
+      .cardTitle{font-size:17px;font-weight:700}.body{font-size:13px;fill:#b9c7d9}.small{font-size:11px;fill:#9fb0c7}.tag{font-size:10px;font-weight:700;letter-spacing:.8px;fill:#67e8d4}
+      .arrow{fill:none;stroke:#7188a6;stroke-width:2.2;marker-end:url(#arrow)}.arrowMint{fill:none;stroke:#2dd4bf;stroke-width:2.4;marker-end:url(#arrowMint)}
+      .dashed{stroke-dasharray:7 7}.pill{fill:#122b32;stroke:#286c66;stroke-width:1}.divider{stroke:#2a3b52;stroke-width:1}
+    </style>
+  </defs>
+  <rect width="1900" height="1540" rx="24" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1900" height="9" fill="url(#accent)"/>
+  <text x="54" y="61" class="title">Penpot Design Automation</text>
+  <text x="56" y="91" class="sub">Arquitetura ponta a ponta · dois caminhos de entrada · evidência e aprovação explícitas</text>
+  <rect x="1632" y="39" width="212" height="31" rx="15" class="pill"/><text x="1650" y="59" class="tag">CONTRATO v1 · 2026-09</text>
+
+  <!-- Session entry and shared infrastructure route -->
+  <rect x="40" y="125" width="1820" height="220" rx="18" class="lane"/>
+  <text x="65" y="153" class="lanehead">0 · ENTRADA E AMBIENTE COMPARTILHADO</text>
+  <rect x="72" y="185" width="238" height="112" rx="14" class="card"/>
+  <text x="94" y="216" class="tag">OPERADOR</text><text x="94" y="244" class="cardTitle">Inicia uma sessão</text><text x="94" y="270" class="body">URL · print · código · prompt</text>
+  <rect x="365" y="185" width="322" height="112" rx="14" class="card2"/>
+  <text x="388" y="216" class="tag">./agent → ./penpot-workflow</text><text x="388" y="244" class="cardTitle">Pergunta obrigatória</text><text x="388" y="270" class="body">Infraestrutura ou designs?</text>
+  <path d="M310 241H358" class="arrow"/>
+  <text x="700" y="206" class="small">infra</text>
+  <path d="M687 217H742" class="arrowMint"/>
+  <text x="538" y="324" class="small">design</text>
+  <path d="M526 297V430H205V445" class="arrowMint"/>
+  <rect x="754" y="178" width="260" height="126" rx="14" class="card"/>
+  <text x="778" y="208" class="tag">SETUP LOCAL</text><text x="778" y="237" class="cardTitle">Segredos + Compose</text><text x="778" y="263" class="body">Gera ou preserva .env</text><text x="778" y="283" class="small">valida e inicia serviços</text>
+  <path d="M1014 241H1051" class="arrowMint"/>
+  <rect x="1063" y="178" width="267" height="126" rx="14" class="card"/>
+  <text x="1087" y="208" class="tag">PENPOT COMPARTILHADO</text><text x="1087" y="237" class="cardTitle">Serviços prontos</text><text x="1087" y="263" class="body">Aguarda health/readiness</text><text x="1087" y="283" class="small">localhost:9001 · para projetos futuros</text>
+  <path d="M1330 241H1367" class="arrowMint"/>
+  <rect x="1379" y="178" width="443" height="126" rx="14" class="card2"/>
+  <text x="1403" y="208" class="tag">CONTA LOCAL + MCP</text><text x="1403" y="237" class="cardTitle">Provisiona e habilita integração</text><text x="1403" y="263" class="body">Reutiliza/cria conta e chave; guarda URL/token no .env</text><text x="1403" y="283" class="small">Devolve e-mail/senha ao usuário; nunca imprime token MCP</text>
+  <text x="1380" y="331" class="small">INFRA_READY → em nova sessão, escolha a rota de designs</text>
+
+  <!-- Design discovery -->
+  <rect x="40" y="370" width="1820" height="320" rx="18" class="lane"/>
+  <text x="65" y="400" class="lanehead">1 · DESCOBERTA, PERGUNTAS E MAPEAMENTO</text>
+  <rect x="72" y="445" width="266" height="180" rx="14" class="card"/>
+  <text x="96" y="477" class="tag">DESIGN ROUTE</text><text x="96" y="506" class="cardTitle">Intake com o usuário</text><text x="96" y="535" class="body">Perguntas de escopo</text><text x="96" y="559" class="body">+ pergunta de adendo/mudança</text><text x="96" y="589" class="small">Analisa ambiguidades antes de construir</text>
+  <path d="M338 535H378" class="arrow"/>
+  <rect x="390" y="445" width="276" height="180" rx="14" class="card3"/>
+  <text x="414" y="477" class="tag">ESCOLHA DA ORIGEM</text><text x="414" y="506" class="cardTitle">Duas rotas de criação</text><text x="414" y="535" class="body">Com fonte: URL, app, print,</text><text x="414" y="558" class="body">repositório ou combinação</text><text x="414" y="587" class="body">Sem fonte: briefing/prompt</text>
+  <path d="M666 505H708" class="arrow"/>
+  <rect x="720" y="425" width="345" height="132" rx="14" class="card"/>
+  <text x="744" y="455" class="tag">COM FONTE</text><text x="744" y="484" class="cardTitle">Mapeia a origem</text><text x="744" y="510" class="body">Página inteira · desktop/mobile · breakpoints</text><text x="744" y="533" class="small">DOM/código · assets exatos · proveniência · overflow</text>
+  <path d="M666 573H708" class="arrow"/>
+  <rect x="720" y="575" width="345" height="84" rx="14" class="card3"/>
+  <text x="744" y="605" class="tag">SÓ PROMPT</text><text x="744" y="633" class="cardTitle">Refina briefing e limites</text>
+  <path d="M1065 491H1101V535H1130" class="arrow"/><path d="M1065 617H1101V558H1130" class="arrow"/>
+  <rect x="1142" y="457" width="266" height="160" rx="14" class="card2"/>
+  <text x="1166" y="489" class="tag">GATE HUMANO</text><text x="1166" y="518" class="cardTitle">Aprova o escopo</text><text x="1166" y="546" class="body">Decisões, viewports e</text><text x="1166" y="569" class="body">comportamentos delimitados</text><text x="1166" y="594" class="small">Sem aprovação, não inicia o build</text>
+  <path d="M1408 537H1450" class="arrow"/>
+  <rect x="1462" y="445" width="347" height="180" rx="14" class="card"/>
+  <text x="1486" y="477" class="tag">PLANO + PERFIS</text><text x="1486" y="506" class="cardTitle">Workers econômicos</text><text x="1486" y="535" class="body">Intake · forensics · UX/UI</text><text x="1486" y="558" class="body">Penpot MCP · QA · design system</text><text x="1486" y="589" class="small">Registra host/modelo; imagem é obrigatória</text>
+  <text x="1486" y="608" class="small">Preparação pode paralelizar; mutações são seriais</text>
+
+  <!-- Construction and validation -->
+  <rect x="40" y="715" width="1820" height="365" rx="18" class="lane"/>
+  <text x="65" y="745" class="lanehead">2 · CONSTRUÇÃO EDITÁVEL, AVALIAÇÃO E CORREÇÃO</text>
+  <path d="M1635 625V765" class="arrowMint"/>
+  <rect x="1535" y="773" width="275" height="132" rx="14" class="card2"/>
+  <text x="1559" y="804" class="tag">PENPOT MCP</text><text x="1559" y="833" class="cardTitle">Constrói telas editáveis</text><text x="1559" y="861" class="body">Frames, textos, vetores,</text><text x="1559" y="883" class="body">assets e componentes reais</text>
+  <path d="M1535 839H1495" class="arrow"/>
+  <rect x="1203" y="773" width="278" height="132" rx="14" class="card"/>
+  <text x="1227" y="804" class="tag">AVALIA POR TELA/VIEWPORT</text><text x="1227" y="833" class="cardTitle">Score + estrutura</text><text x="1227" y="861" class="body">90+ · cobertura 80%+</text><text x="1227" y="883" class="small">Sem P0/P1; editabilidade/accessibilidade</text>
+  <path d="M1203 839H1165" class="arrow"/>
+  <path d="M1110 773L1162 839 1110 905 1058 839Z" fill="#16352f" stroke="#2dd4bf" stroke-width="2"/>
+  <text x="1082" y="834" class="tag">GATE</text><text x="1070" y="854" class="small">passa?</text>
+  <path d="M1058 839H1004" class="arrowMint"/>
+  <text x="1010" y="822" class="small">sim</text>
+  <rect x="710" y="773" width="278" height="132" rx="14" class="card2"/>
+  <text x="734" y="804" class="tag">REVISÃO DO USUÁRIO</text><text x="734" y="833" class="cardTitle">Comparativo + decisão</text><text x="734" y="861" class="body">Side-by-side · overlay</text><text x="734" y="883" class="body">heatmap · detail board</text>
+  <path d="M710 839H668" class="arrow"/>
+  <rect x="378" y="773" width="278" height="132" rx="14" class="card3"/>
+  <text x="402" y="804" class="tag">FEEDBACK HUMANO</text><text x="402" y="833" class="cardTitle">Aprova ou pede ajuste</text><text x="402" y="861" class="body">Ajustes viram próxima versão</text><text x="402" y="883" class="small">Aprovação libera design system</text>
+  <path d="M1120 905V955H1065" class="arrow"/><text x="1128" y="929" class="small">não</text>
+  <rect x="788" y="955" width="277" height="93" rx="14" class="card3"/>
+  <text x="812" y="985" class="tag">CICLO 1–3</text><text x="812" y="1013" class="cardTitle">Refatoração certeira</text><text x="812" y="1035" class="small">Usa issue/região/causa; não altera score</text>
+  <path d="M927 955V925H1510V839H1481" class="arrow dashed"/>
+  <text x="1090" y="917" class="small">falha · ciclos &lt; 3</text>
+  <rect x="1130" y="955" width="288" height="93" rx="14" fill="#3a2028" stroke="#a24d5a" stroke-width="1.5"/>
+  <text x="1154" y="985" class="tag" style="fill:#fda4af">APÓS O 3º CICLO SEM PASSAR</text><text x="1154" y="1017" class="cardTitle">NEEDS_REVIEW · para e informa</text>
+  <path d="M1162 875V955H1130" class="arrow"/><text x="1173" y="940" class="small">falha · ciclo 3</text>
+
+  <!-- User revisions, DS, delivery -->
+  <rect x="40" y="1105" width="1820" height="250" rx="18" class="lane"/>
+  <text x="65" y="1135" class="lanehead">3 · APROVAÇÃO, DESIGN SYSTEM E ENTREGA</text>
+  <path d="M850 773V696H1680V773" class="arrow dashed"/><text x="1112" y="684" class="small">pede mudanças → próxima versão → novo score</text>
+  <path d="M517 905V1228H725" class="arrowMint"/><text x="538" y="1189" class="small">aprovado</text>
+  <rect x="722" y="1165" width="274" height="126" rx="14" class="card3"/>
+  <text x="746" y="1196" class="tag">SÓ APÓS ACEITE EXPLÍCITO</text><text x="746" y="1225" class="cardTitle">Design system</text><text x="746" y="1253" class="body">Tokens · estilos · componentes</text><text x="746" y="1275" class="small">Variantes e instâncias reutilizáveis</text>
+  <path d="M996 1228H1044" class="arrow"/>
+  <rect x="1056" y="1165" width="292" height="126" rx="14" class="card"/>
+  <text x="1080" y="1196" class="tag">REVALIDAÇÃO FINAL</text><text x="1080" y="1225" class="cardTitle">Verifica telas + estrutura</text><text x="1080" y="1253" class="body">Gate visual e componentes</text><text x="1080" y="1275" class="small">Falhou? corrige ou NEEDS_REVIEW</text>
+  <path d="M1348 1228H1396" class="arrowMint"/>
+  <rect x="1408" y="1165" width="389" height="126" rx="14" class="card2"/>
+  <text x="1432" y="1196" class="tag">DELIVERED</text><text x="1432" y="1225" class="cardTitle">Pacote + relatório</text><text x="1432" y="1253" class="body">Link Penpot · rastreabilidade · scores</text><text x="1432" y="1275" class="small">Artefatos sanitizados · segredos fora do Git</text>
+
+  <!-- Persistent rules -->
+  <rect x="40" y="1380" width="1820" height="112" rx="16" fill="#0e1929" stroke="#2a3b52" stroke-width="1.5"/>
+  <text x="65" y="1410" class="lanehead">REGRAS TRANSVERSAIS</text>
+  <line x1="65" y1="1423" x2="1830" y2="1423" class="divider"/>
+  <text x="68" y="1453" class="body">Agent-agnostic</text><text x="224" y="1453" class="small">mesmos contratos em Codex / Claude / Devin / Gemini</text>
+  <text x="625" y="1453" class="body">Luna preferido</text><text x="766" y="1453" class="small">mão na massa econômica; orquestrador revisa score</text>
+  <text x="1231" y="1453" class="body">Gates internos</text><text x="1370" y="1453" class="small">bloqueiam comandos do repo; não impedem bypass externo</text>
+</svg>

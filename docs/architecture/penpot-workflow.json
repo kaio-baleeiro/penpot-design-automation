@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "architecture_id": "penpot-design-automation.workflow",
+  "architecture_version": "1.0.0",
+  "updated_at": "2026-09-25",
+  "language": "pt-BR",
+  "purpose": "Canonical machine-readable architecture for the agent-agnostic Penpot design workflow, from session entry to delivery.",
+  "status": "implemented",
+  "source_of_truth": {
+    "workflow_contract": "workflow/contract.json",
+    "runtime_policy": "agents/runtime-policy.yaml",
+    "state_machine_implementation": "scripts/penpot_validation/validator.py",
+    "guard_implementation": "scripts/workflow_guard.py",
+    "portable_instructions": "AGENTS.md",
+    "profile_registry": "agents/manifest.yaml"
+  },
+  "entry": {
+    "supported_launcher": "./agent codex|claude|devin|gemini",
+    "controller": "./penpot-workflow",
+    "session_lifecycle": "Each supported launcher creates a fresh, process-scoped pending session under ignored .local/.",
+    "mandatory_question": "Você quer preparar/subir a infraestrutura do Penpot (conta local e MCP incluídos) ou iniciar/continuar a implementação de designs no Penpot?",
+    "must_wait_for_user_choice": true,
+    "choice_recording": "./penpot-workflow select <infrastructure|design> --user-answer <verbatim-answer>",
+    "routes": ["infrastructure", "design"]
+  },
+  "actors": [
+    {"id": "user", "responsibility": "Choose route; supply sources or a prompt; answer intake, addendum, ambiguity, scope, and review questions; approve delivery."},
+    {"id": "orchestrator", "responsibility": "Run controller; assign profiles; preserve gates and evidence; review worker handoffs; own final score and state decisions."},
+    {"id": "specialist_worker", "responsibility": "Execute delegated hands-on capture, analysis, construction, or correction using the resolved cost-efficient model."},
+    {"id": "environment", "responsibility": "Provide CLI host, Python, Docker/Compose, browser automation, network access, and Penpot MCP as required."}
+  ],
+  "cross_cutting_components": [
+    {"id": "portable_instructions", "path": "AGENTS.md", "hosts": ["Codex CLI", "Claude Code", "Devin CLI", "Gemini CLI", "other repository-aware agents"]},
+    {"id": "native_adapters", "paths": [".claude/agents/", ".devin/agents/", ".gemini/agents/"], "generated_from": "agents/profiles/"},
+    {"id": "agent_skills", "path": "skills/", "package_format": "Agent Skills", "lessons": "Each skill owns project and machine lesson buckets; only project lessons are versioned."},
+    {"id": "runtime_policy", "path": "agents/runtime-policy.yaml", "policy": "Prefer cost-efficient delegated workers; record concrete resolved runtime/model; require image-capable worker for visual phases."},
+    {"id": "local_secrets", "path": ".env", "git_ignored": true, "contains": ["Penpot deployment secrets", "automation account credentials", "MCP URL", "MCP token"]},
+    {"id": "session_memory", "path": ".local/", "git_ignored": true, "contains": ["per-session route and controller state"]},
+    {"id": "run_artifacts", "path": "runs/<run-id>/", "contains": ["manifest", "source traceability", "questions and decisions", "frame specifications", "worker handoffs", "Penpot logs and inventories", "cycle scores and visual diffs", "delivery report"]}
+  ],
+  "routes": {
+    "infrastructure": {
+      "purpose": "Prepare one shared local Penpot instance for future projects.",
+      "entry_command": "./penpot-workflow bootstrap-infra",
+      "steps": [
+        {"id": "infra_prerequisites", "action": "Run setup.sh; prepare Python/Playwright dependencies and validate Compose configuration."},
+        {"id": "infra_secrets", "action": "Create or preserve root .env without overwriting existing deployment configuration; keep file private."},
+        {"id": "infra_start", "action": "Start Penpot Compose services and wait for readiness."},
+        {"id": "infra_account", "action": "Log in to or create the local automation account."},
+        {"id": "infra_mcp", "action": "Reuse or create the MCP access token, enable MCP, and store endpoint/token in root .env."},
+        {"id": "infra_complete", "action": "Return automation account email/password to the user; never print the MCP token; mark session INFRA_READY."}
+      ],
+      "persistent_target": "http://localhost:9001",
+      "shared_with_design_route": true
+    },
+    "design": {
+      "purpose": "Create or reconstruct static, editable Penpot screens, then formalize and deliver the approved design system.",
+      "phases": [
+        {
+          "id": "intake",
+          "required_actions": ["Ask scope questions", "Ask a final addendum/change question", "Analyze remaining ambiguities and ask further questions when needed"],
+          "outputs": ["runs/<run-id>/questions.md", "runs/<run-id>/decisions.md"]
+        },
+        {
+          "id": "route_resolution",
+          "branches": [
+            {"id": "source_based", "accepted_inputs": ["public URL or running app", "desktop or mobile screenshot", "code directory or Git repository", "combination of sources"], "next": "source_mapping"},
+            {"id": "prompt_only", "accepted_inputs": ["user brief without source"], "next": "brief_refinement"}
+          ]
+        },
+        {
+          "id": "source_mapping",
+          "required_actions": ["Capture the full finite page", "Check whether desktop, mobile, or both layouts exist", "Map provenance and state", "Inventory exact source assets before seeking substitutes", "Measure viewport, document, overflow, and frame bounds"],
+          "desktop_policy": {"observation_viewport": "1440x900", "minimum_frame": "1440x900", "finite_page": "Capture and design full page height", "horizontal_growth": "Only when intentional page-level horizontal behavior is evidenced"},
+          "outputs": ["source/source-map.json", "source/source-inventory.md", "source/assets-manifest.json", "source/frame-spec.json"]
+        },
+        {
+          "id": "brief_refinement",
+          "required_actions": ["Refine prompt-only intent with the user", "Record the approved brief and bounded screen states"],
+          "outputs": ["briefing/brief-v*.md"]
+        },
+        {
+          "id": "scope_approval",
+          "required_actions": ["Present decisions and plan", "Wait for user approval before building"]
+        },
+        {
+          "id": "plan_and_delegate",
+          "required_actions": ["Resolve profile and actual runtime/model", "Record runtime/model in handoff", "Require image-capable worker for visual phases", "Parallelize read-only source preparation only when safe"],
+          "parallelism": {"allowed": ["independent source and asset analysis"], "forbidden": ["concurrent mutations, inventory, or exports against the same active Penpot file"]},
+          "outputs": ["design/plan.json", "design/handoffs/"]
+        },
+        {
+          "id": "build",
+          "required_actions": ["Create editable Penpot frames using MCP", "Prefer exact source assets", "Build components/structure rather than embedding a reference screenshot as the design", "Record append-only MCP operations"],
+          "outputs": ["design/penpot-mcp-log.jsonl", "design/structure-inventory.json", "design/exports/"]
+        },
+        {
+          "id": "automated_validation",
+          "required_actions": ["Export every target viewport/frame", "Score each screen against source or approved brief", "Generate localized issues and visual comparisons", "Have orchestrator/reviewer inspect score and evidence"],
+          "outputs_per_cycle": ["score.json", "issues.json", "*-side-by-side-annotated.png", "*-overlay.png", "*-heatmap.png", "*-detail-board.png"],
+          "pass_gate": {"aggregate_score_min": 90, "coverage_min": 0.8, "p0_allowed": false, "p1_allowed": false, "structural_gate_required": true, "semantic_accessibility_review_required": true}
+        },
+        {
+          "id": "targeted_refactor",
+          "entry_condition": "Automated validation failed and cycle number is less than 3.",
+          "required_actions": ["Refactor only regions and causes named in issues", "Do not modify evaluator-owned score, thresholds, source evidence, or prior immutable cycle artifacts"],
+          "loop_to": "automated_validation",
+          "max_cycles": 3,
+          "terminal_failure_state": "NEEDS_REVIEW"
+        },
+        {
+          "id": "user_review",
+          "entry_condition": "Automated and structural gates pass, or an explicit review-needed state is being presented.",
+          "branches": [
+            {"id": "user_requests_changes", "action": "Record feedback and refine/rebuild the next version using the last version as input; revalidate the new version.", "next": "build"},
+            {"id": "user_approves", "action": "Record explicit approval.", "next": "design_system_formalization"}
+          ]
+        },
+        {
+          "id": "design_system_formalization",
+          "entry_condition": "Explicit user approval of the prototype.",
+          "required_actions": ["Create reusable tokens, styles, components, variants, and instances", "Re-inventory structure", "Re-export and revalidate after formalization"],
+          "outputs": ["approvals/approval-v*.md", "design/structure-inventory.json", "design/exports/"]
+        },
+        {
+          "id": "delivery",
+          "required_actions": ["Require post-design-system structural and visual gates", "Package sanitized traceability, comparison evidence, and report", "Leave private source captures, credentials, and raw Penpot exports out of Git unless explicitly allow-listed"],
+          "outputs": ["delivery/report.md", "delivery/manifest.json"],
+          "terminal_state": "DELIVERED"
+        }
+      ]
+    }
+  },
+  "specialist_profiles": [
+    {"id": "intake-source-analyst", "phase": "intake/source-map", "mission": "Capture page states, page extent, viewports, and source provenance."},
+    {"id": "frontend-forensics-engineer", "phase": "source-map/build-plan", "mission": "Inspect DOM/CSS/code, breakpoints, geometry, layout behavior, and overflow."},
+    {"id": "ux-ia-responsive-designer", "phase": "build-plan", "mission": "Define hierarchy, screen structure, and desktop/mobile matrix."},
+    {"id": "visual-ui-designer", "phase": "build-plan/build", "mission": "Specify visual language, content, typography, density, and assets."},
+    {"id": "penpot-mcp-prototyper", "phase": "build/refinement", "mission": "Create editable Penpot frames and reusable components through MCP."},
+    {"id": "visual-qa-auditor", "phase": "validation/delivery", "mission": "Inspect visual diffs, asset provenance, content, accessibility, and editability."},
+    {"id": "design-system-architect", "phase": "design-system", "mission": "Formalize design tokens, styles, components, and variants after approval."}
+  ],
+  "state_machine": {
+    "source_file": "scripts/penpot_validation/validator.py:STATE_TRANSITIONS",
+    "states": ["INTAKE_PENDING", "INTAKE_REVIEW", "AMBIGUITY_ANALYSIS", "SOURCE_CAPTURED", "BRIEF_REFINEMENT", "BUILD_PLANNED", "BUILDING", "VALIDATING", "REFACTORING", "REFINEMENT", "USER_REVIEW", "READY_FOR_USER_REVIEW", "DS_FORMALIZATION", "DS_REVALIDATING", "READY_FOR_DELIVERY", "DELIVERED", "NEEDS_REVIEW", "BLOCKED_WORKER_UNAVAILABLE", "BLOCKED_MODEL_UNAVAILABLE"],
+    "transitions": {
+      "INTAKE_PENDING": ["INTAKE_REVIEW"],
+      "INTAKE_REVIEW": ["AMBIGUITY_ANALYSIS"],
+      "AMBIGUITY_ANALYSIS": ["SOURCE_CAPTURED", "BRIEF_REFINEMENT"],
+      "SOURCE_CAPTURED": ["BUILD_PLANNED"],
+      "BRIEF_REFINEMENT": ["BUILD_PLANNED"],
+      "BUILD_PLANNED": ["BUILDING"],
+      "BUILDING": ["VALIDATING", "USER_REVIEW"],
+      "VALIDATING": ["REFACTORING", "REFINEMENT", "USER_REVIEW", "READY_FOR_USER_REVIEW", "DS_FORMALIZATION", "READY_FOR_DELIVERY", "NEEDS_REVIEW"],
+      "REFACTORING": ["VALIDATING"],
+      "REFINEMENT": ["VALIDATING", "BUILDING"],
+      "USER_REVIEW": ["BUILDING", "DS_FORMALIZATION", "READY_FOR_USER_REVIEW"],
+      "READY_FOR_USER_REVIEW": ["USER_REVIEW", "BUILDING", "DS_FORMALIZATION", "READY_FOR_DELIVERY"],
+      "DS_FORMALIZATION": ["DS_REVALIDATING"],
+      "DS_REVALIDATING": ["REFINEMENT", "READY_FOR_USER_REVIEW", "READY_FOR_DELIVERY", "NEEDS_REVIEW", "DELIVERED"],
+      "READY_FOR_DELIVERY": ["DELIVERED", "NEEDS_REVIEW", "DS_REVALIDATING"],
+      "DELIVERED": [],
+      "NEEDS_REVIEW": [],
+      "BLOCKED_WORKER_UNAVAILABLE": [],
+      "BLOCKED_MODEL_UNAVAILABLE": []
+    }
+  },
+  "invariants": [
+    "Ask and record infrastructure-or-design choice before route operations.",
+    "Ask intake questions and the final addendum question before building.",
+    "Map every supplied source and inventory original useful assets before building.",
+    "Use whole-page finite source extent; 1440x900 is a desktop observation viewport and minimum frame, not a full-page height cap.",
+    "A visual worker must open an image and record image hash plus concrete observation; this is an auditable attestation, not proof of subjective comprehension.",
+    "Use cost-efficient delegated hands-on workers where supported; orchestrator remains the final reviewer and score owner.",
+    "Allow at most three automated correction cycles per version; third failed cycle stops at NEEDS_REVIEW.",
+    "Do not formalize the design system until user approval; revalidate after formalization.",
+    "Keep machine-local credentials/session state out of Git.",
+    "Repository guards constrain supported repository commands, not an agent that deliberately bypasses the repo and directly invokes an external MCP server."
+  ],
+  "visual_companion": "penpot-workflow-architecture.svg"
+}
